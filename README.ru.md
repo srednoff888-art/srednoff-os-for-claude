@@ -1,5 +1,11 @@
 # SREDNOFF OS for Claude
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Built for Claude Code](https://img.shields.io/badge/Built%20for-Claude%20Code-6b46c1)](https://claude.com/claude-code)
+[![Registry size](https://img.shields.io/badge/skills%20%2B%20agents-2000%2B-2ea44f)](registry/CORE-300.md)
+[![Platform](https://img.shields.io/badge/platform-Windows%20PowerShell-0078D6)](scripts/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/srednoff888-art/srednoff-os-for-claude/pulls)
+
 **Инженерная операционная система-надстройка для [Claude Code](https://claude.com/claude-code).**
 Ставишь в любой репозиторий — и Claude перестаёт импровизировать: следует правилам, выбирает нужный skill из курируемого реестра на 2000+ вариантов, роутит на подходящую модель по стоимости, а хуки останавливают его до того, как он сольёт секрет или выполнит `rm -rf`.
 

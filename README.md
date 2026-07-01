@@ -1,5 +1,11 @@
 # SREDNOFF OS for Claude
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Built for Claude Code](https://img.shields.io/badge/Built%20for-Claude%20Code-6b46c1)](https://claude.com/claude-code)
+[![Registry size](https://img.shields.io/badge/skills%20%2B%20agents-2000%2B-2ea44f)](registry/CORE-300.md)
+[![Platform](https://img.shields.io/badge/platform-Windows%20PowerShell-0078D6)](scripts/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/srednoff888-art/srednoff-os-for-claude/pulls)
+
 **An engineering-discipline operating system for [Claude Code](https://claude.com/claude-code).**
 Drop it into any repo and Claude stops improvising — it follows rules, picks the right skill for the job from a curated registry of 2000+ options, routes to the right model tier, and gets stopped by hooks before it leaks a secret or runs `rm -rf`.
 
