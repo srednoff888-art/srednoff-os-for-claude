@@ -5,11 +5,21 @@ set -euo pipefail
 # - Never overwrites silently: existing files backed up as <file>.bak.<timestamp>.
 # - Never deletes anything.
 # - Never creates an active .claude/settings.json (only settings.example.json).
+# --skip-existing-claude-md: if the project already has its own CLAUDE.md, leave it
+#   completely untouched (do not back up or replace). Matches -SkipExistingClaudeMd in
+#   init-claude-project.ps1.
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 template_root="$(cd "$script_dir/.." && pwd)"
 
-target="${1:-.}"
+target="."
+skip_existing_claude_md=0
+for arg in "$@"; do
+  case "$arg" in
+    --skip-existing-claude-md) skip_existing_claude_md=1 ;;
+    *) target="$arg" ;;
+  esac
+done
 target="$(cd "$target" && pwd)"
 stamp="$(date +%Y%m%d-%H%M%S)"
 
@@ -23,15 +33,22 @@ echo "  Template: $template_root"
 echo "  Target:   $target"
 echo ""
 
-created=0; updated=0; skipped=0
+created=0; updated=0; skipped=0; preserved=0
 
 # Walk all template files except scripts/ and any settings.json
 while IFS= read -r -d '' f; do
   rel="${f#$template_root/}"
   case "$rel" in
     scripts/*) continue ;;
+    .git/*) continue ;;          # the template's OWN git history, never project content
     .claude/settings.json) continue ;;
   esac
+
+  if [ "$skip_existing_claude_md" -eq 1 ] && [ "$rel" = "CLAUDE.md" ] && [ -f "$target/CLAUDE.md" ]; then
+    echo "  ! $rel  (preserved - project's own CLAUDE.md kept active)"
+    preserved=$((preserved + 1))
+    continue
+  fi
 
   dest="$target/$rel"
   mkdir -p "$(dirname "$dest")"
@@ -54,8 +71,16 @@ while IFS= read -r -d '' f; do
 done < <(find "$template_root" -type f -print0)
 
 echo ""
-echo "Created: $created  Updated: $updated  Skipped: $skipped"
+echo "Created: $created  Updated: $updated  Skipped: $skipped  Preserved: $preserved"
 echo ""
 echo "Hooks are NOT active. To enable them:"
 echo "  cp .claude/settings.example.json .claude/settings.json"
 echo "  chmod +x .claude/hooks/*.sh"
+
+# Generate PROFILE.lock (cached skill selection for the stack), if the registry is available.
+gen_lock="$script_dir/gen-profile-lock.sh"
+core_reg="$HOME/.claude/registry/CORE-300.md"
+if [ -f "$gen_lock" ] && [ -f "$core_reg" ]; then
+  echo ""
+  bash "$gen_lock" "$target"
+fi

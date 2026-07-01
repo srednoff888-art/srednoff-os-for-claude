@@ -2,38 +2,33 @@
 
 Эти hooks **не включены автоматически**. Это примеры. Чтобы включить:
 
-**Windows / PowerShell (рекомендуется — без jq):**
+**Windows / PowerShell (рекомендуется на Windows — без jq):**
 ```powershell
 Copy-Item .claude\settings.windows.example.json .claude\settings.json
 ```
 Эта версия вызывает `*.ps1`-хуки (`block-dangerous-bash.ps1`, `protect-secrets.ps1`, `scan-prompt-secrets.ps1`, `quality-reminder.ps1`) — работают на чистой Windows-машине без зависимостей.
 
-**bash / jq:**
+**Linux / macOS / bash:**
 ```bash
 cp .claude/settings.example.json .claude/settings.json
+chmod +x .claude/hooks/*.sh
 ```
+Эта версия вызывает `*.sh`-хуки — требуют `bash` + `jq` + `grep -P` (см. ниже).
 
-## Зависимости
+## Зависимости (bash-хуки)
 
-Bash-хуки (`*.sh`) требуют:
+- `bash` (на Windows — Git Bash, обычно уже стоит; это не рекомендуемый путь на Windows — используй PowerShell-версию выше);
+- `jq` — Linux: `apt install jq` / `dnf install jq` / `pacman -S jq`; macOS: `brew install jq`; Windows: `winget install jqlang.jq`;
+- `grep -P` (PCRE) — стандартно на Linux (GNU grep). На macOS системный `grep` (BSD) **не поддерживает** `-P`: поставь `brew install grep` (даст `ggrep`) и экспортируй `SREDNOFF_GREP_BIN=ggrep`, либо работай через WSL.
 
-- `bash` (на Windows — Git Bash, обычно уже стоит);
-- `jq` — на Windows: `winget install jqlang.jq`, затем перезапустить терминал.
+Если `jq` не установлен — bash-хуки просто пропускают проверку (fail-open), команда не блокируется. Это безопасно для работы, но защита не сработает. Установи `jq` и `grep -P`, чтобы хуки реально фильтровали.
 
-Если `jq` не установлен — `block-dangerous-bash.sh` и `protect-secrets.sh` будут просто пропускать проверку (fail-open), команда не блокируется. Это безопасно для работы, но защита не сработает. Установи `jq`, чтобы хуки реально фильтровали.
+## Хуки (одинаковый набор в .ps1 и .sh, паритет функциональности)
 
-## Хуки
+- `hook-lib.ps1` / `hook-lib.sh` — общая библиотека (dot-source/source), не хук сама по себе: контентное сканирование секретов (OpenAI/Anthropic/GitHub/AWS/Google/Stripe/Slack/Twilio/SendGrid/npm ключи, PEM, JWT — 13 паттернов, сверены с gitleaks.toml) + audit-журнал.
+- `block-dangerous-bash.ps1` / `.sh` — PreToolUse(Bash): блокирует опасные команды (`rm -rf /`, `mkfs`, `dd of=/dev/*`, fork-bomb, `chmod -R 777 /`, `git push --force`, `git reset --hard`, `format C:`) **и** секреты, вставленные прямо в команду.
+- `protect-secrets.ps1` / `.sh` — PreToolUse(Read|Edit|Write|MultiEdit): блокирует доступ к секретным путям (`.env`, `*.pem`, `*.key`, `id_rsa`, `secrets.*`, `credentials.json`) **и** секреты, которые вот-вот запишутся в обычный файл (контент, не только путь).
+- `scan-prompt-secrets.ps1` / `.sh` — UserPromptSubmit: блокирует сам промпт, если в нём есть вставленный секрет (до того, как он попадёт хоть куда-то). Контракт подтверждён по офиц. докам (`{"decision":"block","reason":...}`).
+- `quality-reminder.ps1` / `.sh` — Stop: напоминание про тесты/безопасность/отчёт.
 
-- `block-dangerous-bash.sh` — PreToolUse(Bash): блокирует `rm -rf /`, `mkfs`, `dd of=/dev/*`, fork-bomb, `chmod -R 777 /`.
-- `protect-secrets.sh` — PreToolUse(Read|Edit|Write): блокирует доступ к `.env`, `*.pem`, `*.key`, `id_rsa`, `secrets.*`.
-- `quality-reminder.sh` — Stop: напоминание про тесты/безопасность/отчёт.
-
-## PowerShell-хуки (актуальная версия, 01.07.2026 — доработаны по мотивам srednoff-os для Codex)
-
-- `hook-lib.ps1` — общая библиотека (dot-source), не хук сама по себе: `Find-SecretSignals` (контентное сканирование секретов: OpenAI/Anthropic/GitHub/AWS/Google ключи, PEM, JWT) + `Write-HookLedger` (audit-журнал).
-- `block-dangerous-bash.ps1` — PreToolUse(Bash): блокирует опасные команды (`rm -rf /`, `mkfs`, `dd of=/dev/*`, fork-bomb, `chmod -R 777 /`, `git push --force`, **`git reset --hard`**, **`format C:`**) **и** секреты, вставленные прямо в команду.
-- `protect-secrets.ps1` — PreToolUse(Read|Edit|Write|MultiEdit): блокирует доступ к секретным путям (`.env`, `*.pem`, `*.key`, `id_rsa`, `secrets.*`) **и** секреты, которые вот-вот запишутся в обычный файл (контент, не только путь).
-- `scan-prompt-secrets.ps1` — **новый**, UserPromptSubmit: блокирует сам промпт, если в нём есть вставленный секрет (до того, как он попадёт хоть куда-то). Контракт подтверждён по офиц. докам (`{"decision":"block","reason":...}`).
-- `quality-reminder.ps1` — Stop: напоминание.
-
-**Audit ledger:** все denies/blocks пишутся в `~/.claude/logs/hook-events.jsonl` (timestamp, хук, решение, находки, **sha256 сырого инпута** — не сам секрет). Логируются только сработавшие события, не каждый вызов — иначе журнал раздувается без пользы.
+**Audit ledger:** все denies/blocks пишутся в `~/.claude/logs/hook-events.jsonl` (timestamp, хук, решение, находки, **sha256 сырого инпута** — не сам секрет). Логируются только сработавшие события, не каждый вызов — иначе журнал раздувается без пользы. Формат ledger одинаковый у `.ps1` и `.sh` версий (можно смешивать хосты и читать один общий журнал).

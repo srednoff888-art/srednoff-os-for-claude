@@ -51,8 +51,11 @@ $skipped = @()
 
 $files = Get-ChildItem -LiteralPath $TemplateRoot -Recurse -File -Force | Where-Object {
   $rel = $_.FullName.Substring($TemplateRoot.Length).TrimStart('\','/')
-  # Skip the scripts folder (installer tooling) and any accidental settings.json
-  ($rel -notlike "scripts\*") -and ($rel -ne ".claude\settings.json")
+  # Skip the scripts folder (installer tooling), the template's OWN git history (never
+  # project content - a real bug found while testing the Linux port: without this
+  # exclusion, every newly-initialized project silently receives the template repo's
+  # .git\objects\* blobs mixed into its own tree), and any accidental settings.json.
+  ($rel -notlike "scripts\*") -and ($rel -notlike ".git\*") -and ($rel -ne ".claude\settings.json")
 }
 
 $preserved = @()

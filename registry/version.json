@@ -1,6 +1,6 @@
 {
   "name": "SREDNOFF OS (Claude Code)",
-  "version": "v1.5",
+  "version": "v1.7",
   "released_at": "2026-07-01",
   "baseline": {
     "kernel_records": 2027,
@@ -28,7 +28,11 @@
     "expanded-secret-patterns",
     "mass-expansion-2000plus",
     "catalog-json-cache",
-    "project-starter-templates"
+    "project-starter-templates",
+    "registry-git-versioned",
+    "hook-liveness-ledger",
+    "hook-canary-test",
+    "linux-macos-bash-parity"
   ],
   "ported_from": "srednoff-os (Codex sibling, github.com/srednoff888-art/srednoff-os) - concepts only, rewritten for Claude Code/PowerShell"
 }

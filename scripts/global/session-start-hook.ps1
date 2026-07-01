@@ -1,22 +1,27 @@
-# Global SessionStart hook for Claude MD OS.
+# Global SessionStart hook for SREDNOFF OS (Windows/PowerShell).
 # - If a project under the workspace root lacks the OS -> auto-apply it (non-destructive).
 # - If the OS is present -> emit an "OS ACTIVE" banner so it visibly engages in the project window.
 # Idempotent, scoped to the workspace root, ASCII-only (PS 5.1 safe).
+#
+# Wiring (~/.claude/settings.json):
+#   "hooks": { "SessionStart": [{ "hooks": [{ "type": "command",
+#     "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"$env:USERPROFILE\\.claude\\templates\\claude-md-os\\scripts\\global\\session-start-hook.ps1\"" }] }] }
+#
+# Set SREDNOFF_OS_ROOT to the workspace folder you want auto-managed (e.g. "D:\Projects").
+# If unset, defaults to $HOME - the hook only ever acts on real project folders it finds
+# there (package.json / .git / *.md present), never on arbitrary directories.
 $ErrorActionPreference = "SilentlyContinue"
 
-# SessionStart hook passes JSON on stdin with a "cwd" field.
 $raw = [Console]::In.ReadToEnd()
 $cwd = $null
 if ($raw) { try { $j = $raw | ConvertFrom-Json; $cwd = $j.cwd; if (-not $cwd) { $cwd = $j.workspace.current_dir } } catch {} }
 if (-not $cwd) { $cwd = (Get-Location).Path }
 
-# LIVENESS LEDGER (closes: "hook firing was never independently observed, only manually
-# tested by the same author who wrote it"). Logs EVERY invocation unconditionally, before
-# any early-exit, with the real PID and a "source" field distinguishing genuine SessionStart
-# calls (source=startup/resume/clear/compact, set by Claude Code itself in the hook JSON)
-# from a manual test (source will be absent/empty when someone pipes JSON in by hand without
-# setting it). This gives a way to check, independently of the author, whether the hook has
-# EVER actually fired through the real runtime - not just through self-administered tests.
+# LIVENESS LEDGER: logs EVERY invocation unconditionally, before any early-exit, with the
+# real PID and a "source" field distinguishing genuine SessionStart calls (source=startup/
+# resume/clear/compact, set by Claude Code itself) from a manual test (source will be
+# absent/empty when someone pipes JSON in by hand). Lets you independently verify the hook
+# has EVER actually fired through the real runtime, not just through self-administered tests.
 try {
   $logDir = Join-Path $env:USERPROFILE ".claude\logs"
   New-Item -ItemType Directory -Force -Path $logDir -ErrorAction SilentlyContinue | Out-Null
@@ -45,7 +50,6 @@ function Emit($msg) {
 }
 
 if ($hasOS) {
-  # Read dominant tags from PROFILE.lock (if present) for the banner.
   $tags = ""
   $lock = Join-Path $cwd ".claude\PROFILE.lock.md"
   if (Test-Path $lock) {

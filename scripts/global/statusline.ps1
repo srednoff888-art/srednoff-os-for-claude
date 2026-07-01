@@ -1,6 +1,12 @@
-# SREDNOFF OS statusline: shows ACTIVE (green) / OFF (red) for the current project.
-# Wired via settings.json "statusLine". Reads JSON on stdin, prints ONE colored line.
-# ASCII-only (PS 5.1 safe). ANSI colors render in the status bar.
+# SREDNOFF OS statusline (Windows/PowerShell): shows ACTIVE (green) / OFF (red) for the
+# current project. Wired via settings.json "statusLine". Reads JSON on stdin, prints ONE
+# colored line. ASCII-only (PS 5.1 safe). ANSI colors render in the status bar.
+#
+# Wiring (~/.claude/settings.json):
+#   "statusLine": { "type": "command",
+#     "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"$env:USERPROFILE\\.claude\\templates\\claude-md-os\\scripts\\global\\statusline.ps1\"" }
+#
+# Uses the same SREDNOFF_OS_ROOT env var as session-start-hook.ps1 (defaults to $HOME).
 $ErrorActionPreference = "SilentlyContinue"
 
 $raw = [Console]::In.ReadToEnd()
