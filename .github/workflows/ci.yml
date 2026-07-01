@@ -76,33 +76,28 @@ jobs:
   bash-3-2:
     name: Real bash 3.2 runtime (matches macOS /bin/bash 3.2.57)
     runs-on: ubuntu-latest
-    container: bash:3.2   # official Docker image - the exact ancient bash Apple ships on macOS
+    # checkout runs on the ubuntu host (it needs Node, which the minimal bash:3.2 Alpine
+    # image lacks); the actual tests run INSIDE the official bash:3.2 container via `docker run`
+    # against the mounted checkout - so the interpreter really is the ancient bash Apple ships.
     steps:
       - uses: actions/checkout@v4
-      - name: Install jq + GNU grep (Alpine)
-        run: apk add --no-cache jq grep
-      - name: Confirm the interpreter really is 3.2
-        run: bash --version | head -1
-      - name: Syntax-check every script under bash 3.2 (bash -n)
+      - name: Run scripts inside the official bash:3.2 container
         run: |
-          fail=0
-          for f in $(find . -name '*.sh' -not -path './.git/*'); do
-            bash -n "$f" || { echo "SYNTAX ERROR under bash 3.2: $f"; fail=1; }
-          done
-          exit $fail
-      - name: Run the security hooks under bash 3.2 (catches mapfile + set -u empty-array breakage)
-        run: |
-          H="$PWD/.claude/hooks"
-          fail=0
-          echo '{"tool_input":{"command":"mkfs.ext4 /dev/sda1"}}' | bash "$H/block-dangerous-bash.sh" | grep -q deny || { echo "block-dangerous-bash broke on bash 3.2"; fail=1; }
-          echo '{"tool_input":{"file_path":"app/.env"}}' | bash "$H/protect-secrets.sh" | grep -q deny || { echo "protect-secrets broke on bash 3.2"; fail=1; }
-          echo '{"prompt":"sk-ant-api03-abcdefghijklmnopqrstuvwx"}' | bash "$H/scan-prompt-secrets.sh" | grep -q '"decision":"block"' || { echo "scan-prompt-secrets broke on bash 3.2"; fail=1; }
-          exit $fail
-      - name: Run the routing scripts under bash 3.2 (empty-array paths: brief with no questions)
-        run: |
-          mkdir -p "$HOME/.claude/registry"
-          cp -r registry/. "$HOME/.claude/registry/"
-          chmod +x "$HOME/.claude/registry/"*.sh
-          # A backend brief yields empty questions/connectors arrays - the exact v1.10 regression path.
-          bash "$HOME/.claude/registry/domain-router.sh" --brief "fix a backend bug" --json | jq -e '.domains' >/dev/null
-          bash "$HOME/.claude/registry/select-skills.sh" --brief "add stripe checkout" --json --no-log | jq -e '.picked' >/dev/null
+          docker run --rm -v "$PWD":/work -w /work bash:3.2 sh -euc '
+            apk add --no-cache jq grep >/dev/null
+            echo "interpreter: $(bash --version | head -1)"
+            fail=0
+            # 1. Syntax-check every script under bash 3.2.
+            for f in $(find . -name "*.sh" -not -path "./.git/*"); do
+              bash -n "$f" || { echo "SYNTAX ERROR under bash 3.2: $f"; fail=1; }
+            done
+            # 2. Security hooks must still deny/block (catches mapfile + set -u empty-array breakage).
+            echo "{\"tool_input\":{\"command\":\"mkfs.ext4 /dev/sda1\"}}" | bash .claude/hooks/block-dangerous-bash.sh | grep -q deny || { echo "block-dangerous-bash broke on 3.2"; fail=1; }
+            echo "{\"tool_input\":{\"file_path\":\"app/.env\"}}" | bash .claude/hooks/protect-secrets.sh | grep -q deny || { echo "protect-secrets broke on 3.2"; fail=1; }
+            echo "{\"prompt\":\"sk-ant-api03-abcdefghijklmnopqrstuvwx\"}" | bash .claude/hooks/scan-prompt-secrets.sh | grep -q "\"decision\":\"block\"" || { echo "scan-prompt-secrets broke on 3.2"; fail=1; }
+            # 3. Routing scripts on the empty-array path (backend brief = empty questions/connectors: the v1.10 regression).
+            mkdir -p "$HOME/.claude/registry"; cp -r registry/. "$HOME/.claude/registry/"; chmod +x "$HOME/.claude/registry/"*.sh
+            bash "$HOME/.claude/registry/domain-router.sh" --brief "fix a backend bug" --json | jq -e ".domains" >/dev/null || { echo "domain-router broke on 3.2"; fail=1; }
+            bash "$HOME/.claude/registry/select-skills.sh" --brief "add stripe checkout" --json --no-log | jq -e ".picked" >/dev/null || { echo "select-skills broke on 3.2"; fail=1; }
+            exit $fail
+          '
