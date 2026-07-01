@@ -26,11 +26,13 @@ try {
   $logDir = Join-Path $env:USERPROFILE ".claude\logs"
   New-Item -ItemType Directory -Force -Path $logDir -ErrorAction SilentlyContinue | Out-Null
   $source = if ($j -and $j.source) { [string]$j.source } else { "unknown-or-manual" }
+  $sessionId = if ($j -and $j.session_id) { [string]$j.session_id } else { $null }
   $entry = [ordered]@{
-    ts     = (Get-Date).ToUniversalTime().ToString("o")
-    pid    = $PID
-    cwd    = $cwd
-    source = $source
+    ts         = (Get-Date).ToUniversalTime().ToString("o")
+    pid        = $PID
+    cwd        = $cwd
+    source     = $source
+    session_id = $sessionId
   }
   $line = ($entry | ConvertTo-Json -Compress -Depth 4) + [Environment]::NewLine
   $enc = New-Object System.Text.UTF8Encoding($false)

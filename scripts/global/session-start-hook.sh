@@ -33,9 +33,10 @@ if command -v jq >/dev/null 2>&1; then
     s="$(printf '%s' "$raw" | jq -r '.source // empty' 2>/dev/null || true)"
     [ -n "$s" ] && source_field="$s"
   fi
+  session_id_field="$(printf '%s' "$raw" | jq -r '.session_id // empty' 2>/dev/null || true)"
   ts="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-  jq -nc --arg ts "$ts" --argjson pid "$$" --arg cwd "$cwd" --arg source "$source_field" \
-    '{ts: $ts, pid: $pid, cwd: $cwd, source: $source}' >> "$log_dir/hook-liveness.jsonl" 2>/dev/null || true
+  jq -nc --arg ts "$ts" --argjson pid "$$" --arg cwd "$cwd" --arg source "$source_field" --arg session_id "$session_id_field" \
+    '{ts: $ts, pid: $pid, cwd: $cwd, source: $source, session_id: (if $session_id == "" then null else $session_id end)}' >> "$log_dir/hook-liveness.jsonl" 2>/dev/null || true
 fi
 
 root_guard="${SREDNOFF_OS_ROOT:-$HOME}"

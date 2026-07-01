@@ -21,11 +21,19 @@ function Write-HookLedger {
   )
   $logDir = Join-Path $env:USERPROFILE ".claude\logs"
   New-Item -ItemType Directory -Force -Path $logDir -ErrorAction SilentlyContinue | Out-Null
+  # session_id correlation (concept adapted from paperclipai/paperclip's run-ID audit trail,
+  # MIT - their pattern stamps every mutating API call with a run ID; ours stamps every hook
+  # decision with Claude Code's own session_id, present at the top level of every hook JSON
+  # payload per official docs). Lets you grep hook-events.jsonl for everything that happened
+  # within one specific session.
+  $sessionId = $null
+  if ($RawInput) { try { $sessionId = ($RawInput | ConvertFrom-Json).session_id } catch {} }
   $entry = [ordered]@{
     ts           = (Get-Date).ToUniversalTime().ToString("o")
     hook         = $HookScript
     decision     = $Decision
     findings     = @($Findings)
+    session_id   = $sessionId
     input_sha256 = if ($RawInput) { Get-Sha256Hex -Text $RawInput } else { $null }
   }
   $line = ($entry | ConvertTo-Json -Compress -Depth 6) + [Environment]::NewLine

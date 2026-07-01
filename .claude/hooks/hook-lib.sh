@@ -50,16 +50,22 @@ sha256_hex() {
 # Privacy-safe audit trail: logs ONLY when something is flagged (secret/dangerous pattern),
 # not every tool call. Stores a sha256 of the raw hook input, never the input itself, so no
 # secret content ever lands on disk here. Silently no-ops if jq is unavailable.
+# session_id correlation (concept adapted from paperclipai/paperclip's run-ID audit trail,
+# MIT - their pattern stamps every mutating API call with a run ID; ours stamps every hook
+# decision with Claude Code's own session_id, present at the top level of every hook JSON
+# payload per official docs). Lets you grep hook-events.jsonl for everything that happened
+# within one specific session.
 write_hook_ledger() {
   local hook_script="$1" decision="$2" raw_input="$3"; shift 3
   local findings=("$@")
   command -v jq >/dev/null 2>&1 || return 0
   local log_dir="$HOME/.claude/logs"
   mkdir -p "$log_dir" 2>/dev/null || return 0
-  local ts input_hash findings_json
+  local ts input_hash findings_json session_id
   ts="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
   input_hash=""
   [ -n "$raw_input" ] && input_hash="$(sha256_hex "$raw_input")"
+  session_id="$(printf '%s' "$raw_input" | jq -r '.session_id // empty' 2>/dev/null || true)"
   if [ "${#findings[@]}" -gt 0 ]; then
     findings_json="$(printf '%s\n' "${findings[@]}" | jq -R . | jq -sc .)"
   else
@@ -67,7 +73,9 @@ write_hook_ledger() {
   fi
   jq -nc \
     --arg ts "$ts" --arg hook "$hook_script" --arg decision "$decision" \
-    --argjson findings "$findings_json" --arg hash "$input_hash" \
-    '{ts: $ts, hook: $hook, decision: $decision, findings: $findings, input_sha256: (if $hash == "" then null else $hash end)}' \
+    --argjson findings "$findings_json" --arg hash "$input_hash" --arg session_id "$session_id" \
+    '{ts: $ts, hook: $hook, decision: $decision, findings: $findings,
+      session_id: (if $session_id == "" then null else $session_id end),
+      input_sha256: (if $hash == "" then null else $hash end)}' \
     >> "$log_dir/hook-events.jsonl" 2>/dev/null || true
 }

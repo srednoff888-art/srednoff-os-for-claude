@@ -1,5 +1,12 @@
 # CHANGELOG — реестр ядра Claude MD OS
 
+## v1.8 — 2026-07-01 (session_id корреляция + финальный disposition для сабагентов)
+- **Исследован `paperclipai/paperclip`** (MIT, 72k★, легитимный, активный) по запросу Ивана. Вывод: это платформа оркестрации КОМАНД автономных агентов (org-chart, бюджеты, approval gates, сервер+БД+UI) — другой продукт для другого сценария использования (флот агентов 24/7 vs один оператор). Полную оркестрацию сознательно НЕ забрали — несоразмерный рост инфраструктуры под несуществующую у Ивана задачу (явное решение Ивана после обсуждения tradeoff).
+- **Взято адаптированной концепцией (не кодом), 2 пункта:**
+  1. **session_id корреляция в audit-ledger** — `Write-HookLedger`/`write_hook_ledger` теперь извлекают `session_id` (подтверждено: присутствует на верхнем уровне JSON всех 4 типов хуков по офиц. докам Claude Code) и пишут в `hook-events.jsonl`; то же добавлено в `hook-liveness.jsonl` (session-start-hook.ps1/.sh). Позволяет grep'ать все события одной сессии. Протестировано: с session_id → пишется корректно; без него → `null`, хук не ломается (backward-compatible).
+  2. **Финальный disposition для сабагентов** (rule `90-subagent-contract.md`) — каждый делегированный вызов (Agent/Task/фоновый Bash) обязан завершиться явным исходом (`done`/`blocked`/`deferred`/`failed`), зафиксированным в ответе пользователю — не обрываться молча.
+- Полная регрессия после изменений: `doctor.ps1` и `doctor.sh` — **evals 30/30, hook-canary 3/3, registry-audit 0 дублей, catalog-format 0 проблем** на обеих платформах.
+
 ## v1.7 — 2026-07-01 (полный паритет Linux/macOS: bash-порты всех хуков и скриптов)
 - **Хуки:** `hook-lib.sh` (bash-аналог `hook-lib.ps1` — 13 секрет-паттернов через `grep -P`, ledger через `jq`+`sha256sum`); `block-dangerous-bash.sh`/`protect-secrets.sh` доведены до паритета с `.ps1` (были устаревшие, без content-based секрет-скана и части опасных паттернов) + **новый** `scan-prompt-secrets.sh` (ранее существовал только в PowerShell). Все 3 функционально протестированы canary-инпутами.
 - **Реестр:** `routing-lib.sh`, `mode-router.sh`, `domain-router.sh`, `select-skills.sh`, `audit-registry.sh`, `validate-catalog-format.sh` — полные bash-порты. Каталог парсится POSIX-совместимым awk (без gawk-специфичных расширений — работает и под mawk), без JSON-кэша (не нужен: awk парсит 2027 записей за ~0.24с, в разы быстрее PS-плоского-файлового парсинга).
