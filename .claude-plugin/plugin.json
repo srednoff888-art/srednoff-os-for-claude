@@ -1,0 +1,31 @@
+{
+  "name": "srednoff-os",
+  "displayName": "SREDNOFF OS for Claude",
+  "version": "1.11.0",
+  "description": "Engineering-discipline overlay for Claude Code: opt-in security hooks (secret scanning + dangerous-command blocking), reusable skills, and slash commands. The plugin's auto-wired hooks target bash (macOS/Linux). Windows users: see README for the PowerShell hook wiring. The rules stack and 2000+ skill registry install per-project via scripts/ (see README).",
+  "author": {
+    "name": "Ivan Srednoff",
+    "url": "https://github.com/srednoff888-art"
+  },
+  "homepage": "https://github.com/srednoff888-art/srednoff-os-for-claude#readme",
+  "repository": "https://github.com/srednoff888-art/srednoff-os-for-claude",
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "hooks",
+    "secret-scanning",
+    "dangerous-command-blocking",
+    "skills",
+    "engineering-discipline",
+    "claude-code"
+  ],
+  "skills": "./.claude/skills/",
+  "commands": [
+    "./.claude/commands/init-project.md",
+    "./.claude/commands/plan.md",
+    "./.claude/commands/research.md",
+    "./.claude/commands/review-production.md"
+  ],
+  "hooks": "./hooks/hooks.json",
+  "defaultEnabled": false
+}

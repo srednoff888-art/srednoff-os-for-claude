@@ -43,7 +43,7 @@ if [ -f "$secret_fixtures" ] && [ -f "$hook_lib" ]; then
   . "$hook_lib"
   while IFS=$'\t' read -r id text expect; do
     [ -z "$id" ] && continue
-    mapfile -t hits < <(find_secret_signals "$text")
+    hits=(); while IFS= read -r _line; do hits+=("$_line"); done < <(find_secret_signals "$text")
     got=0; [ "${#hits[@]}" -gt 0 ] && got=1
     pass=0; [ "$got" -eq "$expect" ] && pass=1
     add_result "secret-pattern" "$id" "$pass" "match=$expect" "match=$got (${hits[*]:-})"
@@ -68,8 +68,8 @@ if [ -f "$domain_fixtures" ]; then
     pass=0
     IFS=',' read -ra expected_arr <<< "$expected_domains_csv"
     IFS=',' read -ra got_arr <<< "$got_csv"
-    for e in "${expected_arr[@]}"; do
-      for g in "${got_arr[@]}"; do
+    for e in ${expected_arr[@]+"${expected_arr[@]}"}; do
+      for g in ${got_arr[@]+"${got_arr[@]}"}; do
         [ "$e" = "$g" ] && pass=1
       done
     done
@@ -85,8 +85,8 @@ if [ -f "$selector_fixtures" ]; then
     pass=0
     IFS=',' read -ra expected_arr <<< "$expected_any_csv"
     IFS=',' read -ra got_arr <<< "$got_names_csv"
-    for e in "${expected_arr[@]}"; do
-      for g in "${got_arr[@]}"; do
+    for e in ${expected_arr[@]+"${expected_arr[@]}"}; do
+      for g in ${got_arr[@]+"${got_arr[@]}"}; do
         [ "$e" = "$g" ] && pass=1
       done
     done

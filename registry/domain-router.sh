@@ -24,7 +24,8 @@ while [ $# -gt 0 ]; do
 done
 
 IFS='|' read -r mode budget _max _turbo _reason <<< "$(get_mode "$brief")"
-mapfile -t domain_tags < <(get_domain_tags "$brief")
+# bash-3.2-compatible (macOS /bin/bash is 3.2.57, no `mapfile`): read lines into an array.
+domain_tags=(); while IFS= read -r _line; do domain_tags+=("$_line"); done < <(get_domain_tags "$brief")
 
 has_tag() { local needle="$1"; local t; for t in "${domain_tags[@]}"; do [ "$t" = "$needle" ] && return 0; done; return 1; }
 
@@ -67,7 +68,7 @@ if [ ! -f "$core_check" ]; then
 elif [ -x "$selector" ] || [ -f "$selector" ]; then
   picks_json="$(bash "$selector" --brief "$brief" --max 10 --json --no-log 2>/dev/null || true)"
   if [ -n "$picks_json" ] && command -v jq >/dev/null 2>&1; then
-    mapfile -t skill_picks < <(printf '%s' "$picks_json" | jq -r '.picked[] | select(.group <= 2) | .name' 2>/dev/null || true)
+    skill_picks=(); while IFS= read -r _line; do skill_picks+=("$_line"); done < <(printf '%s' "$picks_json" | jq -r '.picked[] | select(.group <= 2) | .name' 2>/dev/null || true)
   else
     catalog_warning="select-skills.sh did not return valid JSON - skill_picks is empty because the selector failed, not because nothing matched."
   fi
@@ -77,11 +78,14 @@ domains_csv="$(printf '%s\n' "${domain_tags[@]}" | paste -sd, -)"
 
 if [ "$json" -eq 1 ]; then
   if ! command -v jq >/dev/null 2>&1; then echo "jq not found - install jq for --json output" >&2; exit 1; fi
-  domains_json="$(bash_arr_to_json "${domain_tags[@]}")"
-  questions_json="$(bash_arr_to_json "${questions[@]}")"
-  gates_json="$(bash_arr_to_json "${gates[@]}")"
-  connectors_json="$(bash_arr_to_json "${connectors[@]}")"
-  picks_json2="$(bash_arr_to_json "${skill_picks[@]}")"
+  # ${arr[@]+"${arr[@]}"} expands to nothing when the array is empty, avoiding the
+  # "unbound variable" error that a bare "${arr[@]}" raises under `set -u` on bash < 4.4
+  # (notably macOS /bin/bash 3.2). questions/connectors are legitimately empty for many briefs.
+  domains_json="$(bash_arr_to_json ${domain_tags[@]+"${domain_tags[@]}"})"
+  questions_json="$(bash_arr_to_json ${questions[@]+"${questions[@]}"})"
+  gates_json="$(bash_arr_to_json ${gates[@]+"${gates[@]}"})"
+  connectors_json="$(bash_arr_to_json ${connectors[@]+"${connectors[@]}"})"
+  picks_json2="$(bash_arr_to_json ${skill_picks[@]+"${skill_picks[@]}"})"
   jq -nc --arg name "SREDNOFF OS domain router" --arg project "$project" --arg brief "$brief" \
     --argjson domains "$domains_json" --arg mode "$mode" --arg budget "$budget" \
     --argjson questions "$questions_json" --argjson connectors "$connectors_json" \

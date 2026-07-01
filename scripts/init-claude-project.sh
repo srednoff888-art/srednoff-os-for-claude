@@ -40,7 +40,10 @@ while IFS= read -r -d '' f; do
   rel="${f#$template_root/}"
   case "$rel" in
     scripts/*) continue ;;
-    .git/*) continue ;;          # the template's OWN git history, never project content
+    .git/*) continue ;;              # the template's OWN git history, never project content
+    .github/*) continue ;;           # CI workflows are repo tooling, not project content
+    .claude-plugin/*) continue ;;    # plugin distribution manifests, not project content
+    hooks/*) continue ;;             # plugin hook wiring (the per-project hooks live in .claude/hooks/)
     .claude/settings.json) continue ;;
   esac
 

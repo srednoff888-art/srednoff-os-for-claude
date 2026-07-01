@@ -30,7 +30,8 @@ fi
 # Content-based check: catches a secret being written into an otherwise-innocuous file
 # (e.g. hardcoded into a .ts/.py source file), which the path check above cannot see.
 content_field="$(printf '%s' "$raw" | jq -r '[.tool_input.content, .tool_input.new_string, .tool_input.old_string] | map(select(. != null)) | join("\n")' 2>/dev/null || true)"
-mapfile -t secret_hits < <(find_secret_signals "$content_field")
+# bash-3.2-compatible (macOS /bin/bash is 3.2.57, no `mapfile`): read lines into an array.
+secret_hits=(); while IFS= read -r _line; do secret_hits+=("$_line"); done < <(find_secret_signals "$content_field")
 if [ "${#secret_hits[@]}" -gt 0 ]; then
   hits_str="$(IFS=,; echo "${secret_hits[*]}")"
   deny "Content appears to contain a secret ($hits_str). Blocked by SREDNOFF OS hook." "${secret_hits[@]}"

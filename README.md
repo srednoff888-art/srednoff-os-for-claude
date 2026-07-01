@@ -4,6 +4,7 @@
 [![Built for Claude Code](https://img.shields.io/badge/Built%20for-Claude%20Code-6b46c1)](https://claude.com/claude-code)
 [![Registry size](https://img.shields.io/badge/skills%20%2B%20agents-2000%2B-2ea44f)](registry/CORE-300.md)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-2ea44f)](scripts/)
+[![CI](https://github.com/srednoff888-art/srednoff-os-for-claude/actions/workflows/ci.yml/badge.svg)](https://github.com/srednoff888-art/srednoff-os-for-claude/actions/workflows/ci.yml)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/srednoff888-art/srednoff-os-for-claude/pulls)
 
 **An engineering-discipline operating system for [Claude Code](https://claude.com/claude-code).**
@@ -44,12 +45,25 @@ scripts/global/                         — optional global SessionStart hook + 
 
 ## Install
 
+### Option A — as a Claude Code plugin (fastest, macOS/Linux)
+
+Get the security hooks, skills, and slash commands with two commands — no file copying, no manual `settings.json` wiring:
+
+```
+/plugin marketplace add srednoff888-art/srednoff-os-for-claude
+/plugin install srednoff-os
+```
+
+The plugin ships **disabled** (`defaultEnabled: false`) because its hooks can block tool calls — enable it consciously via `/plugin`. The auto-wired hooks target **bash** and need `jq` + `grep -P` in `PATH`. Windows users: enable hooks via the PowerShell wiring below instead (a single plugin `hooks.json` can't branch per-OS). The rules stack and 2000+ skill registry install per-project via the scripts below.
+
+### Option B — per-project scripts (Windows-first, full system)
+
 Every script exists in two versions with full functional parity — pick the one for your OS:
 
 | Platform | Requires |
 |---|---|
 | **Windows** | PowerShell 5.1+ (`.ps1` scripts, no extra dependencies) |
-| **Linux / macOS** | `bash`, `jq`, and `grep -P` (PCRE — standard on Linux; on macOS run `brew install grep` and set `SREDNOFF_GREP_BIN=ggrep`, or use WSL) |
+| **Linux / macOS** | `bash` (3.2+, so the default macOS `/bin/bash` works), `jq`, and `grep -P` (PCRE — standard on Linux; on macOS run `brew install grep` and set `SREDNOFF_GREP_BIN=ggrep`, or use WSL) |
 
 **Per project:**
 ```powershell

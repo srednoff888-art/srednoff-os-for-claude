@@ -20,7 +20,9 @@ total="$(grep -Ec '^[[:space:]]*[0-9]+\.' "$core" || true)"
 tags=()
 add_tag() {
   local t="$1" existing
-  for existing in "${tags[@]}"; do [ "$existing" = "$t" ] && return 0; done
+  # ${tags[@]+...} guard: on the first call tags is empty, and a bare "${tags[@]}" under
+  # `set -u` on bash < 4.4 (macOS /bin/bash 3.2) raises "unbound variable".
+  for existing in ${tags[@]+"${tags[@]}"}; do [ "$existing" = "$t" ] && return 0; done
   tags+=("$t")
 }
 

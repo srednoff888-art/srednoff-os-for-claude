@@ -1,0 +1,74 @@
+name: CI
+
+# Runs on every push and PR. Closes the "no automated gate" gap: contributors can't
+# silently break the catalog format, a regex, a hook, or bash-3.2 compatibility.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  shellcheck:
+    name: ShellCheck (bash portability + correctness)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run shellcheck on all .sh files
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y shellcheck
+          # Catches SC2068 (unquoted array expansion - the exact bug class that broke macOS
+          # bash 3.2), bashisms, quoting errors, etc. SC1090 is excluded: every script sources
+          # a sibling lib via a dynamic $script_dir path, which shellcheck cannot follow by
+          # design - that's intentional, not a defect.
+          find . -name '*.sh' -not -path './.git/*' -print0 \
+            | xargs -0 shellcheck --severity=warning --shell=bash --exclude=SC1090
+
+  json-validation:
+    name: Validate JSON (plugin manifests, evals, settings, version)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: jq-parse every JSON file
+        run: |
+          fail=0
+          while IFS= read -r -d '' f; do
+            if ! jq empty "$f" 2>/dev/null; then echo "INVALID JSON: $f"; fail=1; fi
+          done < <(find . -name '*.json' -not -path './.git/*' -print0)
+          exit $fail
+
+  registry-and-evals:
+    name: Catalog validation + audit + eval suite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reconstruct the ~/.claude layout the scripts expect
+        run: |
+          mkdir -p "$HOME/.claude/templates/claude-md-os" "$HOME/.claude/registry"
+          # Repo root = template contents; registry/ = registry contents (mirrors the public bundle layout).
+          cp -r . "$HOME/.claude/templates/claude-md-os/"
+          cp -r registry/. "$HOME/.claude/registry/"
+          chmod +x "$HOME/.claude/registry/"*.sh "$HOME/.claude/templates/claude-md-os/scripts/"*.sh "$HOME/.claude/templates/claude-md-os/.claude/hooks/"*.sh
+      - name: Catalog format validator (malformed lines would silently vanish)
+        run: bash "$HOME/.claude/registry/validate-catalog-format.sh"
+      - name: Registry audit (duplicate names, source counts)
+        run: bash "$HOME/.claude/registry/audit-registry.sh"
+      - name: Eval suite (mode/domain/selector/secret-pattern regression)
+        run: bash "$HOME/.claude/templates/claude-md-os/scripts/run-evals.sh"
+
+  hook-canary:
+    name: Hooks actually deny known-bad input (fail-closed check)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Feed each security hook a known-bad synthetic input and require a block
+        run: |
+          H="$PWD/.claude/hooks"
+          fail=0
+          r1=$(echo '{"tool_input":{"command":"mkfs.ext4 /dev/sda1"}}' | bash "$H/block-dangerous-bash.sh")
+          echo "$r1" | grep -q deny || { echo "block-dangerous-bash did NOT deny mkfs"; fail=1; }
+          r2=$(echo '{"tool_input":{"file_path":"app/.env"}}' | bash "$H/protect-secrets.sh")
+          echo "$r2" | grep -q deny || { echo "protect-secrets did NOT deny .env"; fail=1; }
+          r3=$(echo '{"prompt":"sk-ant-api03-abcdefghijklmnopqrstuvwx"}' | bash "$H/scan-prompt-secrets.sh")
+          echo "$r3" | grep -q '"decision":"block"' || { echo "scan-prompt-secrets did NOT block a pasted key"; fail=1; }
+          exit $fail

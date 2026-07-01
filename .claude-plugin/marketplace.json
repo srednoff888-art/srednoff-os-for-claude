@@ -1,0 +1,22 @@
+{
+  "name": "srednoff-os",
+  "owner": {
+    "name": "Ivan Srednoff",
+    "url": "https://github.com/srednoff888-art"
+  },
+  "plugins": [
+    {
+      "name": "srednoff-os",
+      "source": "./",
+      "description": "Opt-in security hooks (secret scanning + dangerous-command blocking), reusable skills, and slash commands for Claude Code. Installs disabled; enable consciously since the hooks can block tool calls.",
+      "category": "security",
+      "tags": [
+        "security",
+        "hooks",
+        "secret-scanning",
+        "skills",
+        "engineering-discipline"
+      ]
+    }
+  ]
+}

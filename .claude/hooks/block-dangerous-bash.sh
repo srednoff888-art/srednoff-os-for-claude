@@ -22,7 +22,8 @@ deny() {
 }
 
 # Secret-in-command check (content-based, not just filename heuristics).
-mapfile -t secret_hits < <(find_secret_signals "$cmd")
+# bash-3.2-compatible (macOS /bin/bash is 3.2.57, no `mapfile`): read lines into an array.
+secret_hits=(); while IFS= read -r _line; do secret_hits+=("$_line"); done < <(find_secret_signals "$cmd")
 if [ "${#secret_hits[@]}" -gt 0 ]; then
   hits_str="$(IFS=,; echo "${secret_hits[*]}")"
   deny "Command appears to contain a secret ($hits_str). Blocked by SREDNOFF OS hook." "${secret_hits[@]}"

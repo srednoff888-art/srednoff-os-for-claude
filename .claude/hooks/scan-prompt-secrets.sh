@@ -15,7 +15,8 @@ command -v jq >/dev/null 2>&1 || exit 0
 text="$(printf '%s' "$raw" | jq -r '.prompt // empty' 2>/dev/null || true)"
 [ -z "$text" ] && text="$raw"   # fallback: scan the raw payload if the prompt field name differs
 
-mapfile -t hits < <(find_secret_signals "$text")
+# bash-3.2-compatible (macOS /bin/bash is 3.2.57, no `mapfile`): read lines into an array.
+hits=(); while IFS= read -r _line; do hits+=("$_line"); done < <(find_secret_signals "$text")
 if [ "${#hits[@]}" -gt 0 ]; then
   hits_str="$(IFS=,; echo "${hits[*]}")"
   write_hook_ledger "scan-prompt-secrets" "block" "$raw" "${hits[@]}"
