@@ -54,12 +54,22 @@ if has_tag "seo"; then connectors+=("dataforseo"); fi
 if has_tag "amazon"; then connectors+=("merchant_amazon_*"); fi
 
 # Canonical near-free skill picks (G1+G2 only - G3 stays "on demand", per Principle #1).
+# BUG FIX (found via debug review, 2026-07-01): this used to swallow a missing/broken
+# CORE-300.md silently (empty skill_picks looked identical to "no relevant matches"). Now
+# surfaces a distinct catalog_warning so a missing catalog is never confused with a normal
+# no-match result.
 selector="$script_dir/select-skills.sh"
+core_check="$script_dir/CORE-300.md"
 skill_picks=()
-if [ -x "$selector" ] || [ -f "$selector" ]; then
+catalog_warning=""
+if [ ! -f "$core_check" ]; then
+  catalog_warning="CORE-300.md not found at $core_check - skill_picks is empty because the catalog is missing, not because nothing matched."
+elif [ -x "$selector" ] || [ -f "$selector" ]; then
   picks_json="$(bash "$selector" --brief "$brief" --max 10 --json --no-log 2>/dev/null || true)"
   if [ -n "$picks_json" ] && command -v jq >/dev/null 2>&1; then
     mapfile -t skill_picks < <(printf '%s' "$picks_json" | jq -r '.picked[] | select(.group <= 2) | .name' 2>/dev/null || true)
+  else
+    catalog_warning="select-skills.sh did not return valid JSON - skill_picks is empty because the selector failed, not because nothing matched."
   fi
 fi
 
@@ -75,9 +85,10 @@ if [ "$json" -eq 1 ]; then
   jq -nc --arg name "SREDNOFF OS domain router" --arg project "$project" --arg brief "$brief" \
     --argjson domains "$domains_json" --arg mode "$mode" --arg budget "$budget" \
     --argjson questions "$questions_json" --argjson connectors "$connectors_json" \
-    --argjson skill_picks "$picks_json2" --argjson gates "$gates_json" \
+    --argjson skill_picks "$picks_json2" --arg catalog_warning "$catalog_warning" --argjson gates "$gates_json" \
     '{name: $name, project: $project, brief: $brief, domains: $domains, mode: $mode, budget: $budget,
       questions: $questions, connector_suggestions: $connectors, skill_picks: $skill_picks,
+      catalog_warning: (if $catalog_warning == "" then null else $catalog_warning end),
       validation_gates: $gates,
       external_source_rule: "Any copy-adapt of external UI/3D/component code needs: license check, dependency-weight check, a11y/perf check, and provenance review (see CAPABILITY-INDEX.md + 70-skills-registry.md verification gate) before adoption."}'
 else
@@ -86,7 +97,9 @@ else
     echo "Questions:"
     printf '  - %s\n' "${questions[@]}"
   fi
-  if [ "${#skill_picks[@]}" -gt 0 ]; then
+  if [ -n "$catalog_warning" ]; then
+    echo "WARNING: $catalog_warning"
+  elif [ "${#skill_picks[@]}" -gt 0 ]; then
     echo "Skill picks:"
     printf '  - %s\n' "${skill_picks[@]}"
   fi

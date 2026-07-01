@@ -53,10 +53,21 @@ if ($domainTags -contains "seo") { $ConnectorSuggestions.Add("dataforseo") | Out
 if ($domainTags -contains "amazon") { $ConnectorSuggestions.Add("merchant_amazon_*") | Out-Null }
 
 # Canonical near-free skill picks (G1+G2 only - G3 stays "on demand", per Principle #1).
+# BUG FIX (found via debug review, 2026-07-01): this used to swallow a missing/broken
+# CORE-300.md silently (empty skill_picks looked identical to "no relevant matches"). Now
+# surfaces a distinct catalog_warning so a missing catalog is never confused with a normal
+# no-match result.
 $selector = Join-Path $PSScriptRoot "select-skills.ps1"
-$picksJson = & $selector -Brief $Brief -Max 10 -Json 2>$null
+$coreCheck = Join-Path $PSScriptRoot "CORE-300.md"
 $picks = @()
-try { $picks = (@($picksJson | ConvertFrom-Json)[-1].picked | Where-Object { $_.group -le 2 }) } catch {}
+$catalogWarning = $null
+if (-not (Test-Path -LiteralPath $coreCheck)) {
+  $catalogWarning = "CORE-300.md not found at $coreCheck - skill_picks is empty because the catalog is missing, not because nothing matched."
+} else {
+  $picksJson = & $selector -Brief $Brief -Max 10 -Json 2>$null
+  try { $picks = (@($picksJson | ConvertFrom-Json)[-1].picked | Where-Object { $_.group -le 2 }) }
+  catch { $catalogWarning = "select-skills.ps1 did not return valid JSON - skill_picks is empty because the selector failed, not because nothing matched." }
+}
 
 $resultObj = [ordered]@{
   name                  = "SREDNOFF OS domain router"
@@ -68,6 +79,7 @@ $resultObj = [ordered]@{
   questions             = @($Questions.ToArray())
   connector_suggestions = @($ConnectorSuggestions.ToArray())
   skill_picks           = @($picks | ForEach-Object { $_.name })
+  catalog_warning       = $catalogWarning
   validation_gates      = @($ValidationGates.ToArray())
   external_source_rule  = "Any copy-adapt of external UI/3D/component code needs: license check, dependency-weight check, a11y/perf check, and provenance review (see CAPABILITY-INDEX.md + 70-skills-registry.md verification gate) before adoption."
 }
@@ -77,6 +89,7 @@ if ($Json) {
 } else {
   Write-Output ("SREDNOFF OS domains: {0} | mode={1}/{2}" -f ($domainTags -join ','), $modeInfo.mode, $modeInfo.budget)
   if ($resultObj.questions.Count -gt 0) { Write-Output "Questions:"; $resultObj.questions | ForEach-Object { Write-Output ("  - " + $_) } }
-  if ($resultObj.skill_picks.Count -gt 0) { Write-Output "Skill picks:"; $resultObj.skill_picks | ForEach-Object { Write-Output ("  - " + $_) } }
+  if ($catalogWarning) { Write-Output ("WARNING: " + $catalogWarning) }
+  elseif ($resultObj.skill_picks.Count -gt 0) { Write-Output "Skill picks:"; $resultObj.skill_picks | ForEach-Object { Write-Output ("  - " + $_) } }
   Write-Output ("Validation gates: " + ($resultObj.validation_gates -join ', '))
 }

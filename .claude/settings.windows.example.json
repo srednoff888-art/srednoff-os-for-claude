@@ -9,7 +9,7 @@
         ]
       },
       {
-        "matcher": "Read|Edit|Write|MultiEdit",
+        "matcher": "Read|Edit|Write|MultiEdit|NotebookEdit",
         "hooks": [
           { "type": "command", "command": "powershell -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/protect-secrets.ps1" }
         ]

@@ -20,7 +20,9 @@ slack_token|xox[pbao]-[0-9]{10,13}-[0-9]{10,13}-[0-9]{10,13}-[a-f0-9]{32}
 slack_webhook|hooks\.slack\.com/services/T[A-Za-z0-9]{8,}/B[A-Za-z0-9]{8,}/[A-Za-z0-9]{20,}
 twilio_key|SK[0-9a-fA-F]{32}
 sendgrid_key|SG\.[A-Za-z0-9=_.-]{60,}
-npm_token|npm_[A-Za-z0-9]{36}'
+npm_token|npm_[A-Za-z0-9]{36}
+gcp_service_account_key|"private_key_id"\s*:\s*"[a-f0-9]{40}"
+db_connection_string|(postgres(ql)?|mysql|mongodb(\+srv)?|redis|amqp):\/\/[^:\/\s"]+:[^@\/\s"]+@'
 
 # Content-based secret scan (not just filename heuristics). Prints one matched rule name
 # per line (deduped by construction - each rule can only match/print once).

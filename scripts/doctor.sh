@@ -26,6 +26,18 @@ project_root="$(cd "$project" 2>/dev/null && pwd)"
 check_names=(); check_status=(); check_detail=()
 add_check() { check_names+=("$1"); check_status+=("$2"); check_detail+=("$3"); }
 
+# 0. jq dependency check (closes: "silent fail-open when jq is missing" found via
+# security-audit review, 2026-07-01). Every bash hook that scans for secrets/dangerous
+# commands hard-depends on jq to parse its JSON input; without it, `command -v jq || exit 0`
+# makes the hook silently allow EVERYTHING through with zero output and zero warning. The
+# hook-canary check below would eventually catch this too (as a generic "not denied"
+# failure), but this dedicated check gives the actual, specific root cause immediately.
+if command -v jq >/dev/null 2>&1; then
+  add_check "jq-dependency" "OK" "jq found - bash secret/danger hooks can parse their JSON input"
+else
+  add_check "jq-dependency" "FAIL" "jq NOT FOUND - bash hooks (block-dangerous-bash.sh, protect-secrets.sh, scan-prompt-secrets.sh) silently fail OPEN (allow everything) without it. Install: apt/dnf/pacman install jq, or brew install jq on macOS."
+fi
+
 # 1. Status one-liner
 status_out="$(bash "$script_dir/status.sh" --project "$project_root" 2>&1)"
 status_check="WARN"; printf '%s' "$status_out" | grep -q "loaded: OK" && status_check="OK"

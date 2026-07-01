@@ -33,9 +33,18 @@ $duplicates = @($dupGroups | ForEach-Object {
 })
 
 # External-source count by tag (rough proxy via source-code letters in the raw line text).
-$externalPattern = 'GH:|WSH|VOLT|FTB|EXT\b'
-$externalRecords = @($catalog | Where-Object { $_.line -match $externalPattern })
-$instRecords = @($catalog | Where-Object { $_.line -match '\bINST\b|\bANTH\b|ANTH-OFF' })
+# BUG FIXES (found via cross-platform debug review, 2026-07-01), both make PowerShell match
+# audit-registry.sh's already-correct behavior:
+# (1) 'EXT\b' only anchored the RIGHT edge, so it matched inside "Next.js", "context", "text",
+#     "extension" etc. Fixed with a two-sided boundary (no non-letter before OR after "EXT").
+# (2) PowerShell's -match is case-INSENSITIVE by default; bash's awk/grep are case-sensitive.
+#     Source tags (WSH/VOLT/FTB/GH:/EXT) are meant as exact-case markers, not natural-language
+#     words - case-insensitive matching let lowercase substrings inside real skill NAMES
+#     (e.g. `voltagent:create-voltagent`, `wshuyi:x-article-publisher-skill`) false-positive
+#     as if they were VOLT/WSH-sourced records. Fixed with -cmatch (case-sensitive) throughout.
+$externalPattern = 'GH:|WSH|VOLT|FTB|(?<![A-Za-z])EXT(?![A-Za-z])'
+$externalRecords = @($catalog | Where-Object { $_.line -cmatch $externalPattern })
+$instRecords = @($catalog | Where-Object { $_.line -cmatch '\bINST\b|\bANTH\b|ANTH-OFF' })
 
 $result = [ordered]@{
   name                = "SREDNOFF OS registry audit"

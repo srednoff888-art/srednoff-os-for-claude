@@ -28,13 +28,18 @@ if [ "${#secret_hits[@]}" -gt 0 ]; then
   deny "Command appears to contain a secret ($hits_str). Blocked by SREDNOFF OS hook." "${secret_hits[@]}"
 fi
 
+# BUG FIXES (found via security-audit review, 2026-07-01), mirrored from block-dangerous-bash.ps1:
+# (1) 'rm -rf /*' / 'rm -rf ./*' bypassed the old trailing whitespace/end-of-string check.
+# (2) Long-form '--recursive --force' (either order) and reversed short flags '-fr' bypassed
+#     the old '-rf'-only match.
+# (3) 'git push -f' bypassed the old '--force'-only match.
 danger_patterns=(
-  '(^|[[:space:]])rm[[:space:]]+-rf[[:space:]]+(/|~|\$HOME|\.)([[:space:]]|$)'
+  '(^|[[:space:]])rm[[:space:]]+(-rf|-fr|--recursive[[:space:]]+--force|--force[[:space:]]+--recursive)[[:space:]]+(/|~|\$HOME|\.)(\*|/\*)?([[:space:]]|$)'
   '\bmkfs\b'
   '\bdd\b.*\bof=/dev/'
   ':\(\)\s*\{\s*:\|\:&\s*\};:'
   'chmod\s+-R\s+777\s+/'
-  'git\s+push\s+.*--force'
+  'git\s+push\s+.*(--force|-f)(\s|$)'
   'git\s+reset\s+--hard'
   '\bformat\s+[A-Za-z]:'
   '>\s*/dev/sd[a-z]'

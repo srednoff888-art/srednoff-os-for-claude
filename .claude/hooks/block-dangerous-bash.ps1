@@ -26,13 +26,21 @@ if ($secretHits.Count -gt 0) {
   Deny "Command appears to contain a secret ($($secretHits -join ', ')). Blocked by Claude MD OS hook." $secretHits
 }
 
+# BUG FIXES (found via security-audit review, 2026-07-01):
+# (1) 'rm -rf /*' and 'rm -rf ./*' wipe the same targets as bare '/' or '.' but bypassed the
+#     old pattern's trailing (\s|$) requirement (a literal '/' followed by '*' is neither
+#     whitespace nor end-of-string) - added an optional '(/\*)?' before the boundary check.
+# (2) Long-form '--recursive --force' (either order) and reversed short flags '-fr' bypassed
+#     the old pattern, which only matched the literal '-rf' token.
+# (3) 'git push -f' (the common short flag) bypassed the old pattern, which only matched
+#     '--force'.
 $danger = @(
-  'rm\s+-rf\s+(/|~|\$HOME|\.)(\s|$)',
+  'rm\s+(-rf|-fr|--recursive\s+--force|--force\s+--recursive)\s+(/|~|\$HOME|\.)(\*|/\*)?(\s|$)',
   '\bmkfs\b',
   '\bdd\b.*\bof=/dev/',
   ':\(\)\s*\{\s*:\|\:&\s*\};:',     # fork bomb
   'chmod\s+-R\s+777\s+/',
-  'git\s+push\s+.*--force',
+  'git\s+push\s+.*(--force|-f)(\s|$)',
   'git\s+reset\s+--hard',
   '\bformat\s+[A-Za-z]:',
   '>\s*/dev/sd[a-z]'

@@ -66,7 +66,14 @@ function Find-SecretSignals {
     @{ Name = "slack_webhook"; Pattern = "hooks\.slack\.com/services/T[A-Za-z0-9]{8,}/B[A-Za-z0-9]{8,}/[A-Za-z0-9]{20,}" },
     @{ Name = "twilio_key"; Pattern = "SK[0-9a-fA-F]{32}" },
     @{ Name = "sendgrid_key"; Pattern = "SG\.[A-Za-z0-9=_.-]{60,}" },
-    @{ Name = "npm_token"; Pattern = "npm_[A-Za-z0-9]{36}" }
+    @{ Name = "npm_token"; Pattern = "npm_[A-Za-z0-9]{36}" },
+    # Added via security-audit review, 2026-07-01: GCP service-account JSON keys embed their
+    # PEM as a JSON-escaped string ("-----BEGIN PRIVATE KEY-----\n...") - the multi-line
+    # private_key regex above does NOT match escaped \n, so it silently misses this very
+    # common credential shape. private_key_id is GCP's own documented 40-char hex field name.
+    @{ Name = "gcp_service_account_key"; Pattern = '"private_key_id"\s*:\s*"[a-f0-9]{40}"' },
+    # Generic DB connection string with an embedded password (postgres/mysql/mongodb/redis/amqp).
+    @{ Name = "db_connection_string"; Pattern = '(postgres(ql)?|mysql|mongodb(\+srv)?|redis|amqp):\/\/[^:\/\s"'']+:[^@\/\s"'']+@' }
   )
   $findings = @()
   foreach ($r in $rules) { if ($Text -match $r.Pattern) { $findings += $r.Name } }

@@ -1,5 +1,7 @@
 # PLANS.md — ExecPlan для больших задач Claude
 
+> **Источник истины**: `.claude/rules/60-exec-plans.md`. При конфликте выигрывает `rules/`; при правке одного — проверь и обнови второй.
+
 ExecPlan — это living document, который позволяет вести большую задачу от исследования до production-ready результата.
 
 Используй ExecPlan, когда задача:

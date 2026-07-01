@@ -1,6 +1,6 @@
 {
   "name": "SREDNOFF OS (Claude Code)",
-  "version": "v1.8",
+  "version": "v1.9",
   "released_at": "2026-07-01",
   "baseline": {
     "kernel_records": 2027,
@@ -34,7 +34,13 @@
     "hook-canary-test",
     "linux-macos-bash-parity",
     "hook-session-correlation",
-    "subagent-final-disposition"
+    "subagent-final-disposition",
+    "self-audit-security-debug-architecture",
+    "cross-platform-audit-registry-parity-fix",
+    "expanded-danger-command-patterns",
+    "gcp-and-db-connstring-secret-patterns",
+    "catalog-warning-error-surfacing",
+    "rules-canonical-source-cross-references"
   ],
   "ported_from": "srednoff-os (Codex sibling, github.com/srednoff888-art/srednoff-os) - concepts only, rewritten for Claude Code/PowerShell"
 }
