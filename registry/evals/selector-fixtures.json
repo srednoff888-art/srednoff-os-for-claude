@@ -1,0 +1,32 @@
+[
+  {
+    "id": "three_d_animation",
+    "brief": "add a 3D product configurator with React Three Fiber and GSAP animation",
+    "budget": "balanced",
+    "expectedAny": ["react-three-fiber", "threejs-webgl", "gsap-scrolltrigger", "motion-framer"]
+  },
+  {
+    "id": "seo_deep",
+    "brief": "amazon FBA listing SEO audit",
+    "budget": "deep",
+    "expectedAny": ["seo-specialist", "seo-content-auditor", "seo-schema", "seo-sitemap"]
+  },
+  {
+    "id": "sales_outreach",
+    "brief": "draft outreach emails for cold leads on Upwork PPC clients",
+    "budget": "balanced",
+    "expectedAny": ["sales:draft-outreach", "content-marketer", "brand-voice:enforce-voice"]
+  },
+  {
+    "id": "trading_risk",
+    "brief": "backtest a trading strategy, evaluate risk and drawdown",
+    "budget": "deep",
+    "expectedAny": ["quant-analyst", "risk-manager", "backtesting-frameworks"]
+  },
+  {
+    "id": "security_hardening",
+    "brief": "harden auth and review secrets handling before launch",
+    "budget": "deep",
+    "expectedAny": ["security-engineer", "backend-security-coder", "security-auditor"]
+  }
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "id": "three_d_configurator",
+    "brief": "add a 3D product configurator with React Three Fiber and glTF model",
+    "expectedDomains": ["3d", "frontend"]
+  },
+  {
+    "id": "amazon_listing_audit",
+    "brief": "TURBO amazon FBA listing full audit, real seller central account inventory",
+    "expectedDomains": ["amazon"]
+  },
+  {
+    "id": "seo_technical",
+    "brief": "technical SEO audit: sitemap, hreflang, schema.org, crawl budget",
+    "expectedDomains": ["seo"]
+  },
+  {
+    "id": "trading_backtest",
+    "brief": "backtest a trading strategy against exchange API data with ccxt",
+    "expectedDomains": ["trading"]
+  },
+  {
+    "id": "sales_outreach",
+    "brief": "draft outreach emails for cold leads found via CRM",
+    "expectedDomains": ["sales"]
+  },
+  {
+    "id": "security_audit",
+    "brief": "full security audit before production launch, check auth and secrets handling",
+    "expectedDomains": ["security"]
+  },
+  {
+    "id": "mobile_expo",
+    "brief": "build an Expo React Native app with offline mode and EAS release",
+    "expectedDomains": ["mobile"]
+  },
+  {
+    "id": "legal_contract",
+    "brief": "review this vendor contract for GDPR compliance and privacy policy gaps",
+    "expectedDomains": ["legal"]
+  },
+  {
+    "id": "finance_billing",
+    "brief": "set up billing and invoice pricing logic for the subscription plan",
+    "expectedDomains": ["finance"]
+  },
+  {
+    "id": "infra_devops",
+    "brief": "set up docker and kubernetes deployment pipeline with terraform",
+    "expectedDomains": ["infra", "devops"]
+  },
+  {
+    "id": "design_system",
+    "brief": "build a design system with tailwind and shadcn component library",
+    "expectedDomains": ["design"]
+  }
+]

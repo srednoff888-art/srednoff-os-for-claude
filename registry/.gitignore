@@ -1,0 +1,3 @@
+# Derived cache, regenerated automatically by routing-lib.ps1 (Get-CoreCatalog).
+# Never hand-edit; never commit — it would just create noisy diffs on every read.
+core-catalog-index.json

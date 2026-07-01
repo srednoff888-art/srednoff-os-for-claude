@@ -1,0 +1,34 @@
+{
+  "name": "SREDNOFF OS (Claude Code)",
+  "version": "v1.5",
+  "released_at": "2026-07-01",
+  "baseline": {
+    "kernel_records": 2027,
+    "principle": "quality-first-economy-tiebreaker"
+  },
+  "features": [
+    "session-start-banner",
+    "statusline",
+    "profile-lock",
+    "claude-md-selection-block",
+    "model-routing",
+    "subagent-contract",
+    "verification-gate",
+    "mode-router",
+    "domain-router",
+    "selector-roi",
+    "hook-content-secret-scan",
+    "hook-prompt-secret-scan",
+    "hook-audit-ledger",
+    "status-oneliner",
+    "doctor-evals-fixsafe",
+    "usage-log",
+    "registry-duplicate-audit",
+    "catalog-format-validator",
+    "expanded-secret-patterns",
+    "mass-expansion-2000plus",
+    "catalog-json-cache",
+    "project-starter-templates"
+  ],
+  "ported_from": "srednoff-os (Codex sibling, github.com/srednoff888-art/srednoff-os) - concepts only, rewritten for Claude Code/PowerShell"
+}
