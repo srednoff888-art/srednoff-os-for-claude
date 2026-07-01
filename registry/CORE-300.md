@@ -351,7 +351,7 @@
 270. `airtable:sales-ops` [business] INST
 
 ### Спец-стек (под конкретные проекты)
-271. `huntlandia` → `merchant_amazon_*` [business] INST — Amazon FBA данные (DataForSEO)
+271. `amazon-fba-data-alias` → `merchant_amazon_*` [business][amazon] INST — Amazon FBA данные (DataForSEO)
 272. `adspirer-ads-agent:campaign-performance` [marketing] INST
 273. `adspirer-ads-agent:keyword-research` [marketing] INST
 274. `sanity:sanity` [web][backend] INST — Sanity CMS

@@ -41,7 +41,7 @@ if ((Test-Path "$Target\requirements.txt") -or (Test-Path "$Target\pyproject.tom
 }
 if (Get-ChildItem -LiteralPath $Target -Filter *.ps1 -ErrorAction SilentlyContinue | Select-Object -First 1) { Add-Tag "windows" }
 if ((Test-Path "$Target\Dockerfile") -or (Get-ChildItem -LiteralPath $Target -Filter *.tf -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1)) { Add-Tag "infra"; Add-Tag "devops" }
-if ($name -match 'amazon|fba|huntlandia') { Add-Tag "amazon"; Add-Tag "business"; Add-Tag "marketing" }
+if ($name -match 'amazon|fba') { Add-Tag "amazon"; Add-Tag "business"; Add-Tag "marketing" }
 if ($name -match 'seo') { Add-Tag "seo" }
 if ($name -match 'freelance|outreach|strategy|sales|crm') { Add-Tag "sales"; Add-Tag "marketing" }
 if ($name -match 'design') { Add-Tag "design" }
