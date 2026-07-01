@@ -14,20 +14,12 @@ param(
 $ErrorActionPreference = "Stop"
 $Target = (Resolve-Path -LiteralPath $ProjectPath).Path
 
+. (Join-Path $PSScriptRoot "rule-file-list.ps1")
 $required = @(
   "CLAUDE.md",
   "AGENTS.md",
-  "code_review.md",
-  ".claude\rules\00-operating-system.md",
-  ".claude\rules\10-github-research.md",
-  ".claude\rules\20-connectors.md",
-  ".claude\rules\30-user-briefing.md",
-  ".claude\rules\40-quality-gate.md",
-  ".claude\rules\50-security.md",
-  ".claude\rules\60-exec-plans.md",
-  ".claude\rules\70-skills-registry.md",
-  ".claude\rules\80-model-routing.md",
-  ".claude\rules\90-subagent-contract.md",
+  "code_review.md"
+) + @($RuleFileNames | ForEach-Object { ".claude\rules\$_.md" }) + @(
   ".claude\skills\github-research\SKILL.md",
   ".claude\skills\product-builder\SKILL.md",
   ".claude\skills\production-review\SKILL.md",

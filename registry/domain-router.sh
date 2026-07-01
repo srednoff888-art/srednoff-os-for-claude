@@ -77,11 +77,11 @@ domains_csv="$(printf '%s\n' "${domain_tags[@]}" | paste -sd, -)"
 
 if [ "$json" -eq 1 ]; then
   if ! command -v jq >/dev/null 2>&1; then echo "jq not found - install jq for --json output" >&2; exit 1; fi
-  domains_json="$(printf '%s\n' "${domain_tags[@]}" | jq -R . | jq -sc .)"
-  questions_json="[]"; [ "${#questions[@]}" -gt 0 ] && questions_json="$(printf '%s\n' "${questions[@]}" | jq -R . | jq -sc .)"
-  gates_json="$(printf '%s\n' "${gates[@]}" | jq -R . | jq -sc .)"
-  connectors_json="[]"; [ "${#connectors[@]}" -gt 0 ] && connectors_json="$(printf '%s\n' "${connectors[@]}" | jq -R . | jq -sc .)"
-  picks_json2="[]"; [ "${#skill_picks[@]}" -gt 0 ] && picks_json2="$(printf '%s\n' "${skill_picks[@]}" | jq -R . | jq -sc .)"
+  domains_json="$(bash_arr_to_json "${domain_tags[@]}")"
+  questions_json="$(bash_arr_to_json "${questions[@]}")"
+  gates_json="$(bash_arr_to_json "${gates[@]}")"
+  connectors_json="$(bash_arr_to_json "${connectors[@]}")"
+  picks_json2="$(bash_arr_to_json "${skill_picks[@]}")"
   jq -nc --arg name "SREDNOFF OS domain router" --arg project "$project" --arg brief "$brief" \
     --argjson domains "$domains_json" --arg mode "$mode" --arg budget "$budget" \
     --argjson questions "$questions_json" --argjson connectors "$connectors_json" \

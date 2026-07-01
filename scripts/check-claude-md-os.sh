@@ -1,23 +1,20 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 target="${1:-.}"
 target="$(cd "$target" && pwd)"
 
+. "$script_dir/rule-file-list.sh"
 required=(
   "CLAUDE.md"
   "AGENTS.md"
   "code_review.md"
-  ".claude/rules/00-operating-system.md"
-  ".claude/rules/10-github-research.md"
-  ".claude/rules/20-connectors.md"
-  ".claude/rules/30-user-briefing.md"
-  ".claude/rules/40-quality-gate.md"
-  ".claude/rules/50-security.md"
-  ".claude/rules/60-exec-plans.md"
-  ".claude/rules/70-skills-registry.md"
-  ".claude/rules/80-model-routing.md"
-  ".claude/rules/90-subagent-contract.md"
+)
+for r in "${RULE_FILE_NAMES[@]}"; do
+  required+=(".claude/rules/$r.md")
+done
+required+=(
   ".claude/skills/github-research/SKILL.md"
   ".claude/skills/product-builder/SKILL.md"
   ".claude/skills/production-review/SKILL.md"

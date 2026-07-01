@@ -43,7 +43,8 @@ if (Test-Path -LiteralPath $GlobalSettings) {
 
 $ProjectClaudeMd = Join-Path $ProjectRoot "CLAUDE.md"
 $ProjectBannerOk = (Test-Path -LiteralPath $ProjectClaudeMd) -and ((Get-Content -LiteralPath $ProjectClaudeMd -Raw -ErrorAction SilentlyContinue) -match "SREDNOFF OS")
-$RuleFiles = @("00-operating-system", "10-github-research", "20-connectors", "30-user-briefing", "40-quality-gate", "50-security", "60-exec-plans", "70-skills-registry", "80-model-routing", "90-subagent-contract")
+. (Join-Path $PSScriptRoot "rule-file-list.ps1")
+$RuleFiles = $RuleFileNames
 $RulesPresent = 0
 foreach ($r in $RuleFiles) { if (Test-Path -LiteralPath (Join-Path $ProjectRoot ".claude\rules\$r.md")) { $RulesPresent++ } }
 $LockOk = Test-Path -LiteralPath (Join-Path $ProjectRoot ".claude\PROFILE.lock.md")

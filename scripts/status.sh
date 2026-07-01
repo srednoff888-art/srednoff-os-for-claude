@@ -7,6 +7,7 @@
 #   ./status.sh --project . --json
 set -uo pipefail
 
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 project="."; json=0
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -45,7 +46,8 @@ if [ -f "$project_claude_md" ] && grep -q "SREDNOFF OS" "$project_claude_md" 2>/
   project_banner_ok=true
 fi
 
-rule_files=(00-operating-system 10-github-research 20-connectors 30-user-briefing 40-quality-gate 50-security 60-exec-plans 70-skills-registry 80-model-routing 90-subagent-contract)
+. "$script_dir/rule-file-list.sh"
+rule_files=("${RULE_FILE_NAMES[@]}")
 rules_present=0
 for r in "${rule_files[@]}"; do
   [ -f "$project_root/.claude/rules/$r.md" ] && rules_present=$((rules_present + 1))

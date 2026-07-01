@@ -17,17 +17,16 @@ json=0
 [ "${1:-}" = "--json" ] && json=1
 
 catalog_tsv="$(get_core_catalog "$core")"
-total_records="$(printf '%s\n' "$catalog_tsv" | grep -c . || true)"
+total_records="$(count_nonempty_lines "$catalog_tsv")"
 
 # Duplicate names (case-insensitive).
 dup_report="$(printf '%s\n' "$catalog_tsv" | awk -F'\t' '{ name=tolower($2); nums[name] = nums[name] (nums[name]=="" ? "" : ",") $1; cnt[name]++ } END { for (n in cnt) if (cnt[n] > 1) print n "\t" cnt[n] "\t" nums[n] }')"
-duplicate_count="$(printf '%s\n' "$dup_report" | grep -c . || true)"
-[ -z "$dup_report" ] && duplicate_count=0
+duplicate_count="$(count_nonempty_lines "$dup_report")"
 
 # Portable word-boundary substitute (POSIX ERE has no \b/\< \>): require a non-letter or
 # string edge on both sides so e.g. "EXT" doesn't match inside an unrelated longer word.
-external_records="$(printf '%s\n' "$catalog_tsv" | awk -F'\t' '$5 ~ /GH:|WSH|VOLT|FTB|(^|[^A-Za-z])EXT([^A-Za-z]|$)/' | grep -c . || true)"
-installed_records="$(printf '%s\n' "$catalog_tsv" | awk -F'\t' '$5 ~ /(^|[^A-Za-z])(INST|ANTH)([^A-Za-z]|$)|ANTH-OFF/' | grep -c . || true)"
+external_records="$(count_nonempty_lines "$(printf '%s\n' "$catalog_tsv" | awk -F'\t' '$5 ~ /GH:|WSH|VOLT|FTB|(^|[^A-Za-z])EXT([^A-Za-z]|$)/')")"
+installed_records="$(count_nonempty_lines "$(printf '%s\n' "$catalog_tsv" | awk -F'\t' '$5 ~ /(^|[^A-Za-z])(INST|ANTH)([^A-Za-z]|$)|ANTH-OFF/')")"
 
 if [ "$json" -eq 1 ]; then
   if ! command -v jq >/dev/null 2>&1; then echo "jq not found - install jq for --json output" >&2; exit 1; fi

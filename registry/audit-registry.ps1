@@ -47,13 +47,13 @@ $externalRecords = @($catalog | Where-Object { $_.line -cmatch $externalPattern 
 $instRecords = @($catalog | Where-Object { $_.line -cmatch '\bINST\b|\bANTH\b|ANTH-OFF' })
 
 $result = [ordered]@{
-  name                = "SREDNOFF OS registry audit"
-  total_records       = $catalog.Count
-  duplicate_names      = $duplicates
-  duplicate_count      = $duplicates.Count
-  external_records     = $externalRecords.Count
-  installed_records    = $instRecords.Count
-  external_recheck_due = "quarterly (see CHANGELOG.md policy) - next due ~2026-09-28"
+  name                  = "SREDNOFF OS registry audit"
+  total_records         = $catalog.Count
+  duplicate_names       = $duplicates
+  duplicate_count       = $duplicates.Count
+  external_records      = $externalRecords.Count
+  installed_records     = $instRecords.Count
+  external_recheck_due  = "quarterly (see CHANGELOG.md policy) - next due ~2026-09-28"
 }
 
 if ($Json) {

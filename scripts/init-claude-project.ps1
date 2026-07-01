@@ -120,7 +120,7 @@ if ($preserved.Count -gt 0) {
 Write-Host "Done. Hooks are NOT active. To enable them:" -ForegroundColor Cyan
 Write-Host "  Copy-Item .claude\settings.example.json .claude\settings.json"
 
-# Сгенерировать PROFILE.lock (кэш выбора скиллов под стек), если реестр доступен
+# Generate PROFILE.lock (cached skill selection for the stack), if the registry is available.
 $genLock = Join-Path $PSScriptRoot "gen-profile-lock.ps1"
 $coreReg = Join-Path $env:USERPROFILE ".claude\registry\CORE-300.md"
 if ((Test-Path $genLock) -and (Test-Path $coreReg)) {

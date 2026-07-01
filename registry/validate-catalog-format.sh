@@ -29,23 +29,19 @@ suspicious_report="$(awk '
     }
   }
 ' "$core")"
-suspicious="$(printf '%s\n' "$suspicious_report" | grep -c . || true)"
-[ -z "$suspicious_report" ] && suspicious=0
+suspicious="$(count_nonempty_lines "$suspicious_report")"
 
 catalog_tsv="$(get_core_catalog "$core")"
-total_parsed="$(printf '%s\n' "$catalog_tsv" | grep -c . || true)"
+total_parsed="$(count_nonempty_lines "$catalog_tsv")"
 
 no_tag_report="$(printf '%s\n' "$catalog_tsv" | awk -F'\t' '$4 == "" {print $1 "\t" $2}')"
-no_tag_count="$(printf '%s\n' "$no_tag_report" | grep -c . || true)"
-[ -z "$no_tag_report" ] && no_tag_count=0
+no_tag_count="$(count_nonempty_lines "$no_tag_report")"
 
 no_group_report="$(printf '%s\n' "$catalog_tsv" | awk -F'\t' '$3 == 0 {print $1 "\t" $2}')"
-no_group_count="$(printf '%s\n' "$no_group_report" | grep -c . || true)"
-[ -z "$no_group_report" ] && no_group_count=0
+no_group_count="$(count_nonempty_lines "$no_group_report")"
 
 dup_num_report="$(printf '%s\n' "$catalog_tsv" | awk -F'\t' '{c[$1]++} END{for (n in c) if (c[n]>1) print n}')"
-dup_num_count="$(printf '%s\n' "$dup_num_report" | grep -c . || true)"
-[ -z "$dup_num_report" ] && dup_num_count=0
+dup_num_count="$(count_nonempty_lines "$dup_num_report")"
 
 issues=()
 if [ "$suspicious" -gt 0 ]; then

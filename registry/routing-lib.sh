@@ -84,6 +84,24 @@ budget_quota() {
   esac
 }
 
+# Counts non-empty lines in a report string, treating an empty string as 0 (plain
+# `grep -c .` on an empty string reports 1, not 0 - this guards that off-by-one once instead
+# of at every call site). Extracted via refactoring review, 2026-07-01: the same 3-line
+# "build report, grep -c, guard empty" idiom was repeated 4x in validate-catalog-format.sh
+# and audit-registry.sh.
+count_nonempty_lines() {
+  [ -z "$1" ] && { echo 0; return; }
+  printf '%s\n' "$1" | grep -c .
+}
+
+# Builds a JSON array from bash positional args, defaulting to "[]" for zero args. Extracted
+# via refactoring review, 2026-07-01: domain-router.sh repeated this "array or empty array"
+# pattern 4x with slightly inconsistent guarding.
+bash_arr_to_json() {
+  [ $# -eq 0 ] && { echo "[]"; return; }
+  printf '%s\n' "$@" | jq -R . | jq -sc .
+}
+
 # Parses CORE-300.md into TSV rows: num<TAB>name<TAB>group<TAB>tags(comma-joined)<TAB>line
 # POSIX-awk compatible (no gawk-only 3-arg match()) so it runs under mawk too. No JSON cache
 # needed here (unlike the PowerShell port): awk parses ~2000 lines in well under 100ms, and

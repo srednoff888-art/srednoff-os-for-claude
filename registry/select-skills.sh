@@ -38,6 +38,11 @@ if [ -n "$tags_arg" ]; then
 else
   domain_csv="$(get_domain_tags "$brief" | paste -sd, -)"
 fi
+# Computed once and reused below (was previously rebuilt identically in both the usage-log
+# block and the --json output block when both ran in the same invocation) - found via
+# refactoring review, 2026-07-01.
+domain_tags_json="[]"
+command -v jq >/dev/null 2>&1 && domain_tags_json="$(printf '%s\n' "$domain_csv" | tr ',' '\n' | jq -R . | jq -sc .)"
 
 q1="$(budget_quota "$budget" 1)"
 q2="$(budget_quota "$budget" 2)"
@@ -100,8 +105,7 @@ selection="$(printf '%s\n' "$catalog_tsv" | awk -F'\t' -v domains="$domain_csv" 
 
 matched_total="$(printf '%s\n' "$selection" | awk -F'\t' '$1=="MATCHED_TOTAL"{print $2}')"
 picks="$(printf '%s\n' "$selection" | awk -F'\t' '$1=="PICK"' | head -n "$max")"
-picked_total="$(printf '%s\n' "$picks" | grep -c . || true)"
-[ -z "$picks" ] && picked_total=0
+picked_total="$(count_nonempty_lines "$picks")"
 
 # Usage log (on by default, opt out with --no-log). Plain text is fine here (not the
 # security hook ledger) - a task brief on a personal machine isn't secret.
@@ -111,7 +115,6 @@ if [ "$nolog" -eq 0 ] && command -v jq >/dev/null 2>&1; then
   brief_snippet="$brief"
   [ "${#brief_snippet}" -gt 100 ] && brief_snippet="${brief_snippet:0:100}..."
   picked_names_json="$(printf '%s\n' "$picks" | awk -F'\t' 'NF{print $3}' | jq -R . | jq -sc .)"
-  domain_tags_json="$(printf '%s\n' "$domain_csv" | tr ',' '\n' | jq -R . | jq -sc .)"
   ts="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
   jq -nc --arg ts "$ts" --arg brief "$brief_snippet" --argjson domain_tags "$domain_tags_json" \
     --arg budget "$budget" --arg mode "$mode" --argjson picked "$picked_names_json" \
@@ -128,7 +131,6 @@ if [ "$json" -eq 1 ]; then
     picked_json="$(printf '%s\n' "$picks" | awk -F'\t' 'NF{print $2"\t"$3"\t"$4"\t"$5}' | \
       jq -R -s '[split("\n")[] | select(length > 0) | split("\t") | {num: (.[0]|tonumber), name: .[1], group: (.[2]|tonumber), tags: (.[3] | split(","))}]')"
   fi
-  domain_tags_json="$(printf '%s\n' "$domain_csv" | tr ',' '\n' | jq -R . | jq -sc .)"
   jq -nc --arg name "SREDNOFF OS selector" --arg brief "$brief" --argjson domain_tags "$domain_tags_json" \
     --arg budget "$budget" --argjson max "$max" --arg mode "$mode" \
     --argjson matched_total "${matched_total:-0}" --argjson picked_total "${picked_total:-0}" --argjson picked "$picked_json" \
