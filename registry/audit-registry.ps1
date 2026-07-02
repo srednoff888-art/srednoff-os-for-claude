@@ -25,7 +25,7 @@ if (-not (Test-Path -LiteralPath $core)) { Write-Error "CORE-300.md not found: $
 $catalog = Get-CoreCatalog -CorePath $core
 
 # Duplicate names (case-insensitive) - same skill name appearing under 2+ numbers means
-# either an accidental re-add across "Дополнение" sections, or a real overlap that should
+# either an accidental re-add across "addition" (Dopolnenie) sections, or a real overlap that should
 # have one canonical entry (see CAPABILITY-INDEX.md).
 $dupGroups = $catalog | Group-Object { $_.name.ToLowerInvariant() } | Where-Object { $_.Count -gt 1 }
 $duplicates = @($dupGroups | ForEach-Object {

@@ -1,7 +1,7 @@
 {
   "name": "srednoff-os",
   "displayName": "SREDNOFF OS for Claude",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "description": "Engineering-discipline overlay for Claude Code: opt-in security hooks (secret scanning + dangerous-command blocking), reusable skills, and slash commands. The plugin's auto-wired hooks target bash (macOS/Linux). Windows users: see README for the PowerShell hook wiring. The rules stack and 2000+ skill registry install per-project via scripts/ (see README).",
   "author": {
     "name": "Ivan Srednoff",

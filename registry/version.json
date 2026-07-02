@@ -1,6 +1,6 @@
 {
   "name": "SREDNOFF OS (Claude Code)",
-  "version": "v1.11",
+  "version": "v1.12",
   "released_at": "2026-07-01",
   "baseline": {
     "kernel_records": 2027,
@@ -45,7 +45,9 @@
     "self-refactor-bash-helper-extraction",
     "macos-bash-3.2-compatibility",
     "github-actions-ci",
-    "claude-code-plugin-packaging"
+    "github-actions-windows-powershell-ci",
+    "claude-code-plugin-packaging",
+    "marketplace-manifest-validated"
   ],
   "notes": {
     "model-routing-guidance": "Advisory only for the main session (the agent follows rule 80 and can switch via /model); actionable for delegated sub-agents via the Agent tool's per-call `model` parameter. Nothing auto-switches the main session model - this is guidance, not an automated router.",

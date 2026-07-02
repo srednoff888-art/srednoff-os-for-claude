@@ -101,3 +101,42 @@ jobs:
             bash "$HOME/.claude/registry/select-skills.sh" --brief "add stripe checkout" --json --no-log | jq -e ".picked" >/dev/null || { echo "select-skills broke on 3.2"; fail=1; }
             exit $fail
           '
+
+  windows-powershell:
+    name: Windows PowerShell 5.1 (the primary, zero-dependency platform)
+    runs-on: windows-latest
+    # The .ps1 side is the flagship path (Windows-first, no jq/grep-P needed) but had zero CI
+    # coverage until now - the bash side even had a dedicated bash:3.2 job. This runs the real
+    # PowerShell hooks, routing, and full eval suite on Windows PowerShell 5.1 (the `powershell`
+    # shell on windows-latest is 5.1, not pwsh 7) against the ~/.claude layout the scripts expect.
+    steps:
+      - uses: actions/checkout@v5
+      - name: Reconstruct the ~/.claude layout
+        shell: powershell
+        run: |
+          $reg = "$env:USERPROFILE\.claude\registry"
+          $tpl = "$env:USERPROFILE\.claude\templates\claude-md-os"
+          New-Item -ItemType Directory -Force -Path $reg, $tpl | Out-Null
+          Copy-Item -Recurse -Force ".\*" $tpl
+          Copy-Item -Recurse -Force ".\registry\*" $reg
+      - name: Catalog validator + registry audit + eval suite (PowerShell)
+        shell: powershell
+        run: |
+          $ErrorActionPreference = "Stop"
+          $reg = "$env:USERPROFILE\.claude\registry"
+          $tpl = "$env:USERPROFILE\.claude\templates\claude-md-os"
+          & "$reg\validate-catalog-format.ps1"; if ($LASTEXITCODE -ne 0) { throw "catalog validator failed" }
+          & "$reg\audit-registry.ps1";          if ($LASTEXITCODE -ne 0) { throw "registry audit failed" }
+          & "$tpl\scripts\run-evals.ps1";        if ($LASTEXITCODE -ne 0) { throw "eval suite failed" }
+      - name: Hook canary (PowerShell hooks must deny/block known-bad input)
+        shell: powershell
+        run: |
+          $H = ".\.claude\hooks"
+          $fail = 0
+          $r1 = '{"tool_input":{"command":"mkfs.ext4 /dev/sda1"}}' | & "$H\block-dangerous-bash.ps1"
+          if ($r1 -notmatch "deny") { Write-Host "block-dangerous-bash did NOT deny mkfs"; $fail = 1 }
+          $r2 = '{"tool_input":{"file_path":"app/.env"}}' | & "$H\protect-secrets.ps1"
+          if ($r2 -notmatch "deny") { Write-Host "protect-secrets did NOT deny .env"; $fail = 1 }
+          $r3 = '{"prompt":"sk-ant-api03-abcdefghijklmnopqrstuvwx"}' | & "$H\scan-prompt-secrets.ps1"
+          if ($r3 -notmatch '"decision":"block"') { Write-Host "scan-prompt-secrets did NOT block a pasted key"; $fail = 1 }
+          exit $fail

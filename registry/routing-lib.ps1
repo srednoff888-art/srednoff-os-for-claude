@@ -45,9 +45,9 @@ $TurboPatterns = @('(^|\s)turbo(\s|$)', '\bturbo\s+mode\b', '\bmode\s+turbo\b')
 $DeepPatterns = @('maxim', 'do not skimp', "don't skimp", 'production\b', 'security audit', 'architecture', 'migration', 'launch\b', 'deep research', 'full audit')
 # Russian deep-triggers via unicode escapes (avoids raw Cyrillic in a .ps1 file - see memory note).
 $DeepPatternsRu = @(
-  [string]::Concat([char]0x043C, [char]0x0430, [char]0x043A, [char]0x0441, [char]0x0438, [char]0x043C, [char]0x0430, [char]0x043B, [char]0x044C, [char]0x043D), # максималь(но)
-  [string]::Concat([char]0x043D, [char]0x0435, [char]0x0020, [char]0x044D, [char]0x043A, [char]0x043E, [char]0x043D, [char]0x043E, [char]0x043C),                 # не эконом(ь)
-  [string]::Concat([char]0x0433, [char]0x043B, [char]0x0443, [char]0x0431, [char]0x043E, [char]0x043A, [char]0x0438, [char]0x0439)                                # глубокий
+  [string]::Concat([char]0x043C, [char]0x0430, [char]0x043A, [char]0x0441, [char]0x0438, [char]0x043C, [char]0x0430, [char]0x043B, [char]0x044C, [char]0x043D), # "maksimaln" (maximally)
+  [string]::Concat([char]0x043D, [char]0x0435, [char]0x0020, [char]0x044D, [char]0x043A, [char]0x043E, [char]0x043D, [char]0x043E, [char]0x043C),                 # "ne ekonom" (don't skimp)
+  [string]::Concat([char]0x0433, [char]0x043B, [char]0x0443, [char]0x0431, [char]0x043E, [char]0x043A, [char]0x0438, [char]0x0439)                                # "glubokiy" (deep)
 )
 
 function Get-Mode {

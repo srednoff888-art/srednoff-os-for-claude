@@ -1,5 +1,6 @@
 {
   "name": "srednoff-os",
+  "description": "SREDNOFF OS — an engineering-discipline overlay for Claude Code: opt-in security hooks, a curated skill/agent registry, model routing, and health-check tooling.",
   "owner": {
     "name": "Ivan Srednoff",
     "url": "https://github.com/srednoff888-art"
