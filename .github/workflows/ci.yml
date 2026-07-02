@@ -13,7 +13,7 @@ jobs:
     name: ShellCheck (bash portability + correctness)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Run shellcheck on all .sh files
         run: |
           sudo apt-get update -qq && sudo apt-get install -y shellcheck
@@ -28,7 +28,7 @@ jobs:
     name: Validate JSON (plugin manifests, evals, settings, version)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: jq-parse every JSON file
         run: |
           fail=0
@@ -41,7 +41,7 @@ jobs:
     name: Catalog validation + audit + eval suite
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Reconstruct the ~/.claude layout the scripts expect
         run: |
           mkdir -p "$HOME/.claude/templates/claude-md-os" "$HOME/.claude/registry"
@@ -60,7 +60,7 @@ jobs:
     name: Hooks actually deny known-bad input (fail-closed check)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Feed each security hook a known-bad synthetic input and require a block
         run: |
           H="$PWD/.claude/hooks"
@@ -80,7 +80,7 @@ jobs:
     # image lacks); the actual tests run INSIDE the official bash:3.2 container via `docker run`
     # against the mounted checkout - so the interpreter really is the ancient bash Apple ships.
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Run scripts inside the official bash:3.2 container
         run: |
           docker run --rm -v "$PWD":/work -w /work bash:3.2 sh -euc '
