@@ -109,6 +109,24 @@ if [ -f "$hooks_dir/block-dangerous-bash.sh" ]; then
   fi
 fi
 
+# 2f. PROFILE.lock enforcement gate canary (deny -> mark -> allow cycle). Separate from the
+# security hook-canary above since this is a stateful 2-step check, not a single deny probe.
+if [ -f "$hooks_dir/require-profile-lock-read.sh" ] && [ -f "$project_root/.claude/PROFILE.lock.md" ]; then
+  gate_fails=()
+  canary_session="doctor-canary-$$-$RANDOM"
+  r4="$(echo "{\"session_id\":\"$canary_session\",\"cwd\":\"$project_root\",\"tool_input\":{\"file_path\":\"foo.ts\"}}" | bash "$hooks_dir/require-profile-lock-read.sh" 2>/dev/null)"
+  printf '%s' "$r4" | grep -q "deny" || gate_fails+=("require-profile-lock-read: did NOT deny before the lock was read")
+  echo "{\"session_id\":\"$canary_session\",\"tool_input\":{\"file_path\":\"$project_root/.claude/PROFILE.lock.md\"}}" | bash "$hooks_dir/mark-profile-lock-read.sh" >/dev/null 2>&1
+  r5="$(echo "{\"session_id\":\"$canary_session\",\"cwd\":\"$project_root\",\"tool_input\":{\"file_path\":\"foo.ts\"}}" | bash "$hooks_dir/require-profile-lock-read.sh" 2>/dev/null)"
+  [ -z "$r5" ] || gate_fails+=("require-profile-lock-read: still denies AFTER the lock was marked read")
+  rm -rf "$HOME/.claude/logs/session-state/$canary_session" 2>/dev/null
+  if [ "${#gate_fails[@]}" -eq 0 ]; then
+    add_check "profile-lock-gate" "OK" "deny -> mark -> allow cycle verified"
+  else
+    add_check "profile-lock-gate" "FAIL" "$(printf '%s; ' "${gate_fails[@]}")"
+  fi
+fi
+
 # 3. Evals (opt-in, since it shells out to routing scripts per fixture - not free)
 if [ "$run_evals" -eq 1 ]; then
   if command -v jq >/dev/null 2>&1; then

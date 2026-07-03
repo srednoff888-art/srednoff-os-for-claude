@@ -12,6 +12,20 @@
       "hooks": [
         { "type": "command", "command": "bash \"${CLAUDE_PLUGIN_ROOT}/.claude/hooks/protect-secrets.sh\"" }
       ]
+    },
+    {
+      "matcher": "Edit|Write|MultiEdit",
+      "hooks": [
+        { "type": "command", "command": "bash \"${CLAUDE_PLUGIN_ROOT}/.claude/hooks/require-profile-lock-read.sh\"" }
+      ]
+    }
+  ],
+  "PostToolUse": [
+    {
+      "matcher": "Read",
+      "hooks": [
+        { "type": "command", "command": "bash \"${CLAUDE_PLUGIN_ROOT}/.claude/hooks/mark-profile-lock-read.sh\"" }
+      ]
     }
   ],
   "UserPromptSubmit": [

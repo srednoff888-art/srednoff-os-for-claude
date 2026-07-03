@@ -19,6 +19,26 @@
             "command": "bash .claude/hooks/protect-secrets.sh"
           }
         ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/require-profile-lock-read.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/mark-profile-lock-read.sh"
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [

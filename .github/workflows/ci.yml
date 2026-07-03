@@ -73,6 +73,38 @@ jobs:
           echo "$r3" | grep -q '"decision":"block"' || { echo "scan-prompt-secrets did NOT block a pasted key"; fail=1; }
           exit $fail
 
+  profile-lock-gate:
+    name: PROFILE.lock enforcement gate (deny -> mark -> allow cycle)
+    runs-on: ubuntu-latest
+    # Regression test for the real-world case (2026-07-02) where an agent never read
+    # PROFILE.lock.md despite it being embedded in the first lines of CLAUDE.md - proving
+    # passive context is not enforcement. This verifies the hook pair that makes it one.
+    steps:
+      - uses: actions/checkout@v5
+      - name: Deny -> mark -> allow -> no-gate-when-OS-absent
+        run: |
+          H="$PWD/.claude/hooks"
+          fail=0
+          FAKE_PROJ=$(mktemp -d)
+          mkdir -p "$FAKE_PROJ/.claude"
+          touch "$FAKE_PROJ/.claude/PROFILE.lock.md"
+          export HOME=$(mktemp -d)
+
+          r1=$(echo "{\"session_id\":\"ci-sess\",\"cwd\":\"$FAKE_PROJ\",\"tool_input\":{\"file_path\":\"foo.ts\"}}" | bash "$H/require-profile-lock-read.sh")
+          echo "$r1" | grep -q deny || { echo "require-profile-lock-read did NOT deny before the lock was read"; fail=1; }
+
+          echo "{\"session_id\":\"ci-sess\",\"tool_input\":{\"file_path\":\"$FAKE_PROJ/.claude/PROFILE.lock.md\"}}" | bash "$H/mark-profile-lock-read.sh"
+          [ -f "$HOME/.claude/logs/session-state/ci-sess/profile-lock-read.marker" ] || { echo "mark-profile-lock-read did NOT write the marker"; fail=1; }
+
+          r2=$(echo "{\"session_id\":\"ci-sess\",\"cwd\":\"$FAKE_PROJ\",\"tool_input\":{\"file_path\":\"foo.ts\"}}" | bash "$H/require-profile-lock-read.sh")
+          [ -z "$r2" ] || { echo "require-profile-lock-read still denies AFTER the lock was read this session: $r2"; fail=1; }
+
+          NO_OS_PROJ=$(mktemp -d)
+          r3=$(echo "{\"session_id\":\"ci-sess-2\",\"cwd\":\"$NO_OS_PROJ\",\"tool_input\":{\"file_path\":\"foo.ts\"}}" | bash "$H/require-profile-lock-read.sh")
+          [ -z "$r3" ] || { echo "require-profile-lock-read denied in a project with NO PROFILE.lock.md (should never gate): $r3"; fail=1; }
+
+          exit $fail
+
   bash-3-2:
     name: Real bash 3.2 runtime (matches macOS /bin/bash 3.2.57)
     runs-on: ubuntu-latest
@@ -95,6 +127,11 @@ jobs:
             echo "{\"tool_input\":{\"command\":\"mkfs.ext4 /dev/sda1\"}}" | bash .claude/hooks/block-dangerous-bash.sh | grep -q deny || { echo "block-dangerous-bash broke on 3.2"; fail=1; }
             echo "{\"tool_input\":{\"file_path\":\"app/.env\"}}" | bash .claude/hooks/protect-secrets.sh | grep -q deny || { echo "protect-secrets broke on 3.2"; fail=1; }
             echo "{\"prompt\":\"sk-ant-api03-abcdefghijklmnopqrstuvwx\"}" | bash .claude/hooks/scan-prompt-secrets.sh | grep -q "\"decision\":\"block\"" || { echo "scan-prompt-secrets broke on 3.2"; fail=1; }
+            # 2b. PROFILE.lock enforcement gate deny/mark/allow cycle.
+            FAKE_PROJ=$(mktemp -d); mkdir -p "$FAKE_PROJ/.claude"; touch "$FAKE_PROJ/.claude/PROFILE.lock.md"
+            echo "{\"session_id\":\"ci32\",\"cwd\":\"$FAKE_PROJ\",\"tool_input\":{\"file_path\":\"foo.ts\"}}" | bash .claude/hooks/require-profile-lock-read.sh | grep -q deny || { echo "require-profile-lock-read broke on 3.2 (deny)"; fail=1; }
+            echo "{\"session_id\":\"ci32\",\"tool_input\":{\"file_path\":\"$FAKE_PROJ/.claude/PROFILE.lock.md\"}}" | bash .claude/hooks/mark-profile-lock-read.sh
+            [ -f "$HOME/.claude/logs/session-state/ci32/profile-lock-read.marker" ] || { echo "mark-profile-lock-read broke on 3.2"; fail=1; }
             # 3. Routing scripts on the empty-array path (backend brief = empty questions/connectors: the v1.10 regression).
             mkdir -p "$HOME/.claude/registry"; cp -r registry/. "$HOME/.claude/registry/"; chmod +x "$HOME/.claude/registry/"*.sh
             bash "$HOME/.claude/registry/domain-router.sh" --brief "fix a backend bug" --json | jq -e ".domains" >/dev/null || { echo "domain-router broke on 3.2"; fail=1; }
@@ -139,4 +176,24 @@ jobs:
           if ($r2 -notmatch "deny") { Write-Host "protect-secrets did NOT deny .env"; $fail = 1 }
           $r3 = '{"prompt":"sk-ant-api03-abcdefghijklmnopqrstuvwx"}' | & "$H\scan-prompt-secrets.ps1"
           if ($r3 -notmatch '"decision":"block"') { Write-Host "scan-prompt-secrets did NOT block a pasted key"; $fail = 1 }
+          exit $fail
+      - name: PROFILE.lock enforcement gate (deny -> mark -> allow cycle)
+        shell: powershell
+        run: |
+          $H = ".\.claude\hooks"
+          $fail = 0
+          $fakeProj = Join-Path $env:RUNNER_TEMP "fake-proj"
+          New-Item -ItemType Directory -Force -Path "$fakeProj\.claude" | Out-Null
+          New-Item -ItemType File -Force -Path "$fakeProj\.claude\PROFILE.lock.md" | Out-Null
+
+          $r1 = "{`"session_id`":`"ci-ps`",`"cwd`":`"$($fakeProj -replace '\\','\\\\')`",`"tool_input`":{`"file_path`":`"foo.ts`"}}" | & "$H\require-profile-lock-read.ps1"
+          if ($r1 -notmatch "deny") { Write-Host "require-profile-lock-read did NOT deny before the lock was read"; $fail = 1 }
+
+          "{`"session_id`":`"ci-ps`",`"tool_input`":{`"file_path`":`"$($fakeProj -replace '\\','\\\\')\\.claude\\PROFILE.lock.md`"}}" | & "$H\mark-profile-lock-read.ps1"
+          $marker = Join-Path $env:USERPROFILE ".claude\logs\session-state\ci-ps\profile-lock-read.marker"
+          if (-not (Test-Path $marker)) { Write-Host "mark-profile-lock-read did NOT write the marker"; $fail = 1 }
+
+          $r2 = "{`"session_id`":`"ci-ps`",`"cwd`":`"$($fakeProj -replace '\\','\\\\')`",`"tool_input`":{`"file_path`":`"foo.ts`"}}" | & "$H\require-profile-lock-read.ps1"
+          if ($r2) { Write-Host "require-profile-lock-read still denies AFTER the lock was read this session: $r2"; $fail = 1 }
+
           exit $fail

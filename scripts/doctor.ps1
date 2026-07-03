@@ -87,6 +87,22 @@ if (Test-Path -LiteralPath (Join-Path $hooksDir "block-dangerous-bash.ps1")) {
   Add-Check -Name "hook-canary" -Status ($(if ($canaryFails.Count -eq 0) { "OK" } else { "FAIL" })) -Detail ($(if ($canaryFails.Count -eq 0) { "3/3 canary triggers still deny/block as expected" } else { $canaryFails -join "; " }))
 }
 
+# 2f. PROFILE.lock enforcement gate canary (deny -> mark -> allow cycle). Separate from the
+# security hook-canary above since this is a stateful 2-step check, not a single deny probe.
+if ((Test-Path -LiteralPath (Join-Path $hooksDir "require-profile-lock-read.ps1")) -and (Test-Path -LiteralPath (Join-Path $ProjectRoot ".claude\PROFILE.lock.md"))) {
+  $gateFails = @()
+  $canarySession = "doctor-canary-$([guid]::NewGuid().ToString('N'))"
+  $cwdJson = ($ProjectRoot -replace '\\', '\\')
+  $r4 = "{`"session_id`":`"$canarySession`",`"cwd`":`"$cwdJson`",`"tool_input`":{`"file_path`":`"foo.ts`"}}" | & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $hooksDir "require-profile-lock-read.ps1")
+  if ($r4 -notmatch "deny") { $gateFails += "require-profile-lock-read: did NOT deny before the lock was read" }
+  $lockJson = "$cwdJson\\.claude\\PROFILE.lock.md"
+  "{`"session_id`":`"$canarySession`",`"tool_input`":{`"file_path`":`"$lockJson`"}}" | & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $hooksDir "mark-profile-lock-read.ps1") | Out-Null
+  $r5 = "{`"session_id`":`"$canarySession`",`"cwd`":`"$cwdJson`",`"tool_input`":{`"file_path`":`"foo.ts`"}}" | & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $hooksDir "require-profile-lock-read.ps1")
+  if ($r5) { $gateFails += "require-profile-lock-read: still denies AFTER the lock was marked read" }
+  Remove-Item -Recurse -Force -ErrorAction SilentlyContinue (Join-Path $env:USERPROFILE ".claude\logs\session-state\$canarySession")
+  Add-Check -Name "profile-lock-gate" -Status ($(if ($gateFails.Count -eq 0) { "OK" } else { "FAIL" })) -Detail ($(if ($gateFails.Count -eq 0) { "deny -> mark -> allow cycle verified" } else { $gateFails -join "; " }))
+}
+
 # 3. Evals (opt-in, since it shells out to routing scripts per fixture - not free)
 if ($RunEvals) {
   $evalOut = & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $ScriptDir "run-evals.ps1") -Json 2>$null | ConvertFrom-Json

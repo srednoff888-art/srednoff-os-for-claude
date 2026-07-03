@@ -1,5 +1,15 @@
 # CHANGELOG — реестр ядра Claude MD OS
 
+## v1.13 — 2026-07-03 (принуждение вместо честного слова: PROFILE.lock enforcement gate)
+Иван показал реальный кейс из проекта `my-app`: OS была ПОЛНОСТЬЮ развёрнута (все 10 rules, `PROFILE.lock.md` сгенерирован, хуки включены), баннер `SREDNOFF OS — ACTIVE` + сам список тегов/скиллов был вшит в первые 6 строк `CLAUDE.md` (всегда в контексте) — и агент в той сессии всё равно ни разу не вызвал `Skill()`, не прочитал `CORE-300.md`, не сделал GitHub Research для нетривиальных архитектурных решений (pg_cron+pg_net, retry-паттерн, rate limiting). **Вывод: пассивный текст в контексте, даже на самом видном месте, не гарантирует исполнение.**
+- **Новый хук `require-profile-lock-read.ps1/.sh`** (PreToolUse, matcher `Edit|Write|MultiEdit`): денит ПЕРВЫЙ Edit/Write/MultiEdit за сессию в проекте, где есть `.claude/PROFILE.lock.md`, пока он реально не прочитан. Один раз за сессию — дальше не мешает. Если в проекте нет `PROFILE.lock.md` (OS не развёрнута) — гейт не срабатывает вообще.
+- **Новый компаньон-хук `mark-profile-lock-read.ps1/.sh`** (PostToolUse, matcher `Read`): пишет маркер сессии (`~/.claude/logs/session-state/{session_id}/profile-lock-read.marker`), когда реально прочитан `PROFILE.lock.md` или `CORE-300.md`. Без него gate не снимается.
+- **Дизайн осознанно fail-open**: это compliance-нуджер, не security-контроль — баг здесь не должен стать неснимаемым блокером (в отличие от `block-dangerous-bash`/`protect-secrets`, которые ДОЛЖНЫ fail-closed). Отсутствие `session_id`, `cwd`, битый JSON — всегда ALLOW.
+- **Контракт хуков не угадывался**: перед реализацией зафетчен офиц. `code.claude.com/docs/en/hooks` — подтверждено, что `session_id` есть в PostToolUse на верхнем уровне, deny-контракт для Edit/Write/MultiEdit идентичен Bash, нативного session-state нет (только файлы).
+- Протестирован полный цикл deny→mark→allow + no-gate-без-OS + fail-open на пустом/битом JSON — на PowerShell и bash идентично.
+- **Добавлено в CI**: новый job `profile-lock-gate` (ubuntu) + тот же цикл встроен в `bash-3-2` и `windows-powershell` jobs — это не просто написанная фича, а covered regression.
+- Обновлены `70-skills-registry.md` (честно описан провал прежнего подхода + новый гейт) и `hooks/README.md`.
+
 ## v1.12 — 2026-07-02 (Fable 5: второй ре-аудит после v1.11 — то, что пропустил даже первый проход Fable)
 Иван запросил повторную полную проверку системы и репо. Найдено 3 реальных пункта, которые не поймал даже v1.11-проход:
 - **[MEDIUM] Родной валидатор `claude plugin validate --strict` ПАДАЛ на нашем `marketplace.json`** — отсутствовало поле `description` на уровне маркетплейса (доки сами рекомендуют этот валидатор для CI). Т.е. манифест, который мы даём пользователям через `/plugin marketplace add`, не проходил официальную проверку Anthropic. Добавлено `description` → `✔ Validation passed`. Схема `plugin.json` сверена с офиц. доками (code.claude.com/docs/en/plugins-reference): `name` — единственное обязательное; `skills`-как-строка-путь, `commands`-массив, `hooks`-путь, `defaultEnabled:false` — все поля валидны.
