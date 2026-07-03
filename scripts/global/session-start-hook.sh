@@ -58,15 +58,24 @@ emit() {
 }
 
 if [ "$has_os" -eq 1 ]; then
-  tags=""
+  tags="none"
   lock="$cwd/.claude/PROFILE.lock.md"
+  lock_status="not generated"
   if [ -f "$lock" ]; then
-    tags="$(grep -m1 -E '^`[^`]+`$' "$lock" | sed 's/^`//; s/`$//')"
+    lock_status="cached"
+    t="$(grep -m1 -E '^`[^`]+`$' "$lock" | sed 's/^`//; s/`$//')"
+    [ -n "$t" ] && tags="$t"
   fi
-  banner="SREDNOFF OS ACTIVE in project '$name'. Operating rules: Principle #1 (quality first, economy only at equal quality); rules 00-90 loaded (github-research, quality-gate, security, exec-plans, skills-registry, model-routing G1~Haiku/G2~Sonnet/G3~Opus, subagent-contract). PROFILE.lock"
-  [ -n "$tags" ] && banner="$banner [tags: $tags]"
-  banner="$banner. Full skill registry available on demand (~/.claude/registry/CORE-300.md, see version.json for current record count). External agents = unvetted until github-research."
-  emit "$banner"
+  rule_count="$(find "$cwd/.claude/rules" -maxdepth 1 -name "*.md" 2>/dev/null | wc -l | tr -d ' ')"
+
+  # Line 1 is the scannable summary a human glances at the top of a fresh Desktop/CLI
+  # session - state, project, tags, rule count, lock status, nothing else. Everything
+  # after it is detail for the agent, not the human (see 70-skills-registry.md note on
+  # passive-context-is-not-enforcement: this banner is a visibility aid, not a gate -
+  # the require-profile-lock-read hook is the actual enforcement).
+  summary="[SREDNOFF OS: ACTIVE] project='$name' tags=$tags rules=$rule_count loaded PROFILE.lock=$lock_status"
+  detail="Principle #1 (quality first, economy only at equal quality). Rules 00-90 loaded: operating-system, github-research, connectors, user-briefing, quality-gate, security, exec-plans, skills-registry, model-routing (G1~Haiku/G2~Sonnet/G3~Opus), subagent-contract. Full skill registry on demand (~/.claude/registry/CORE-300.md). External agents = unvetted until github-research."
+  emit "$(printf '%s\n%s' "$summary" "$detail")"
   exit 0
 fi
 
@@ -81,5 +90,8 @@ init="$HOME/.claude/templates/claude-md-os/scripts/init-claude-project.sh"
 [ -f "$init" ] || exit 0
 
 bash "$init" "$cwd" --skip-existing-claude-md >/dev/null 2>&1 || true
-emit "SREDNOFF OS was AUTO-APPLIED to project '$name' (it was missing) and is now ACTIVE: rules 00-90 + PROFILE.lock generated. Operating under Principle #1 (quality first)."
+rule_count="$(find "$cwd/.claude/rules" -maxdepth 1 -name "*.md" 2>/dev/null | wc -l | tr -d ' ')"
+summary="[SREDNOFF OS: AUTO-APPLIED] project='$name' (was missing) rules=$rule_count loaded PROFILE.lock=generated"
+detail="Now ACTIVE under Principle #1 (quality first, economy only at equal quality)."
+emit "$(printf '%s\n%s' "$summary" "$detail")"
 exit 0

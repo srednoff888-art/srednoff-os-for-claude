@@ -52,16 +52,25 @@ function Emit($msg) {
 }
 
 if ($hasOS) {
-  $tags = ""
+  $tags = "none"
   $lock = Join-Path $cwd ".claude\PROFILE.lock.md"
+  $lockStatus = "not generated"
   if (Test-Path $lock) {
+    $lockStatus = "cached"
     $m = Select-String -Path $lock -Pattern '^`([^`]+)`$' | Select-Object -First 1
     if ($m) { $tags = $m.Matches[0].Groups[1].Value }
   }
-  $banner = "SREDNOFF OS ACTIVE in project '$name'. Operating rules: Principle #1 (quality first, economy only at equal quality); rules 00-90 loaded (github-research, quality-gate, security, exec-plans, skills-registry, model-routing G1~Haiku/G2~Sonnet/G3~Opus, subagent-contract). PROFILE.lock"
-  if ($tags) { $banner += " [tags: $tags]" }
-  $banner += ". Full skill registry available on demand (~/.claude/registry/CORE-300.md, see version.json for current record count). External agents = unvetted until github-research."
-  Emit $banner
+  $rulesDir = Join-Path $cwd ".claude\rules"
+  $ruleCount = (Get-ChildItem -LiteralPath $rulesDir -Filter "*.md" -ErrorAction SilentlyContinue | Measure-Object).Count
+
+  # Line 1 is the scannable summary a human glances at the top of a fresh Desktop/CLI
+  # session - state, project, tags, rule count, lock status, nothing else. Everything
+  # after it is detail for the agent, not the human (see 70-skills-registry.md note on
+  # passive-context-is-not-enforcement: this banner is a visibility aid, not a gate -
+  # the require-profile-lock-read hook is the actual enforcement).
+  $summary = "[SREDNOFF OS: ACTIVE] project='$name' tags=$tags rules=$ruleCount loaded PROFILE.lock=$lockStatus"
+  $detail = "Principle #1 (quality first, economy only at equal quality). Rules 00-90 loaded: operating-system, github-research, connectors, user-briefing, quality-gate, security, exec-plans, skills-registry, model-routing (G1~Haiku/G2~Sonnet/G3~Opus), subagent-contract. Full skill registry on demand (~/.claude/registry/CORE-300.md). External agents = unvetted until github-research."
+  Emit ($summary + "`n" + $detail)
   exit 0
 }
 
@@ -75,5 +84,7 @@ $init = Join-Path $env:USERPROFILE ".claude\templates\claude-md-os\scripts\init-
 if (-not (Test-Path $init)) { exit 0 }
 
 & powershell -NoProfile -ExecutionPolicy Bypass -File $init $cwd -SkipExistingClaudeMd *> $null
-Emit "SREDNOFF OS was AUTO-APPLIED to project '$name' (it was missing) and is now ACTIVE: rules 00-90 + PROFILE.lock generated. Operating under Principle #1 (quality first)."
+$rulesDir = Join-Path $cwd ".claude\rules"
+$ruleCount = (Get-ChildItem -LiteralPath $rulesDir -Filter "*.md" -ErrorAction SilentlyContinue | Measure-Object).Count
+Emit "[SREDNOFF OS: AUTO-APPLIED] project='$name' (was missing) rules=$ruleCount loaded PROFILE.lock=generated`nNow ACTIVE under Principle #1 (quality first, economy only at equal quality)."
 exit 0
