@@ -186,14 +186,17 @@ jobs:
           New-Item -ItemType Directory -Force -Path "$fakeProj\.claude" | Out-Null
           New-Item -ItemType File -Force -Path "$fakeProj\.claude\PROFILE.lock.md" | Out-Null
 
-          $r1 = "{`"session_id`":`"ci-ps`",`"cwd`":`"$($fakeProj -replace '\\','\\\\')`",`"tool_input`":{`"file_path`":`"foo.ts`"}}" | & "$H\require-profile-lock-read.ps1"
+          # Spawn a fresh powershell.exe process per call (like doctor.ps1's own hook-canary)
+          # rather than invoking the .ps1 via the in-process call operator - the latter proved
+          # unreliable for [Console]::In.ReadToEnd() in this specific stateful 2-script cycle.
+          $r1 = "{`"session_id`":`"ci-ps`",`"cwd`":`"$($fakeProj -replace '\\','\\')`",`"tool_input`":{`"file_path`":`"foo.ts`"}}" | & powershell -NoProfile -ExecutionPolicy Bypass -File "$H\require-profile-lock-read.ps1"
           if ($r1 -notmatch "deny") { Write-Host "require-profile-lock-read did NOT deny before the lock was read"; $fail = 1 }
 
-          "{`"session_id`":`"ci-ps`",`"tool_input`":{`"file_path`":`"$($fakeProj -replace '\\','\\\\')\\.claude\\PROFILE.lock.md`"}}" | & "$H\mark-profile-lock-read.ps1"
+          "{`"session_id`":`"ci-ps`",`"tool_input`":{`"file_path`":`"$($fakeProj -replace '\\','\\')\\.claude\\PROFILE.lock.md`"}}" | & powershell -NoProfile -ExecutionPolicy Bypass -File "$H\mark-profile-lock-read.ps1"
           $marker = Join-Path $env:USERPROFILE ".claude\logs\session-state\ci-ps\profile-lock-read.marker"
           if (-not (Test-Path $marker)) { Write-Host "mark-profile-lock-read did NOT write the marker"; $fail = 1 }
 
-          $r2 = "{`"session_id`":`"ci-ps`",`"cwd`":`"$($fakeProj -replace '\\','\\\\')`",`"tool_input`":{`"file_path`":`"foo.ts`"}}" | & "$H\require-profile-lock-read.ps1"
+          $r2 = "{`"session_id`":`"ci-ps`",`"cwd`":`"$($fakeProj -replace '\\','\\')`",`"tool_input`":{`"file_path`":`"foo.ts`"}}" | & powershell -NoProfile -ExecutionPolicy Bypass -File "$H\require-profile-lock-read.ps1"
           if ($r2) { Write-Host "require-profile-lock-read still denies AFTER the lock was read this session: $r2"; $fail = 1 }
 
           exit $fail
