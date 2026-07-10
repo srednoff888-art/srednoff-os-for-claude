@@ -55,6 +55,8 @@ jobs:
         run: bash "$HOME/.claude/registry/audit-registry.sh"
       - name: Catalog JSON export drift gate (CORE-300.json must match CORE-300.md)
         run: bash "$HOME/.claude/registry/gen-catalog-json.sh" --check
+      - name: Skills-library metadata smoke check (name/description/frontmatter validity)
+        run: bash "$HOME/.claude/templates/claude-md-os/scripts/validate-skills-library.sh"
       - name: Eval suite (mode/domain/selector/secret-pattern regression)
         run: bash "$HOME/.claude/templates/claude-md-os/scripts/run-evals.sh"
 
@@ -196,6 +198,7 @@ jobs:
           $tpl = "$env:USERPROFILE\.claude\templates\claude-md-os"
           & "$reg\validate-catalog-format.ps1"; if ($LASTEXITCODE -ne 0) { throw "catalog validator failed" }
           & "$reg\audit-registry.ps1";          if ($LASTEXITCODE -ne 0) { throw "registry audit failed" }
+          & "$tpl\scripts\validate-skills-library.ps1"; if ($LASTEXITCODE -ne 0) { throw "skills-library validation failed" }
           & "$tpl\scripts\run-evals.ps1";        if ($LASTEXITCODE -ne 0) { throw "eval suite failed" }
       - name: Hook canary (PowerShell hooks must deny/block known-bad input)
         shell: powershell

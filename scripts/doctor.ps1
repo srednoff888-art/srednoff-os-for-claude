@@ -72,6 +72,16 @@ if (Test-Path -LiteralPath $catalogJsonScript) {
   Add-Check -Name "catalog-json" -Status ($(if ($catalogJsonOk) { "OK" } else { "WARN" })) -Detail $catalogJsonOut.Trim()
 }
 
+# 2c3. Skills-library metadata smoke check (v1.17, Stage 3 skill import) - name/description/
+# frontmatter validity for the curated, installable subset of the catalog. Runs against
+# the TEMPLATE root, not the project being doctored - skills-library lives in the template,
+# not per-project.
+$skillsLibScript = Join-Path $ScriptDir "validate-skills-library.ps1"
+if (Test-Path -LiteralPath $skillsLibScript) {
+  $skillsLibOut = & powershell -NoProfile -ExecutionPolicy Bypass -File $skillsLibScript -Json 2>$null | ConvertFrom-Json
+  Add-Check -Name "skills-library" -Status ($(if ($skillsLibOut.failed -eq 0) { "OK" } else { "FAIL" })) -Detail "ok=$($skillsLibOut.ok); failed=$($skillsLibOut.failed)"
+}
+
 # 2d. Registry/template version control (closes: "no rollback point for the 2000+ record
 # catalog"). Auto-commits any pending changes so a bad edit is always revertible via git,
 # WITHOUT relying on remembering to commit by hand - the same class of failure as a prose

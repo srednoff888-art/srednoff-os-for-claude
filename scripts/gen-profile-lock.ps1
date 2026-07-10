@@ -128,5 +128,49 @@ if (Test-Path -LiteralPath $claudeMd) {
   [System.IO.File]::WriteAllText($claudeMd, $md, $enc2)
 }
 
+# --- Install actual skill content for skills-library-backed candidates (v1.17). CORE-300
+# has 2000+ text-only catalog lines; only a curated subset (srednoff-os/Codex-sibling
+# import, Stage 3) has real installable SKILL.md content in skills-library/. Install up
+# to a hard cap so a project never gets hundreds of skills loaded at session start -
+# Claude Code scans name+description for every installed skill (~100 tokens each) even
+# when unused, so capping here is a real context-budget decision, not cosmetic.
+# Matched independently against skills-library/index.json (not against $cand, the
+# capped-at-40 general text candidate list) - $cand's cap is easily saturated by a
+# high-frequency tag like "web"/"frontend" before ever reaching a less-common tag like
+# "3d", which would silently starve skill installation for exactly the projects most
+# likely to want it. Found by testing a package.json with react-three-fiber: the general
+# candidate list was 100% "web"-tagged entries, zero 3d-tagged ones made the top 40.
+$SkillInstallCap = 20
+$skillsLibIndex = Join-Path $env:USERPROFILE ".claude\templates\claude-md-os\skills-library\index.json"
+$installedCount = 0
+if (Test-Path -LiteralPath $skillsLibIndex) {
+  $libIndex = Get-Content -LiteralPath $skillsLibIndex -Raw | ConvertFrom-Json
+  $tagSet = New-Object System.Collections.Generic.HashSet[string]
+  foreach ($t in $tags) { $tagSet.Add($t) | Out-Null }
+
+  $toInstall = @()
+  foreach ($prop in $libIndex.PSObject.Properties) {
+    if ($toInstall.Count -ge $SkillInstallCap) { break }
+    $skillTags = @($prop.Value.tags)
+    $matched = $false
+    foreach ($st in $skillTags) { if ($tagSet.Contains($st)) { $matched = $true; break } }
+    if ($matched -and ($toInstall -notcontains $prop.Name)) { $toInstall += $prop.Name }
+  }
+
+  if ($toInstall.Count -gt 0) {
+    $skillsDir = Join-Path $Target ".claude\skills"
+    New-Item -ItemType Directory -Force -Path $skillsDir | Out-Null
+    $libRoot = Join-Path $env:USERPROFILE ".claude\templates\claude-md-os\skills-library"
+    foreach ($nm in $toInstall) {
+      $srcMd = Join-Path $libRoot "$nm\SKILL.md"
+      if (-not (Test-Path -LiteralPath $srcMd)) { continue }
+      $destDir = Join-Path $skillsDir $nm
+      New-Item -ItemType Directory -Force -Path $destDir | Out-Null
+      Copy-Item -LiteralPath $srcMd -Destination (Join-Path $destDir "SKILL.md") -Force
+      $installedCount++
+    }
+  }
+}
+
 Write-Host "PROFILE.lock: $lock" -ForegroundColor Green
-Write-Host ("  tags: {0} | candidates: {1}" -f ($tags -join ','), $cand.Count)
+Write-Host ("  tags: {0} | candidates: {1} | skills installed: {2}" -f ($tags -join ','), $cand.Count, $installedCount)

@@ -1,0 +1,1867 @@
+{
+  "3d-accessibility-fallbacks": {
+    "path": "skills-library/3d-accessibility-fallbacks/SKILL.md",
+    "tags": [
+      "3d",
+      "a11y"
+    ]
+  },
+  "3d-art-director-agent": {
+    "path": "skills-library/3d-art-director-agent/SKILL.md",
+    "tags": [
+      "3d"
+    ]
+  },
+  "3d-asset-pipeline-agent": {
+    "path": "skills-library/3d-asset-pipeline-agent/SKILL.md",
+    "tags": [
+      "3d",
+      "devops"
+    ]
+  },
+  "3d-experience-brief-intake": {
+    "path": "skills-library/3d-experience-brief-intake/SKILL.md",
+    "tags": [
+      "3d"
+    ]
+  },
+  "3d-interaction-gesture-design": {
+    "path": "skills-library/3d-interaction-gesture-design/SKILL.md",
+    "tags": [
+      "3d"
+    ]
+  },
+  "3d-lighting-camera-composition": {
+    "path": "skills-library/3d-lighting-camera-composition/SKILL.md",
+    "tags": [
+      "3d"
+    ]
+  },
+  "3d-performance-budget-gate": {
+    "path": "skills-library/3d-performance-budget-gate/SKILL.md",
+    "tags": [
+      "3d",
+      "perf"
+    ]
+  },
+  "3d-product-configurator": {
+    "path": "skills-library/3d-product-configurator/SKILL.md",
+    "tags": [
+      "3d"
+    ]
+  },
+  "3d-visual-screenshot-validator": {
+    "path": "skills-library/3d-visual-screenshot-validator/SKILL.md",
+    "tags": [
+      "3d",
+      "design"
+    ]
+  },
+  "accessibility-remediation-sprint": {
+    "path": "skills-library/accessibility-remediation-sprint/SKILL.md",
+    "tags": [
+      "a11y"
+    ]
+  },
+  "accessibility-specialist-agent": {
+    "path": "skills-library/accessibility-specialist-agent/SKILL.md",
+    "tags": [
+      "a11y"
+    ]
+  },
+  "accessibility-wcag-aa": {
+    "path": "skills-library/accessibility-wcag-aa/SKILL.md",
+    "tags": [
+      "a11y"
+    ]
+  },
+  "admin-crud-ux-patterns": {
+    "path": "skills-library/admin-crud-ux-patterns/SKILL.md",
+    "tags": [
+      "design"
+    ]
+  },
+  "ads-landing-page-message-match": {
+    "path": "skills-library/ads-landing-page-message-match/SKILL.md",
+    "tags": [
+      "marketing"
+    ]
+  },
+  "ads-reporting-roas-dashboard": {
+    "path": "skills-library/ads-reporting-roas-dashboard/SKILL.md",
+    "tags": [
+      "marketing"
+    ]
+  },
+  "agent-browser-automation-qa": {
+    "path": "skills-library/agent-browser-automation-qa/SKILL.md",
+    "tags": [
+      "test"
+    ]
+  },
+  "agent-instruction-migration": {
+    "path": "skills-library/agent-instruction-migration/SKILL.md",
+    "tags": [
+      "devops"
+    ]
+  },
+  "agents-sdk-production-workflow": {
+    "path": "skills-library/agents-sdk-production-workflow/SKILL.md",
+    "tags": [
+      "ai"
+    ]
+  },
+  "ai-evals-regression-suite": {
+    "path": "skills-library/ai-evals-regression-suite/SKILL.md",
+    "tags": [
+      "ai"
+    ]
+  },
+  "ai-generated-asset-art-direction": {
+    "path": "skills-library/ai-generated-asset-art-direction/SKILL.md",
+    "tags": [
+      "ai"
+    ]
+  },
+  "ai-search-geo-audit": {
+    "path": "skills-library/ai-search-geo-audit/SKILL.md",
+    "tags": [
+      "seo",
+      "ai"
+    ]
+  },
+  "analytics-engineer-agent": {
+    "path": "skills-library/analytics-engineer-agent/SKILL.md",
+    "tags": [
+      "data"
+    ]
+  },
+  "android-jetpack-compose-builder": {
+    "path": "skills-library/android-jetpack-compose-builder/SKILL.md",
+    "tags": [
+      "mobile"
+    ]
+  },
+  "android-reviewer-agent": {
+    "path": "skills-library/android-reviewer-agent/SKILL.md",
+    "tags": [
+      "mobile"
+    ]
+  },
+  "animation-motion-polish": {
+    "path": "skills-library/animation-motion-polish/SKILL.md",
+    "tags": [
+      "animation"
+    ]
+  },
+  "animation-scroll-performance": {
+    "path": "skills-library/animation-scroll-performance/SKILL.md",
+    "tags": [
+      "animation",
+      "perf"
+    ]
+  },
+  "anti-ai-slop-design-critic": {
+    "path": "skills-library/anti-ai-slop-design-critic/SKILL.md",
+    "tags": [
+      "ai"
+    ]
+  },
+  "api-contract-test-generator": {
+    "path": "skills-library/api-contract-test-generator/SKILL.md",
+    "tags": [
+      "test",
+      "legal",
+      "backend"
+    ]
+  },
+  "api-interface-design": {
+    "path": "skills-library/api-interface-design/SKILL.md",
+    "tags": [
+      "backend"
+    ]
+  },
+  "api-platform-agent": {
+    "path": "skills-library/api-platform-agent/SKILL.md",
+    "tags": [
+      "backend"
+    ]
+  },
+  "app-analytics-crash-reporting": {
+    "path": "skills-library/app-analytics-crash-reporting/SKILL.md",
+    "tags": [
+      "data"
+    ]
+  },
+  "app-ci-cd-release-automation": {
+    "path": "skills-library/app-ci-cd-release-automation/SKILL.md",
+    "tags": [
+      "devops"
+    ]
+  },
+  "app-store-aso-metadata": {
+    "path": "skills-library/app-store-aso-metadata/SKILL.md",
+    "tags": [
+      "mobile"
+    ]
+  },
+  "app-store-release-agent": {
+    "path": "skills-library/app-store-release-agent/SKILL.md",
+    "tags": [
+      "devops"
+    ]
+  },
+  "app-store-testflight-release": {
+    "path": "skills-library/app-store-testflight-release/SKILL.md",
+    "tags": [
+      "devops",
+      "mobile"
+    ]
+  },
+  "astro-islands-seo": {
+    "path": "skills-library/astro-islands-seo/SKILL.md",
+    "tags": [
+      "seo",
+      "frontend"
+    ]
+  },
+  "attribution-incrementality-review": {
+    "path": "skills-library/attribution-incrementality-review/SKILL.md",
+    "tags": [
+      "marketing"
+    ]
+  },
+  "auth-oauth-session-architecture": {
+    "path": "skills-library/auth-oauth-session-architecture/SKILL.md",
+    "tags": [
+      "security"
+    ]
+  },
+  "backend-engineer-agent": {
+    "path": "skills-library/backend-engineer-agent/SKILL.md",
+    "tags": [
+      "backend"
+    ]
+  },
+  "background-jobs-queues": {
+    "path": "skills-library/background-jobs-queues/SKILL.md",
+    "tags": [
+      "backend"
+    ]
+  },
+  "billing-entitlements-state-machine": {
+    "path": "skills-library/billing-entitlements-state-machine/SKILL.md",
+    "tags": [
+      "finance",
+      "payments"
+    ]
+  },
+  "brand-art-director-agent": {
+    "path": "skills-library/brand-art-director-agent/SKILL.md",
+    "tags": [
+      "design"
+    ]
+  },
+  "brand-theme-factory": {
+    "path": "skills-library/brand-theme-factory/SKILL.md",
+    "tags": [
+      "design"
+    ]
+  },
+  "browser-devtools-qa": {
+    "path": "skills-library/browser-devtools-qa/SKILL.md",
+    "tags": [
+      "test"
+    ]
+  },
+  "cache-invalidation-design": {
+    "path": "skills-library/cache-invalidation-design/SKILL.md",
+    "tags": [
+      "perf"
+    ]
+  },
+  "canonical-redirect-audit": {
+    "path": "skills-library/canonical-redirect-audit/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "checkout-trust-risk-ux": {
+    "path": "skills-library/checkout-trust-risk-ux/SKILL.md",
+    "tags": [
+      "payments"
+    ]
+  },
+  "ci-cd-automation": {
+    "path": "skills-library/ci-cd-automation/SKILL.md",
+    "tags": [
+      "devops"
+    ]
+  },
+  "ci-failure-triage": {
+    "path": "skills-library/ci-failure-triage/SKILL.md",
+    "tags": [
+      "devops"
+    ]
+  },
+  "clasp-local-dev-deploy": {
+    "path": "skills-library/clasp-local-dev-deploy/SKILL.md",
+    "tags": [
+      "devops"
+    ]
+  },
+  "cloud-infrastructure-agent": {
+    "path": "skills-library/cloud-infrastructure-agent/SKILL.md",
+    "tags": [
+      "infra"
+    ]
+  },
+  "cms-editorial-layouts": {
+    "path": "skills-library/cms-editorial-layouts/SKILL.md",
+    "tags": [
+      "design"
+    ]
+  },
+  "code-copy-provenance-review": {
+    "path": "skills-library/code-copy-provenance-review/SKILL.md",
+    "tags": [
+      "marketing"
+    ]
+  },
+  "code-simplification": {
+    "path": "skills-library/code-simplification/SKILL.md",
+    "tags": [
+      "quality"
+    ]
+  },
+  "codebase-archaeologist-agent": {
+    "path": "skills-library/codebase-archaeologist-agent/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "codebase-map-indexer": {
+    "path": "skills-library/codebase-map-indexer/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "codex-subagent-orchestration": {
+    "path": "skills-library/codex-subagent-orchestration/SKILL.md",
+    "tags": [
+      "meta"
+    ]
+  },
+  "coding-agent-evals-harness": {
+    "path": "skills-library/coding-agent-evals-harness/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "competitor-serp-gap-analysis": {
+    "path": "skills-library/competitor-serp-gap-analysis/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "component-librarian-agent": {
+    "path": "skills-library/component-librarian-agent/SKILL.md",
+    "tags": [
+      "frontend"
+    ]
+  },
+  "component-provenance-license-review": {
+    "path": "skills-library/component-provenance-license-review/SKILL.md",
+    "tags": [
+      "frontend"
+    ]
+  },
+  "component-storybook-workshop": {
+    "path": "skills-library/component-storybook-workshop/SKILL.md",
+    "tags": [
+      "test",
+      "frontend"
+    ]
+  },
+  "content-brief-keyword-map": {
+    "path": "skills-library/content-brief-keyword-map/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "content-decay-pruning": {
+    "path": "skills-library/content-decay-pruning/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "content-design-microcopy": {
+    "path": "skills-library/content-design-microcopy/SKILL.md",
+    "tags": [
+      "marketing"
+    ]
+  },
+  "content-strategist-agent": {
+    "path": "skills-library/content-strategist-agent/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "context-engineering": {
+    "path": "skills-library/context-engineering/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "conversion-rate-optimizer-agent": {
+    "path": "skills-library/conversion-rate-optimizer-agent/SKILL.md",
+    "tags": [
+      "marketing"
+    ]
+  },
+  "conversion-tracking-gtm-ga4": {
+    "path": "skills-library/conversion-tracking-gtm-ga4/SKILL.md",
+    "tags": [
+      "marketing"
+    ]
+  },
+  "copy-adapt-component-pipeline": {
+    "path": "skills-library/copy-adapt-component-pipeline/SKILL.md",
+    "tags": [
+      "marketing",
+      "devops",
+      "frontend"
+    ]
+  },
+  "core-web-vitals-frontend": {
+    "path": "skills-library/core-web-vitals-frontend/SKILL.md",
+    "tags": [
+      "frontend"
+    ]
+  },
+  "crawl-indexability-sitemaps": {
+    "path": "skills-library/crawl-indexability-sitemaps/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "crawler-analyst-agent": {
+    "path": "skills-library/crawler-analyst-agent/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "creative-landing-page-builder": {
+    "path": "skills-library/creative-landing-page-builder/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "cross-language-test-gate": {
+    "path": "skills-library/cross-language-test-gate/SKILL.md",
+    "tags": [
+      "test"
+    ]
+  },
+  "cross-platform-design-parity": {
+    "path": "skills-library/cross-platform-design-parity/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "crypto-market-research": {
+    "path": "skills-library/crypto-market-research/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "customer-support-ops-agent": {
+    "path": "skills-library/customer-support-ops-agent/SKILL.md",
+    "tags": [
+      "ops"
+    ]
+  },
+  "dark-mode-theme-system": {
+    "path": "skills-library/dark-mode-theme-system/SKILL.md",
+    "tags": [
+      "design"
+    ]
+  },
+  "dashboard-ux-information-density": {
+    "path": "skills-library/dashboard-ux-information-density/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "data-engineer-agent": {
+    "path": "skills-library/data-engineer-agent/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "data-import-export-pipeline": {
+    "path": "skills-library/data-import-export-pipeline/SKILL.md",
+    "tags": [
+      "devops"
+    ]
+  },
+  "data-table-grid-ux": {
+    "path": "skills-library/data-table-grid-ux/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "data-visualization-agent": {
+    "path": "skills-library/data-visualization-agent/SKILL.md",
+    "tags": [
+      "design"
+    ]
+  },
+  "database-engineer-agent": {
+    "path": "skills-library/database-engineer-agent/SKILL.md",
+    "tags": [
+      "data"
+    ]
+  },
+  "database-schema-migration-auditor": {
+    "path": "skills-library/database-schema-migration-auditor/SKILL.md",
+    "tags": [
+      "seo",
+      "data"
+    ]
+  },
+  "debugging-error-recovery": {
+    "path": "skills-library/debugging-error-recovery/SKILL.md",
+    "tags": [
+      "test"
+    ]
+  },
+  "defi-protocol-analysis": {
+    "path": "skills-library/defi-protocol-analysis/SKILL.md",
+    "tags": [
+      "trading"
+    ]
+  },
+  "dependency-license-risk-audit": {
+    "path": "skills-library/dependency-license-risk-audit/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "dependency-minimalism-gate": {
+    "path": "skills-library/dependency-minimalism-gate/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "dependency-upgrade-agent": {
+    "path": "skills-library/dependency-upgrade-agent/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "deprecation-migration": {
+    "path": "skills-library/deprecation-migration/SKILL.md",
+    "tags": [
+      "devops"
+    ]
+  },
+  "design-brief-autogenerator": {
+    "path": "skills-library/design-brief-autogenerator/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "design-brief-intake-router": {
+    "path": "skills-library/design-brief-intake-router/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "design-qa-agent-v2": {
+    "path": "skills-library/design-qa-agent-v2/SKILL.md",
+    "tags": [
+      "test"
+    ]
+  },
+  "design-qa-scorecard": {
+    "path": "skills-library/design-qa-scorecard/SKILL.md",
+    "tags": [
+      "test"
+    ]
+  },
+  "design-system-component-qa": {
+    "path": "skills-library/design-system-component-qa/SKILL.md",
+    "tags": [
+      "frontend"
+    ]
+  },
+  "design-system-lead-agent": {
+    "path": "skills-library/design-system-lead-agent/SKILL.md",
+    "tags": [
+      "sales"
+    ]
+  },
+  "design-system-migration-plan": {
+    "path": "skills-library/design-system-migration-plan/SKILL.md",
+    "tags": [
+      "devops"
+    ]
+  },
+  "design-token-compiler": {
+    "path": "skills-library/design-token-compiler/SKILL.md",
+    "tags": [
+      "design"
+    ]
+  },
+  "design-token-extraction": {
+    "path": "skills-library/design-token-extraction/SKILL.md",
+    "tags": [
+      "design"
+    ]
+  },
+  "devops-platform-agent": {
+    "path": "skills-library/devops-platform-agent/SKILL.md",
+    "tags": [
+      "devops"
+    ]
+  },
+  "docs-developer-portal-seo": {
+    "path": "skills-library/docs-developer-portal-seo/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "docs-information-architect-agent": {
+    "path": "skills-library/docs-information-architect-agent/SKILL.md",
+    "tags": [
+      "arch"
+    ]
+  },
+  "documentation-adrs": {
+    "path": "skills-library/documentation-adrs/SKILL.md",
+    "tags": [
+      "docs"
+    ]
+  },
+  "ecommerce-faceted-navigation-seo": {
+    "path": "skills-library/ecommerce-faceted-navigation-seo/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "ecommerce-product-page-ux": {
+    "path": "skills-library/ecommerce-product-page-ux/SKILL.md",
+    "tags": [
+      "product"
+    ]
+  },
+  "education-ai-guardrails": {
+    "path": "skills-library/education-ai-guardrails/SKILL.md",
+    "tags": [
+      "ai"
+    ]
+  },
+  "email-deliverability-transactional": {
+    "path": "skills-library/email-deliverability-transactional/SKILL.md",
+    "tags": [
+      "email"
+    ]
+  },
+  "empty-state-error-recovery-design": {
+    "path": "skills-library/empty-state-error-recovery-design/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "entity-knowledge-graph-seo": {
+    "path": "skills-library/entity-knowledge-graph-seo/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "exchange-api-ccxt-integration": {
+    "path": "skills-library/exchange-api-ccxt-integration/SKILL.md",
+    "tags": [
+      "trading",
+      "backend"
+    ]
+  },
+  "experiment-analyst-agent": {
+    "path": "skills-library/experiment-analyst-agent/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "expo-eas-release-gate": {
+    "path": "skills-library/expo-eas-release-gate/SKILL.md",
+    "tags": [
+      "devops",
+      "mobile"
+    ]
+  },
+  "external-prompt-pattern-miner": {
+    "path": "skills-library/external-prompt-pattern-miner/SKILL.md",
+    "tags": [
+      "ai"
+    ]
+  },
+  "feature-flag-rollout": {
+    "path": "skills-library/feature-flag-rollout/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "figma-to-code-implementation": {
+    "path": "skills-library/figma-to-code-implementation/SKILL.md",
+    "tags": [
+      "design"
+    ]
+  },
+  "file-upload-storage-pipeline": {
+    "path": "skills-library/file-upload-storage-pipeline/SKILL.md",
+    "tags": [
+      "devops"
+    ]
+  },
+  "finance-billing-agent": {
+    "path": "skills-library/finance-billing-agent/SKILL.md",
+    "tags": [
+      "finance",
+      "payments"
+    ]
+  },
+  "firebase-app-backend": {
+    "path": "skills-library/firebase-app-backend/SKILL.md",
+    "tags": [
+      "backend"
+    ]
+  },
+  "firebase-auth-security-rules": {
+    "path": "skills-library/firebase-auth-security-rules/SKILL.md",
+    "tags": [
+      "security"
+    ]
+  },
+  "firebase-google-cloud-agent": {
+    "path": "skills-library/firebase-google-cloud-agent/SKILL.md",
+    "tags": [
+      "infra"
+    ]
+  },
+  "floating-ui-overlay-positioning": {
+    "path": "skills-library/floating-ui-overlay-positioning/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "forms-checkout-ux": {
+    "path": "skills-library/forms-checkout-ux/SKILL.md",
+    "tags": [
+      "payments"
+    ]
+  },
+  "frontend-design-critic-agent": {
+    "path": "skills-library/frontend-design-critic-agent/SKILL.md",
+    "tags": [
+      "frontend"
+    ]
+  },
+  "frontend-design-system": {
+    "path": "skills-library/frontend-design-system/SKILL.md",
+    "tags": [
+      "frontend"
+    ]
+  },
+  "frontend-implementation-agent": {
+    "path": "skills-library/frontend-implementation-agent/SKILL.md",
+    "tags": [
+      "frontend"
+    ]
+  },
+  "frontend-ui-engineering": {
+    "path": "skills-library/frontend-ui-engineering/SKILL.md",
+    "tags": [
+      "frontend"
+    ]
+  },
+  "fullstack-integrator-agent": {
+    "path": "skills-library/fullstack-integrator-agent/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "fuzzing-security-tests": {
+    "path": "skills-library/fuzzing-security-tests/SKILL.md",
+    "tags": [
+      "security",
+      "test"
+    ]
+  },
+  "geo-ai-search-readiness-v2": {
+    "path": "skills-library/geo-ai-search-readiness-v2/SKILL.md",
+    "tags": [
+      "seo",
+      "ai"
+    ]
+  },
+  "git-workflow-versioning": {
+    "path": "skills-library/git-workflow-versioning/SKILL.md",
+    "tags": [
+      "git"
+    ]
+  },
+  "gltf-asset-pipeline": {
+    "path": "skills-library/gltf-asset-pipeline/SKILL.md",
+    "tags": [
+      "3d",
+      "devops"
+    ]
+  },
+  "gltf-optimization-pipeline-v2": {
+    "path": "skills-library/gltf-optimization-pipeline-v2/SKILL.md",
+    "tags": [
+      "3d",
+      "devops"
+    ]
+  },
+  "google-ads-account-audit": {
+    "path": "skills-library/google-ads-account-audit/SKILL.md",
+    "tags": [
+      "marketing"
+    ]
+  },
+  "google-workspace-addons": {
+    "path": "skills-library/google-workspace-addons/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "google-workspace-apps-script": {
+    "path": "skills-library/google-workspace-apps-script/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "growth-design-director-agent": {
+    "path": "skills-library/growth-design-director-agent/SKILL.md",
+    "tags": [
+      "marketing"
+    ]
+  },
+  "growth-design-message-match": {
+    "path": "skills-library/growth-design-message-match/SKILL.md",
+    "tags": [
+      "marketing"
+    ]
+  },
+  "growth-engineer-agent": {
+    "path": "skills-library/growth-engineer-agent/SKILL.md",
+    "tags": [
+      "marketing"
+    ]
+  },
+  "growth-experiment-backlog": {
+    "path": "skills-library/growth-experiment-backlog/SKILL.md",
+    "tags": [
+      "marketing"
+    ]
+  },
+  "headless-component-composition": {
+    "path": "skills-library/headless-component-composition/SKILL.md",
+    "tags": [
+      "frontend"
+    ]
+  },
+  "healthcare-ai-research-guardrails": {
+    "path": "skills-library/healthcare-ai-research-guardrails/SKILL.md",
+    "tags": [
+      "ai"
+    ]
+  },
+  "heuristic-usability-review": {
+    "path": "skills-library/heuristic-usability-review/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "hiring-ai-fairness-review": {
+    "path": "skills-library/hiring-ai-fairness-review/SKILL.md",
+    "tags": [
+      "ai"
+    ]
+  },
+  "iconography-illustration-system": {
+    "path": "skills-library/iconography-illustration-system/SKILL.md",
+    "tags": [
+      "design"
+    ]
+  },
+  "image-video-seo": {
+    "path": "skills-library/image-video-seo/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "in-app-purchases-subscriptions": {
+    "path": "skills-library/in-app-purchases-subscriptions/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "interaction-state-matrix": {
+    "path": "skills-library/interaction-state-matrix/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "internal-linking-ia": {
+    "path": "skills-library/internal-linking-ia/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "international-hreflang-seo": {
+    "path": "skills-library/international-hreflang-seo/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "internationalized-rtl-ui": {
+    "path": "skills-library/internationalized-rtl-ui/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "ios-reviewer-agent": {
+    "path": "skills-library/ios-reviewer-agent/SKILL.md",
+    "tags": [
+      "mobile"
+    ]
+  },
+  "ios-swiftui-app-builder": {
+    "path": "skills-library/ios-swiftui-app-builder/SKILL.md",
+    "tags": [
+      "mobile"
+    ]
+  },
+  "issue-to-pr-agent": {
+    "path": "skills-library/issue-to-pr-agent/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "javascript-seo-rendering": {
+    "path": "skills-library/javascript-seo-rendering/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "keyword-query-negative-mining": {
+    "path": "skills-library/keyword-query-negative-mining/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "landing-page-conversion-design": {
+    "path": "skills-library/landing-page-conversion-design/SKILL.md",
+    "tags": [
+      "marketing"
+    ]
+  },
+  "language-runtime-router": {
+    "path": "skills-library/language-runtime-router/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "language-specialist-agent": {
+    "path": "skills-library/language-specialist-agent/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "legal-risk-reviewer-agent": {
+    "path": "skills-library/legal-risk-reviewer-agent/SKILL.md",
+    "tags": [
+      "legal"
+    ]
+  },
+  "llms-txt-ai-crawler-access": {
+    "path": "skills-library/llms-txt-ai-crawler-access/SKILL.md",
+    "tags": [
+      "seo",
+      "ai"
+    ]
+  },
+  "local-seo-entity-pages": {
+    "path": "skills-library/local-seo-entity-pages/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "localization-i18n-engineering": {
+    "path": "skills-library/localization-i18n-engineering/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "localization-lead-agent": {
+    "path": "skills-library/localization-lead-agent/SKILL.md",
+    "tags": [
+      "sales"
+    ]
+  },
+  "log-file-crawl-analysis": {
+    "path": "skills-library/log-file-crawl-analysis/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "mcp-integration-builder": {
+    "path": "skills-library/mcp-integration-builder/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "mcp-security-review": {
+    "path": "skills-library/mcp-security-review/SKILL.md",
+    "tags": [
+      "security"
+    ]
+  },
+  "meta-ads-creative-testing": {
+    "path": "skills-library/meta-ads-creative-testing/SKILL.md",
+    "tags": [
+      "marketing",
+      "test"
+    ]
+  },
+  "migration-lead-agent": {
+    "path": "skills-library/migration-lead-agent/SKILL.md",
+    "tags": [
+      "sales"
+    ]
+  },
+  "ml-ai-engineer-agent": {
+    "path": "skills-library/ml-ai-engineer-agent/SKILL.md",
+    "tags": [
+      "ml",
+      "ai"
+    ]
+  },
+  "mobile-app-permissions-privacy": {
+    "path": "skills-library/mobile-app-permissions-privacy/SKILL.md",
+    "tags": [
+      "mobile",
+      "legal"
+    ]
+  },
+  "mobile-architect-agent": {
+    "path": "skills-library/mobile-architect-agent/SKILL.md",
+    "tags": [
+      "mobile"
+    ]
+  },
+  "mobile-asset-budget-audit": {
+    "path": "skills-library/mobile-asset-budget-audit/SKILL.md",
+    "tags": [
+      "mobile"
+    ]
+  },
+  "mobile-crash-analytics-gate": {
+    "path": "skills-library/mobile-crash-analytics-gate/SKILL.md",
+    "tags": [
+      "data",
+      "mobile"
+    ]
+  },
+  "mobile-e2e-device-testing": {
+    "path": "skills-library/mobile-e2e-device-testing/SKILL.md",
+    "tags": [
+      "test",
+      "mobile"
+    ]
+  },
+  "mobile-first-qa": {
+    "path": "skills-library/mobile-first-qa/SKILL.md",
+    "tags": [
+      "mobile"
+    ]
+  },
+  "mobile-offline-first-review": {
+    "path": "skills-library/mobile-offline-first-review/SKILL.md",
+    "tags": [
+      "mobile"
+    ]
+  },
+  "mobile-performance-agent": {
+    "path": "skills-library/mobile-performance-agent/SKILL.md",
+    "tags": [
+      "mobile",
+      "perf"
+    ]
+  },
+  "mobile-permissions-privacy-gate": {
+    "path": "skills-library/mobile-permissions-privacy-gate/SKILL.md",
+    "tags": [
+      "mobile",
+      "legal"
+    ]
+  },
+  "mobile-release-reviewer-agent": {
+    "path": "skills-library/mobile-release-reviewer-agent/SKILL.md",
+    "tags": [
+      "devops",
+      "mobile"
+    ]
+  },
+  "mobile-ux-platform-parity": {
+    "path": "skills-library/mobile-ux-platform-parity/SKILL.md",
+    "tags": [
+      "mobile"
+    ]
+  },
+  "monorepo-boundary-architecture": {
+    "path": "skills-library/monorepo-boundary-architecture/SKILL.md",
+    "tags": [
+      "arch"
+    ]
+  },
+  "motion-design-agent": {
+    "path": "skills-library/motion-design-agent/SKILL.md",
+    "tags": [
+      "animation"
+    ]
+  },
+  "motion-design-system": {
+    "path": "skills-library/motion-design-system/SKILL.md",
+    "tags": [
+      "animation"
+    ]
+  },
+  "multi-brand-whitelabel-ui": {
+    "path": "skills-library/multi-brand-whitelabel-ui/SKILL.md",
+    "tags": [
+      "design"
+    ]
+  },
+  "multi-tenant-saas-architecture": {
+    "path": "skills-library/multi-tenant-saas-architecture/SKILL.md",
+    "tags": [
+      "arch"
+    ]
+  },
+  "multilingual-content-localization-seo": {
+    "path": "skills-library/multilingual-content-localization-seo/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "mutation-testing-strategy": {
+    "path": "skills-library/mutation-testing-strategy/SKILL.md",
+    "tags": [
+      "test"
+    ]
+  },
+  "navigation-ia-ux": {
+    "path": "skills-library/navigation-ia-ux/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "nextjs-app-router-seo": {
+    "path": "skills-library/nextjs-app-router-seo/SKILL.md",
+    "tags": [
+      "seo",
+      "frontend"
+    ]
+  },
+  "nextjs-production-app-architecture": {
+    "path": "skills-library/nextjs-production-app-architecture/SKILL.md",
+    "tags": [
+      "frontend"
+    ]
+  },
+  "no-code-low-code-agent": {
+    "path": "skills-library/no-code-low-code-agent/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "node-package-release-engineering": {
+    "path": "skills-library/node-package-release-engineering/SKILL.md",
+    "tags": [
+      "devops"
+    ]
+  },
+  "nuxt-seo-module-workflow": {
+    "path": "skills-library/nuxt-seo-module-workflow/SKILL.md",
+    "tags": [
+      "seo",
+      "frontend"
+    ]
+  },
+  "observability-instrumentation": {
+    "path": "skills-library/observability-instrumentation/SKILL.md",
+    "tags": [
+      "ops"
+    ]
+  },
+  "onboarding-product-tour-ux": {
+    "path": "skills-library/onboarding-product-tour-ux/SKILL.md",
+    "tags": [
+      "product"
+    ]
+  },
+  "onchain-data-analytics": {
+    "path": "skills-library/onchain-data-analytics/SKILL.md",
+    "tags": [
+      "trading",
+      "data"
+    ]
+  },
+  "operations-automation-agent": {
+    "path": "skills-library/operations-automation-agent/SKILL.md",
+    "tags": [
+      "ops"
+    ]
+  },
+  "paid-search-risk-agent": {
+    "path": "skills-library/paid-search-risk-agent/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "performance-max-structure": {
+    "path": "skills-library/performance-max-structure/SKILL.md",
+    "tags": [
+      "perf"
+    ]
+  },
+  "performance-optimization": {
+    "path": "skills-library/performance-optimization/SKILL.md",
+    "tags": [
+      "perf"
+    ]
+  },
+  "performance-sre-agent": {
+    "path": "skills-library/performance-sre-agent/SKILL.md",
+    "tags": [
+      "perf",
+      "ops"
+    ]
+  },
+  "playwright-screenshot-baselines": {
+    "path": "skills-library/playwright-screenshot-baselines/SKILL.md",
+    "tags": [
+      "test"
+    ]
+  },
+  "portfolio-risk-rebalancing": {
+    "path": "skills-library/portfolio-risk-rebalancing/SKILL.md",
+    "tags": [
+      "trading"
+    ]
+  },
+  "ppc-budget-bid-optimizer": {
+    "path": "skills-library/ppc-budget-bid-optimizer/SKILL.md",
+    "tags": [
+      "marketing"
+    ]
+  },
+  "ppc-landing-quality-score-gate": {
+    "path": "skills-library/ppc-landing-quality-score-gate/SKILL.md",
+    "tags": [
+      "marketing"
+    ]
+  },
+  "ppc-policy-compliance-check": {
+    "path": "skills-library/ppc-policy-compliance-check/SKILL.md",
+    "tags": [
+      "marketing",
+      "legal"
+    ]
+  },
+  "ppc-strategist-agent": {
+    "path": "skills-library/ppc-strategist-agent/SKILL.md",
+    "tags": [
+      "marketing"
+    ]
+  },
+  "pr-review-response-agent": {
+    "path": "skills-library/pr-review-response-agent/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "premium-saas-ui-polish": {
+    "path": "skills-library/premium-saas-ui-polish/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "pricing-onboarding-ux": {
+    "path": "skills-library/pricing-onboarding-ux/SKILL.md",
+    "tags": [
+      "finance"
+    ]
+  },
+  "principal-architect-agent": {
+    "path": "skills-library/principal-architect-agent/SKILL.md",
+    "tags": [
+      "arch"
+    ]
+  },
+  "principal-code-reviewer-agent": {
+    "path": "skills-library/principal-code-reviewer-agent/SKILL.md",
+    "tags": [
+      "quality"
+    ]
+  },
+  "privacy-compliance-agent": {
+    "path": "skills-library/privacy-compliance-agent/SKILL.md",
+    "tags": [
+      "legal"
+    ]
+  },
+  "product-builder": {
+    "path": "skills-library/product-builder/SKILL.md",
+    "tags": [
+      "product"
+    ]
+  },
+  "product-manager-agent": {
+    "path": "skills-library/product-manager-agent/SKILL.md",
+    "tags": [
+      "product"
+    ]
+  },
+  "programmatic-seo-pages": {
+    "path": "skills-library/programmatic-seo-pages/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "programming-agent-pack-selector": {
+    "path": "skills-library/programming-agent-pack-selector/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "prompt-injection-defense": {
+    "path": "skills-library/prompt-injection-defense/SKILL.md",
+    "tags": [
+      "ai"
+    ]
+  },
+  "prompt-security-agent": {
+    "path": "skills-library/prompt-security-agent/SKILL.md",
+    "tags": [
+      "ai",
+      "security"
+    ]
+  },
+  "promptfoo-evals-redteam-ci": {
+    "path": "skills-library/promptfoo-evals-redteam-ci/SKILL.md",
+    "tags": [
+      "ai"
+    ]
+  },
+  "property-based-testing": {
+    "path": "skills-library/property-based-testing/SKILL.md",
+    "tags": [
+      "test"
+    ]
+  },
+  "push-notifications-deep-links": {
+    "path": "skills-library/push-notifications-deep-links/SKILL.md",
+    "tags": [
+      "email"
+    ]
+  },
+  "pwa-offline-installability": {
+    "path": "skills-library/pwa-offline-installability/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "python-cli-package-builder": {
+    "path": "skills-library/python-cli-package-builder/SKILL.md",
+    "tags": [
+      "shell"
+    ]
+  },
+  "qa-automation-agent": {
+    "path": "skills-library/qa-automation-agent/SKILL.md",
+    "tags": [
+      "test"
+    ]
+  },
+  "r3f-scene-pattern-library": {
+    "path": "skills-library/r3f-scene-pattern-library/SKILL.md",
+    "tags": [
+      "3d"
+    ]
+  },
+  "rag-evaluation-agent": {
+    "path": "skills-library/rag-evaluation-agent/SKILL.md",
+    "tags": [
+      "ml"
+    ]
+  },
+  "react-aria-advanced-interactions": {
+    "path": "skills-library/react-aria-advanced-interactions/SKILL.md",
+    "tags": [
+      "frontend"
+    ]
+  },
+  "react-native-expo-app-builder": {
+    "path": "skills-library/react-native-expo-app-builder/SKILL.md",
+    "tags": [
+      "mobile",
+      "frontend"
+    ]
+  },
+  "react-three-fiber-components": {
+    "path": "skills-library/react-three-fiber-components/SKILL.md",
+    "tags": [
+      "frontend"
+    ]
+  },
+  "realtime-websockets-sse": {
+    "path": "skills-library/realtime-websockets-sse/SKILL.md",
+    "tags": [
+      "backend"
+    ]
+  },
+  "record-replay-skill-miner": {
+    "path": "skills-library/record-replay-skill-miner/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "refactoring-coach-agent": {
+    "path": "skills-library/refactoring-coach-agent/SKILL.md",
+    "tags": [
+      "quality"
+    ]
+  },
+  "release-manager-agent": {
+    "path": "skills-library/release-manager-agent/SKILL.md",
+    "tags": [
+      "devops"
+    ]
+  },
+  "release-notes-changelog-automation": {
+    "path": "skills-library/release-notes-changelog-automation/SKILL.md",
+    "tags": [
+      "devops",
+      "docs"
+    ]
+  },
+  "requirements-analyst-agent": {
+    "path": "skills-library/requirements-analyst-agent/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "responsive-layout-system": {
+    "path": "skills-library/responsive-layout-system/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "robots-xrobots-meta-controls": {
+    "path": "skills-library/robots-xrobots-meta-controls/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "scroll-driven-3d-storytelling": {
+    "path": "skills-library/scroll-driven-3d-storytelling/SKILL.md",
+    "tags": [
+      "3d",
+      "animation"
+    ]
+  },
+  "search-console-api-automation": {
+    "path": "skills-library/search-console-api-automation/SKILL.md",
+    "tags": [
+      "backend"
+    ]
+  },
+  "search-console-ga4-diagnostics": {
+    "path": "skills-library/search-console-ga4-diagnostics/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "search-content-editor-agent": {
+    "path": "skills-library/search-content-editor-agent/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "search-indexing-rag": {
+    "path": "skills-library/search-indexing-rag/SKILL.md",
+    "tags": [
+      "seo",
+      "ml"
+    ]
+  },
+  "secrets-env-rotation": {
+    "path": "skills-library/secrets-env-rotation/SKILL.md",
+    "tags": [
+      "security"
+    ]
+  },
+  "security-hardening": {
+    "path": "skills-library/security-hardening/SKILL.md",
+    "tags": [
+      "security"
+    ]
+  },
+  "security-reviewer-agent": {
+    "path": "skills-library/security-reviewer-agent/SKILL.md",
+    "tags": [
+      "security"
+    ]
+  },
+  "seo-ab-testing-causal-review": {
+    "path": "skills-library/seo-ab-testing-causal-review/SKILL.md",
+    "tags": [
+      "seo",
+      "test"
+    ]
+  },
+  "seo-ci-quality-gate": {
+    "path": "skills-library/seo-ci-quality-gate/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "seo-director-agent": {
+    "path": "skills-library/seo-director-agent/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "seo-migration-redirects": {
+    "path": "skills-library/seo-migration-redirects/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "seo-technical-auditor-agent": {
+    "path": "skills-library/seo-technical-auditor-agent/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "serp-feature-rich-result-planner": {
+    "path": "skills-library/serp-feature-rich-result-planner/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "serp-to-page-brief-generator": {
+    "path": "skills-library/serp-to-page-brief-generator/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "shader-and-postprocessing-review": {
+    "path": "skills-library/shader-and-postprocessing-review/SKILL.md",
+    "tags": [
+      "3d"
+    ]
+  },
+  "shader-material-design": {
+    "path": "skills-library/shader-material-design/SKILL.md",
+    "tags": [
+      "3d"
+    ]
+  },
+  "site-crawler-automation": {
+    "path": "skills-library/site-crawler-automation/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "sitemap-index-sharding": {
+    "path": "skills-library/sitemap-index-sharding/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "skill-catalog-orchestrator": {
+    "path": "skills-library/skill-catalog-orchestrator/SKILL.md",
+    "tags": [
+      "meta"
+    ]
+  },
+  "smart-contract-security-review": {
+    "path": "skills-library/smart-contract-security-review/SKILL.md",
+    "tags": [
+      "security",
+      "legal"
+    ]
+  },
+  "solidity-foundry-test-suite": {
+    "path": "skills-library/solidity-foundry-test-suite/SKILL.md",
+    "tags": [
+      "trading",
+      "test"
+    ]
+  },
+  "source-driven-development": {
+    "path": "skills-library/source-driven-development/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "source-first-api-verifier": {
+    "path": "skills-library/source-first-api-verifier/SKILL.md",
+    "tags": [
+      "backend"
+    ]
+  },
+  "spec-driven-development": {
+    "path": "skills-library/spec-driven-development/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "sql-query-plan-optimizer": {
+    "path": "skills-library/sql-query-plan-optimizer/SKILL.md",
+    "tags": [
+      "data"
+    ]
+  },
+  "sre-incident-commander-agent": {
+    "path": "skills-library/sre-incident-commander-agent/SKILL.md",
+    "tags": [
+      "ops"
+    ]
+  },
+  "staff-debugger-agent": {
+    "path": "skills-library/staff-debugger-agent/SKILL.md",
+    "tags": [
+      "test"
+    ]
+  },
+  "storybook-interaction-tests": {
+    "path": "skills-library/storybook-interaction-tests/SKILL.md",
+    "tags": [
+      "test"
+    ]
+  },
+  "structured-data-schema-org": {
+    "path": "skills-library/structured-data-schema-org/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "supervisor-orchestrator-agent": {
+    "path": "skills-library/supervisor-orchestrator-agent/SKILL.md",
+    "tags": [
+      "meta"
+    ]
+  },
+  "supply-chain-sbom-sca": {
+    "path": "skills-library/supply-chain-sbom-sca/SKILL.md",
+    "tags": [
+      "security"
+    ]
+  },
+  "swiftui-state-data-flow": {
+    "path": "skills-library/swiftui-state-data-flow/SKILL.md",
+    "tags": [
+      "mobile"
+    ]
+  },
+  "technical-seo-audit": {
+    "path": "skills-library/technical-seo-audit/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "technical-writer-agent": {
+    "path": "skills-library/technical-writer-agent/SKILL.md",
+    "tags": [
+      "docs"
+    ]
+  },
+  "test-architect-agent": {
+    "path": "skills-library/test-architect-agent/SKILL.md",
+    "tags": [
+      "test"
+    ]
+  },
+  "test-driven-development": {
+    "path": "skills-library/test-driven-development/SKILL.md",
+    "tags": [
+      "test"
+    ]
+  },
+  "three-vs-babylon-vs-model-viewer": {
+    "path": "skills-library/three-vs-babylon-vs-model-viewer/SKILL.md",
+    "tags": [
+      "3d"
+    ]
+  },
+  "threejs-scene-architecture": {
+    "path": "skills-library/threejs-scene-architecture/SKILL.md",
+    "tags": [
+      "3d"
+    ]
+  },
+  "tokenomics-whitepaper-review": {
+    "path": "skills-library/tokenomics-whitepaper-review/SKILL.md",
+    "tags": [
+      "trading"
+    ]
+  },
+  "topical-authority-cluster-builder": {
+    "path": "skills-library/topical-authority-cluster-builder/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "trading-risk-analyst-agent": {
+    "path": "skills-library/trading-risk-analyst-agent/SKILL.md",
+    "tags": [
+      "trading"
+    ]
+  },
+  "trading-strategy-backtesting": {
+    "path": "skills-library/trading-strategy-backtesting/SKILL.md",
+    "tags": [
+      "trading"
+    ]
+  },
+  "trust-safety-content-moderation-ux": {
+    "path": "skills-library/trust-safety-content-moderation-ux/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "turbo-mode-controller": {
+    "path": "skills-library/turbo-mode-controller/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "turbo-multi-agent-review": {
+    "path": "skills-library/turbo-multi-agent-review/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "turbo-source-benchmark": {
+    "path": "skills-library/turbo-source-benchmark/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "turbo-validation-gate": {
+    "path": "skills-library/turbo-validation-gate/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "typescript-strictness-migration": {
+    "path": "skills-library/typescript-strictness-migration/SKILL.md",
+    "tags": [
+      "devops"
+    ]
+  },
+  "typography-readability-system": {
+    "path": "skills-library/typography-readability-system/SKILL.md",
+    "tags": [
+      "design"
+    ]
+  },
+  "ui-art-director-agent": {
+    "path": "skills-library/ui-art-director-agent/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "ui-component-source-router": {
+    "path": "skills-library/ui-component-source-router/SKILL.md",
+    "tags": [
+      "frontend"
+    ]
+  },
+  "ux-researcher-agent": {
+    "path": "skills-library/ux-researcher-agent/SKILL.md",
+    "tags": [
+      "general"
+    ]
+  },
+  "visual-hierarchy-layout-review": {
+    "path": "skills-library/visual-hierarchy-layout-review/SKILL.md",
+    "tags": [
+      "design"
+    ]
+  },
+  "visual-qa-agent": {
+    "path": "skills-library/visual-qa-agent/SKILL.md",
+    "tags": [
+      "design"
+    ]
+  },
+  "visual-regression-design-gate": {
+    "path": "skills-library/visual-regression-design-gate/SKILL.md",
+    "tags": [
+      "design"
+    ]
+  },
+  "wallet-transaction-flow": {
+    "path": "skills-library/wallet-transaction-flow/SKILL.md",
+    "tags": [
+      "trading"
+    ]
+  },
+  "web-rendering-edge-ssr-seo": {
+    "path": "skills-library/web-rendering-edge-ssr-seo/SKILL.md",
+    "tags": [
+      "seo"
+    ]
+  },
+  "web3-crypto-security-agent": {
+    "path": "skills-library/web3-crypto-security-agent/SKILL.md",
+    "tags": [
+      "trading",
+      "security"
+    ]
+  },
+  "webapp-visual-regression": {
+    "path": "skills-library/webapp-visual-regression/SKILL.md",
+    "tags": [
+      "design"
+    ]
+  },
+  "webgl-performance-agent": {
+    "path": "skills-library/webgl-performance-agent/SKILL.md",
+    "tags": [
+      "3d",
+      "perf"
+    ]
+  },
+  "webgl-webgpu-performance": {
+    "path": "skills-library/webgl-webgpu-performance/SKILL.md",
+    "tags": [
+      "3d",
+      "perf"
+    ]
+  },
+  "xr-ar-web-experiences": {
+    "path": "skills-library/xr-ar-web-experiences/SKILL.md",
+    "tags": [
+      "3d"
+    ]
+  }
+}

@@ -100,6 +100,19 @@ else
   add_check "catalog-format" "WARN" "jq not found - skipped"
 fi
 
+# 2c3. Skills-library metadata smoke check (v1.17, Stage 3 skill import) - name/description/
+# frontmatter validity for the curated, installable subset of the catalog. Runs against
+# the TEMPLATE root, not the project being doctored - skills-library lives in the template,
+# not per-project.
+skills_lib_script="$script_dir/validate-skills-library.sh"
+if [ -f "$skills_lib_script" ] && command -v jq >/dev/null 2>&1; then
+  skills_lib_out="$(bash "$skills_lib_script" --json 2>/dev/null)"
+  skills_lib_ok="$(printf '%s' "$skills_lib_out" | jq -r '.ok // 0')"
+  skills_lib_failed="$(printf '%s' "$skills_lib_out" | jq -r '.failed // 0')"
+  skills_lib_status="OK"; [ "${skills_lib_failed:-0}" -gt 0 ] && skills_lib_status="FAIL"
+  add_check "skills-library" "$skills_lib_status" "ok=$skills_lib_ok; failed=$skills_lib_failed"
+fi
+
 # 2d. Registry/template version control. Auto-commits any pending changes so a bad edit is
 # always revertible via git, WITHOUT relying on remembering to commit by hand.
 invoke_auto_commit() {

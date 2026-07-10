@@ -147,5 +147,50 @@ if [ -f "$claude_md" ]; then
   fi
 fi
 
+# --- Install actual skill content for skills-library-backed candidates (v1.17). CORE-300
+# has 2000+ text-only catalog lines; only a curated subset (srednoff-os/Codex-sibling
+# import, Stage 3) has real installable SKILL.md content in skills-library/. Install up
+# to a hard cap so a project never gets hundreds of skills loaded at session start -
+# Claude Code scans name+description for every installed skill (~100 tokens each) even
+# when unused, so capping here is a real context-budget decision, not cosmetic.
+# Matched independently against skills-library/index.json (not against $candidates, the
+# capped-at-40 general text candidate list) - the cap is easily saturated by a
+# high-frequency tag like "web"/"frontend" before ever reaching a less-common tag like
+# "3d", which would silently starve skill installation for exactly the projects most
+# likely to want it. Found by testing a package.json with react-three-fiber: the general
+# candidate list was 100% "web"-tagged entries, zero 3d-tagged ones made the top 40.
+skill_install_cap=20
+skills_lib_index="$HOME/.claude/templates/claude-md-os/skills-library/index.json"
+installed_count=0
+if [ -f "$skills_lib_index" ] && command -v jq >/dev/null 2>&1; then
+  lib_root="$HOME/.claude/templates/claude-md-os/skills-library"
+  # jq on Windows/Git Bash emits CRLF; a trailing \r on a skill name would break every
+  # downstream path lookup (a file "name\r" never exists). Same fix pattern already
+  # used throughout run-evals.sh (there via a local strip_cr() helper) for identical
+  # jq-output-on-Windows drift.
+  tags_json="$(printf '%s\n' "${tags[@]}" | jq -R . | jq -s . | tr -d '\r')"
+  to_install=()
+  while IFS= read -r nm; do
+    [ -z "$nm" ] && continue
+    [ "${#to_install[@]}" -ge "$skill_install_cap" ] && break
+    to_install+=("$nm")
+  done < <(jq -r --argjson tags "$tags_json" '
+    to_entries[] | select((.value.tags // []) as $st | ($tags - ($tags - $st)) | length > 0) | .key
+  ' "$skills_lib_index" | tr -d '\r')
+
+  if [ "${#to_install[@]}" -gt 0 ]; then
+    skills_dir="$target/.claude/skills"
+    mkdir -p "$skills_dir"
+    for nm in "${to_install[@]}"; do
+      src_md="$lib_root/$nm/SKILL.md"
+      [ -f "$src_md" ] || continue
+      dest_dir="$skills_dir/$nm"
+      mkdir -p "$dest_dir"
+      cp "$src_md" "$dest_dir/SKILL.md"
+      installed_count=$((installed_count + 1))
+    done
+  fi
+fi
+
 echo "PROFILE.lock: $lock"
-echo "  tags: $tags_csv | candidates: $cand_count"
+echo "  tags: $tags_csv | candidates: $cand_count | skills installed: $installed_count"

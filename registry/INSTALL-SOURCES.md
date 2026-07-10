@@ -2,6 +2,22 @@
 
 Большинство записей `CORE-300.md` помечены `INST`/`ANTH` — **уже доступны**, ставить ничего не нужно. Внешние (`WSH`, `VOLT`) ставятся только когда профиль проекта реально их требует.
 
+## SREDNOFF — Ivan'а собственный sibling-репозиторий (тот же автор, MIT, vetted=true)
+Источник: [srednoff888-art/srednoff-os](https://github.com/srednoff888-art/srednoff-os) — Codex-версия
+этой же OS. Записи `SREDNOFF` — не unvetted-discovery как WSH/VOLT/GH: это Иванова же работа под MIT,
+без отдельного лицензионного ревью (verification gate rule 70 её не требует для `SREDNOFF`, только
+для внешних supply-chain источников). 303 скилла из `.codex/skills/` этого репо адаптированы под
+Claude Code (текст: `Codex`→`Claude Code`, пути `.codex/`→`.claude/`) и лежат в
+`templates/claude-md-os/skills-library/<name>/SKILL.md` — НЕ грузятся автоматически. Уже
+**установлены**, но не **активированы**: `gen-profile-lock.ps1/.sh` при генерации PROFILE.lock
+копирует до 20 тег-совпадающих скиллов из `skills-library/` в `.claude/skills/` проекта (жёсткий
+кап — ~100 токенов на скилл на старте сессии Claude Code, 303 скилла целиком = 30k+ токенов, что
+неприемлемо). Полная библиотека: `skills-library/index.json`. 2 записи (`quality-cost-skill-kernel`,
+`source-ranking-roi-selector`) — донор-специфичные мета-концепции, description backfilled, но
+контент НЕ импортирован (см. `PLAN-V2-MERGE-FROM-CODEX.md`, "НЕ БРАТЬ"). 3 записи с совпадающим
+именем (`github-research`, `production-review`, `seo`) НЕ тронуты — у нас уже есть канонические
+версии этих скиллов.
+
 ## ANTH-OFF — официальный маркетплейс Anthropic (ПРИОРИТЕТ №1, vetted)
 Высший уровень доверия: курируется Anthropic → проходит гейт без сомнений. Брать отсюда первым делом.
 ```

@@ -174,7 +174,7 @@
 121. `powershell-5.1-expert` [lang][windows] VOLT
 
 ### Web/frontend фреймворки
-122. `nextjs-developer` [web] VOLT — (my-nextjs-app на Next.js)
+122. `nextjs-developer` [web] VOLT — (a Next.js app)
 123. `react-specialist` [web] VOLT
 124. `vue-expert` [web] VOLT
 125. `angular-architect` [web] VOLT
@@ -990,12 +990,12 @@
 746. `video-db:skills` [backend] VOLT-SK — Realtime and batch video workflows: capture screen/audio, ingest URLs/YouTube/RTSP, transcribe, index, search, generate subtitles, edit time
 747. `talkstream:ru-text` [design][ai] VOLT-SK — Russian text quality: ~1,040 rules for typography, info-style, editorial, UX writing, business correspondence. Cross-platform: Claude Code, 
 748. `meodai:skill.color-expert` [a11y] VOLT-SK — Color science expert skill with 286K words of reference material covering OKLCH/OKLAB, palette generation, accessibility/contrast, color nam
-749. `ai-generated-asset-art-direction` [ai] SREDNOFF
-750. `codebase-map-indexer` [general] SREDNOFF
-751. `crawl-indexability-sitemaps` [seo] SREDNOFF
-752. `python-cli-package-builder` [shell] SREDNOFF
-753. `search-indexing-rag` [seo][ml] SREDNOFF
-754. `sitemap-index-sharding` [seo] SREDNOFF
+749. `ai-generated-asset-art-direction` [ai] SREDNOFF — Use this skill for art direction for AI-generated images/video, brand safety, prompt iteration, asset QA. Trigger when the task involves web design work related to AI Generated Asset Art Direction, implementation, audits, debugging, strategy, or validation.
+750. `codebase-map-indexer` [general] SREDNOFF — Use this skill for repo mapping, entry points, ownership, dependency graph, risk areas, impact analysis before implementation. Trigger when the task involves programming work related to Codebase Map Indexer, implementation, audits, debugging, strategy, or validation.
+751. `crawl-indexability-sitemaps` [seo] SREDNOFF — Use this skill for robots.txt, XML sitemaps, canonicalization, redirects, crawl budget, noindex issues. Trigger when the task involves seo work related to Crawl Indexability Sitemaps, production implementation, audits, debugging, strategy, or validation.
+752. `python-cli-package-builder` [shell] SREDNOFF — Use this skill for Python CLI/package structure, pyproject.toml, console scripts, tests, linting, distribution. Trigger when the task involves programming work related to Python Cli Package Builder, implementation, audits, debugging, strategy, or validation.
+753. `search-indexing-rag` [seo][ml] SREDNOFF — Use this skill for search indexing, embeddings, RAG chunking, freshness, retrieval evaluation, source citations. Trigger when the task involves ai engineering work related to Search Indexing RAG, implementation, audits, debugging, strategy, or validation.
+754. `sitemap-index-sharding` [seo] SREDNOFF — Use this skill for large sitemap indexes, sharding, freshness, lastmod hygiene, monitoring, submission strategy. Trigger when the task involves seo work related to Sitemap Index Sharding, implementation, audits, debugging, strategy, or validation.
 755. `defi-protocol-templates` [trading] WSH
 
 ## G2 (mass expansion, 1226 records)
@@ -1892,290 +1892,290 @@
 1645. `czlonkowski:n8n-node-configuration` [ai] VOLT-SK — Node configuration with dependency rules and AI connections
 1646. `czlonkowski:n8n-validation-expert` [devops][backend] VOLT-SK — Fix n8n validation errors with error catalog
 1647. `czlonkowski:n8n-workflow-patterns` [ai][data] VOLT-SK — Workflow patterns for webhook, HTTP, database, and AI tasks
-1648. `3d-accessibility-fallbacks` [3d][a11y] SREDNOFF
-1649. `3d-asset-pipeline-agent` [3d][devops] SREDNOFF
-1650. `3d-experience-brief-intake` [3d] SREDNOFF
-1651. `3d-interaction-gesture-design` [3d] SREDNOFF
-1652. `3d-lighting-camera-composition` [3d] SREDNOFF
-1653. `3d-performance-budget-gate` [3d][perf] SREDNOFF
-1654. `3d-product-configurator` [3d] SREDNOFF
-1655. `3d-visual-screenshot-validator` [3d][design] SREDNOFF
-1656. `accessibility-remediation-sprint` [a11y] SREDNOFF
-1657. `accessibility-specialist-agent` [a11y] SREDNOFF
-1658. `accessibility-wcag-aa` [a11y] SREDNOFF
-1659. `admin-crud-ux-patterns` [design] SREDNOFF
-1660. `ads-landing-page-message-match` [marketing] SREDNOFF
-1661. `ads-reporting-roas-dashboard` [marketing] SREDNOFF
-1662. `agent-browser-automation-qa` [test] SREDNOFF
-1663. `agent-instruction-migration` [devops] SREDNOFF
-1664. `agents-sdk-production-workflow` [ai] SREDNOFF
-1665. `ai-evals-regression-suite` [ai] SREDNOFF
-1666. `ai-search-geo-audit` [seo][ai] SREDNOFF
-1667. `analytics-engineer-agent` [data] SREDNOFF
-1668. `android-jetpack-compose-builder` [mobile] SREDNOFF
-1669. `android-reviewer-agent` [mobile] SREDNOFF
-1670. `animation-motion-polish` [animation] SREDNOFF
-1671. `animation-scroll-performance` [animation][perf] SREDNOFF
-1672. `anti-ai-slop-design-critic` [ai] SREDNOFF
-1673. `api-contract-test-generator` [test][legal][backend] SREDNOFF
-1674. `api-interface-design` [backend] SREDNOFF
-1675. `api-platform-agent` [backend] SREDNOFF
-1676. `app-analytics-crash-reporting` [data] SREDNOFF
-1677. `app-ci-cd-release-automation` [devops] SREDNOFF
-1678. `app-store-aso-metadata` [mobile] SREDNOFF
-1679. `app-store-release-agent` [devops] SREDNOFF
-1680. `app-store-testflight-release` [devops][mobile] SREDNOFF
-1681. `astro-islands-seo` [seo][frontend] SREDNOFF
-1682. `attribution-incrementality-review` [marketing] SREDNOFF
-1683. `auth-oauth-session-architecture` [security] SREDNOFF
-1684. `backend-engineer-agent` [backend] SREDNOFF
-1685. `background-jobs-queues` [backend] SREDNOFF
-1686. `billing-entitlements-state-machine` [finance][payments] SREDNOFF
-1687. `brand-theme-factory` [design] SREDNOFF
-1688. `browser-devtools-qa` [test] SREDNOFF
-1689. `cache-invalidation-design` [perf] SREDNOFF
-1690. `canonical-redirect-audit` [seo] SREDNOFF
-1691. `checkout-trust-risk-ux` [payments] SREDNOFF
-1692. `ci-cd-automation` [devops] SREDNOFF
-1693. `ci-failure-triage` [devops] SREDNOFF
-1694. `clasp-local-dev-deploy` [devops] SREDNOFF
-1695. `cloud-infrastructure-agent` [infra] SREDNOFF
-1696. `cms-editorial-layouts` [design] SREDNOFF
-1697. `code-copy-provenance-review` [marketing] SREDNOFF
-1698. `code-simplification` [quality] SREDNOFF
-1699. `codebase-archaeologist-agent` [general] SREDNOFF
-1700. `coding-agent-evals-harness` [general] SREDNOFF
-1701. `competitor-serp-gap-analysis` [seo] SREDNOFF
-1702. `component-librarian-agent` [frontend] SREDNOFF
-1703. `component-provenance-license-review` [frontend] SREDNOFF
-1704. `component-storybook-workshop` [test][frontend] SREDNOFF
-1705. `content-brief-keyword-map` [general] SREDNOFF
-1706. `content-decay-pruning` [general] SREDNOFF
-1707. `content-design-microcopy` [marketing] SREDNOFF
-1708. `content-strategist-agent` [general] SREDNOFF
-1709. `context-engineering` [general] SREDNOFF
-1710. `conversion-rate-optimizer-agent` [marketing] SREDNOFF
-1711. `conversion-tracking-gtm-ga4` [marketing] SREDNOFF
-1712. `copy-adapt-component-pipeline` [marketing][devops][frontend] SREDNOFF
-1713. `core-web-vitals-frontend` [frontend] SREDNOFF
-1714. `crawler-analyst-agent` [seo] SREDNOFF
-1715. `creative-landing-page-builder` [general] SREDNOFF
-1716. `cross-language-test-gate` [test] SREDNOFF
-1717. `cross-platform-design-parity` [general] SREDNOFF
-1718. `crypto-market-research` [general] SREDNOFF
-1719. `customer-support-ops-agent` [ops] SREDNOFF
-1720. `dark-mode-theme-system` [design] SREDNOFF
-1721. `dashboard-ux-information-density` [general] SREDNOFF
-1722. `data-engineer-agent` [general] SREDNOFF
-1723. `data-import-export-pipeline` [devops] SREDNOFF
-1724. `data-table-grid-ux` [general] SREDNOFF
-1725. `data-visualization-agent` [design] SREDNOFF
-1726. `database-engineer-agent` [data] SREDNOFF
-1727. `database-schema-migration-auditor` [seo][data] SREDNOFF
-1728. `debugging-error-recovery` [test] SREDNOFF
-1729. `defi-protocol-analysis` [trading] SREDNOFF
-1730. `dependency-license-risk-audit` [general] SREDNOFF
-1731. `dependency-minimalism-gate` [general] SREDNOFF
-1732. `dependency-upgrade-agent` [general] SREDNOFF
-1733. `deprecation-migration` [devops] SREDNOFF
-1734. `design-brief-autogenerator` [general] SREDNOFF
-1735. `design-brief-intake-router` [general] SREDNOFF
-1736. `design-qa-agent-v2` [test] SREDNOFF
-1737. `design-qa-scorecard` [test] SREDNOFF
-1738. `design-system-component-qa` [frontend] SREDNOFF
-1739. `design-system-lead-agent` [sales] SREDNOFF
-1740. `design-token-compiler` [design] SREDNOFF
-1741. `design-token-extraction` [design] SREDNOFF
-1742. `devops-platform-agent` [devops] SREDNOFF
-1743. `docs-developer-portal-seo` [seo] SREDNOFF
-1744. `docs-information-architect-agent` [arch] SREDNOFF
-1745. `documentation-adrs` [docs] SREDNOFF
-1746. `ecommerce-faceted-navigation-seo` [seo] SREDNOFF
-1747. `ecommerce-product-page-ux` [product] SREDNOFF
-1748. `education-ai-guardrails` [ai] SREDNOFF
-1749. `email-deliverability-transactional` [email] SREDNOFF
-1750. `empty-state-error-recovery-design` [general] SREDNOFF
-1751. `entity-knowledge-graph-seo` [seo] SREDNOFF
-1752. `exchange-api-ccxt-integration` [trading][backend] SREDNOFF
-1753. `experiment-analyst-agent` [general] SREDNOFF
-1754. `expo-eas-release-gate` [devops][mobile] SREDNOFF
-1755. `feature-flag-rollout` [general] SREDNOFF
-1756. `figma-to-code-implementation` [design] SREDNOFF
-1757. `file-upload-storage-pipeline` [devops] SREDNOFF
-1758. `finance-billing-agent` [finance][payments] SREDNOFF
-1759. `firebase-app-backend` [backend] SREDNOFF
-1760. `firebase-auth-security-rules` [security] SREDNOFF
-1761. `firebase-google-cloud-agent` [infra] SREDNOFF
-1762. `floating-ui-overlay-positioning` [general] SREDNOFF
-1763. `forms-checkout-ux` [payments] SREDNOFF
-1764. `frontend-design-critic-agent` [frontend] SREDNOFF
-1765. `frontend-design-system` [frontend] SREDNOFF
-1766. `frontend-implementation-agent` [frontend] SREDNOFF
-1767. `frontend-ui-engineering` [frontend] SREDNOFF
-1768. `fullstack-integrator-agent` [general] SREDNOFF
-1769. `fuzzing-security-tests` [security][test] SREDNOFF
-1770. `geo-ai-search-readiness-v2` [seo][ai] SREDNOFF
-1771. `git-workflow-versioning` [git] SREDNOFF
-1772. `gltf-asset-pipeline` [3d][devops] SREDNOFF
-1773. `gltf-optimization-pipeline-v2` [3d][devops] SREDNOFF
-1774. `google-ads-account-audit` [marketing] SREDNOFF
-1775. `google-workspace-addons` [general] SREDNOFF
-1776. `google-workspace-apps-script` [general] SREDNOFF
-1777. `growth-design-message-match` [marketing] SREDNOFF
-1778. `growth-engineer-agent` [marketing] SREDNOFF
-1779. `growth-experiment-backlog` [marketing] SREDNOFF
-1780. `headless-component-composition` [frontend] SREDNOFF
-1781. `healthcare-ai-research-guardrails` [ai] SREDNOFF
-1782. `heuristic-usability-review` [general] SREDNOFF
-1783. `hiring-ai-fairness-review` [ai] SREDNOFF
-1784. `iconography-illustration-system` [design] SREDNOFF
-1785. `image-video-seo` [seo] SREDNOFF
-1786. `in-app-purchases-subscriptions` [general] SREDNOFF
-1787. `interaction-state-matrix` [general] SREDNOFF
-1788. `internal-linking-ia` [general] SREDNOFF
-1789. `international-hreflang-seo` [seo] SREDNOFF
-1790. `internationalized-rtl-ui` [general] SREDNOFF
-1791. `ios-reviewer-agent` [mobile] SREDNOFF
-1792. `ios-swiftui-app-builder` [mobile] SREDNOFF
-1793. `issue-to-pr-agent` [general] SREDNOFF
-1794. `javascript-seo-rendering` [seo] SREDNOFF
-1795. `keyword-query-negative-mining` [general] SREDNOFF
-1796. `landing-page-conversion-design` [marketing] SREDNOFF
-1797. `language-runtime-router` [general] SREDNOFF
-1798. `language-specialist-agent` [general] SREDNOFF
-1799. `legal-risk-reviewer-agent` [legal] SREDNOFF
-1800. `llms-txt-ai-crawler-access` [seo][ai] SREDNOFF
-1801. `local-seo-entity-pages` [seo] SREDNOFF
-1802. `localization-i18n-engineering` [general] SREDNOFF
-1803. `localization-lead-agent` [sales] SREDNOFF
-1804. `log-file-crawl-analysis` [seo] SREDNOFF
-1805. `mcp-integration-builder` [general] SREDNOFF
-1806. `mcp-security-review` [security] SREDNOFF
-1807. `meta-ads-creative-testing` [marketing][test] SREDNOFF
-1808. `migration-lead-agent` [sales] SREDNOFF
-1809. `ml-ai-engineer-agent` [ml][ai] SREDNOFF
-1810. `mobile-app-permissions-privacy` [mobile][legal] SREDNOFF
-1811. `mobile-architect-agent` [mobile] SREDNOFF
-1812. `mobile-asset-budget-audit` [mobile] SREDNOFF
-1813. `mobile-crash-analytics-gate` [data][mobile] SREDNOFF
-1814. `mobile-e2e-device-testing` [test][mobile] SREDNOFF
-1815. `mobile-first-qa` [mobile] SREDNOFF
-1816. `mobile-offline-first-review` [mobile] SREDNOFF
-1817. `mobile-performance-agent` [mobile][perf] SREDNOFF
-1818. `mobile-permissions-privacy-gate` [mobile][legal] SREDNOFF
-1819. `mobile-release-reviewer-agent` [devops][mobile] SREDNOFF
-1820. `mobile-ux-platform-parity` [mobile] SREDNOFF
-1821. `monorepo-boundary-architecture` [arch] SREDNOFF
-1822. `motion-design-agent` [animation] SREDNOFF
-1823. `motion-design-system` [animation] SREDNOFF
-1824. `multi-brand-whitelabel-ui` [design] SREDNOFF
-1825. `multi-tenant-saas-architecture` [arch] SREDNOFF
-1826. `multilingual-content-localization-seo` [seo] SREDNOFF
-1827. `mutation-testing-strategy` [test] SREDNOFF
-1828. `navigation-ia-ux` [general] SREDNOFF
-1829. `nextjs-app-router-seo` [seo][frontend] SREDNOFF
-1830. `nextjs-production-app-architecture` [frontend] SREDNOFF
-1831. `no-code-low-code-agent` [general] SREDNOFF
-1832. `node-package-release-engineering` [devops] SREDNOFF
-1833. `nuxt-seo-module-workflow` [seo][frontend] SREDNOFF
-1834. `observability-instrumentation` [ops] SREDNOFF
-1835. `onboarding-product-tour-ux` [product] SREDNOFF
-1836. `onchain-data-analytics` [trading][data] SREDNOFF
-1837. `operations-automation-agent` [ops] SREDNOFF
-1838. `paid-search-risk-agent` [general] SREDNOFF
-1839. `performance-max-structure` [perf] SREDNOFF
-1840. `performance-optimization` [perf] SREDNOFF
-1841. `performance-sre-agent` [perf][ops] SREDNOFF
-1842. `playwright-screenshot-baselines` [test] SREDNOFF
-1843. `portfolio-risk-rebalancing` [trading] SREDNOFF
-1844. `ppc-budget-bid-optimizer` [marketing] SREDNOFF
-1845. `ppc-landing-quality-score-gate` [marketing] SREDNOFF
-1846. `ppc-policy-compliance-check` [marketing][legal] SREDNOFF
-1847. `ppc-strategist-agent` [marketing] SREDNOFF
-1848. `pr-review-response-agent` [general] SREDNOFF
-1849. `premium-saas-ui-polish` [general] SREDNOFF
-1850. `pricing-onboarding-ux` [finance] SREDNOFF
-1851. `privacy-compliance-agent` [legal] SREDNOFF
-1852. `product-builder` [product] SREDNOFF
-1853. `product-manager-agent` [product] SREDNOFF
-1854. `programmatic-seo-pages` [seo] SREDNOFF
-1855. `programming-agent-pack-selector` [general] SREDNOFF
-1856. `prompt-injection-defense` [ai] SREDNOFF
-1857. `prompt-security-agent` [ai][security] SREDNOFF
-1858. `property-based-testing` [test] SREDNOFF
-1859. `pwa-offline-installability` [general] SREDNOFF
-1860. `qa-automation-agent` [test] SREDNOFF
-1861. `quality-cost-skill-kernel` [quality] SREDNOFF
-1862. `r3f-scene-pattern-library` [3d] SREDNOFF
-1863. `rag-evaluation-agent` [ml] SREDNOFF
-1864. `react-aria-advanced-interactions` [frontend] SREDNOFF
-1865. `react-native-expo-app-builder` [mobile][frontend] SREDNOFF
-1866. `react-three-fiber-components` [frontend] SREDNOFF
-1867. `realtime-websockets-sse` [backend] SREDNOFF
-1868. `record-replay-skill-miner` [general] SREDNOFF
-1869. `refactoring-coach-agent` [quality] SREDNOFF
-1870. `release-manager-agent` [devops] SREDNOFF
-1871. `release-notes-changelog-automation` [devops][docs] SREDNOFF
-1872. `requirements-analyst-agent` [general] SREDNOFF
-1873. `responsive-layout-system` [general] SREDNOFF
-1874. `robots-xrobots-meta-controls` [seo] SREDNOFF
-1875. `scroll-driven-3d-storytelling` [3d][animation] SREDNOFF
-1876. `search-console-api-automation` [backend] SREDNOFF
-1877. `search-console-ga4-diagnostics` [general] SREDNOFF
-1878. `search-content-editor-agent` [general] SREDNOFF
-1879. `secrets-env-rotation` [security] SREDNOFF
-1880. `security-hardening` [security] SREDNOFF
-1881. `security-reviewer-agent` [security] SREDNOFF
-1882. `seo-ab-testing-causal-review` [seo][test] SREDNOFF
-1883. `seo-ci-quality-gate` [seo] SREDNOFF
-1884. `seo-migration-redirects` [seo] SREDNOFF
-1885. `seo-technical-auditor-agent` [seo] SREDNOFF
-1886. `serp-feature-rich-result-planner` [seo] SREDNOFF
-1887. `serp-to-page-brief-generator` [seo] SREDNOFF
-1888. `shader-and-postprocessing-review` [3d] SREDNOFF
-1889. `shader-material-design` [3d] SREDNOFF
-1890. `site-crawler-automation` [seo] SREDNOFF
-1891. `smart-contract-security-review` [security][legal] SREDNOFF
-1892. `solidity-foundry-test-suite` [trading][test] SREDNOFF
-1893. `source-driven-development` [general] SREDNOFF
-1894. `source-first-api-verifier` [backend] SREDNOFF
-1895. `source-ranking-roi-selector` [general] SREDNOFF
-1896. `spec-driven-development` [general] SREDNOFF
-1897. `sql-query-plan-optimizer` [data] SREDNOFF
-1898. `sre-incident-commander-agent` [ops] SREDNOFF
-1899. `staff-debugger-agent` [test] SREDNOFF
-1900. `storybook-interaction-tests` [test] SREDNOFF
-1901. `structured-data-schema-org` [seo] SREDNOFF
-1902. `supply-chain-sbom-sca` [security] SREDNOFF
-1903. `swiftui-state-data-flow` [mobile] SREDNOFF
-1904. `technical-seo-audit` [seo] SREDNOFF
-1905. `technical-writer-agent` [docs] SREDNOFF
-1906. `test-architect-agent` [test] SREDNOFF
-1907. `test-driven-development` [test] SREDNOFF
-1908. `three-vs-babylon-vs-model-viewer` [3d] SREDNOFF
-1909. `threejs-scene-architecture` [3d] SREDNOFF
-1910. `tokenomics-whitepaper-review` [trading] SREDNOFF
-1911. `topical-authority-cluster-builder` [general] SREDNOFF
-1912. `trading-risk-analyst-agent` [trading] SREDNOFF
-1913. `trading-strategy-backtesting` [trading] SREDNOFF
-1914. `trust-safety-content-moderation-ux` [general] SREDNOFF
-1915. `turbo-mode-controller` [general] SREDNOFF
-1916. `turbo-source-benchmark` [general] SREDNOFF
-1917. `turbo-validation-gate` [general] SREDNOFF
-1918. `typescript-strictness-migration` [devops] SREDNOFF
-1919. `typography-readability-system` [design] SREDNOFF
-1920. `ui-component-source-router` [frontend] SREDNOFF
-1921. `ux-researcher-agent` [general] SREDNOFF
-1922. `visual-hierarchy-layout-review` [design] SREDNOFF
-1923. `visual-qa-agent` [design] SREDNOFF
-1924. `visual-regression-design-gate` [design] SREDNOFF
-1925. `wallet-transaction-flow` [trading] SREDNOFF
-1926. `web-rendering-edge-ssr-seo` [seo] SREDNOFF
-1927. `web3-crypto-security-agent` [trading][security] SREDNOFF
-1928. `webapp-visual-regression` [design] SREDNOFF
-1929. `webgl-performance-agent` [3d][perf] SREDNOFF
-1930. `webgl-webgpu-performance` [3d][perf] SREDNOFF
-1931. `xr-ar-web-experiences` [3d] SREDNOFF
+1648. `3d-accessibility-fallbacks` [3d][a11y] SREDNOFF — Use for 3D web experiences that need accessibility, SEO-readable fallback content, keyboard support, or reduced-motion behavior.
+1649. `3d-asset-pipeline-agent` [3d][devops] SREDNOFF — Agent profile for glTF/GLB/model asset pipeline review in 3D web, ecommerce, AR, and configurator projects.
+1650. `3d-experience-brief-intake` [3d] SREDNOFF — Use before 3D web design or Three.js work to clarify the experience type, user goal, interaction depth, performance budget, and fallback needs.
+1651. `3d-interaction-gesture-design` [3d] SREDNOFF — Use this skill for pointer gestures, orbit controls, drag interactions, hit testing, touch ergonomics. Trigger when the task involves 3d web work related to 3D Interaction Gesture Design, production implementation, audits, debugging, strategy, or validation.
+1652. `3d-lighting-camera-composition` [3d] SREDNOFF — Use this skill for 3D lighting, camera framing, composition, shadows, environment maps, product presentation. Trigger when the task involves 3d web work related to 3D Lighting Camera Composition, production implementation, audits, debugging, strategy, or validation.
+1653. `3d-performance-budget-gate` [3d][perf] SREDNOFF — Use before shipping 3D web, WebGL, WebGPU, Three.js, Babylon.js, R3F, or shader-heavy UI.
+1654. `3d-product-configurator` [3d] SREDNOFF — Use this skill for interactive product configurators, variants, materials, hotspots, camera states, commerce UX. Trigger when the task involves 3d web work related to 3D Product Configurator, production implementation, audits, debugging, strategy, or validation.
+1655. `3d-visual-screenshot-validator` [3d][design] SREDNOFF — Use before finishing Three.js, R3F, WebGL, WebGPU, model-viewer, or 3D web UI work.
+1656. `accessibility-remediation-sprint` [a11y] SREDNOFF — Use this skill for turning accessibility audit findings into fixes, tasks, tests, and regression checks. Trigger when the task involves web design work related to Accessibility Remediation Sprint, implementation, audits, debugging, strategy, or validation.
+1657. `accessibility-specialist-agent` [a11y] SREDNOFF — Use this skill for WCAG review, accessibility remediation, keyboard/screen-reader QA, inclusive design. Trigger when the task involves agent profile work related to Accessibility Specialist Agent, implementation, audits, debugging, strategy, or validation.
+1658. `accessibility-wcag-aa` [a11y] SREDNOFF — Use this skill for WCAG AA, keyboard access, semantic HTML, focus states, labels, contrast, screen readers. Trigger when the task involves web design work related to Accessibility WCAG Aa, production implementation, audits, debugging, strategy, or validation.
+1659. `admin-crud-ux-patterns` [design] SREDNOFF — Use this skill for admin CRUD flows, bulk actions, confirmations, auditability, permissions, recovery. Trigger when the task involves web design work related to Admin Crud UX Patterns, implementation, audits, debugging, strategy, or validation.
+1660. `ads-landing-page-message-match` [marketing] SREDNOFF — Use this skill for ad-to-page consistency, offer alignment, CTA clarity, quality score, conversion relevance. Trigger when the task involves ppc work related to Ads Landing Page Message Match, production implementation, audits, debugging, strategy, or validation.
+1661. `ads-reporting-roas-dashboard` [marketing] SREDNOFF — Use this skill for ROAS dashboards, blended CAC, spend pacing, cohort views, channel reporting. Trigger when the task involves ppc work related to Ads Reporting Roas Dashboard, production implementation, audits, debugging, strategy, or validation.
+1662. `agent-browser-automation-qa` [test] SREDNOFF — Use this skill when selecting or validating browser automation for agents, including Playwright MCP, browser-use style controllers, browser DevTools, screenshot baselines, visual QA, accessibility checks, web app smoke tests, and tool-driven web workflows.
+1663. `agent-instruction-migration` [devops] SREDNOFF — Use this skill to audit, deduplicate, and migrate coding-agent instructions across AGENTS.md, CLAUDE.md, .clinerules, Cline rules, Roo custom modes, Continue rules, Cursor/Windsurf rules, OpenCode agents, prompt repositories, and Codex skills.
+1664. `agents-sdk-production-workflow` [ai] SREDNOFF — Use this skill when designing, reviewing, debugging, or productionizing OpenAI Agents SDK, Responses API, or similar agent systems with tools, handoffs, guardrails, tracing, evals, human approval, retries, and deployment safety.
+1665. `ai-evals-regression-suite` [ai] SREDNOFF — Use this skill for LLM evals, golden datasets, structured outputs, drift detection, regression gates. Trigger when the task involves ai engineering work related to AI Evals Regression Suite, implementation, audits, debugging, strategy, or validation.
+1666. `ai-search-geo-audit` [seo][ai] SREDNOFF — Use this skill for AI search optimization, generative engine visibility, entity clarity, citation readiness. Trigger when the task involves seo work related to Ai Search Geo Audit, production implementation, audits, debugging, strategy, or validation.
+1667. `analytics-engineer-agent` [data] SREDNOFF — Agent profile for define events, funnels, attribution caveats, dashboards, data quality checks, and analytics instrumentation. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1668. `android-jetpack-compose-builder` [mobile] SREDNOFF — Use this skill for Android Jetpack Compose, Material, navigation, state, build/release workflows. Trigger when the task involves apps work related to Android Jetpack Compose Builder, production implementation, audits, debugging, strategy, or validation.
+1669. `android-reviewer-agent` [mobile] SREDNOFF — Agent profile for review Android Compose code, lifecycle, permissions, navigation, Material behavior, performance, and Play release risks. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1670. `animation-motion-polish` [animation] SREDNOFF — Use this skill for motion hierarchy, transitions, microinteractions, reduced motion, performance-safe animation. Trigger when the task involves web design work related to Animation Motion Polish, production implementation, audits, debugging, strategy, or validation.
+1671. `animation-scroll-performance` [animation][perf] SREDNOFF — Use this skill for scroll effects, animation budget, jank diagnosis, reduced motion, frame timing. Trigger when the task involves web design work related to Animation Scroll Performance, implementation, audits, debugging, strategy, or validation.
+1672. `anti-ai-slop-design-critic` [ai] SREDNOFF — Agent profile for critiquing UI/UX, web design, landing pages, dashboards, and visual systems for generic AI-slop, weak hierarchy, poor domain fit, and low craft.
+1673. `api-contract-test-generator` [test][legal][backend] SREDNOFF — Use this skill for OpenAPI, JSON schema, typed clients, contract tests, compatibility assertions. Trigger when the task involves programming work related to API Contract Test Generator, implementation, audits, debugging, strategy, or validation.
+1674. `api-interface-design` [backend] SREDNOFF — Use this skill for REST/RPC contracts, versioning, error shapes, schemas, backward compatibility. Trigger when the task involves programming work related to API Interface Design, production implementation, audits, debugging, strategy, or validation.
+1675. `api-platform-agent` [backend] SREDNOFF — Agent profile for review API platform contracts, versioning, auth, rate limits, SDK clients, and developer experience. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1676. `app-analytics-crash-reporting` [data] SREDNOFF — Use this skill for analytics events, funnels, crash reporting, privacy-safe instrumentation, release health. Trigger when the task involves apps work related to App Analytics Crash Reporting, production implementation, audits, debugging, strategy, or validation.
+1677. `app-ci-cd-release-automation` [devops] SREDNOFF — Use this skill for mobile/web app CI/CD, signing, build numbers, release lanes, environment gates. Trigger when the task involves apps work related to App CI CD Release Automation, production implementation, audits, debugging, strategy, or validation.
+1678. `app-store-aso-metadata` [mobile] SREDNOFF — Use this skill for ASO, app metadata, screenshots, descriptions, keywords, review positioning. Trigger when the task involves apps work related to App Store Aso Metadata, production implementation, audits, debugging, strategy, or validation.
+1679. `app-store-release-agent` [devops] SREDNOFF — Agent profile for prepare app store releases, metadata, screenshots, build numbers, review notes, TestFlight/Play testing, and rollout. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1680. `app-store-testflight-release` [devops][mobile] SREDNOFF — Use this skill for TestFlight, App Store Connect, release checklists, screenshots, review notes, versioning. Trigger when the task involves apps work related to App Store Testflight Release, production implementation, audits, debugging, strategy, or validation.
+1681. `astro-islands-seo` [seo][frontend] SREDNOFF — Use this skill for Astro static output, islands hydration, content collections, CWV, schema and metadata. Trigger when the task involves seo work related to Astro Islands SEO, implementation, audits, debugging, strategy, or validation.
+1682. `attribution-incrementality-review` [marketing] SREDNOFF — Use this skill for attribution models, incrementality, holdouts, lift tests, channel overlap, measurement limits. Trigger when the task involves ppc work related to Attribution Incrementality Review, production implementation, audits, debugging, strategy, or validation.
+1683. `auth-oauth-session-architecture` [security] SREDNOFF — Use this skill for OAuth, sessions, cookies, CSRF, refresh tokens, role boundaries, auth UX. Trigger when the task involves security work related to Auth OAuth Session Architecture, implementation, audits, debugging, strategy, or validation.
+1684. `backend-engineer-agent` [backend] SREDNOFF — Agent profile for design and implement backend services, API logic, data access, jobs, auth boundaries, and error handling. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1685. `background-jobs-queues` [backend] SREDNOFF — Use this skill for queues, retries, idempotency, cron, dead-letter queues, background processing. Trigger when the task involves programming work related to Background Jobs Queues, implementation, audits, debugging, strategy, or validation.
+1686. `billing-entitlements-state-machine` [finance][payments] SREDNOFF — Use this skill for plans, entitlements, subscriptions, trials, invoices, state transitions, access checks. Trigger when the task involves programming work related to Billing Entitlements State Machine, implementation, audits, debugging, strategy, or validation.
+1687. `brand-theme-factory` [design] SREDNOFF — Use this skill for brand direction, color systems, typography, tone, reusable visual themes. Trigger when the task involves web design work related to Brand Theme Factory, production implementation, audits, debugging, strategy, or validation.
+1688. `browser-devtools-qa` [test] SREDNOFF — Use this skill for browser verification, console/network errors, layout checks, user-flow QA, DevTools evidence. Trigger when the task involves qa work related to Browser Devtools Qa, production implementation, audits, debugging, strategy, or validation.
+1689. `cache-invalidation-design` [perf] SREDNOFF — Use this skill for cache keys, TTLs, invalidation, SWR, consistency, edge/runtime caching. Trigger when the task involves programming work related to Cache Invalidation Design, implementation, audits, debugging, strategy, or validation.
+1690. `canonical-redirect-audit` [seo] SREDNOFF — Use this skill for canonical tags, redirects, duplicates, status codes, consolidation, migration safety. Trigger when the task involves seo work related to Canonical Redirect Audit, implementation, audits, debugging, strategy, or validation.
+1691. `checkout-trust-risk-ux` [payments] SREDNOFF — Use this skill for checkout trust, fraud friction, payment clarity, policies, risk-reducing UX. Trigger when the task involves web design work related to Checkout Trust Risk UX, implementation, audits, debugging, strategy, or validation.
+1692. `ci-cd-automation` [devops] SREDNOFF — Use this skill for GitHub Actions, checks, release gates, deployment automation, reproducible pipelines. Trigger when the task involves devops work related to CI CD Automation, production implementation, audits, debugging, strategy, or validation.
+1693. `ci-failure-triage` [devops] SREDNOFF — Use this skill for CI log analysis, local reproduction, root cause isolation, targeted fixes, rerun strategy. Trigger when the task involves programming work related to CI Failure Triage, implementation, audits, debugging, strategy, or validation.
+1694. `clasp-local-dev-deploy` [devops] SREDNOFF — Use this skill for clasp workflows, Apps Script local development, manifests, deployments, versioning. Trigger when the task involves apps work related to Clasp Local Dev Deploy, production implementation, audits, debugging, strategy, or validation.
+1695. `cloud-infrastructure-agent` [infra] SREDNOFF — Agent profile for review cloud architecture, networking, storage, compute, IAM, costs, scaling, and reliability tradeoffs. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1696. `cms-editorial-layouts` [design] SREDNOFF — Use this skill for CMS-driven pages, editorial templates, rich text rendering, content governance. Trigger when the task involves web design work related to CMS Editorial Layouts, implementation, audits, debugging, strategy, or validation.
+1697. `code-copy-provenance-review` [marketing] SREDNOFF — Use before copying or adapting code from GitHub, docs, Stack Overflow, registries, AI output, UI kits, snippets, or third-party examples.
+1698. `code-simplification` [quality] SREDNOFF — Use this skill for removing accidental complexity, reducing duplication, clarifying boundaries, preserving behavior. Trigger when the task involves programming work related to Code Simplification, production implementation, audits, debugging, strategy, or validation.
+1699. `codebase-archaeologist-agent` [general] SREDNOFF — Agent profile for understand unfamiliar legacy code, trace behavior, reconstruct intent, and identify safe change points. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1700. `coding-agent-evals-harness` [general] SREDNOFF — Use this skill when designing or reviewing evaluations for coding agents, Codex workflows, SWE-bench-style tasks, repository repair benchmarks, tool-use regressions, planner/executor/reviewer loops, autonomy limits, or agent quality gates before rollout.
+1701. `competitor-serp-gap-analysis` [seo] SREDNOFF — Use this skill for SERP competitors, content gaps, backlink/content angles, prioritization, opportunity mapping. Trigger when the task involves seo work related to Competitor Serp Gap Analysis, implementation, audits, debugging, strategy, or validation.
+1702. `component-librarian-agent` [frontend] SREDNOFF — Agent profile for researching and selecting UI components from local code, shadcn registry, 21st.dev, Magic UI, Aceternity, Origin UI, React Bits, Figma, Canva, and GitHub.
+1703. `component-provenance-license-review` [frontend] SREDNOFF — Use before copying UI, 3D, mobile, or web component code from external sources, registries, GitHub, snippets, marketplaces, or AI-generated component libraries.
+1704. `component-storybook-workshop` [test][frontend] SREDNOFF — Use this skill for component libraries, Storybook stories, variants, controls, visual states, documentation. Trigger when the task involves web design work related to Component Storybook Workshop, production implementation, audits, debugging, strategy, or validation.
+1705. `content-brief-keyword-map` [general] SREDNOFF — Use this skill for keyword mapping, search intent, content briefs, SERP analysis, topical coverage. Trigger when the task involves seo work related to Content Brief Keyword Map, production implementation, audits, debugging, strategy, or validation.
+1706. `content-decay-pruning` [general] SREDNOFF — Use this skill for content decay analysis, pruning, merging, updating, redirecting, recovery prioritization. Trigger when the task involves seo work related to Content Decay Pruning, implementation, audits, debugging, strategy, or validation.
+1707. `content-design-microcopy` [marketing] SREDNOFF — Use this skill for UI copy, labels, empty states, errors, onboarding text, concise product language. Trigger when the task involves web design work related to Content Design Microcopy, production implementation, audits, debugging, strategy, or validation.
+1708. `content-strategist-agent` [general] SREDNOFF — Use this skill for content strategy, briefs, topical authority, pruning, editorial planning, search intent. Trigger when the task involves agent profile work related to Content Strategist Agent, implementation, audits, debugging, strategy, or validation.
+1709. `context-engineering` [general] SREDNOFF — Use this skill for context gathering, file triage, source maps, assumptions, task framing, prompt hygiene. Trigger when the task involves programming work related to Context Engineering, production implementation, audits, debugging, strategy, or validation.
+1710. `conversion-rate-optimizer-agent` [marketing] SREDNOFF — Agent profile for analyze conversion funnels, landing pages, CTAs, friction, proof, experiments, and measurement plans. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1711. `conversion-tracking-gtm-ga4` [marketing] SREDNOFF — Use this skill for GTM, GA4, Google Ads conversions, events, consent mode, attribution plumbing. Trigger when the task involves ppc work related to Conversion Tracking GTM GA4, production implementation, audits, debugging, strategy, or validation.
+1712. `copy-adapt-component-pipeline` [marketing][devops][frontend] SREDNOFF — Use when Codex may copy or import UI code from registries, GitHub, 21st.dev, shadcn, Magic UI, Aceternity, Origin UI, React Bits, or similar sources, then adapt it to project conventions.
+1713. `core-web-vitals-frontend` [frontend] SREDNOFF — Use this skill for LCP, CLS, INP, rendering performance, image/font loading, frontend vitals fixes. Trigger when the task involves seo work related to Core Web Vitals Frontend, production implementation, audits, debugging, strategy, or validation.
+1714. `crawler-analyst-agent` [seo] SREDNOFF — Use this skill for crawler behavior, log files, sitemap/indexation analysis, crawl-budget diagnostics. Trigger when the task involves agent profile work related to Crawler Analyst Agent, implementation, audits, debugging, strategy, or validation.
+1715. `creative-landing-page-builder` [general] SREDNOFF — Use this skill for high-converting creative pages, product visuals, proof, differentiated art direction. Trigger when the task involves ui/ux work related to Creative Landing Page Builder, production implementation, audits, debugging, strategy, or validation.
+1716. `cross-language-test-gate` [test] SREDNOFF — Use before finishing programming work in any language or framework to pick the right validation gates.
+1717. `cross-platform-design-parity` [general] SREDNOFF — Use this skill for consistent web/iOS/Android design, platform adaptations, shared tokens, parity QA. Trigger when the task involves apps work related to Cross Platform Design Parity, production implementation, audits, debugging, strategy, or validation.
+1718. `crypto-market-research` [general] SREDNOFF — Use this skill for crypto market research, tokens, narratives, liquidity, risks, source verification. Trigger when the task involves crypto work related to Crypto Market Research, production implementation, audits, debugging, strategy, or validation.
+1719. `customer-support-ops-agent` [ops] SREDNOFF — Agent profile for design support workflows, macros, escalation paths, ticket triage, knowledge base gaps, and user recovery. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1720. `dark-mode-theme-system` [design] SREDNOFF — Use this skill for dark mode tokens, contrast, theme persistence, system preference, color scheme QA. Trigger when the task involves web design work related to Dark Mode Theme System, implementation, audits, debugging, strategy, or validation.
+1721. `dashboard-ux-information-density` [general] SREDNOFF — Use this skill for dashboards, tables, filters, KPIs, scanning density, comparison workflows. Trigger when the task involves ui/ux work related to Dashboard UX Information Density, production implementation, audits, debugging, strategy, or validation.
+1722. `data-engineer-agent` [general] SREDNOFF — Agent profile for design data pipelines, transformations, imports, exports, warehouse models, validation, and freshness checks. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1723. `data-import-export-pipeline` [devops] SREDNOFF — Use this skill for CSV/XLSX/JSON import/export, validation, preview, dedupe, rollback, audit logs. Trigger when the task involves programming work related to Data Import Export Pipeline, implementation, audits, debugging, strategy, or validation.
+1724. `data-table-grid-ux` [general] SREDNOFF — Use this skill for tables, grids, filters, sorting, density, keyboard navigation, responsive behavior. Trigger when the task involves web design work related to Data Table Grid UX, implementation, audits, debugging, strategy, or validation.
+1725. `data-visualization-agent` [design] SREDNOFF — Agent profile for design charts, dashboards, metrics, comparisons, annotations, and decision-focused data presentation. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1726. `database-engineer-agent` [data] SREDNOFF — Agent profile for review data models, migrations, indexes, constraints, query plans, transactions, and backup/rollback implications. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1727. `database-schema-migration-auditor` [seo][data] SREDNOFF — Use this skill for database migrations, data safety, locks, backfills, rollback plans, compatibility review. Trigger when the task involves programming work related to Database Schema Migration Auditor, implementation, audits, debugging, strategy, or validation.
+1728. `debugging-error-recovery` [test] SREDNOFF — Use this skill for reproduction, root cause isolation, logs, minimal fixes, regression protection. Trigger when the task involves programming work related to Debugging Error Recovery, production implementation, audits, debugging, strategy, or validation.
+1729. `defi-protocol-analysis` [trading] SREDNOFF — Use this skill for DeFi protocols, TVL, yield sources, contract risk, liquidity, oracle and governance risks. Trigger when the task involves crypto work related to Defi Protocol Analysis, production implementation, audits, debugging, strategy, or validation.
+1730. `dependency-license-risk-audit` [general] SREDNOFF — Use this skill for dependency license review, maintenance health, vulnerability risk, replacement strategy. Trigger when the task involves security work related to Dependency License Risk Audit, implementation, audits, debugging, strategy, or validation.
+1731. `dependency-minimalism-gate` [general] SREDNOFF — Use when code changes propose new dependencies, packages, SDKs, UI libraries, build tools, or runtime services.
+1732. `dependency-upgrade-agent` [general] SREDNOFF — Agent profile for evaluate dependency upgrades, changelogs, breaking changes, security fixes, lockfiles, and test plans. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1733. `deprecation-migration` [devops] SREDNOFF — Use this skill for dependency upgrades, SDK migrations, breaking changes, compatibility plans, rollback. Trigger when the task involves programming work related to Deprecation Migration, production implementation, audits, debugging, strategy, or validation.
+1734. `design-brief-autogenerator` [general] SREDNOFF — Generate a compact UI/UX, web design, 3D web design, landing page, dashboard, app screen, product viewer, configurator, or 3D asset brief before implementation. Use when Codex should ask only high-value design questions, infer safe assumptions, and avoid blocking on nonessential details.
+1735. `design-brief-intake-router` [general] SREDNOFF — Use for UI/UX, web design, 3D web design, landing pages, dashboards, app screens, redesigns, and visual direction work when Codex should ask a compact product/design brief before choosing components or writing code.
+1736. `design-qa-agent-v2` [test] SREDNOFF — Agent profile for final UI/UX QA before shipping visible design, web design, app screens, or 3D web UI.
+1737. `design-qa-scorecard` [test] SREDNOFF — Use this skill for scored UI audit, spacing, alignment, states, contrast, hierarchy, polish checklist. Trigger when the task involves web design work related to Design Qa Scorecard, implementation, audits, debugging, strategy, or validation.
+1738. `design-system-component-qa` [frontend] SREDNOFF — Use this skill for component QA, variant coverage, disabled/loading/error states, token consistency. Trigger when the task involves ui/ux work related to Design System Component Qa, production implementation, audits, debugging, strategy, or validation.
+1739. `design-system-lead-agent` [sales] SREDNOFF — Agent profile for govern component libraries, tokens, variants, documentation, migrations, and consistency rules. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1740. `design-token-compiler` [design] SREDNOFF — Use for UI/UX and design-system work when Codex should convert visual direction or existing UI into reusable design tokens.
+1741. `design-token-extraction` [design] SREDNOFF — Use this skill for extracting colors, typography, spacing, radii, shadows, tokens from UI references. Trigger when the task involves web design work related to Design Token Extraction, production implementation, audits, debugging, strategy, or validation.
+1742. `devops-platform-agent` [devops] SREDNOFF — Agent profile for handle CI/CD, environments, build pipelines, deployment topology, secrets, and operational readiness. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1743. `docs-developer-portal-seo` [seo] SREDNOFF — Use this skill for documentation SEO, version canonicals, API docs, examples, internal links, freshness. Trigger when the task involves seo work related to Docs Developer Portal SEO, implementation, audits, debugging, strategy, or validation.
+1744. `docs-information-architect-agent` [arch] SREDNOFF — Agent profile for structure documentation portals, navigation, versioning, redirects, search, and content ownership. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1745. `documentation-adrs` [docs] SREDNOFF — Use this skill for README, ADRs, runbooks, changelogs, decision records, operator docs. Trigger when the task involves programming work related to Documentation Adrs, production implementation, audits, debugging, strategy, or validation.
+1746. `ecommerce-faceted-navigation-seo` [seo] SREDNOFF — Use this skill for facets, filters, pagination, canonical/noindex strategy, crawl traps, product listing SEO. Trigger when the task involves seo work related to Ecommerce Faceted Navigation SEO, implementation, audits, debugging, strategy, or validation.
+1747. `ecommerce-product-page-ux` [product] SREDNOFF — Use this skill for product detail pages, media galleries, variants, inventory, trust, conversion. Trigger when the task involves web design work related to Ecommerce Product Page UX, implementation, audits, debugging, strategy, or validation.
+1748. `education-ai-guardrails` [ai] SREDNOFF — Use this skill when designing, reviewing, or drafting AI features for education, tutoring, grading, student support, learning analytics, classroom tools, curriculum content, academic integrity, child safety, accessibility, student-data privacy, and human educator oversight.
+1749. `email-deliverability-transactional` [email] SREDNOFF — Use this skill for transactional email, SPF/DKIM/DMARC, templates, retries, bounces, deliverability. Trigger when the task involves programming work related to Email Deliverability Transactional, implementation, audits, debugging, strategy, or validation.
+1750. `empty-state-error-recovery-design` [general] SREDNOFF — Use this skill for empty states, errors, offline states, partial failures, recovery paths, helpful microcopy. Trigger when the task involves web design work related to Empty State Error Recovery Design, implementation, audits, debugging, strategy, or validation.
+1751. `entity-knowledge-graph-seo` [seo] SREDNOFF — Use this skill for entity clarity, schema graph, sameAs, author/org/product identity, knowledge graph signals. Trigger when the task involves seo work related to Entity Knowledge Graph SEO, implementation, audits, debugging, strategy, or validation.
+1752. `exchange-api-ccxt-integration` [trading][backend] SREDNOFF — Use this skill for exchange APIs, CCXT integration, keys, rate limits, order safety, sandbox testing. Trigger when the task involves crypto work related to Exchange API Ccxt Integration, production implementation, audits, debugging, strategy, or validation.
+1753. `experiment-analyst-agent` [general] SREDNOFF — Agent profile for design and analyze experiments, A/B tests, causal caveats, sample quality, and decision thresholds. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1754. `expo-eas-release-gate` [devops][mobile] SREDNOFF — Use before Expo or React Native app release, EAS build/update, TestFlight, Play Store, App Store, or mobile deployment work.
+1755. `feature-flag-rollout` [general] SREDNOFF — Use this skill for feature flags, gradual rollout, kill switches, metrics, experiment gates, rollback. Trigger when the task involves programming work related to Feature Flag Rollout, implementation, audits, debugging, strategy, or validation.
+1756. `figma-to-code-implementation` [design] SREDNOFF — Use this skill for translating Figma/design references into production components and responsive code. Trigger when the task involves ui/ux work related to Figma To Code Implementation, production implementation, audits, debugging, strategy, or validation.
+1757. `file-upload-storage-pipeline` [devops] SREDNOFF — Use this skill for uploads, storage, validation, metadata, signed URLs, malware checks, quotas. Trigger when the task involves programming work related to File Upload Storage Pipeline, implementation, audits, debugging, strategy, or validation.
+1758. `finance-billing-agent` [finance][payments] SREDNOFF — Agent profile for review pricing, invoices, subscriptions, entitlements, revenue logic, tax-sensitive flows, and billing UX. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1759. `firebase-app-backend` [backend] SREDNOFF — Use this skill for Firebase Auth, Firestore, Functions, Storage, Hosting, app backend architecture. Trigger when the task involves apps work related to Firebase App Backend, production implementation, audits, debugging, strategy, or validation.
+1760. `firebase-auth-security-rules` [security] SREDNOFF — Use this skill for Firebase security rules, auth claims, emulator tests, least privilege access. Trigger when the task involves apps work related to Firebase Auth Security Rules, production implementation, audits, debugging, strategy, or validation.
+1761. `firebase-google-cloud-agent` [infra] SREDNOFF — Agent profile for review Firebase and Google Cloud architecture, auth, rules, functions, hosting, quotas, and costs. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1762. `floating-ui-overlay-positioning` [general] SREDNOFF — Use this skill for tooltips, popovers, dropdowns, menus, collision handling, portals, focus management. Trigger when the task involves web design work related to Floating UI Overlay Positioning, implementation, audits, debugging, strategy, or validation.
+1763. `forms-checkout-ux` [payments] SREDNOFF — Use this skill for forms, checkout flows, validation, error recovery, payment UX, friction reduction. Trigger when the task involves web design work related to Forms Checkout UX, production implementation, audits, debugging, strategy, or validation.
+1764. `frontend-design-critic-agent` [frontend] SREDNOFF — Use this skill for frontend visual critique, UI hierarchy, spacing, responsive behavior, interaction states. Trigger when the task involves agent profile work related to Frontend Design Critic Agent, implementation, audits, debugging, strategy, or validation.
+1765. `frontend-design-system` [frontend] SREDNOFF — Use this skill for tokens, components, variants, theming, consistency, reusable UI architecture. Trigger when the task involves web design work related to Frontend Design System, production implementation, audits, debugging, strategy, or validation.
+1766. `frontend-implementation-agent` [frontend] SREDNOFF — Agent profile for implement production frontend screens, components, states, responsive layouts, and accessibility behaviors. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1767. `frontend-ui-engineering` [frontend] SREDNOFF — Use this skill for production frontend UI, states, layout, responsive behavior, accessibility, polish. Trigger when the task involves web design work related to Frontend UI Engineering, production implementation, audits, debugging, strategy, or validation.
+1768. `fullstack-integrator-agent` [general] SREDNOFF — Agent profile for connect frontend, backend, auth, data fetching, validation, loading states, and deployment behavior end to end. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1769. `fuzzing-security-tests` [security][test] SREDNOFF — Use this skill for fuzz tests for parsers, APIs, file handlers, encoders, validators, security-sensitive inputs. Trigger when the task involves security work related to Fuzzing Security Tests, implementation, audits, debugging, strategy, or validation.
+1770. `geo-ai-search-readiness-v2` [seo][ai] SREDNOFF — Use for GEO/AEO/AI-search readiness, LLM crawler access, citation readiness, entity SEO, and answer-friendly content structure.
+1771. `git-workflow-versioning` [git] SREDNOFF — Use this skill for branches, commits, PR hygiene, changelog discipline, semantic versioning, release notes. Trigger when the task involves programming work related to Git Workflow Versioning, production implementation, audits, debugging, strategy, or validation.
+1772. `gltf-asset-pipeline` [3d][devops] SREDNOFF — Use this skill for glTF/GLB assets, compression, optimization, transforms, texture sizing, browser delivery. Trigger when the task involves 3d web work related to Gltf Asset Pipeline, production implementation, audits, debugging, strategy, or validation.
+1773. `gltf-optimization-pipeline-v2` [3d][devops] SREDNOFF — Use when 3D web work involves glTF/GLB assets, product models, AR models, performance budgets, or asset pipeline review.
+1774. `google-ads-account-audit` [marketing] SREDNOFF — Use this skill for Google Ads account structure, campaigns, keywords, conversion data, waste analysis. Trigger when the task involves ppc work related to Google Ads Account Audit, production implementation, audits, debugging, strategy, or validation.
+1775. `google-workspace-addons` [general] SREDNOFF — Use this skill for Google Workspace add-ons, cards, manifests, OAuth scopes, Marketplace readiness. Trigger when the task involves apps work related to Google Workspace Addons, production implementation, audits, debugging, strategy, or validation.
+1776. `google-workspace-apps-script` [general] SREDNOFF — Use this skill for Google Apps Script, Sheets/Docs/Gmail automations, triggers, quotas, web apps. Trigger when the task involves apps work related to Google Workspace Apps Script, production implementation, audits, debugging, strategy, or validation.
+1777. `growth-design-message-match` [marketing] SREDNOFF — Use for SEO/PPC/growth landing pages, ad traffic pages, conversion optimization, and message-match reviews.
+1778. `growth-engineer-agent` [marketing] SREDNOFF — Use this skill for growth funnels, landing pages, analytics, experiments, activation and conversion. Trigger when the task involves agent profile work related to Growth Engineer Agent, implementation, audits, debugging, strategy, or validation.
+1779. `growth-experiment-backlog` [marketing] SREDNOFF — Use for growth strategy, CRO, SEO/PPC experiments, landing page tests, funnel improvements, and prioritization.
+1780. `headless-component-composition` [frontend] SREDNOFF — Use this skill for accessible unstyled components, composition patterns, controlled/uncontrolled state, styling freedom. Trigger when the task involves web design work related to Headless Component Composition, implementation, audits, debugging, strategy, or validation.
+1781. `healthcare-ai-research-guardrails` [ai] SREDNOFF — Use this skill when researching, drafting, reviewing, or building healthcare, wellness, clinical, medical-device, patient-support, health-content, or health-data AI workflows that require source quality, privacy, non-diagnostic boundaries, human review, and regulated-domain guardrails.
+1782. `heuristic-usability-review` [general] SREDNOFF — Use this skill for Nielsen-style usability heuristics, friction maps, workflow critique, remediation plans. Trigger when the task involves web design work related to Heuristic Usability Review, implementation, audits, debugging, strategy, or validation.
+1783. `hiring-ai-fairness-review` [ai] SREDNOFF — Use this skill when designing, reviewing, or auditing recruiting, resume screening, interview, assessment, ranking, HR analytics, job matching, or hiring AI workflows for fairness, adverse-impact risk, privacy, accessibility, explainability, and required human decision-making.
+1784. `iconography-illustration-system` [design] SREDNOFF — Use this skill for icon systems, illustration style, empty-state visuals, asset consistency, visual language. Trigger when the task involves web design work related to Iconography Illustration System, implementation, audits, debugging, strategy, or validation.
+1785. `image-video-seo` [seo] SREDNOFF — Use this skill for image/video metadata, alt strategy, thumbnails, transcripts, media indexing, performance. Trigger when the task involves seo work related to Image Video SEO, implementation, audits, debugging, strategy, or validation.
+1786. `in-app-purchases-subscriptions` [general] SREDNOFF — Use this skill for IAP, subscriptions, entitlements, receipts, billing UX, app store policy. Trigger when the task involves apps work related to In App Purchases Subscriptions, production implementation, audits, debugging, strategy, or validation.
+1787. `interaction-state-matrix` [general] SREDNOFF — Use this skill for hover, focus, active, loading, empty, error, success, permission and offline states. Trigger when the task involves ui/ux work related to Interaction State Matrix, production implementation, audits, debugging, strategy, or validation.
+1788. `internal-linking-ia` [general] SREDNOFF — Use this skill for information architecture, internal links, hub pages, anchor text, crawl depth. Trigger when the task involves seo work related to Internal Linking Ia, production implementation, audits, debugging, strategy, or validation.
+1789. `international-hreflang-seo` [seo] SREDNOFF — Use this skill for hreflang clusters, locale canonicals, regional targeting, multilingual page mapping. Trigger when the task involves seo work related to International Hreflang SEO, implementation, audits, debugging, strategy, or validation.
+1790. `internationalized-rtl-ui` [general] SREDNOFF — Use this skill for RTL layouts, translated text expansion, locale formats, bidirectional UI QA. Trigger when the task involves web design work related to Internationalized RTL UI, implementation, audits, debugging, strategy, or validation.
+1791. `ios-reviewer-agent` [mobile] SREDNOFF — Agent profile for review iOS SwiftUI code, platform conventions, state flow, accessibility, performance, and App Store readiness. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1792. `ios-swiftui-app-builder` [mobile] SREDNOFF — Use this skill for iOS SwiftUI apps, views, state, navigation, persistence, platform conventions. Trigger when the task involves apps work related to iOS Swiftui App Builder, production implementation, audits, debugging, strategy, or validation.
+1793. `issue-to-pr-agent` [general] SREDNOFF — Use this skill for turning issues into implementation plans, branches, code changes, tests, and PR descriptions. Trigger when the task involves programming work related to Issue To PR Agent, implementation, audits, debugging, strategy, or validation.
+1794. `javascript-seo-rendering` [seo] SREDNOFF — Use this skill for JavaScript SEO, SSR/SSG, rendered DOM, crawler limitations, hydration and indexing issues. Trigger when the task involves seo work related to Javascript SEO Rendering, implementation, audits, debugging, strategy, or validation.
+1795. `keyword-query-negative-mining` [general] SREDNOFF — Use this skill for search terms, negatives, match types, intent filtering, query mining. Trigger when the task involves ppc work related to Keyword Query Negative Mining, production implementation, audits, debugging, strategy, or validation.
+1796. `landing-page-conversion-design` [marketing] SREDNOFF — Use this skill for landing pages, above-the-fold clarity, trust, CTAs, proof, conversion-focused structure. Trigger when the task involves marketing work related to Landing Page Conversion Design, production implementation, audits, debugging, strategy, or validation.
+1797. `language-runtime-router` [general] SREDNOFF — Use at the start of programming tasks across TypeScript, JavaScript, Python, PHP, Go, Rust, Swift, Kotlin, SQL, Bash, PowerShell, and mixed repos.
+1798. `language-specialist-agent` [general] SREDNOFF — Agent profile for focused language-specific review across TypeScript, Python, PHP, Go, Rust, Swift, Kotlin, SQL, Bash, and PowerShell.
+1799. `legal-risk-reviewer-agent` [legal] SREDNOFF — Agent profile for flag licensing, claims, regulated content, ad policy, app store policy, and contractual risk for human review. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1800. `llms-txt-ai-crawler-access` [seo][ai] SREDNOFF — Use this skill for llms.txt, AI crawler access, policy files, AI search discoverability, content boundaries. Trigger when the task involves seo work related to LLMs txt AI Crawler Access, implementation, audits, debugging, strategy, or validation.
+1801. `local-seo-entity-pages` [seo] SREDNOFF — Use this skill for local SEO, location pages, entity consistency, business profiles, NAP quality. Trigger when the task involves seo work related to Local SEO Entity Pages, production implementation, audits, debugging, strategy, or validation.
+1802. `localization-i18n-engineering` [general] SREDNOFF — Use this skill for i18n architecture, locale routing, ICU messages, formatting, translation QA. Trigger when the task involves programming work related to Localization i18n Engineering, implementation, audits, debugging, strategy, or validation.
+1803. `localization-lead-agent` [sales] SREDNOFF — Agent profile for coordinate localization, i18n QA, RTL, locale formats, translation workflows, and regional UX. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1804. `log-file-crawl-analysis` [seo] SREDNOFF — Use this skill for server log crawl analysis, bot behavior, wasted crawl paths, crawl budget, anomalies. Trigger when the task involves seo work related to Log File Crawl Analysis, implementation, audits, debugging, strategy, or validation.
+1805. `mcp-integration-builder` [general] SREDNOFF — Use this skill for MCP servers, tools, connector workflows, schemas, auth, safe tool contracts. Trigger when the task involves programming work related to MCP Integration Builder, production implementation, audits, debugging, strategy, or validation.
+1806. `mcp-security-review` [security] SREDNOFF — Use this skill when reviewing Model Context Protocol (MCP) servers, clients, connectors, tool manifests, hosted MCP deployments, OAuth flows, prompt/tool boundaries, or MCP marketplace choices for security, least privilege, data exposure, prompt injection, and destructive-action risk.
+1807. `meta-ads-creative-testing` [marketing][test] SREDNOFF — Use this skill for Meta ads creative tests, hooks, variants, audiences, learning phase, fatigue signals. Trigger when the task involves ppc work related to Meta Ads Creative Testing, production implementation, audits, debugging, strategy, or validation.
+1808. `migration-lead-agent` [sales] SREDNOFF — Agent profile for lead framework, dependency, database, SDK, and architecture migrations with sequencing and rollback. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1809. `ml-ai-engineer-agent` [ml][ai] SREDNOFF — Agent profile for design AI/ML features, retrieval, model calls, structured outputs, cost controls, evals, and fallbacks. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1810. `mobile-app-permissions-privacy` [mobile][legal] SREDNOFF — Use this skill for mobile permissions, privacy labels, data collection, consent, OS permission prompts. Trigger when the task involves apps work related to Mobile App Permissions Privacy, production implementation, audits, debugging, strategy, or validation.
+1811. `mobile-architect-agent` [mobile] SREDNOFF — Agent profile for coordinate mobile app architecture across iOS, Android, Expo/React Native, offline states, permissions, and releases. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1812. `mobile-asset-budget-audit` [mobile] SREDNOFF — Use for Expo, React Native, iOS, Android, or mobile web projects with large assets, slow startup, or app size concerns.
+1813. `mobile-crash-analytics-gate` [data][mobile] SREDNOFF — Use for mobile app observability, Sentry/Firebase crash reporting, release diagnostics, and production incident readiness.
+1814. `mobile-e2e-device-testing` [test][mobile] SREDNOFF — Use this skill for mobile E2E testing, simulators/emulators, device flows, permissions, flaky test control. Trigger when the task involves apps work related to Mobile E2E Device Testing, production implementation, audits, debugging, strategy, or validation.
+1815. `mobile-first-qa` [mobile] SREDNOFF — Use this skill for mobile viewport testing, tap targets, safe areas, responsive navigation, device constraints. Trigger when the task involves qa work related to Mobile First Qa, production implementation, audits, debugging, strategy, or validation.
+1816. `mobile-offline-first-review` [mobile] SREDNOFF — Use for mobile apps or PWAs that need offline behavior, unreliable network handling, local persistence, or sync conflict management.
+1817. `mobile-performance-agent` [mobile][perf] SREDNOFF — Agent profile for mobile performance review in Expo, React Native, iOS, Android, and hybrid apps.
+1818. `mobile-permissions-privacy-gate` [mobile][legal] SREDNOFF — Use when mobile apps request permissions, collect user data, handle privacy-sensitive flows, or need App Store/Play privacy review.
+1819. `mobile-release-reviewer-agent` [devops][mobile] SREDNOFF — Agent profile for pre-release review of iOS, Android, Expo, React Native, and cross-platform mobile apps.
+1820. `mobile-ux-platform-parity` [mobile] SREDNOFF — Use for mobile app UI/UX, React Native, Expo, iOS, Android, or cross-platform app screens where native platform behavior matters.
+1821. `monorepo-boundary-architecture` [arch] SREDNOFF — Use this skill for monorepo package boundaries, workspace dependencies, shared libraries, build graph, ownership rules. Trigger when the task involves programming work related to Monorepo Boundary Architecture, implementation, audits, debugging, strategy, or validation.
+1822. `motion-design-agent` [animation] SREDNOFF — Agent profile for design motion systems, transitions, easing, reduced-motion behavior, and performance-safe animation. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1823. `motion-design-system` [animation] SREDNOFF — Use this skill for motion tokens, durations, easing, choreographed transitions, reduced-motion support. Trigger when the task involves ui/ux work related to Motion Design System, production implementation, audits, debugging, strategy, or validation.
+1824. `multi-brand-whitelabel-ui` [design] SREDNOFF — Use this skill for white-label UI, brand tokens, tenant themes, preview workflows, theme isolation. Trigger when the task involves web design work related to Multi Brand Whitelabel UI, implementation, audits, debugging, strategy, or validation.
+1825. `multi-tenant-saas-architecture` [arch] SREDNOFF — Use this skill for tenant isolation, scoped queries, roles, billing boundaries, admin controls, safety checks. Trigger when the task involves programming work related to Multi Tenant Saas Architecture, implementation, audits, debugging, strategy, or validation.
+1826. `multilingual-content-localization-seo` [seo] SREDNOFF — Use this skill for translation SEO, locale keyword maps, regional intent, localized metadata and slugs. Trigger when the task involves seo work related to Multilingual Content Localization SEO, implementation, audits, debugging, strategy, or validation.
+1827. `mutation-testing-strategy` [test] SREDNOFF — Use this skill for mutation testing ideas, weak assertion detection, test suite hardening, critical logic coverage. Trigger when the task involves programming work related to Mutation Testing Strategy, implementation, audits, debugging, strategy, or validation.
+1828. `navigation-ia-ux` [general] SREDNOFF — Use this skill for navigation, information architecture, menus, tabs, breadcrumbs, repeated workflows. Trigger when the task involves ui/ux work related to Navigation Ia UX, production implementation, audits, debugging, strategy, or validation.
+1829. `nextjs-app-router-seo` [seo][frontend] SREDNOFF — Use this skill for Next.js App Router metadata, robots.ts, sitemap.ts, OG images, dynamic route SEO. Trigger when the task involves seo work related to Nextjs App Router SEO, implementation, audits, debugging, strategy, or validation.
+1830. `nextjs-production-app-architecture` [frontend] SREDNOFF — Use this skill for Next.js App Router, routing, data fetching, server/client boundaries, production deployment. Trigger when the task involves apps work related to Nextjs Production App Architecture, production implementation, audits, debugging, strategy, or validation.
+1831. `no-code-low-code-agent` [general] SREDNOFF — Agent profile for evaluate and implement no-code/low-code workflows, forms, automations, Airtable/Sheets/Zapier-like patterns. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1832. `node-package-release-engineering` [devops] SREDNOFF — Use this skill for npm package exports, ESM/CJS compatibility, semantic versioning, release automation, changelogs. Trigger when the task involves programming work related to Node Package Release Engineering, implementation, audits, debugging, strategy, or validation.
+1833. `nuxt-seo-module-workflow` [seo][frontend] SREDNOFF — Use this skill for Nuxt SEO modules, sitemap, robots, schema, OG images, i18n SEO. Trigger when the task involves seo work related to Nuxt SEO Module Workflow, implementation, audits, debugging, strategy, or validation.
+1834. `observability-instrumentation` [ops] SREDNOFF — Use this skill for structured logs, metrics, traces, alerts, production diagnostics, privacy-safe telemetry. Trigger when the task involves devops work related to Observability Instrumentation, production implementation, audits, debugging, strategy, or validation.
+1835. `onboarding-product-tour-ux` [product] SREDNOFF — Use this skill for activation, walkthroughs, checklists, progressive disclosure, first-run UX. Trigger when the task involves web design work related to Onboarding Product Tour UX, implementation, audits, debugging, strategy, or validation.
+1836. `onchain-data-analytics` [trading][data] SREDNOFF — Use this skill for on-chain data, explorers, Dune-style queries, wallets, transfers, contract events. Trigger when the task involves crypto work related to Onchain Data Analytics, production implementation, audits, debugging, strategy, or validation.
+1837. `operations-automation-agent` [ops] SREDNOFF — Agent profile for automate back-office workflows, approvals, spreadsheets, notifications, recurring tasks, and handoff logs. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1838. `paid-search-risk-agent` [general] SREDNOFF — Agent profile for PPC and paid-growth risk review before changing ads, budgets, bidding, tracking, or landing pages.
+1839. `performance-max-structure` [perf] SREDNOFF — Use this skill for Performance Max structure, asset groups, audience signals, feed quality, measurement. Trigger when the task involves ppc work related to Performance Max Structure, production implementation, audits, debugging, strategy, or validation.
+1840. `performance-optimization` [perf] SREDNOFF — Use this skill for profiling, bottleneck isolation, caching, bundle/runtime performance, measurable improvements. Trigger when the task involves programming work related to Performance Optimization, production implementation, audits, debugging, strategy, or validation.
+1841. `performance-sre-agent` [perf][ops] SREDNOFF — Use this skill for performance, reliability, observability, SLO risk, production diagnostics. Trigger when the task involves agent profile work related to Performance SRE Agent, implementation, audits, debugging, strategy, or validation.
+1842. `playwright-screenshot-baselines` [test] SREDNOFF — Use this skill for Playwright screenshot comparisons, baselines, thresholds, viewport matrix, visual regression. Trigger when the task involves web design work related to Playwright Screenshot Baselines, implementation, audits, debugging, strategy, or validation.
+1843. `portfolio-risk-rebalancing` [trading] SREDNOFF — Use this skill for portfolio allocation, risk limits, rebalancing rules, drawdown, correlation, custody risks. Trigger when the task involves crypto work related to Portfolio Risk Rebalancing, production implementation, audits, debugging, strategy, or validation.
+1844. `ppc-budget-bid-optimizer` [marketing] SREDNOFF — Use this skill for budget pacing, bidding strategy, ROAS/CPA targets, experiments, forecast tradeoffs. Trigger when the task involves ppc work related to PPC Budget Bid Optimizer, production implementation, audits, debugging, strategy, or validation.
+1845. `ppc-landing-quality-score-gate` [marketing] SREDNOFF — Use before or during PPC landing page work for Google Ads, Meta Ads, paid search, paid social, or performance marketing campaigns.
+1846. `ppc-policy-compliance-check` [marketing][legal] SREDNOFF — Use this skill for ad policy review, prohibited claims, landing page compliance, regulated categories. Trigger when the task involves ppc work related to PPC Policy Compliance Check, production implementation, audits, debugging, strategy, or validation.
+1847. `ppc-strategist-agent` [marketing] SREDNOFF — Agent profile for plan PPC account structure, creative testing, budget hypotheses, measurement, and landing-page alignment. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1848. `pr-review-response-agent` [general] SREDNOFF — Use this skill for addressing PR review comments, preserving unrelated changes, responding with evidence and tests. Trigger when the task involves programming work related to PR Review Response Agent, implementation, audits, debugging, strategy, or validation.
+1849. `premium-saas-ui-polish` [general] SREDNOFF — Use this skill for SaaS UI polish, spacing, density, state design, professional visual hierarchy. Trigger when the task involves ui/ux work related to Premium Saas UI Polish, production implementation, audits, debugging, strategy, or validation.
+1850. `pricing-onboarding-ux` [finance] SREDNOFF — Use this skill for pricing pages, onboarding, activation flows, plan comparison, product-led growth UX. Trigger when the task involves ui/ux work related to Pricing Onboarding UX, production implementation, audits, debugging, strategy, or validation.
+1851. `privacy-compliance-agent` [legal] SREDNOFF — Agent profile for review privacy, data minimization, consent, retention, PII handling, analytics, and policy implications. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1852. `product-builder` [product] SREDNOFF — Use this skill when the user asks Codex to build an app, website, bot, SaaS, dashboard, automation, MVP, integration, or production feature.
+1853. `product-manager-agent` [product] SREDNOFF — Agent profile for prioritize product scope, user outcomes, MVP slices, roadmap tradeoffs, and launch criteria. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1854. `programmatic-seo-pages` [seo] SREDNOFF — Use this skill for template SEO pages, data quality, index controls, duplicate prevention, scalable content QA. Trigger when the task involves seo work related to Programmatic SEO Pages, production implementation, audits, debugging, strategy, or validation.
+1855. `programming-agent-pack-selector` [general] SREDNOFF — Use for complex programming work when Codex should choose a narrow set of specialist agents without bloating context.
+1856. `prompt-injection-defense` [ai] SREDNOFF — Use this skill for prompt injection, tool safety, retrieval boundaries, untrusted content handling, approvals. Trigger when the task involves ai security work related to Prompt Injection Defense, implementation, audits, debugging, strategy, or validation.
+1857. `prompt-security-agent` [ai][security] SREDNOFF — Agent profile for review prompt injection, tool boundaries, untrusted content, data exfiltration, and human approval gates. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1858. `property-based-testing` [test] SREDNOFF — Use this skill for property tests for parsers, validators, transforms, state machines, edge cases. Trigger when the task involves programming work related to Property Based Testing, implementation, audits, debugging, strategy, or validation.
+1859. `pwa-offline-installability` [general] SREDNOFF — Use this skill for PWA manifests, service workers, offline states, installability, caching strategy. Trigger when the task involves apps work related to PWA Offline Installability, production implementation, audits, debugging, strategy, or validation.
+1860. `qa-automation-agent` [test] SREDNOFF — Use this skill for test strategy, E2E automation, visual regression, flaky test control, QA evidence. Trigger when the task involves agent profile work related to Qa Automation Agent, implementation, audits, debugging, strategy, or validation.
+1861. `quality-cost-skill-kernel` [quality] SREDNOFF — Donor's synthetic 4500-record capability kernel. Not imported - our CORE-300.md is a curated, provenance-tracked catalog; see registry/PLAN-V2-MERGE-FROM-CODEX.md.
+1862. `r3f-scene-pattern-library` [3d] SREDNOFF — Use for React Three Fiber implementation or review involving scenes, cameras, controls, lighting, assets, Suspense, drei helpers, or React state integration.
+1863. `rag-evaluation-agent` [ml] SREDNOFF — Agent profile for evaluate RAG quality, chunking, retrieval, citations, hallucination risks, freshness, and regression sets. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1864. `react-aria-advanced-interactions` [frontend] SREDNOFF — Use this skill for React Aria style interactions, comboboxes, lists, menus, validation, drag and drop. Trigger when the task involves web design work related to React Aria Advanced Interactions, implementation, audits, debugging, strategy, or validation.
+1865. `react-native-expo-app-builder` [mobile][frontend] SREDNOFF — Use this skill for Expo apps, native capabilities, navigation, EAS, cross-platform mobile workflows. Trigger when the task involves apps work related to React Native Expo App Builder, production implementation, audits, debugging, strategy, or validation.
+1866. `react-three-fiber-components` [frontend] SREDNOFF — Use this skill for React Three Fiber components, hooks, suspense, drei helpers, declarative 3D UI. Trigger when the task involves 3d web work related to React Three Fiber Components, production implementation, audits, debugging, strategy, or validation.
+1867. `realtime-websockets-sse` [backend] SREDNOFF — Use this skill for WebSockets, SSE, realtime auth, reconnects, backpressure, presence, delivery semantics. Trigger when the task involves programming work related to Realtime Websockets SSE, implementation, audits, debugging, strategy, or validation.
+1868. `record-replay-skill-miner` [general] SREDNOFF — Use this skill to turn repeated Codex workflows, manual demonstrations, Record & Replay captures, trace snippets, runbooks, or recurring automation steps into concise reusable skills, eval fixtures, scripts, hooks, or checklist updates without leaking secrets or bloating context.
+1869. `refactoring-coach-agent` [quality] SREDNOFF — Agent profile for plan safe refactors, characterization tests, extraction steps, and behavior-preserving simplification. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1870. `release-manager-agent` [devops] SREDNOFF — Use this skill for release readiness, rollback plans, changelogs, deployment checks, production risk. Trigger when the task involves agent profile work related to Release Manager Agent, implementation, audits, debugging, strategy, or validation.
+1871. `release-notes-changelog-automation` [devops][docs] SREDNOFF — Use this skill for release notes, changelog generation, PR/commit summarization, public impact review. Trigger when the task involves programming work related to Release Notes Changelog Automation, implementation, audits, debugging, strategy, or validation.
+1872. `requirements-analyst-agent` [general] SREDNOFF — Agent profile for turn vague requests into acceptance criteria, constraints, assumptions, and a testable definition of done. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1873. `responsive-layout-system` [general] SREDNOFF — Use this skill for breakpoints, fluid layout, container queries, grid systems, text fitting, viewport QA. Trigger when the task involves web design work related to Responsive Layout System, production implementation, audits, debugging, strategy, or validation.
+1874. `robots-xrobots-meta-controls` [seo] SREDNOFF — Use this skill for robots.txt, meta robots, X-Robots-Tag, environment indexing controls. Trigger when the task involves seo work related to Robots X-Robots Meta Controls, implementation, audits, debugging, strategy, or validation.
+1875. `scroll-driven-3d-storytelling` [3d][animation] SREDNOFF — Use this skill for scroll-linked 3D narratives, timelines, camera choreography, responsive storytelling. Trigger when the task involves 3d web work related to Scroll Driven 3D Storytelling, production implementation, audits, debugging, strategy, or validation.
+1876. `search-console-api-automation` [backend] SREDNOFF — Use this skill for Search Console API exports, anomaly checks, page/query dashboards, automated diagnostics. Trigger when the task involves seo work related to Search Console API Automation, implementation, audits, debugging, strategy, or validation.
+1877. `search-console-ga4-diagnostics` [general] SREDNOFF — Use this skill for Search Console, GA4, analytics interpretation, query/page diagnostics, anomaly triage. Trigger when the task involves seo work related to Search Console GA4 Diagnostics, production implementation, audits, debugging, strategy, or validation.
+1878. `search-content-editor-agent` [general] SREDNOFF — Agent profile for edit content for search intent, topical completeness, clarity, internal links, snippets, and freshness. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1879. `secrets-env-rotation` [security] SREDNOFF — Use this skill for secret inventory, env vars, rotation plans, safe dev/prod separation, leak response. Trigger when the task involves security work related to Secrets Env Rotation, implementation, audits, debugging, strategy, or validation.
+1880. `security-hardening` [security] SREDNOFF — Use this skill for auth boundaries, input validation, secrets, RLS, injection risks, destructive-action review. Trigger when the task involves security work related to Security Hardening, production implementation, audits, debugging, strategy, or validation.
+1881. `security-reviewer-agent` [security] SREDNOFF — Use this skill for security review, auth, secrets, injection, permissions, data exposure, exploit paths. Trigger when the task involves agent profile work related to Security Reviewer Agent, implementation, audits, debugging, strategy, or validation.
+1882. `seo-ab-testing-causal-review` [seo][test] SREDNOFF — Use this skill for SEO experiments, causal analysis, rollouts, guardrails, interpretation of noisy organic data. Trigger when the task involves seo work related to SEO A/B Testing Causal Review, implementation, audits, debugging, strategy, or validation.
+1883. `seo-ci-quality-gate` [seo] SREDNOFF — Use this skill for SEO checks in CI, metadata, canonicals, links, robots, sitemap, noindex regressions. Trigger when the task involves seo work related to SEO CI Quality Gate, implementation, audits, debugging, strategy, or validation.
+1884. `seo-migration-redirects` [seo] SREDNOFF — Use this skill for site migrations, redirect maps, canonical preservation, launch QA, traffic risk mitigation. Trigger when the task involves seo work related to SEO Migration Redirects, production implementation, audits, debugging, strategy, or validation.
+1885. `seo-technical-auditor-agent` [seo] SREDNOFF — Agent profile for perform technical SEO audits, crawl diagnostics, rendering checks, metadata review, and indexation risk analysis. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1886. `serp-feature-rich-result-planner` [seo] SREDNOFF — Use this skill for SERP features, rich result eligibility, schema opportunities, result type strategy. Trigger when the task involves seo work related to Serp Feature Rich Result Planner, implementation, audits, debugging, strategy, or validation.
+1887. `serp-to-page-brief-generator` [seo] SREDNOFF — Use for SEO, GEO, content, landing pages, programmatic SEO, and competitor SERP research that should become a concrete page plan.
+1888. `shader-and-postprocessing-review` [3d] SREDNOFF — Use for 3D web or animated UI work involving shaders, postprocessing, WebGL effects, particles, or expensive visual effects.
+1889. `shader-material-design` [3d] SREDNOFF — Use this skill for custom shaders, materials, postprocessing, visual effects, uniforms, GLSL patterns. Trigger when the task involves 3d web work related to Shader Material Design, production implementation, audits, debugging, strategy, or validation.
+1890. `site-crawler-automation` [seo] SREDNOFF — Use this skill for automated site crawling, exports, issue classification, reproducible technical SEO audits. Trigger when the task involves seo work related to Site Crawler Automation, implementation, audits, debugging, strategy, or validation.
+1891. `smart-contract-security-review` [security][legal] SREDNOFF — Use this skill for smart contract audit review, vulnerabilities, access control, reentrancy, invariants. Trigger when the task involves crypto work related to Smart Contract Security Review, production implementation, audits, debugging, strategy, or validation.
+1892. `solidity-foundry-test-suite` [trading][test] SREDNOFF — Use this skill for Solidity development, Foundry tests, fuzzing, invariants, gas snapshots, fork tests. Trigger when the task involves crypto work related to Solidity Foundry Test Suite, production implementation, audits, debugging, strategy, or validation.
+1893. `source-driven-development` [general] SREDNOFF — Use this skill for source-first implementation, repository reading, docs/issues inspection, evidence-based coding. Trigger when the task involves programming work related to Source Driven Development, production implementation, audits, debugging, strategy, or validation.
+1894. `source-first-api-verifier` [backend] SREDNOFF — Use when implementing with APIs, SDKs, libraries, frameworks, or project-local contracts that may differ from memory or have changed recently.
+1895. `source-ranking-roi-selector` [general] SREDNOFF — Donor's UI/3D source-ranking concept. Already ported as registry/source-ranker.ps1/.sh (v1.16) against our own design-source-registry.json.
+1896. `spec-driven-development` [general] SREDNOFF — Use this skill for requirements, acceptance criteria, contracts, edge cases, implementation from spec. Trigger when the task involves programming work related to Spec Driven Development, production implementation, audits, debugging, strategy, or validation.
+1897. `sql-query-plan-optimizer` [data] SREDNOFF — Use this skill for SQL query plans, indexes, N+1s, pagination, transactions, performance bottlenecks. Trigger when the task involves programming work related to Sql Query Plan Optimizer, implementation, audits, debugging, strategy, or validation.
+1898. `sre-incident-commander-agent` [ops] SREDNOFF — Agent profile for triage incidents, define impact, coordinate rollback, inspect logs/metrics, and produce postmortem actions. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1899. `staff-debugger-agent` [test] SREDNOFF — Use this skill for reproduction-first debugging, root cause isolation, minimal fixes, regression tests. Trigger when the task involves agent profile work related to Staff Debugger Agent, implementation, audits, debugging, strategy, or validation.
+1900. `storybook-interaction-tests` [test] SREDNOFF — Use this skill for Storybook play functions, interaction tests, component states, accessibility checks. Trigger when the task involves web design work related to Storybook Interaction Tests, implementation, audits, debugging, strategy, or validation.
+1901. `structured-data-schema-org` [seo] SREDNOFF — Use this skill for Schema.org JSON-LD, rich results eligibility, validation, entity consistency. Trigger when the task involves seo work related to Structured Data Schema Org, production implementation, audits, debugging, strategy, or validation.
+1902. `supply-chain-sbom-sca` [security] SREDNOFF — Use this skill for SBOM, SCA, lockfile review, provenance, package integrity, supply-chain risk. Trigger when the task involves security work related to Supply Chain SBOM SCA, implementation, audits, debugging, strategy, or validation.
+1903. `swiftui-state-data-flow` [mobile] SREDNOFF — Use this skill for SwiftUI state management, bindings, models, observation, persistence, async data. Trigger when the task involves apps work related to Swiftui State Data Flow, production implementation, audits, debugging, strategy, or validation.
+1904. `technical-seo-audit` [seo] SREDNOFF — Use this skill for crawlability, indexability, metadata, canonical tags, robots, sitemaps, internal signals. Trigger when the task involves seo work related to Technical SEO Audit, production implementation, audits, debugging, strategy, or validation.
+1905. `technical-writer-agent` [docs] SREDNOFF — Agent profile for write developer docs, user docs, API docs, tutorials, changelogs, and concise implementation notes. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1906. `test-architect-agent` [test] SREDNOFF — Agent profile for design test strategy across unit, integration, contract, E2E, visual, performance, and regression layers. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1907. `test-driven-development` [test] SREDNOFF — Use this skill for unit tests, regression tests, red-green-refactor workflow, testable design. Trigger when the task involves programming work related to Test Driven Development, production implementation, audits, debugging, strategy, or validation.
+1908. `three-vs-babylon-vs-model-viewer` [3d] SREDNOFF — Use when choosing 3D web technology for product viewers, configurators, immersive heroes, AR previews, games, dashboards, or visual storytelling.
+1909. `threejs-scene-architecture` [3d] SREDNOFF — Use this skill for Three.js scene graph, renderer, camera, lighting, controls, loading lifecycle. Trigger when the task involves 3d web work related to Threejs Scene Architecture, production implementation, audits, debugging, strategy, or validation.
+1910. `tokenomics-whitepaper-review` [trading] SREDNOFF — Use this skill for tokenomics, vesting, emissions, utility, governance, whitepaper risk review. Trigger when the task involves crypto work related to Tokenomics Whitepaper Review, production implementation, audits, debugging, strategy, or validation.
+1911. `topical-authority-cluster-builder` [general] SREDNOFF — Use this skill for topic clusters, hub/spoke planning, semantic coverage, editorial prioritization. Trigger when the task involves seo work related to Topical Authority Cluster Builder, implementation, audits, debugging, strategy, or validation.
+1912. `trading-risk-analyst-agent` [trading] SREDNOFF — Agent profile for analyze trading strategies, drawdowns, leverage, liquidity, backtest caveats, and execution risks. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1913. `trading-strategy-backtesting` [trading] SREDNOFF — Use this skill for strategy hypotheses, backtesting, walk-forward analysis, fees, slippage, risk metrics. Trigger when the task involves crypto work related to Trading Strategy Backtesting, production implementation, audits, debugging, strategy, or validation.
+1914. `trust-safety-content-moderation-ux` [general] SREDNOFF — Use this skill for moderation UX, reports, appeals, safety queues, review workflows, user trust. Trigger when the task involves web design work related to Trust Safety Content Moderation UX, implementation, audits, debugging, strategy, or validation.
+1915. `turbo-mode-controller` [general] SREDNOFF — Use when the user explicitly enters TURBO, mode TURBO, enable TURBO, or TURBO for this task, and Codex should optimize for maximum quality without normal token-cost restraint.
+1916. `turbo-source-benchmark` [general] SREDNOFF — Use in TURBO mode when Codex should compare top current solutions before choosing architecture, UI components, 3D stack, mobile stack, SEO/PPC strategy, or programming patterns.
+1917. `turbo-validation-gate` [general] SREDNOFF — Use in TURBO mode before finalizing implementation, architecture, UI/UX, 3D web, mobile, SEO/PPC/growth, or programming work.
+1918. `typescript-strictness-migration` [devops] SREDNOFF — Use this skill for TypeScript strict mode, noImplicitAny, type narrowing, migration sequencing, typed APIs. Trigger when the task involves programming work related to Typescript Strictness Migration, implementation, audits, debugging, strategy, or validation.
+1919. `typography-readability-system` [design] SREDNOFF — Use this skill for typographic scale, line height, measure, hierarchy, readability, responsive text. Trigger when the task involves web design work related to Typography Readability System, implementation, audits, debugging, strategy, or validation.
+1920. `ui-component-source-router` [frontend] SREDNOFF — Use for UI/UX and web design tasks when Codex should decide which component marketplace, registry, design connector, or local design system to use before implementation.
+1921. `ux-researcher-agent` [general] SREDNOFF — Agent profile for analyze target users, workflows, usability risks, research questions, and evidence gaps. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1922. `visual-hierarchy-layout-review` [design] SREDNOFF — Use this skill for layout review, typography scale, grouping, alignment, whitespace, visual priority. Trigger when the task involves ui/ux work related to Visual Hierarchy Layout Review, production implementation, audits, debugging, strategy, or validation.
+1923. `visual-qa-agent` [design] SREDNOFF — Agent profile for inspect screenshots, viewports, layout overlaps, visual regressions, spacing, typography, and interaction states. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1924. `visual-regression-design-gate` [design] SREDNOFF — Use before finishing UI/UX, web design, mobile web, dashboard, landing page, or component work that changes visible interface behavior.
+1925. `wallet-transaction-flow` [trading] SREDNOFF — Use this skill for wallet UX, transaction signing, gas, chain switching, error states, user safety. Trigger when the task involves crypto work related to Wallet Transaction Flow, production implementation, audits, debugging, strategy, or validation.
+1926. `web-rendering-edge-ssr-seo` [seo] SREDNOFF — Use this skill for SSR, SSG, edge rendering, streaming, crawlability, speed, cache strategy. Trigger when the task involves seo work related to Web Rendering Edge SSR SEO, implementation, audits, debugging, strategy, or validation.
+1927. `web3-crypto-security-agent` [trading][security] SREDNOFF — Agent profile for review web3 apps, wallets, contracts, approvals, signatures, chain risks, and user safety. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+1928. `webapp-visual-regression` [design] SREDNOFF — Use this skill for screenshots, mobile/desktop comparison, overlap checks, responsive visual diffs. Trigger when the task involves qa work related to Webapp Visual Regression, production implementation, audits, debugging, strategy, or validation.
+1929. `webgl-performance-agent` [3d][perf] SREDNOFF — Agent profile for WebGL/WebGPU/Three.js/R3F performance review before shipping 3D web work.
+1930. `webgl-webgpu-performance` [3d][perf] SREDNOFF — Use this skill for GPU performance, draw calls, materials, instancing, shaders, profiling WebGL/WebGPU. Trigger when the task involves 3d web work related to Webgl Webgpu Performance, production implementation, audits, debugging, strategy, or validation.
+1931. `xr-ar-web-experiences` [3d] SREDNOFF — Use this skill for WebXR, AR previews, model-viewer, mobile sensors, permissions, fallback UX. Trigger when the task involves 3d web work related to XR AR Web Experiences, production implementation, audits, debugging, strategy, or validation.
 1932. `gitops-workflow` [general] WSH
 1933. `k8s-security-policies` [security] WSH
 1934. `similarity-search-patterns` [general] WSH
@@ -2260,17 +2260,21 @@
 2010. `foryourhealth111-pixel:Vibe-Skills` [test] VOLT-SK — A skills governed plug-and-play harness for staged, test-driven skill orchestration
 2011. `muratcankoylan:multi-agent-patterns` [ai][meta][arch] VOLT-SK — Master orchestrator, peer-to-peer, and hierarchical multi-agent architectures
 2012. `helius-labs:helius-skills` [trading] VOLT-SK — Ship Solana apps end-to-end; transaction sending, asset queries, real-time streaming, token swaps, prediction markets, browser wallets, and 
-2013. `3d-art-director-agent` [3d] SREDNOFF
-2014. `brand-art-director-agent` [design] SREDNOFF
-2015. `codex-subagent-orchestration` [meta] SREDNOFF
-2016. `design-system-migration-plan` [devops] SREDNOFF
-2017. `growth-design-director-agent` [marketing] SREDNOFF
-2018. `principal-architect-agent` [arch] SREDNOFF
-2019. `principal-code-reviewer-agent` [quality] SREDNOFF
-2020. `push-notifications-deep-links` [email] SREDNOFF
-2021. `seo-director-agent` [seo] SREDNOFF
-2022. `skill-catalog-orchestrator` [meta] SREDNOFF
-2023. `supervisor-orchestrator-agent` [meta] SREDNOFF
-2024. `turbo-multi-agent-review` [general] SREDNOFF
-2025. `ui-art-director-agent` [general] SREDNOFF
+2013. `3d-art-director-agent` [3d] SREDNOFF — Agent profile for art direction in 3D web design, product configurators, hero scenes, AR previews, and immersive visual interfaces.
+2014. `brand-art-director-agent` [design] SREDNOFF — Agent profile for guide brand expression, art direction, imagery, typography tone, and visual distinctiveness. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+2015. `codex-subagent-orchestration` [meta] SREDNOFF — Use this skill to design, audit, or implement bounded Codex subagent and custom-agent workflows, reviewer passes, multi-agent research, and specialist agent profiles with clear responsibilities, context contracts, token budgets, and safety gates.
+2016. `design-system-migration-plan` [devops] SREDNOFF — Use this skill for migrating legacy UI to design-system primitives, component mapping, risk sequencing. Trigger when the task involves web design work related to Design System Migration Plan, implementation, audits, debugging, strategy, or validation.
+2017. `growth-design-director-agent` [marketing] SREDNOFF — Agent profile for reviewing design decisions through conversion, SEO/PPC, funnel, and business-growth impact.
+2018. `principal-architect-agent` [arch] SREDNOFF — Use this skill for principal-level architecture decisions, tradeoffs, risk review, phased implementation plans. Trigger when the task involves agent profile work related to Principal Architect Agent, implementation, audits, debugging, strategy, or validation.
+2019. `principal-code-reviewer-agent` [quality] SREDNOFF — Agent profile for principal-level programming review before merge, release, or production handoff.
+2020. `push-notifications-deep-links` [email] SREDNOFF — Use this skill for push notifications, deep links, routing, payloads, opt-in UX, delivery testing. Trigger when the task involves apps work related to Push Notifications Deep Links, production implementation, audits, debugging, strategy, or validation.
+2021. `seo-director-agent` [seo] SREDNOFF — Use this skill for SEO strategy, technical SEO prioritization, organic growth roadmaps, search risk review. Trigger when the task involves agent profile work related to SEO Director Agent, implementation, audits, debugging, strategy, or validation.
+2022. `skill-catalog-orchestrator` [meta] SREDNOFF — Use this skill when selecting, combining, auditing, or routing across a large Codex skill catalog, agent profiles, subagents, plugins, MCP tools, or project AGENTS.md instructions for complex multi-domain work.
+2023. `supervisor-orchestrator-agent` [meta] SREDNOFF — Agent profile for coordinate multi-agent work, decompose tasks, assign specialist passes, merge findings, and prevent duplicated effort. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain.
+2024. `turbo-multi-agent-review` [general] SREDNOFF — Agent profile for TURBO mode multi-role critique when maximum result quality is more important than token economy.
+2025. `ui-art-director-agent` [general] SREDNOFF — Agent profile for art direction and premium UI/UX review across websites, apps, dashboards, 3D web experiences, and landing pages.
 2026. `workflow-orchestration-patterns` [meta] WSH
+
+## G2 (Дополнение F — srednoff-os (Codex sibling) skills, добавленные при слиянии v2, Этап 3)
+2029. `external-prompt-pattern-miner` [ai] SREDNOFF — Use this skill when reviewing external system-prompt repositories, leaked-prompt archives, agent prompt dumps, Fable/Claude/OpenAI/Codex prompt examples, or prompt-engineering collections to safely improve Srednoff OS without copying proprietary text.
+2030. `promptfoo-evals-redteam-ci` [ai] SREDNOFF — Use this skill when building, reviewing, or debugging Promptfoo-based LLM, agent, RAG evals, red-team scans, provider setup, or GitHub Actions CI gates; do not use when ordinary deterministic unit tests are enough.

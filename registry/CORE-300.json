@@ -1370,7 +1370,7 @@
       "source": "VOLT",
       "source_raw": "VOLT",
       "group": "G2",
-      "description": "(my-nextjs-app на Next.js)"
+      "description": "(a Next.js app)"
     },
     {
       "id": 123,
@@ -8594,7 +8594,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G1",
-      "description": null
+      "description": "Use this skill for art direction for AI-generated images/video, brand safety, prompt iteration, asset QA. Trigger when the task involves web design work related to AI Generated Asset Art Direction, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 750,
@@ -8605,7 +8605,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G1",
-      "description": null
+      "description": "Use this skill for repo mapping, entry points, ownership, dependency graph, risk areas, impact analysis before implementation. Trigger when the task involves programming work related to Codebase Map Indexer, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 751,
@@ -8616,7 +8616,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G1",
-      "description": null
+      "description": "Use this skill for robots.txt, XML sitemaps, canonicalization, redirects, crawl budget, noindex issues. Trigger when the task involves seo work related to Crawl Indexability Sitemaps, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 752,
@@ -8627,7 +8627,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G1",
-      "description": null
+      "description": "Use this skill for Python CLI/package structure, pyproject.toml, console scripts, tests, linting, distribution. Trigger when the task involves programming work related to Python Cli Package Builder, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 753,
@@ -8639,7 +8639,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G1",
-      "description": null
+      "description": "Use this skill for search indexing, embeddings, RAG chunking, freshness, retrieval evaluation, source citations. Trigger when the task involves ai engineering work related to Search Indexing RAG, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 754,
@@ -8650,7 +8650,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G1",
-      "description": null
+      "description": "Use this skill for large sitemap indexes, sharding, freshness, lastmod hygiene, monitoring, submission strategy. Trigger when the task involves seo work related to Sitemap Index Sharding, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 755,
@@ -18989,7 +18989,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use for 3D web experiences that need accessibility, SEO-readable fallback content, keyboard support, or reduced-motion behavior."
     },
     {
       "id": 1649,
@@ -19001,7 +19001,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for glTF/GLB/model asset pipeline review in 3D web, ecommerce, AR, and configurator projects."
     },
     {
       "id": 1650,
@@ -19012,7 +19012,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use before 3D web design or Three.js work to clarify the experience type, user goal, interaction depth, performance budget, and fallback needs."
     },
     {
       "id": 1651,
@@ -19023,7 +19023,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for pointer gestures, orbit controls, drag interactions, hit testing, touch ergonomics. Trigger when the task involves 3d web work related to 3D Interaction Gesture Design, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1652,
@@ -19034,7 +19034,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for 3D lighting, camera framing, composition, shadows, environment maps, product presentation. Trigger when the task involves 3d web work related to 3D Lighting Camera Composition, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1653,
@@ -19046,7 +19046,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use before shipping 3D web, WebGL, WebGPU, Three.js, Babylon.js, R3F, or shader-heavy UI."
     },
     {
       "id": 1654,
@@ -19057,7 +19057,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for interactive product configurators, variants, materials, hotspots, camera states, commerce UX. Trigger when the task involves 3d web work related to 3D Product Configurator, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1655,
@@ -19069,7 +19069,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use before finishing Three.js, R3F, WebGL, WebGPU, model-viewer, or 3D web UI work."
     },
     {
       "id": 1656,
@@ -19080,7 +19080,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for turning accessibility audit findings into fixes, tasks, tests, and regression checks. Trigger when the task involves web design work related to Accessibility Remediation Sprint, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1657,
@@ -19091,7 +19091,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for WCAG review, accessibility remediation, keyboard/screen-reader QA, inclusive design. Trigger when the task involves agent profile work related to Accessibility Specialist Agent, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1658,
@@ -19102,7 +19102,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for WCAG AA, keyboard access, semantic HTML, focus states, labels, contrast, screen readers. Trigger when the task involves web design work related to Accessibility WCAG Aa, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1659,
@@ -19113,7 +19113,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for admin CRUD flows, bulk actions, confirmations, auditability, permissions, recovery. Trigger when the task involves web design work related to Admin Crud UX Patterns, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1660,
@@ -19124,7 +19124,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for ad-to-page consistency, offer alignment, CTA clarity, quality score, conversion relevance. Trigger when the task involves ppc work related to Ads Landing Page Message Match, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1661,
@@ -19135,7 +19135,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for ROAS dashboards, blended CAC, spend pacing, cohort views, channel reporting. Trigger when the task involves ppc work related to Ads Reporting Roas Dashboard, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1662,
@@ -19146,7 +19146,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill when selecting or validating browser automation for agents, including Playwright MCP, browser-use style controllers, browser DevTools, screenshot baselines, visual QA, accessibility checks, web app smoke tests, and tool-driven web workflows."
     },
     {
       "id": 1663,
@@ -19157,7 +19157,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill to audit, deduplicate, and migrate coding-agent instructions across AGENTS.md, CLAUDE.md, .clinerules, Cline rules, Roo custom modes, Continue rules, Cursor/Windsurf rules, OpenCode agents, prompt repositories, and Codex skills."
     },
     {
       "id": 1664,
@@ -19168,7 +19168,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill when designing, reviewing, debugging, or productionizing OpenAI Agents SDK, Responses API, or similar agent systems with tools, handoffs, guardrails, tracing, evals, human approval, retries, and deployment safety."
     },
     {
       "id": 1665,
@@ -19179,7 +19179,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for LLM evals, golden datasets, structured outputs, drift detection, regression gates. Trigger when the task involves ai engineering work related to AI Evals Regression Suite, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1666,
@@ -19191,7 +19191,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for AI search optimization, generative engine visibility, entity clarity, citation readiness. Trigger when the task involves seo work related to Ai Search Geo Audit, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1667,
@@ -19202,7 +19202,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for define events, funnels, attribution caveats, dashboards, data quality checks, and analytics instrumentation. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1668,
@@ -19213,7 +19213,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Android Jetpack Compose, Material, navigation, state, build/release workflows. Trigger when the task involves apps work related to Android Jetpack Compose Builder, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1669,
@@ -19224,7 +19224,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for review Android Compose code, lifecycle, permissions, navigation, Material behavior, performance, and Play release risks. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1670,
@@ -19235,7 +19235,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for motion hierarchy, transitions, microinteractions, reduced motion, performance-safe animation. Trigger when the task involves web design work related to Animation Motion Polish, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1671,
@@ -19247,7 +19247,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for scroll effects, animation budget, jank diagnosis, reduced motion, frame timing. Trigger when the task involves web design work related to Animation Scroll Performance, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1672,
@@ -19258,7 +19258,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for critiquing UI/UX, web design, landing pages, dashboards, and visual systems for generic AI-slop, weak hierarchy, poor domain fit, and low craft."
     },
     {
       "id": 1673,
@@ -19271,7 +19271,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for OpenAPI, JSON schema, typed clients, contract tests, compatibility assertions. Trigger when the task involves programming work related to API Contract Test Generator, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1674,
@@ -19282,7 +19282,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for REST/RPC contracts, versioning, error shapes, schemas, backward compatibility. Trigger when the task involves programming work related to API Interface Design, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1675,
@@ -19293,7 +19293,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for review API platform contracts, versioning, auth, rate limits, SDK clients, and developer experience. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1676,
@@ -19304,7 +19304,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for analytics events, funnels, crash reporting, privacy-safe instrumentation, release health. Trigger when the task involves apps work related to App Analytics Crash Reporting, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1677,
@@ -19315,7 +19315,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for mobile/web app CI/CD, signing, build numbers, release lanes, environment gates. Trigger when the task involves apps work related to App CI CD Release Automation, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1678,
@@ -19326,7 +19326,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for ASO, app metadata, screenshots, descriptions, keywords, review positioning. Trigger when the task involves apps work related to App Store Aso Metadata, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1679,
@@ -19337,7 +19337,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for prepare app store releases, metadata, screenshots, build numbers, review notes, TestFlight/Play testing, and rollout. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1680,
@@ -19349,7 +19349,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for TestFlight, App Store Connect, release checklists, screenshots, review notes, versioning. Trigger when the task involves apps work related to App Store Testflight Release, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1681,
@@ -19361,7 +19361,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Astro static output, islands hydration, content collections, CWV, schema and metadata. Trigger when the task involves seo work related to Astro Islands SEO, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1682,
@@ -19372,7 +19372,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for attribution models, incrementality, holdouts, lift tests, channel overlap, measurement limits. Trigger when the task involves ppc work related to Attribution Incrementality Review, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1683,
@@ -19383,7 +19383,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for OAuth, sessions, cookies, CSRF, refresh tokens, role boundaries, auth UX. Trigger when the task involves security work related to Auth OAuth Session Architecture, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1684,
@@ -19394,7 +19394,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for design and implement backend services, API logic, data access, jobs, auth boundaries, and error handling. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1685,
@@ -19405,7 +19405,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for queues, retries, idempotency, cron, dead-letter queues, background processing. Trigger when the task involves programming work related to Background Jobs Queues, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1686,
@@ -19417,7 +19417,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for plans, entitlements, subscriptions, trials, invoices, state transitions, access checks. Trigger when the task involves programming work related to Billing Entitlements State Machine, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1687,
@@ -19428,7 +19428,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for brand direction, color systems, typography, tone, reusable visual themes. Trigger when the task involves web design work related to Brand Theme Factory, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1688,
@@ -19439,7 +19439,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for browser verification, console/network errors, layout checks, user-flow QA, DevTools evidence. Trigger when the task involves qa work related to Browser Devtools Qa, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1689,
@@ -19450,7 +19450,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for cache keys, TTLs, invalidation, SWR, consistency, edge/runtime caching. Trigger when the task involves programming work related to Cache Invalidation Design, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1690,
@@ -19461,7 +19461,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for canonical tags, redirects, duplicates, status codes, consolidation, migration safety. Trigger when the task involves seo work related to Canonical Redirect Audit, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1691,
@@ -19472,7 +19472,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for checkout trust, fraud friction, payment clarity, policies, risk-reducing UX. Trigger when the task involves web design work related to Checkout Trust Risk UX, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1692,
@@ -19483,7 +19483,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for GitHub Actions, checks, release gates, deployment automation, reproducible pipelines. Trigger when the task involves devops work related to CI CD Automation, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1693,
@@ -19494,7 +19494,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for CI log analysis, local reproduction, root cause isolation, targeted fixes, rerun strategy. Trigger when the task involves programming work related to CI Failure Triage, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1694,
@@ -19505,7 +19505,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for clasp workflows, Apps Script local development, manifests, deployments, versioning. Trigger when the task involves apps work related to Clasp Local Dev Deploy, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1695,
@@ -19516,7 +19516,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for review cloud architecture, networking, storage, compute, IAM, costs, scaling, and reliability tradeoffs. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1696,
@@ -19527,7 +19527,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for CMS-driven pages, editorial templates, rich text rendering, content governance. Trigger when the task involves web design work related to CMS Editorial Layouts, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1697,
@@ -19538,7 +19538,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use before copying or adapting code from GitHub, docs, Stack Overflow, registries, AI output, UI kits, snippets, or third-party examples."
     },
     {
       "id": 1698,
@@ -19549,7 +19549,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for removing accidental complexity, reducing duplication, clarifying boundaries, preserving behavior. Trigger when the task involves programming work related to Code Simplification, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1699,
@@ -19560,7 +19560,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for understand unfamiliar legacy code, trace behavior, reconstruct intent, and identify safe change points. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1700,
@@ -19571,7 +19571,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill when designing or reviewing evaluations for coding agents, Codex workflows, SWE-bench-style tasks, repository repair benchmarks, tool-use regressions, planner/executor/reviewer loops, autonomy limits, or agent quality gates before rollout."
     },
     {
       "id": 1701,
@@ -19582,7 +19582,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for SERP competitors, content gaps, backlink/content angles, prioritization, opportunity mapping. Trigger when the task involves seo work related to Competitor Serp Gap Analysis, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1702,
@@ -19593,7 +19593,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for researching and selecting UI components from local code, shadcn registry, 21st.dev, Magic UI, Aceternity, Origin UI, React Bits, Figma, Canva, and GitHub."
     },
     {
       "id": 1703,
@@ -19604,7 +19604,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use before copying UI, 3D, mobile, or web component code from external sources, registries, GitHub, snippets, marketplaces, or AI-generated component libraries."
     },
     {
       "id": 1704,
@@ -19616,7 +19616,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for component libraries, Storybook stories, variants, controls, visual states, documentation. Trigger when the task involves web design work related to Component Storybook Workshop, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1705,
@@ -19627,7 +19627,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for keyword mapping, search intent, content briefs, SERP analysis, topical coverage. Trigger when the task involves seo work related to Content Brief Keyword Map, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1706,
@@ -19638,7 +19638,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for content decay analysis, pruning, merging, updating, redirecting, recovery prioritization. Trigger when the task involves seo work related to Content Decay Pruning, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1707,
@@ -19649,7 +19649,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for UI copy, labels, empty states, errors, onboarding text, concise product language. Trigger when the task involves web design work related to Content Design Microcopy, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1708,
@@ -19660,7 +19660,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for content strategy, briefs, topical authority, pruning, editorial planning, search intent. Trigger when the task involves agent profile work related to Content Strategist Agent, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1709,
@@ -19671,7 +19671,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for context gathering, file triage, source maps, assumptions, task framing, prompt hygiene. Trigger when the task involves programming work related to Context Engineering, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1710,
@@ -19682,7 +19682,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for analyze conversion funnels, landing pages, CTAs, friction, proof, experiments, and measurement plans. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1711,
@@ -19693,7 +19693,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for GTM, GA4, Google Ads conversions, events, consent mode, attribution plumbing. Trigger when the task involves ppc work related to Conversion Tracking GTM GA4, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1712,
@@ -19706,7 +19706,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use when Codex may copy or import UI code from registries, GitHub, 21st.dev, shadcn, Magic UI, Aceternity, Origin UI, React Bits, or similar sources, then adapt it to project conventions."
     },
     {
       "id": 1713,
@@ -19717,7 +19717,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for LCP, CLS, INP, rendering performance, image/font loading, frontend vitals fixes. Trigger when the task involves seo work related to Core Web Vitals Frontend, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1714,
@@ -19728,7 +19728,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for crawler behavior, log files, sitemap/indexation analysis, crawl-budget diagnostics. Trigger when the task involves agent profile work related to Crawler Analyst Agent, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1715,
@@ -19739,7 +19739,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for high-converting creative pages, product visuals, proof, differentiated art direction. Trigger when the task involves ui/ux work related to Creative Landing Page Builder, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1716,
@@ -19750,7 +19750,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use before finishing programming work in any language or framework to pick the right validation gates."
     },
     {
       "id": 1717,
@@ -19761,7 +19761,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for consistent web/iOS/Android design, platform adaptations, shared tokens, parity QA. Trigger when the task involves apps work related to Cross Platform Design Parity, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1718,
@@ -19772,7 +19772,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for crypto market research, tokens, narratives, liquidity, risks, source verification. Trigger when the task involves crypto work related to Crypto Market Research, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1719,
@@ -19783,7 +19783,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for design support workflows, macros, escalation paths, ticket triage, knowledge base gaps, and user recovery. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1720,
@@ -19794,7 +19794,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for dark mode tokens, contrast, theme persistence, system preference, color scheme QA. Trigger when the task involves web design work related to Dark Mode Theme System, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1721,
@@ -19805,7 +19805,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for dashboards, tables, filters, KPIs, scanning density, comparison workflows. Trigger when the task involves ui/ux work related to Dashboard UX Information Density, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1722,
@@ -19816,7 +19816,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for design data pipelines, transformations, imports, exports, warehouse models, validation, and freshness checks. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1723,
@@ -19827,7 +19827,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for CSV/XLSX/JSON import/export, validation, preview, dedupe, rollback, audit logs. Trigger when the task involves programming work related to Data Import Export Pipeline, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1724,
@@ -19838,7 +19838,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for tables, grids, filters, sorting, density, keyboard navigation, responsive behavior. Trigger when the task involves web design work related to Data Table Grid UX, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1725,
@@ -19849,7 +19849,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for design charts, dashboards, metrics, comparisons, annotations, and decision-focused data presentation. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1726,
@@ -19860,7 +19860,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for review data models, migrations, indexes, constraints, query plans, transactions, and backup/rollback implications. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1727,
@@ -19872,7 +19872,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for database migrations, data safety, locks, backfills, rollback plans, compatibility review. Trigger when the task involves programming work related to Database Schema Migration Auditor, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1728,
@@ -19883,7 +19883,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for reproduction, root cause isolation, logs, minimal fixes, regression protection. Trigger when the task involves programming work related to Debugging Error Recovery, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1729,
@@ -19894,7 +19894,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for DeFi protocols, TVL, yield sources, contract risk, liquidity, oracle and governance risks. Trigger when the task involves crypto work related to Defi Protocol Analysis, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1730,
@@ -19905,7 +19905,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for dependency license review, maintenance health, vulnerability risk, replacement strategy. Trigger when the task involves security work related to Dependency License Risk Audit, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1731,
@@ -19916,7 +19916,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use when code changes propose new dependencies, packages, SDKs, UI libraries, build tools, or runtime services."
     },
     {
       "id": 1732,
@@ -19927,7 +19927,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for evaluate dependency upgrades, changelogs, breaking changes, security fixes, lockfiles, and test plans. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1733,
@@ -19938,7 +19938,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for dependency upgrades, SDK migrations, breaking changes, compatibility plans, rollback. Trigger when the task involves programming work related to Deprecation Migration, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1734,
@@ -19949,7 +19949,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Generate a compact UI/UX, web design, 3D web design, landing page, dashboard, app screen, product viewer, configurator, or 3D asset brief before implementation. Use when Codex should ask only high-value design questions, infer safe assumptions, and avoid blocking on nonessential details."
     },
     {
       "id": 1735,
@@ -19960,7 +19960,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use for UI/UX, web design, 3D web design, landing pages, dashboards, app screens, redesigns, and visual direction work when Codex should ask a compact product/design brief before choosing components or writing code."
     },
     {
       "id": 1736,
@@ -19971,7 +19971,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for final UI/UX QA before shipping visible design, web design, app screens, or 3D web UI."
     },
     {
       "id": 1737,
@@ -19982,7 +19982,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for scored UI audit, spacing, alignment, states, contrast, hierarchy, polish checklist. Trigger when the task involves web design work related to Design Qa Scorecard, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1738,
@@ -19993,7 +19993,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for component QA, variant coverage, disabled/loading/error states, token consistency. Trigger when the task involves ui/ux work related to Design System Component Qa, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1739,
@@ -20004,7 +20004,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for govern component libraries, tokens, variants, documentation, migrations, and consistency rules. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1740,
@@ -20015,7 +20015,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use for UI/UX and design-system work when Codex should convert visual direction or existing UI into reusable design tokens."
     },
     {
       "id": 1741,
@@ -20026,7 +20026,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for extracting colors, typography, spacing, radii, shadows, tokens from UI references. Trigger when the task involves web design work related to Design Token Extraction, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1742,
@@ -20037,7 +20037,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for handle CI/CD, environments, build pipelines, deployment topology, secrets, and operational readiness. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1743,
@@ -20048,7 +20048,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for documentation SEO, version canonicals, API docs, examples, internal links, freshness. Trigger when the task involves seo work related to Docs Developer Portal SEO, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1744,
@@ -20059,7 +20059,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for structure documentation portals, navigation, versioning, redirects, search, and content ownership. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1745,
@@ -20070,7 +20070,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for README, ADRs, runbooks, changelogs, decision records, operator docs. Trigger when the task involves programming work related to Documentation Adrs, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1746,
@@ -20081,7 +20081,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for facets, filters, pagination, canonical/noindex strategy, crawl traps, product listing SEO. Trigger when the task involves seo work related to Ecommerce Faceted Navigation SEO, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1747,
@@ -20092,7 +20092,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for product detail pages, media galleries, variants, inventory, trust, conversion. Trigger when the task involves web design work related to Ecommerce Product Page UX, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1748,
@@ -20103,7 +20103,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill when designing, reviewing, or drafting AI features for education, tutoring, grading, student support, learning analytics, classroom tools, curriculum content, academic integrity, child safety, accessibility, student-data privacy, and human educator oversight."
     },
     {
       "id": 1749,
@@ -20114,7 +20114,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for transactional email, SPF/DKIM/DMARC, templates, retries, bounces, deliverability. Trigger when the task involves programming work related to Email Deliverability Transactional, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1750,
@@ -20125,7 +20125,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for empty states, errors, offline states, partial failures, recovery paths, helpful microcopy. Trigger when the task involves web design work related to Empty State Error Recovery Design, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1751,
@@ -20136,7 +20136,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for entity clarity, schema graph, sameAs, author/org/product identity, knowledge graph signals. Trigger when the task involves seo work related to Entity Knowledge Graph SEO, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1752,
@@ -20148,7 +20148,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for exchange APIs, CCXT integration, keys, rate limits, order safety, sandbox testing. Trigger when the task involves crypto work related to Exchange API Ccxt Integration, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1753,
@@ -20159,7 +20159,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for design and analyze experiments, A/B tests, causal caveats, sample quality, and decision thresholds. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1754,
@@ -20171,7 +20171,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use before Expo or React Native app release, EAS build/update, TestFlight, Play Store, App Store, or mobile deployment work."
     },
     {
       "id": 1755,
@@ -20182,7 +20182,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for feature flags, gradual rollout, kill switches, metrics, experiment gates, rollback. Trigger when the task involves programming work related to Feature Flag Rollout, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1756,
@@ -20193,7 +20193,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for translating Figma/design references into production components and responsive code. Trigger when the task involves ui/ux work related to Figma To Code Implementation, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1757,
@@ -20204,7 +20204,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for uploads, storage, validation, metadata, signed URLs, malware checks, quotas. Trigger when the task involves programming work related to File Upload Storage Pipeline, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1758,
@@ -20216,7 +20216,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for review pricing, invoices, subscriptions, entitlements, revenue logic, tax-sensitive flows, and billing UX. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1759,
@@ -20227,7 +20227,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Firebase Auth, Firestore, Functions, Storage, Hosting, app backend architecture. Trigger when the task involves apps work related to Firebase App Backend, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1760,
@@ -20238,7 +20238,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Firebase security rules, auth claims, emulator tests, least privilege access. Trigger when the task involves apps work related to Firebase Auth Security Rules, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1761,
@@ -20249,7 +20249,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for review Firebase and Google Cloud architecture, auth, rules, functions, hosting, quotas, and costs. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1762,
@@ -20260,7 +20260,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for tooltips, popovers, dropdowns, menus, collision handling, portals, focus management. Trigger when the task involves web design work related to Floating UI Overlay Positioning, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1763,
@@ -20271,7 +20271,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for forms, checkout flows, validation, error recovery, payment UX, friction reduction. Trigger when the task involves web design work related to Forms Checkout UX, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1764,
@@ -20282,7 +20282,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for frontend visual critique, UI hierarchy, spacing, responsive behavior, interaction states. Trigger when the task involves agent profile work related to Frontend Design Critic Agent, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1765,
@@ -20293,7 +20293,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for tokens, components, variants, theming, consistency, reusable UI architecture. Trigger when the task involves web design work related to Frontend Design System, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1766,
@@ -20304,7 +20304,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for implement production frontend screens, components, states, responsive layouts, and accessibility behaviors. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1767,
@@ -20315,7 +20315,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for production frontend UI, states, layout, responsive behavior, accessibility, polish. Trigger when the task involves web design work related to Frontend UI Engineering, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1768,
@@ -20326,7 +20326,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for connect frontend, backend, auth, data fetching, validation, loading states, and deployment behavior end to end. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1769,
@@ -20338,7 +20338,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for fuzz tests for parsers, APIs, file handlers, encoders, validators, security-sensitive inputs. Trigger when the task involves security work related to Fuzzing Security Tests, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1770,
@@ -20350,7 +20350,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use for GEO/AEO/AI-search readiness, LLM crawler access, citation readiness, entity SEO, and answer-friendly content structure."
     },
     {
       "id": 1771,
@@ -20361,7 +20361,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for branches, commits, PR hygiene, changelog discipline, semantic versioning, release notes. Trigger when the task involves programming work related to Git Workflow Versioning, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1772,
@@ -20373,7 +20373,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for glTF/GLB assets, compression, optimization, transforms, texture sizing, browser delivery. Trigger when the task involves 3d web work related to Gltf Asset Pipeline, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1773,
@@ -20385,7 +20385,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use when 3D web work involves glTF/GLB assets, product models, AR models, performance budgets, or asset pipeline review."
     },
     {
       "id": 1774,
@@ -20396,7 +20396,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Google Ads account structure, campaigns, keywords, conversion data, waste analysis. Trigger when the task involves ppc work related to Google Ads Account Audit, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1775,
@@ -20407,7 +20407,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Google Workspace add-ons, cards, manifests, OAuth scopes, Marketplace readiness. Trigger when the task involves apps work related to Google Workspace Addons, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1776,
@@ -20418,7 +20418,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Google Apps Script, Sheets/Docs/Gmail automations, triggers, quotas, web apps. Trigger when the task involves apps work related to Google Workspace Apps Script, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1777,
@@ -20429,7 +20429,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use for SEO/PPC/growth landing pages, ad traffic pages, conversion optimization, and message-match reviews."
     },
     {
       "id": 1778,
@@ -20440,7 +20440,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for growth funnels, landing pages, analytics, experiments, activation and conversion. Trigger when the task involves agent profile work related to Growth Engineer Agent, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1779,
@@ -20451,7 +20451,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use for growth strategy, CRO, SEO/PPC experiments, landing page tests, funnel improvements, and prioritization."
     },
     {
       "id": 1780,
@@ -20462,7 +20462,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for accessible unstyled components, composition patterns, controlled/uncontrolled state, styling freedom. Trigger when the task involves web design work related to Headless Component Composition, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1781,
@@ -20473,7 +20473,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill when researching, drafting, reviewing, or building healthcare, wellness, clinical, medical-device, patient-support, health-content, or health-data AI workflows that require source quality, privacy, non-diagnostic boundaries, human review, and regulated-domain guardrails."
     },
     {
       "id": 1782,
@@ -20484,7 +20484,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Nielsen-style usability heuristics, friction maps, workflow critique, remediation plans. Trigger when the task involves web design work related to Heuristic Usability Review, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1783,
@@ -20495,7 +20495,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill when designing, reviewing, or auditing recruiting, resume screening, interview, assessment, ranking, HR analytics, job matching, or hiring AI workflows for fairness, adverse-impact risk, privacy, accessibility, explainability, and required human decision-making."
     },
     {
       "id": 1784,
@@ -20506,7 +20506,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for icon systems, illustration style, empty-state visuals, asset consistency, visual language. Trigger when the task involves web design work related to Iconography Illustration System, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1785,
@@ -20517,7 +20517,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for image/video metadata, alt strategy, thumbnails, transcripts, media indexing, performance. Trigger when the task involves seo work related to Image Video SEO, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1786,
@@ -20528,7 +20528,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for IAP, subscriptions, entitlements, receipts, billing UX, app store policy. Trigger when the task involves apps work related to In App Purchases Subscriptions, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1787,
@@ -20539,7 +20539,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for hover, focus, active, loading, empty, error, success, permission and offline states. Trigger when the task involves ui/ux work related to Interaction State Matrix, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1788,
@@ -20550,7 +20550,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for information architecture, internal links, hub pages, anchor text, crawl depth. Trigger when the task involves seo work related to Internal Linking Ia, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1789,
@@ -20561,7 +20561,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for hreflang clusters, locale canonicals, regional targeting, multilingual page mapping. Trigger when the task involves seo work related to International Hreflang SEO, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1790,
@@ -20572,7 +20572,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for RTL layouts, translated text expansion, locale formats, bidirectional UI QA. Trigger when the task involves web design work related to Internationalized RTL UI, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1791,
@@ -20583,7 +20583,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for review iOS SwiftUI code, platform conventions, state flow, accessibility, performance, and App Store readiness. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1792,
@@ -20594,7 +20594,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for iOS SwiftUI apps, views, state, navigation, persistence, platform conventions. Trigger when the task involves apps work related to iOS Swiftui App Builder, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1793,
@@ -20605,7 +20605,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for turning issues into implementation plans, branches, code changes, tests, and PR descriptions. Trigger when the task involves programming work related to Issue To PR Agent, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1794,
@@ -20616,7 +20616,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for JavaScript SEO, SSR/SSG, rendered DOM, crawler limitations, hydration and indexing issues. Trigger when the task involves seo work related to Javascript SEO Rendering, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1795,
@@ -20627,7 +20627,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for search terms, negatives, match types, intent filtering, query mining. Trigger when the task involves ppc work related to Keyword Query Negative Mining, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1796,
@@ -20638,7 +20638,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for landing pages, above-the-fold clarity, trust, CTAs, proof, conversion-focused structure. Trigger when the task involves marketing work related to Landing Page Conversion Design, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1797,
@@ -20649,7 +20649,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use at the start of programming tasks across TypeScript, JavaScript, Python, PHP, Go, Rust, Swift, Kotlin, SQL, Bash, PowerShell, and mixed repos."
     },
     {
       "id": 1798,
@@ -20660,7 +20660,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for focused language-specific review across TypeScript, Python, PHP, Go, Rust, Swift, Kotlin, SQL, Bash, and PowerShell."
     },
     {
       "id": 1799,
@@ -20671,7 +20671,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for flag licensing, claims, regulated content, ad policy, app store policy, and contractual risk for human review. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1800,
@@ -20683,7 +20683,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for llms.txt, AI crawler access, policy files, AI search discoverability, content boundaries. Trigger when the task involves seo work related to LLMs txt AI Crawler Access, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1801,
@@ -20694,7 +20694,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for local SEO, location pages, entity consistency, business profiles, NAP quality. Trigger when the task involves seo work related to Local SEO Entity Pages, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1802,
@@ -20705,7 +20705,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for i18n architecture, locale routing, ICU messages, formatting, translation QA. Trigger when the task involves programming work related to Localization i18n Engineering, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1803,
@@ -20716,7 +20716,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for coordinate localization, i18n QA, RTL, locale formats, translation workflows, and regional UX. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1804,
@@ -20727,7 +20727,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for server log crawl analysis, bot behavior, wasted crawl paths, crawl budget, anomalies. Trigger when the task involves seo work related to Log File Crawl Analysis, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1805,
@@ -20738,7 +20738,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for MCP servers, tools, connector workflows, schemas, auth, safe tool contracts. Trigger when the task involves programming work related to MCP Integration Builder, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1806,
@@ -20749,7 +20749,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill when reviewing Model Context Protocol (MCP) servers, clients, connectors, tool manifests, hosted MCP deployments, OAuth flows, prompt/tool boundaries, or MCP marketplace choices for security, least privilege, data exposure, prompt injection, and destructive-action risk."
     },
     {
       "id": 1807,
@@ -20761,7 +20761,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Meta ads creative tests, hooks, variants, audiences, learning phase, fatigue signals. Trigger when the task involves ppc work related to Meta Ads Creative Testing, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1808,
@@ -20772,7 +20772,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for lead framework, dependency, database, SDK, and architecture migrations with sequencing and rollback. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1809,
@@ -20784,7 +20784,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for design AI/ML features, retrieval, model calls, structured outputs, cost controls, evals, and fallbacks. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1810,
@@ -20796,7 +20796,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for mobile permissions, privacy labels, data collection, consent, OS permission prompts. Trigger when the task involves apps work related to Mobile App Permissions Privacy, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1811,
@@ -20807,7 +20807,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for coordinate mobile app architecture across iOS, Android, Expo/React Native, offline states, permissions, and releases. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1812,
@@ -20818,7 +20818,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use for Expo, React Native, iOS, Android, or mobile web projects with large assets, slow startup, or app size concerns."
     },
     {
       "id": 1813,
@@ -20830,7 +20830,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use for mobile app observability, Sentry/Firebase crash reporting, release diagnostics, and production incident readiness."
     },
     {
       "id": 1814,
@@ -20842,7 +20842,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for mobile E2E testing, simulators/emulators, device flows, permissions, flaky test control. Trigger when the task involves apps work related to Mobile E2E Device Testing, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1815,
@@ -20853,7 +20853,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for mobile viewport testing, tap targets, safe areas, responsive navigation, device constraints. Trigger when the task involves qa work related to Mobile First Qa, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1816,
@@ -20864,7 +20864,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use for mobile apps or PWAs that need offline behavior, unreliable network handling, local persistence, or sync conflict management."
     },
     {
       "id": 1817,
@@ -20876,7 +20876,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for mobile performance review in Expo, React Native, iOS, Android, and hybrid apps."
     },
     {
       "id": 1818,
@@ -20888,7 +20888,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use when mobile apps request permissions, collect user data, handle privacy-sensitive flows, or need App Store/Play privacy review."
     },
     {
       "id": 1819,
@@ -20900,7 +20900,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for pre-release review of iOS, Android, Expo, React Native, and cross-platform mobile apps."
     },
     {
       "id": 1820,
@@ -20911,7 +20911,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use for mobile app UI/UX, React Native, Expo, iOS, Android, or cross-platform app screens where native platform behavior matters."
     },
     {
       "id": 1821,
@@ -20922,7 +20922,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for monorepo package boundaries, workspace dependencies, shared libraries, build graph, ownership rules. Trigger when the task involves programming work related to Monorepo Boundary Architecture, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1822,
@@ -20933,7 +20933,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for design motion systems, transitions, easing, reduced-motion behavior, and performance-safe animation. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1823,
@@ -20944,7 +20944,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for motion tokens, durations, easing, choreographed transitions, reduced-motion support. Trigger when the task involves ui/ux work related to Motion Design System, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1824,
@@ -20955,7 +20955,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for white-label UI, brand tokens, tenant themes, preview workflows, theme isolation. Trigger when the task involves web design work related to Multi Brand Whitelabel UI, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1825,
@@ -20966,7 +20966,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for tenant isolation, scoped queries, roles, billing boundaries, admin controls, safety checks. Trigger when the task involves programming work related to Multi Tenant Saas Architecture, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1826,
@@ -20977,7 +20977,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for translation SEO, locale keyword maps, regional intent, localized metadata and slugs. Trigger when the task involves seo work related to Multilingual Content Localization SEO, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1827,
@@ -20988,7 +20988,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for mutation testing ideas, weak assertion detection, test suite hardening, critical logic coverage. Trigger when the task involves programming work related to Mutation Testing Strategy, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1828,
@@ -20999,7 +20999,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for navigation, information architecture, menus, tabs, breadcrumbs, repeated workflows. Trigger when the task involves ui/ux work related to Navigation Ia UX, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1829,
@@ -21011,7 +21011,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Next.js App Router metadata, robots.ts, sitemap.ts, OG images, dynamic route SEO. Trigger when the task involves seo work related to Nextjs App Router SEO, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1830,
@@ -21022,7 +21022,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Next.js App Router, routing, data fetching, server/client boundaries, production deployment. Trigger when the task involves apps work related to Nextjs Production App Architecture, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1831,
@@ -21033,7 +21033,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for evaluate and implement no-code/low-code workflows, forms, automations, Airtable/Sheets/Zapier-like patterns. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1832,
@@ -21044,7 +21044,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for npm package exports, ESM/CJS compatibility, semantic versioning, release automation, changelogs. Trigger when the task involves programming work related to Node Package Release Engineering, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1833,
@@ -21056,7 +21056,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Nuxt SEO modules, sitemap, robots, schema, OG images, i18n SEO. Trigger when the task involves seo work related to Nuxt SEO Module Workflow, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1834,
@@ -21067,7 +21067,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for structured logs, metrics, traces, alerts, production diagnostics, privacy-safe telemetry. Trigger when the task involves devops work related to Observability Instrumentation, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1835,
@@ -21078,7 +21078,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for activation, walkthroughs, checklists, progressive disclosure, first-run UX. Trigger when the task involves web design work related to Onboarding Product Tour UX, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1836,
@@ -21090,7 +21090,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for on-chain data, explorers, Dune-style queries, wallets, transfers, contract events. Trigger when the task involves crypto work related to Onchain Data Analytics, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1837,
@@ -21101,7 +21101,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for automate back-office workflows, approvals, spreadsheets, notifications, recurring tasks, and handoff logs. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1838,
@@ -21112,7 +21112,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for PPC and paid-growth risk review before changing ads, budgets, bidding, tracking, or landing pages."
     },
     {
       "id": 1839,
@@ -21123,7 +21123,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Performance Max structure, asset groups, audience signals, feed quality, measurement. Trigger when the task involves ppc work related to Performance Max Structure, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1840,
@@ -21134,7 +21134,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for profiling, bottleneck isolation, caching, bundle/runtime performance, measurable improvements. Trigger when the task involves programming work related to Performance Optimization, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1841,
@@ -21146,7 +21146,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for performance, reliability, observability, SLO risk, production diagnostics. Trigger when the task involves agent profile work related to Performance SRE Agent, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1842,
@@ -21157,7 +21157,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Playwright screenshot comparisons, baselines, thresholds, viewport matrix, visual regression. Trigger when the task involves web design work related to Playwright Screenshot Baselines, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1843,
@@ -21168,7 +21168,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for portfolio allocation, risk limits, rebalancing rules, drawdown, correlation, custody risks. Trigger when the task involves crypto work related to Portfolio Risk Rebalancing, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1844,
@@ -21179,7 +21179,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for budget pacing, bidding strategy, ROAS/CPA targets, experiments, forecast tradeoffs. Trigger when the task involves ppc work related to PPC Budget Bid Optimizer, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1845,
@@ -21190,7 +21190,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use before or during PPC landing page work for Google Ads, Meta Ads, paid search, paid social, or performance marketing campaigns."
     },
     {
       "id": 1846,
@@ -21202,7 +21202,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for ad policy review, prohibited claims, landing page compliance, regulated categories. Trigger when the task involves ppc work related to PPC Policy Compliance Check, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1847,
@@ -21213,7 +21213,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for plan PPC account structure, creative testing, budget hypotheses, measurement, and landing-page alignment. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1848,
@@ -21224,7 +21224,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for addressing PR review comments, preserving unrelated changes, responding with evidence and tests. Trigger when the task involves programming work related to PR Review Response Agent, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1849,
@@ -21235,7 +21235,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for SaaS UI polish, spacing, density, state design, professional visual hierarchy. Trigger when the task involves ui/ux work related to Premium Saas UI Polish, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1850,
@@ -21246,7 +21246,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for pricing pages, onboarding, activation flows, plan comparison, product-led growth UX. Trigger when the task involves ui/ux work related to Pricing Onboarding UX, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1851,
@@ -21257,7 +21257,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for review privacy, data minimization, consent, retention, PII handling, analytics, and policy implications. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1852,
@@ -21268,7 +21268,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill when the user asks Codex to build an app, website, bot, SaaS, dashboard, automation, MVP, integration, or production feature."
     },
     {
       "id": 1853,
@@ -21279,7 +21279,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for prioritize product scope, user outcomes, MVP slices, roadmap tradeoffs, and launch criteria. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1854,
@@ -21290,7 +21290,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for template SEO pages, data quality, index controls, duplicate prevention, scalable content QA. Trigger when the task involves seo work related to Programmatic SEO Pages, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1855,
@@ -21301,7 +21301,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use for complex programming work when Codex should choose a narrow set of specialist agents without bloating context."
     },
     {
       "id": 1856,
@@ -21312,7 +21312,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for prompt injection, tool safety, retrieval boundaries, untrusted content handling, approvals. Trigger when the task involves ai security work related to Prompt Injection Defense, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1857,
@@ -21324,7 +21324,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for review prompt injection, tool boundaries, untrusted content, data exfiltration, and human approval gates. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1858,
@@ -21335,7 +21335,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for property tests for parsers, validators, transforms, state machines, edge cases. Trigger when the task involves programming work related to Property Based Testing, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1859,
@@ -21346,7 +21346,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for PWA manifests, service workers, offline states, installability, caching strategy. Trigger when the task involves apps work related to PWA Offline Installability, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1860,
@@ -21357,7 +21357,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for test strategy, E2E automation, visual regression, flaky test control, QA evidence. Trigger when the task involves agent profile work related to Qa Automation Agent, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1861,
@@ -21368,7 +21368,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Donor's synthetic 4500-record capability kernel. Not imported - our CORE-300.md is a curated, provenance-tracked catalog; see registry/PLAN-V2-MERGE-FROM-CODEX.md."
     },
     {
       "id": 1862,
@@ -21379,7 +21379,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use for React Three Fiber implementation or review involving scenes, cameras, controls, lighting, assets, Suspense, drei helpers, or React state integration."
     },
     {
       "id": 1863,
@@ -21390,7 +21390,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for evaluate RAG quality, chunking, retrieval, citations, hallucination risks, freshness, and regression sets. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1864,
@@ -21401,7 +21401,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for React Aria style interactions, comboboxes, lists, menus, validation, drag and drop. Trigger when the task involves web design work related to React Aria Advanced Interactions, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1865,
@@ -21413,7 +21413,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Expo apps, native capabilities, navigation, EAS, cross-platform mobile workflows. Trigger when the task involves apps work related to React Native Expo App Builder, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1866,
@@ -21424,7 +21424,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for React Three Fiber components, hooks, suspense, drei helpers, declarative 3D UI. Trigger when the task involves 3d web work related to React Three Fiber Components, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1867,
@@ -21435,7 +21435,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for WebSockets, SSE, realtime auth, reconnects, backpressure, presence, delivery semantics. Trigger when the task involves programming work related to Realtime Websockets SSE, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1868,
@@ -21446,7 +21446,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill to turn repeated Codex workflows, manual demonstrations, Record & Replay captures, trace snippets, runbooks, or recurring automation steps into concise reusable skills, eval fixtures, scripts, hooks, or checklist updates without leaking secrets or bloating context."
     },
     {
       "id": 1869,
@@ -21457,7 +21457,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for plan safe refactors, characterization tests, extraction steps, and behavior-preserving simplification. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1870,
@@ -21468,7 +21468,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for release readiness, rollback plans, changelogs, deployment checks, production risk. Trigger when the task involves agent profile work related to Release Manager Agent, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1871,
@@ -21480,7 +21480,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for release notes, changelog generation, PR/commit summarization, public impact review. Trigger when the task involves programming work related to Release Notes Changelog Automation, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1872,
@@ -21491,7 +21491,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for turn vague requests into acceptance criteria, constraints, assumptions, and a testable definition of done. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1873,
@@ -21502,7 +21502,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for breakpoints, fluid layout, container queries, grid systems, text fitting, viewport QA. Trigger when the task involves web design work related to Responsive Layout System, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1874,
@@ -21513,7 +21513,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for robots.txt, meta robots, X-Robots-Tag, environment indexing controls. Trigger when the task involves seo work related to Robots X-Robots Meta Controls, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1875,
@@ -21525,7 +21525,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for scroll-linked 3D narratives, timelines, camera choreography, responsive storytelling. Trigger when the task involves 3d web work related to Scroll Driven 3D Storytelling, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1876,
@@ -21536,7 +21536,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Search Console API exports, anomaly checks, page/query dashboards, automated diagnostics. Trigger when the task involves seo work related to Search Console API Automation, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1877,
@@ -21547,7 +21547,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Search Console, GA4, analytics interpretation, query/page diagnostics, anomaly triage. Trigger when the task involves seo work related to Search Console GA4 Diagnostics, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1878,
@@ -21558,7 +21558,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for edit content for search intent, topical completeness, clarity, internal links, snippets, and freshness. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1879,
@@ -21569,7 +21569,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for secret inventory, env vars, rotation plans, safe dev/prod separation, leak response. Trigger when the task involves security work related to Secrets Env Rotation, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1880,
@@ -21580,7 +21580,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for auth boundaries, input validation, secrets, RLS, injection risks, destructive-action review. Trigger when the task involves security work related to Security Hardening, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1881,
@@ -21591,7 +21591,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for security review, auth, secrets, injection, permissions, data exposure, exploit paths. Trigger when the task involves agent profile work related to Security Reviewer Agent, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1882,
@@ -21603,7 +21603,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for SEO experiments, causal analysis, rollouts, guardrails, interpretation of noisy organic data. Trigger when the task involves seo work related to SEO A/B Testing Causal Review, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1883,
@@ -21614,7 +21614,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for SEO checks in CI, metadata, canonicals, links, robots, sitemap, noindex regressions. Trigger when the task involves seo work related to SEO CI Quality Gate, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1884,
@@ -21625,7 +21625,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for site migrations, redirect maps, canonical preservation, launch QA, traffic risk mitigation. Trigger when the task involves seo work related to SEO Migration Redirects, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1885,
@@ -21636,7 +21636,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for perform technical SEO audits, crawl diagnostics, rendering checks, metadata review, and indexation risk analysis. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1886,
@@ -21647,7 +21647,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for SERP features, rich result eligibility, schema opportunities, result type strategy. Trigger when the task involves seo work related to Serp Feature Rich Result Planner, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1887,
@@ -21658,7 +21658,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use for SEO, GEO, content, landing pages, programmatic SEO, and competitor SERP research that should become a concrete page plan."
     },
     {
       "id": 1888,
@@ -21669,7 +21669,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use for 3D web or animated UI work involving shaders, postprocessing, WebGL effects, particles, or expensive visual effects."
     },
     {
       "id": 1889,
@@ -21680,7 +21680,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for custom shaders, materials, postprocessing, visual effects, uniforms, GLSL patterns. Trigger when the task involves 3d web work related to Shader Material Design, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1890,
@@ -21691,7 +21691,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for automated site crawling, exports, issue classification, reproducible technical SEO audits. Trigger when the task involves seo work related to Site Crawler Automation, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1891,
@@ -21703,7 +21703,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for smart contract audit review, vulnerabilities, access control, reentrancy, invariants. Trigger when the task involves crypto work related to Smart Contract Security Review, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1892,
@@ -21715,7 +21715,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Solidity development, Foundry tests, fuzzing, invariants, gas snapshots, fork tests. Trigger when the task involves crypto work related to Solidity Foundry Test Suite, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1893,
@@ -21726,7 +21726,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for source-first implementation, repository reading, docs/issues inspection, evidence-based coding. Trigger when the task involves programming work related to Source Driven Development, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1894,
@@ -21737,7 +21737,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use when implementing with APIs, SDKs, libraries, frameworks, or project-local contracts that may differ from memory or have changed recently."
     },
     {
       "id": 1895,
@@ -21748,7 +21748,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Donor's UI/3D source-ranking concept. Already ported as registry/source-ranker.ps1/.sh (v1.16) against our own design-source-registry.json."
     },
     {
       "id": 1896,
@@ -21759,7 +21759,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for requirements, acceptance criteria, contracts, edge cases, implementation from spec. Trigger when the task involves programming work related to Spec Driven Development, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1897,
@@ -21770,7 +21770,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for SQL query plans, indexes, N+1s, pagination, transactions, performance bottlenecks. Trigger when the task involves programming work related to Sql Query Plan Optimizer, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1898,
@@ -21781,7 +21781,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for triage incidents, define impact, coordinate rollback, inspect logs/metrics, and produce postmortem actions. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1899,
@@ -21792,7 +21792,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for reproduction-first debugging, root cause isolation, minimal fixes, regression tests. Trigger when the task involves agent profile work related to Staff Debugger Agent, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1900,
@@ -21803,7 +21803,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Storybook play functions, interaction tests, component states, accessibility checks. Trigger when the task involves web design work related to Storybook Interaction Tests, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1901,
@@ -21814,7 +21814,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Schema.org JSON-LD, rich results eligibility, validation, entity consistency. Trigger when the task involves seo work related to Structured Data Schema Org, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1902,
@@ -21825,7 +21825,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for SBOM, SCA, lockfile review, provenance, package integrity, supply-chain risk. Trigger when the task involves security work related to Supply Chain SBOM SCA, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1903,
@@ -21836,7 +21836,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for SwiftUI state management, bindings, models, observation, persistence, async data. Trigger when the task involves apps work related to Swiftui State Data Flow, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1904,
@@ -21847,7 +21847,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for crawlability, indexability, metadata, canonical tags, robots, sitemaps, internal signals. Trigger when the task involves seo work related to Technical SEO Audit, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1905,
@@ -21858,7 +21858,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for write developer docs, user docs, API docs, tutorials, changelogs, and concise implementation notes. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1906,
@@ -21869,7 +21869,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for design test strategy across unit, integration, contract, E2E, visual, performance, and regression layers. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1907,
@@ -21880,7 +21880,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for unit tests, regression tests, red-green-refactor workflow, testable design. Trigger when the task involves programming work related to Test Driven Development, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1908,
@@ -21891,7 +21891,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use when choosing 3D web technology for product viewers, configurators, immersive heroes, AR previews, games, dashboards, or visual storytelling."
     },
     {
       "id": 1909,
@@ -21902,7 +21902,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for Three.js scene graph, renderer, camera, lighting, controls, loading lifecycle. Trigger when the task involves 3d web work related to Threejs Scene Architecture, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1910,
@@ -21913,7 +21913,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for tokenomics, vesting, emissions, utility, governance, whitepaper risk review. Trigger when the task involves crypto work related to Tokenomics Whitepaper Review, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1911,
@@ -21924,7 +21924,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for topic clusters, hub/spoke planning, semantic coverage, editorial prioritization. Trigger when the task involves seo work related to Topical Authority Cluster Builder, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1912,
@@ -21935,7 +21935,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for analyze trading strategies, drawdowns, leverage, liquidity, backtest caveats, and execution risks. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1913,
@@ -21946,7 +21946,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for strategy hypotheses, backtesting, walk-forward analysis, fees, slippage, risk metrics. Trigger when the task involves crypto work related to Trading Strategy Backtesting, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1914,
@@ -21957,7 +21957,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for moderation UX, reports, appeals, safety queues, review workflows, user trust. Trigger when the task involves web design work related to Trust Safety Content Moderation UX, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1915,
@@ -21968,7 +21968,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use when the user explicitly enters TURBO, mode TURBO, enable TURBO, or TURBO for this task, and Codex should optimize for maximum quality without normal token-cost restraint."
     },
     {
       "id": 1916,
@@ -21979,7 +21979,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use in TURBO mode when Codex should compare top current solutions before choosing architecture, UI components, 3D stack, mobile stack, SEO/PPC strategy, or programming patterns."
     },
     {
       "id": 1917,
@@ -21990,7 +21990,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use in TURBO mode before finalizing implementation, architecture, UI/UX, 3D web, mobile, SEO/PPC/growth, or programming work."
     },
     {
       "id": 1918,
@@ -22001,7 +22001,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for TypeScript strict mode, noImplicitAny, type narrowing, migration sequencing, typed APIs. Trigger when the task involves programming work related to Typescript Strictness Migration, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1919,
@@ -22012,7 +22012,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for typographic scale, line height, measure, hierarchy, readability, responsive text. Trigger when the task involves web design work related to Typography Readability System, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1920,
@@ -22023,7 +22023,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use for UI/UX and web design tasks when Codex should decide which component marketplace, registry, design connector, or local design system to use before implementation."
     },
     {
       "id": 1921,
@@ -22034,7 +22034,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for analyze target users, workflows, usability risks, research questions, and evidence gaps. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1922,
@@ -22045,7 +22045,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for layout review, typography scale, grouping, alignment, whitespace, visual priority. Trigger when the task involves ui/ux work related to Visual Hierarchy Layout Review, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1923,
@@ -22056,7 +22056,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for inspect screenshots, viewports, layout overlaps, visual regressions, spacing, typography, and interaction states. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1924,
@@ -22067,7 +22067,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use before finishing UI/UX, web design, mobile web, dashboard, landing page, or component work that changes visible interface behavior."
     },
     {
       "id": 1925,
@@ -22078,7 +22078,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for wallet UX, transaction signing, gas, chain switching, error states, user safety. Trigger when the task involves crypto work related to Wallet Transaction Flow, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1926,
@@ -22089,7 +22089,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for SSR, SSG, edge rendering, streaming, crawlability, speed, cache strategy. Trigger when the task involves seo work related to Web Rendering Edge SSR SEO, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1927,
@@ -22101,7 +22101,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for review web3 apps, wallets, contracts, approvals, signatures, chain risks, and user safety. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 1928,
@@ -22112,7 +22112,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for screenshots, mobile/desktop comparison, overlap checks, responsive visual diffs. Trigger when the task involves qa work related to Webapp Visual Regression, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1929,
@@ -22124,7 +22124,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Agent profile for WebGL/WebGPU/Three.js/R3F performance review before shipping 3D web work."
     },
     {
       "id": 1930,
@@ -22136,7 +22136,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for GPU performance, draw calls, materials, instancing, shaders, profiling WebGL/WebGPU. Trigger when the task involves 3d web work related to Webgl Webgpu Performance, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1931,
@@ -22147,7 +22147,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G2",
-      "description": null
+      "description": "Use this skill for WebXR, AR previews, model-viewer, mobile sensors, permissions, fallback UX. Trigger when the task involves 3d web work related to XR AR Web Experiences, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 1932,
@@ -23072,7 +23072,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G3",
-      "description": null
+      "description": "Agent profile for art direction in 3D web design, product configurators, hero scenes, AR previews, and immersive visual interfaces."
     },
     {
       "id": 2014,
@@ -23083,7 +23083,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G3",
-      "description": null
+      "description": "Agent profile for guide brand expression, art direction, imagery, typography tone, and visual distinctiveness. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 2015,
@@ -23094,7 +23094,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G3",
-      "description": null
+      "description": "Use this skill to design, audit, or implement bounded Codex subagent and custom-agent workflows, reviewer passes, multi-agent research, and specialist agent profiles with clear responsibilities, context contracts, token budgets, and safety gates."
     },
     {
       "id": 2016,
@@ -23105,7 +23105,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G3",
-      "description": null
+      "description": "Use this skill for migrating legacy UI to design-system primitives, component mapping, risk sequencing. Trigger when the task involves web design work related to Design System Migration Plan, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 2017,
@@ -23116,7 +23116,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G3",
-      "description": null
+      "description": "Agent profile for reviewing design decisions through conversion, SEO/PPC, funnel, and business-growth impact."
     },
     {
       "id": 2018,
@@ -23127,7 +23127,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G3",
-      "description": null
+      "description": "Use this skill for principal-level architecture decisions, tradeoffs, risk review, phased implementation plans. Trigger when the task involves agent profile work related to Principal Architect Agent, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 2019,
@@ -23138,7 +23138,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G3",
-      "description": null
+      "description": "Agent profile for principal-level programming review before merge, release, or production handoff."
     },
     {
       "id": 2020,
@@ -23149,7 +23149,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G3",
-      "description": null
+      "description": "Use this skill for push notifications, deep links, routing, payloads, opt-in UX, delivery testing. Trigger when the task involves apps work related to Push Notifications Deep Links, production implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 2021,
@@ -23160,7 +23160,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G3",
-      "description": null
+      "description": "Use this skill for SEO strategy, technical SEO prioritization, organic growth roadmaps, search risk review. Trigger when the task involves agent profile work related to SEO Director Agent, implementation, audits, debugging, strategy, or validation."
     },
     {
       "id": 2022,
@@ -23171,7 +23171,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G3",
-      "description": null
+      "description": "Use this skill when selecting, combining, auditing, or routing across a large Codex skill catalog, agent profiles, subagents, plugins, MCP tools, or project AGENTS.md instructions for complex multi-domain work."
     },
     {
       "id": 2023,
@@ -23182,7 +23182,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G3",
-      "description": null
+      "description": "Agent profile for coordinate multi-agent work, decompose tasks, assign specialist passes, merge findings, and prevent duplicated effort. Use when Codex needs a specialist agent perspective for planning, implementation, review, debugging, validation, or handoff in this domain."
     },
     {
       "id": 2024,
@@ -23193,7 +23193,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G3",
-      "description": null
+      "description": "Agent profile for TURBO mode multi-role critique when maximum result quality is more important than token economy."
     },
     {
       "id": 2025,
@@ -23204,7 +23204,7 @@
       "source": "SREDNOFF",
       "source_raw": "SREDNOFF",
       "group": "G3",
-      "description": null
+      "description": "Agent profile for art direction and premium UI/UX review across websites, apps, dashboards, 3D web experiences, and landing pages."
     },
     {
       "id": 2026,
@@ -23216,7 +23216,29 @@
       "source_raw": "WSH",
       "group": "G3",
       "description": null
+    },
+    {
+      "id": 2029,
+      "name": "external-prompt-pattern-miner",
+      "tags": [
+        "ai"
+      ],
+      "source": "SREDNOFF",
+      "source_raw": "SREDNOFF",
+      "group": "G2",
+      "description": "Use this skill when reviewing external system-prompt repositories, leaked-prompt archives, agent prompt dumps, Fable/Claude/OpenAI/Codex prompt examples, or prompt-engineering collections to safely improve Srednoff OS without copying proprietary text."
+    },
+    {
+      "id": 2030,
+      "name": "promptfoo-evals-redteam-ci",
+      "tags": [
+        "ai"
+      ],
+      "source": "SREDNOFF",
+      "source_raw": "SREDNOFF",
+      "group": "G2",
+      "description": "Use this skill when building, reviewing, or debugging Promptfoo-based LLM, agent, RAG evals, red-team scans, provider setup, or GitHub Actions CI gates; do not use when ordinary deterministic unit tests are enough."
     }
   ],
-  "count": 2027
+  "count": 2029
 }
