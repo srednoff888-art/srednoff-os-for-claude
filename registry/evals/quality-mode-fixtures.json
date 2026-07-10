@@ -1,0 +1,8 @@
+[
+  { "id": "fast_small_fix", "brief": "quick fix for a small typo in the docs", "expectedMode": "fast", "expectedLegacyMode": "normal", "expectedMaxCapabilities": 8 },
+  { "id": "standard_backend_build", "brief": "add a new endpoint to the backend API", "expectedMode": "standard", "expectedLegacyMode": "normal", "expectedMaxCapabilities": 16 },
+  { "id": "production_launch", "brief": "prepare the SEO audit before the production launch", "expectedMode": "production", "expectedLegacyMode": "deep", "expectedMaxCapabilities": 24 },
+  { "id": "critical_security_audit", "brief": "security audit of the OAuth login flow", "expectedMode": "critical", "expectedLegacyMode": "deep", "expectedMaxCapabilities": 32 },
+  { "id": "critical_beats_production", "brief": "migrate the payments database before the production launch", "expectedMode": "critical", "expectedLegacyMode": "deep", "expectedMaxCapabilities": 32, "note": "critical (payments/migration) must win over production (launch) when both trigger in the same brief" },
+  { "id": "turbo_beats_everything", "brief": "TURBO security audit of the payments migration", "expectedMode": "turbo", "expectedLegacyMode": "turbo", "expectedMaxCapabilities": 48, "note": "explicit TURBO always wins, even over critical-risk keywords" }
+]

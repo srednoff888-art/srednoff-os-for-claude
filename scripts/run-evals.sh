@@ -16,6 +16,7 @@ mode_router="$registry/mode-router.sh"
 domain_router="$registry/domain-router.sh"
 selector="$registry/select-skills.sh"
 mode_fixtures="$registry/evals/mode-fixtures.json"
+quality_mode_fixtures="$registry/evals/quality-mode-fixtures.json"
 domain_fixtures="$registry/evals/domain-fixtures.json"
 selector_fixtures="$registry/evals/selector-fixtures.json"
 secret_fixtures="$registry/evals/secret-pattern-fixtures.json"
@@ -58,6 +59,19 @@ if [ -f "$mode_fixtures" ]; then
     pass=0; [ "$got_mode" = "$expected_mode" ] && pass=1
     add_result "mode" "$id" "$pass" "$expected_mode" "$got_mode"
   done < <(jq -r '.[] | [.id, .brief, .expectedMode] | @tsv' "$mode_fixtures" | strip_cr)
+fi
+
+if [ -f "$quality_mode_fixtures" ]; then
+  while IFS=$'\t' read -r id brief expected_mode expected_legacy expected_max; do
+    [ -z "$id" ] && continue
+    out="$(bash "$mode_router" --brief "$brief" --json 2>/dev/null)"
+    got_mode="$(printf '%s' "$out" | jq -r '.mode // "ERROR"')"
+    got_legacy="$(printf '%s' "$out" | jq -r '.legacy_mode // "ERROR"')"
+    got_max="$(printf '%s' "$out" | jq -r '.max_capabilities // "ERROR"')"
+    pass=0
+    [ "$got_mode" = "$expected_mode" ] && [ "$got_legacy" = "$expected_legacy" ] && [ "$got_max" = "$expected_max" ] && pass=1
+    add_result "quality-mode" "$id" "$pass" "mode=$expected_mode,legacy=$expected_legacy,max=$expected_max" "mode=$got_mode,legacy=$got_legacy,max=$got_max"
+  done < <(jq -r '.[] | [.id, .brief, .expectedMode, .expectedLegacyMode, .expectedMaxCapabilities] | @tsv' "$quality_mode_fixtures" | strip_cr)
 fi
 
 if [ -f "$domain_fixtures" ]; then

@@ -1,9 +1,9 @@
 [
   { "id": "literal_turbo", "brief": "TURBO fix the checkout bug", "expectedMode": "turbo" },
   { "id": "literal_turbo_lowercase", "brief": "turbo optimize this query", "expectedMode": "turbo" },
-  { "id": "turbo_substring_must_not_fire", "brief": "the turbocharger needs replacement", "expectedMode": "normal", "note": "turbo as part of a larger word (turbocharger) must not fire the standalone TURBO trigger" },
-  { "id": "deep_synonym_maximally", "brief": "please do this maximally well, dont skimp on tokens", "expectedMode": "deep" },
-  { "id": "deep_synonym_production", "brief": "review this before production launch", "expectedMode": "deep" },
-  { "id": "cyrillic_turbo_word_must_not_fire", "brief": "сделай в режиме турбо для этой задачи", "expectedMode": "normal", "note": "spec requires the literal Latin word TURBO; Cyrillic transliteration must not accidentally fire it" },
-  { "id": "trivial_task", "brief": "fix a typo in the readme", "expectedMode": "normal" }
+  { "id": "turbo_substring_must_not_fire", "brief": "the turbocharger needs replacement", "expectedMode": "standard", "note": "turbo as part of a larger word (turbocharger) must not fire the standalone TURBO trigger" },
+  { "id": "deep_synonym_maximally", "brief": "please do this maximally well, dont skimp on tokens", "expectedMode": "production", "note": "generic deep-work synonym with no specific critical-risk domain signal falls through to production, not critical (v1.15)" },
+  { "id": "deep_synonym_production", "brief": "review this before production launch", "expectedMode": "production" },
+  { "id": "cyrillic_turbo_word_must_not_fire", "brief": "сделай в режиме турбо для этой задачи", "expectedMode": "standard", "note": "spec requires the literal Latin word TURBO; Cyrillic transliteration must not accidentally fire it" },
+  { "id": "trivial_task", "brief": "fix a typo in the readme", "expectedMode": "fast", "note": "v1.15: typo/small-fix briefs now get the lean 'fast' quality mode instead of the balanced default" }
 ]

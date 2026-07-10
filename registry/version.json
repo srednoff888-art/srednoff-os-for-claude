@@ -1,7 +1,7 @@
 {
   "name": "SREDNOFF OS (Claude Code)",
-  "version": "v1.14",
-  "released_at": "2026-07-03",
+  "version": "v1.15",
+  "released_at": "2026-07-10",
   "baseline": {
     "kernel_records": 2027,
     "principle": "quality-first-economy-tiebreaker"
@@ -49,9 +49,17 @@
     "claude-code-plugin-packaging",
     "marketplace-manifest-validated",
     "profile-lock-enforcement-gate",
-    "session-start-banner-oneline"
+    "session-start-banner-oneline",
+    "quality-modes",
+    "powershell-static-analysis-ci",
+    "quality-release-evidence-docs",
+    "rules-readme-paths-scoping-doc"
   ],
   "notes": {
+    "quality-modes": "v1.15, ported concept from srednoff-os (Codex sibling): mode-router now classifies a brief into 5 quality modes (fast/standard/production/critical/turbo, registry/quality-modes.json) instead of 3 (normal/deep/turbo). Each mode also reports legacy_mode (normal/deep/turbo) so any pre-v1.15 consumer keeps working. fast=lean/8 (typo/small-fix), standard=balanced/16 (default), production=deep/24 (launch/deploy/SEO/growth/mobile/3D), critical=deep/32 (security/auth/payments/DB-migration - bigger budget than production because the risk is higher), turbo=turbo/48 (literal TURBO only, unchanged). Deliberately did NOT port the donor's bare '\\baudit\\b' critical-trigger - it false-positived on \"SEO audit\"/\"content audit\" in our own quality-mode-fixtures.json; security/compliance triggers already cover the intended case.",
+    "powershell-static-analysis-ci": "v1.15: windows-powershell CI job gained a PowerShell parse-check (Parser::ParseFile over every .ps1) and PSScriptAnalyzer -Severity Error, closing the asymmetry where bash had shellcheck but PowerShell had no static analysis at all - ported from srednoff-os's CI approach.",
+    "quality-release-evidence-docs": "v1.15: added QUALITY.md and RELEASE.md at repo root (concept ported from srednoff-os), listing every verified check with the exact command that produces it, plus explicit 'What This Does Not Promise' and 'Known Residual Risks' sections - no number in either file is asserted without a re-runnable command.",
+    "rules-readme-paths-scoping-doc": "v1.15: added .claude/rules/README.md documenting the native Claude Code paths: frontmatter feature for scoping project-specific rules to a glob (confirmed via official docs research). The 10 shared core rules deliberately do NOT use paths: - they are cross-cutting and must stay always-active.",
     "session-start-banner-oneline": "SessionStart banner (session-start-hook.ps1/.sh) now emits a single scannable summary line first - [SREDNOFF OS: ACTIVE] project='name' tags=... rules=N loaded PROFILE.lock=cached|not generated - followed by the fuller agent-facing detail paragraph on a second line. Rule count is computed by counting .claude/rules/*.md at runtime instead of being hardcoded, so it can't drift from the actual rule set. Motivation: research into Claude Desktop's Code tab found no statusLine/footer-badge equivalent there (Desktop shares CLAUDE.md/hooks/settings/skills/MCP with the CLI per its docs, but has its own fixed, non-scriptable ambient UI - diff-stat badge, usage ring, CI status bar - with no user-hookable persistent surface). The SessionStart banner is the only thing that reliably renders in both CLI and Desktop transcripts without the user asking, so it was tightened to be legible at a glance instead of inventing a Desktop badge the product doesn't expose.",
     "profile-lock-enforcement-gate": "PreToolUse(Edit|Write|MultiEdit) hook (require-profile-lock-read) denies the first edit of a session in a project with .claude/PROFILE.lock.md until it's actually been read (verified by a companion PostToolUse(Read) marker hook, mark-profile-lock-read). Opt-in via settings.example.json like the security hooks. Built after a real case where an embedded CLAUDE.md banner alone did not cause compliance - see 70-skills-registry.md.",
     "model-routing-guidance": "Advisory only for the main session (the agent follows rule 80 and can switch via /model); actionable for delegated sub-agents via the Agent tool's per-call `model` parameter. Nothing auto-switches the main session model - this is guidance, not an automated router.",

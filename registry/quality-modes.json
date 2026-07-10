@@ -1,0 +1,58 @@
+{
+  "schema": "srednoff-os.quality-modes.v1",
+  "version": "v1.15",
+  "default_quality_mode": "standard",
+  "note": "Ported concept from srednoff-os (Codex sibling project), adapted to this repo's existing budget vocabulary (lean/balanced/deep/turbo) and mode-router.ps1/.sh. legacy_mode is the pre-v1.15 3-way classification (normal/deep/turbo) that mode-router still also emits, so any consumer written against the old contract keeps working unchanged.",
+  "modes": [
+    {
+      "name": "fast",
+      "legacy_mode": "normal",
+      "description": "Small low-risk changes where speed and context economy matter most.",
+      "budget": "lean",
+      "max_capabilities": 8,
+      "use_when": ["typo", "small fix", "format", "quick check", "minor docs"],
+      "validation_gates": ["quick-check"],
+      "group_policy": "prefer_group_1_only"
+    },
+    {
+      "name": "standard",
+      "legacy_mode": "normal",
+      "description": "Normal implementation and review work with balanced quality and cost.",
+      "budget": "balanced",
+      "max_capabilities": 16,
+      "use_when": ["build", "debug", "refactor", "review", "normal scoped work"],
+      "validation_gates": ["relevant-tests", "lint-if-present"],
+      "group_policy": "groups_1_2_first"
+    },
+    {
+      "name": "production",
+      "legacy_mode": "deep",
+      "description": "Launch, deploy, release, SEO/PPC/growth, mobile, 3D, or other production-facing work.",
+      "budget": "deep",
+      "max_capabilities": 24,
+      "use_when": ["production", "launch", "deploy", "release", "seo", "ppc", "growth", "mobile", "3d", "architecture"],
+      "validation_gates": ["doctor-if-system-change", "tests-build-lint", "rollback-review", "release-risk-review"],
+      "group_policy": "allow_group_3_when_result_is_concrete"
+    },
+    {
+      "name": "critical",
+      "legacy_mode": "deep",
+      "description": "High-risk security, auth, payments, database, migration, or audit work.",
+      "budget": "deep",
+      "max_capabilities": 32,
+      "use_when": ["security", "auth", "payments", "database", "migration", "audit", "data loss", "irreversible", "compliance", "crypto"],
+      "validation_gates": ["doctor-if-system-change", "tests-build-lint", "security-risk-review", "rollback-review", "multi-pass-review"],
+      "group_policy": "allow_group_3_for_high_risk_evidence"
+    }
+  ],
+  "turbo_override": {
+    "name": "turbo",
+    "legacy_mode": "turbo",
+    "budget": "turbo",
+    "max_capabilities": 48,
+    "requires_literal": "TURBO",
+    "validation_gates": ["doctor-if-system-change", "tests-build-lint", "security-risk-review", "rollback-review", "multi-pass-review"],
+    "group_policy": "all_groups_available",
+    "note": "TURBO raises useful validation depth. It does not bypass destructive/paid/production/secret-sensitive/license-sensitive/irreversible-action confirmation rules."
+  }
+}

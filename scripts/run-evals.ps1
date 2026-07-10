@@ -16,6 +16,7 @@ $ModeRouter = Join-Path $Registry "mode-router.ps1"
 $DomainRouter = Join-Path $Registry "domain-router.ps1"
 $Selector = Join-Path $Registry "select-skills.ps1"
 $ModeFixtures = Join-Path $Registry "evals\mode-fixtures.json"
+$QualityModeFixtures = Join-Path $Registry "evals\quality-mode-fixtures.json"
 $DomainFixtures = Join-Path $Registry "evals\domain-fixtures.json"
 $SelectorFixtures = Join-Path $Registry "evals\selector-fixtures.json"
 $SecretFixtures = Join-Path $Registry "evals\secret-pattern-fixtures.json"
@@ -43,6 +44,17 @@ if (Test-Path -LiteralPath $ModeFixtures) {
     $out = & powershell -NoProfile -ExecutionPolicy Bypass -File $ModeRouter -Brief $f.brief -Json 2>$null | ConvertFrom-Json
     $pass = ($out.mode -eq $f.expectedMode)
     $results.Add([pscustomobject]@{ suite = "mode"; id = $f.id; pass = $pass; expected = $f.expectedMode; got = $out.mode }) | Out-Null
+  }
+}
+
+if (Test-Path -LiteralPath $QualityModeFixtures) {
+  $fixtures = Get-Content -LiteralPath $QualityModeFixtures -Raw | ConvertFrom-Json
+  foreach ($f in $fixtures) {
+    $out = & powershell -NoProfile -ExecutionPolicy Bypass -File $ModeRouter -Brief $f.brief -Json 2>$null | ConvertFrom-Json
+    $pass = ($out.mode -eq $f.expectedMode) -and ($out.legacy_mode -eq $f.expectedLegacyMode) -and ($out.max_capabilities -eq $f.expectedMaxCapabilities)
+    $expected = "mode=$($f.expectedMode),legacy=$($f.expectedLegacyMode),max=$($f.expectedMaxCapabilities)"
+    $got = "mode=$($out.mode),legacy=$($out.legacy_mode),max=$($out.max_capabilities)"
+    $results.Add([pscustomobject]@{ suite = "quality-mode"; id = $f.id; pass = $pass; expected = $expected; got = $got }) | Out-Null
   }
 }
 

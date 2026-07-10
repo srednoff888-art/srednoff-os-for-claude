@@ -43,7 +43,7 @@ Lock — стартовая точка, не догма: под конкретн
 powershell -NoProfile -File "$env:USERPROFILE\.claude\registry\mode-router.ps1" -Brief "<задача>"
 powershell -NoProfile -File "$env:USERPROFILE\.claude\registry\domain-router.ps1" -ProjectPath "." -Brief "<задача>"
 ```
-`mode-router` — normal/deep/turbo (**TURBO только по буквальному слову**, синонимы дают только `deep`). `domain-router` — домены задачи + уточняющие вопросы (только для UI/3D/SEO/Amazon, не для всего) + канонические скиллы + validation gates. Точечный ROI-выбор из каталога:
+`mode-router` — 5 quality-режимов (v1.15, `~/.claude/registry/quality-modes.json`): `fast`(lean/8, мелкие правки) → `standard`(balanced/16, обычная работа) → `production`(deep/24, launch/deploy/SEO/growth/mobile/3D) → `critical`(deep/32, security/auth/payments/миграции БД) → `turbo`(turbo/48, **только по буквальному слову TURBO**, синонимы типа «максимально»/«не экономь» дают `production`, не `turbo`). Каждый режим также отдаёт `legacy_mode` (normal/deep/turbo) для обратной совместимости. `domain-router` — домены задачи + уточняющие вопросы (только для UI/3D/SEO/Amazon, не для всего) + канонические скиллы + validation gates. Точечный ROI-выбор из каталога:
 ```powershell
 powershell -NoProfile -File "$env:USERPROFILE\.claude\registry\select-skills.ps1" -Brief "<задача>" -Budget balanced -Max 16
 ```

@@ -156,6 +156,36 @@ jobs:
           New-Item -ItemType Directory -Force -Path $reg, $tpl | Out-Null
           Copy-Item -Recurse -Force ".\*" $tpl
           Copy-Item -Recurse -Force ".\registry\*" $reg
+      - name: PowerShell parse check (all .ps1 must at least parse)
+        shell: powershell
+        run: |
+          $ParseErrors = @()
+          Get-ChildItem .\scripts, .\.claude\hooks, .\registry -Filter *.ps1 -File -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
+            $Tokens = $null
+            $Errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$Tokens, [ref]$Errors) | Out-Null
+            if ($Errors) {
+              $ParseErrors += $Errors | ForEach-Object { "$($_.Extent.File):$($_.Extent.StartLineNumber): $($_.Message)" }
+            }
+          }
+          if ($ParseErrors.Count -gt 0) {
+            $ParseErrors | ForEach-Object { Write-Host $_ }
+            exit 1
+          }
+      - name: PSScriptAnalyzer (error-severity only - style warnings do not fail CI)
+        shell: powershell
+        run: |
+          Install-Module PSScriptAnalyzer -Scope CurrentUser -Force -ErrorAction Stop
+          $Results = @()
+          foreach ($Path in @(".\scripts", ".\.claude\hooks", ".\registry")) {
+            if (Test-Path -LiteralPath $Path) {
+              $Results += Invoke-ScriptAnalyzer -Path $Path -Recurse -Severity Error
+            }
+          }
+          if ($Results) {
+            $Results | Format-Table -AutoSize
+            exit 1
+          }
       - name: Catalog validator + registry audit + eval suite (PowerShell)
         shell: powershell
         run: |

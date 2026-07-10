@@ -53,24 +53,56 @@ get_domain_tags() {
 }
 
 _TURBO_PATTERN='(^|\s)turbo(\s|$)|\bturbo\s+mode\b|\bmode\s+turbo\b'
-_DEEP_PATTERN="maxim|do not skimp|don't skimp|production\\b|security audit|architecture|migration|launch\\b|deep research|full audit|максималь|не эконом|глубокий"
+# Quality modes (v1.15, ported concept from srednoff-os/Codex sibling, see registry/quality-modes.json).
+# critical = high-risk security/auth/payments/data work - gets a bigger budget than production.
+# NOTE: bare '\baudit\b' was deliberately dropped - it false-positived on "SEO audit" /
+# "content audit" (caught by quality-mode-fixtures.json production_launch). 'security'/
+# 'compliance' already cover the intended security/compliance-audit case without it.
+# 'migrat' is scoped to database/schema/data migrations, not generic content migration.
+_CRITICAL_PATTERN='security|\bauth\b|oauth|payments?\b|(database|db|schema|data)\b.{0,20}migrat|migrat.{0,20}(database|db|schema)\b|data loss|irreversible|compliance|crypto'
+# production = launch/deploy/release/SEO/PPC/growth/mobile/3D/architecture work, or a generic
+# "go deep" synonym with no specific domain signal (falls through here, not to critical).
+_PRODUCTION_PATTERN="production\\b|\\blaunch\\b|\\bdeploy(ment)?\\b|\\brelease\\b|\\bseo\\b|\\bppc\\b|growth\\b|mobile\\b|\\b3d\\b|architecture|maxim|do not skimp|don't skimp|deep research|full audit|максималь|не эконом|глубокий"
+_FAST_PATTERN='\btypo\b|\bsmall fix\b|\bquick fix\b|\bformat(ting)?\b|\bquick check\b|\bminor docs?\b'
 
-# Prints "mode|budget|max_capabilities|turbo(0/1)|reason". TURBO fires ONLY on the literal
-# word "turbo" - synonyms like "maximally"/"production"/"security audit" trigger "deep",
-# never "turbo" (Principle #1: quality first, but no silent uncontrolled scope growth).
+# Reads registry/quality-modes.json for validation_gates/group_policy per mode so those
+# lists live in one place (the json), not duplicated here. Prints "gates|policy" (gates
+# comma-joined). Falls back to empty on any error - non-security routing helper, fails open.
+get_quality_mode_meta() {
+  local mode_name="$1" json_path
+  json_path="$(dirname "${BASH_SOURCE[0]}")/quality-modes.json"
+  if ! command -v jq >/dev/null 2>&1 || [ ! -f "$json_path" ]; then printf '|\n'; return; fi
+  jq -r --arg name "$mode_name" \
+    '(.modes + [.turbo_override]) | map(select(.name == $name)) | .[0] // {validation_gates: [], group_policy: ""} | "\(.validation_gates | join(","))|\(.group_policy)"' \
+    "$json_path" 2>/dev/null || printf '|\n'
+}
+
+# Prints "mode|budget|max_capabilities|turbo(0/1)|reason|legacy_mode|validation_gates|group_policy".
+# TURBO fires ONLY on the literal word "turbo" - synonyms trigger production/critical, never
+# turbo (Principle #1: quality first, but no silent uncontrolled scope growth).
 get_mode() {
-  local brief_lower is_turbo=0 is_deep=0 mode budget max_cap reason
+  local brief_lower is_turbo=0 is_critical=0 is_production=0 is_fast=0
+  local mode legacy_mode budget max_cap reason gates policy
   brief_lower="$(printf '%s' "$1" | tr '[:upper:]' '[:lower:]')"
   if printf '%s' "$brief_lower" | "$GREP_BIN" -Pq "$_TURBO_PATTERN" 2>/dev/null; then is_turbo=1; fi
-  if printf '%s' "$brief_lower" | "$GREP_BIN" -Pq "$_DEEP_PATTERN" 2>/dev/null; then is_deep=1; fi
+  if printf '%s' "$brief_lower" | "$GREP_BIN" -Pq "$_CRITICAL_PATTERN" 2>/dev/null; then is_critical=1; fi
+  if [ "$is_critical" -eq 0 ] && printf '%s' "$brief_lower" | "$GREP_BIN" -Pq "$_PRODUCTION_PATTERN" 2>/dev/null; then is_production=1; fi
+  if [ "$is_turbo" -eq 0 ] && [ "$is_critical" -eq 0 ] && [ "$is_production" -eq 0 ] \
+     && printf '%s' "$brief_lower" | "$GREP_BIN" -Pq "$_FAST_PATTERN" 2>/dev/null; then is_fast=1; fi
+
   if [ "$is_turbo" -eq 1 ]; then
-    mode="turbo"; budget="turbo"; max_cap=48; reason="explicit TURBO trigger"
-  elif [ "$is_deep" -eq 1 ]; then
-    mode="deep"; budget="deep"; max_cap=24; reason="high-value/deep-work trigger without TURBO"
+    mode="turbo"; legacy_mode="turbo"; budget="turbo"; max_cap=48; reason="explicit TURBO trigger"
+  elif [ "$is_critical" -eq 1 ]; then
+    mode="critical"; legacy_mode="deep"; budget="deep"; max_cap=32; reason="high-risk security/auth/payments/data trigger"
+  elif [ "$is_production" -eq 1 ]; then
+    mode="production"; legacy_mode="deep"; budget="deep"; max_cap=24; reason="launch/deploy/SEO/growth/production-facing trigger"
+  elif [ "$is_fast" -eq 1 ]; then
+    mode="fast"; legacy_mode="normal"; budget="lean"; max_cap=8; reason="small low-risk change trigger"
   else
-    mode="normal"; budget="balanced"; max_cap=16; reason="normal scoped work"
+    mode="standard"; legacy_mode="normal"; budget="balanced"; max_cap=16; reason="normal scoped work"
   fi
-  printf '%s|%s|%s|%s|%s\n' "$mode" "$budget" "$max_cap" "$is_turbo" "$reason"
+  IFS='|' read -r gates policy <<< "$(get_quality_mode_meta "$mode")"
+  printf '%s|%s|%s|%s|%s|%s|%s|%s\n' "$mode" "$budget" "$max_cap" "$is_turbo" "$reason" "$legacy_mode" "$gates" "$policy"
 }
 
 # Budget quotas: share of the shortlist that should come from G1/G2/G3.

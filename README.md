@@ -154,6 +154,8 @@ Nothing here modifies your global Claude Code settings by default. Hook wiring e
 
 > ✅ **CI-verified, not just claimed.** Every push runs shellcheck, JSON validation, the full eval suite, a hook canary (feeds each hook known-bad input and requires a block), and — because macOS ships `/bin/bash` 3.2.57 — a dedicated job that runs the real security hooks inside an official `bash:3.2` container. [See the workflow →](.github/workflows/ci.yml)
 
+See [`QUALITY.md`](QUALITY.md) for the full check-by-check evidence table (every number backed by a re-runnable command, plus honest "what this does not promise" sections) and [`RELEASE.md`](RELEASE.md) for the current release status.
+
 <br>
 
 ## 🎯 The core idea, in one line

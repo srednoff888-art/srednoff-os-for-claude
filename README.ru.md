@@ -154,6 +154,8 @@ available on demand. External agents = unvetted until github-research.
 
 > ✅ **Проверено в CI, а не просто заявлено.** Каждый push гоняет shellcheck, валидацию JSON, полный eval-suite, hook canary (скармливает каждому хуку заведомо плохой инпут и требует блокировки) и — поскольку macOS поставляет `/bin/bash` 3.2.57 — отдельный job, запускающий реальные security-хуки внутри официального контейнера `bash:3.2`. [Смотреть workflow →](.github/workflows/ci.yml)
 
+Полная таблица доказательств (каждое число — с командой, которой оно получено) — в [`QUALITY.md`](QUALITY.md); текущий статус релиза — в [`RELEASE.md`](RELEASE.md).
+
 <br>
 
 ## 🎯 Главная идея одной строкой

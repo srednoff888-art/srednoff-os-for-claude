@@ -42,31 +42,89 @@ function Get-DomainTags {
 }
 
 $TurboPatterns = @('(^|\s)turbo(\s|$)', '\bturbo\s+mode\b', '\bmode\s+turbo\b')
-$DeepPatterns = @('maxim', 'do not skimp', "don't skimp", 'production\b', 'security audit', 'architecture', 'migration', 'launch\b', 'deep research', 'full audit')
-# Russian deep-triggers via unicode escapes (avoids raw Cyrillic in a .ps1 file - see memory note).
-$DeepPatternsRu = @(
+# Generic "go deep" synonyms with no specific domain signal - fall through to "production"
+# (the lower of the two deep-tier quality modes) rather than "critical", which is reserved
+# for the specific high-risk keywords in $CriticalPatterns below.
+$DeepSynonymPatterns = @('maxim', 'do not skimp', "don't skimp", 'deep research', 'full audit')
+# Russian deep-synonym-triggers via unicode escapes (avoids raw Cyrillic in a .ps1 file - see memory note).
+$DeepSynonymPatternsRu = @(
   [string]::Concat([char]0x043C, [char]0x0430, [char]0x043A, [char]0x0441, [char]0x0438, [char]0x043C, [char]0x0430, [char]0x043B, [char]0x044C, [char]0x043D), # "maksimaln" (maximally)
   [string]::Concat([char]0x043D, [char]0x0435, [char]0x0020, [char]0x044D, [char]0x043A, [char]0x043E, [char]0x043D, [char]0x043E, [char]0x043C),                 # "ne ekonom" (don't skimp)
   [string]::Concat([char]0x0433, [char]0x043B, [char]0x0443, [char]0x0431, [char]0x043E, [char]0x043A, [char]0x0438, [char]0x0439)                                # "glubokiy" (deep)
 )
+# Quality modes (v1.15, ported concept from srednoff-os/Codex sibling, see registry/quality-modes.json):
+# production = launch/deploy/release/SEO/PPC/growth/mobile/3D/architecture work.
+$ProductionPatterns = @('production\b', '\blaunch\b', '\bdeploy(ment)?\b', '\brelease\b', '\bseo\b', '\bppc\b', 'growth\b', 'mobile\b', '\b3d\b', 'architecture')
+# critical = high-risk security/auth/payments/data work - gets a bigger budget than production.
+# NOTE: bare '\baudit\b' was deliberately dropped - it false-positived on "SEO audit" /
+# "content audit" (caught by quality-mode-fixtures.json production_launch). 'security'/
+# 'compliance' already cover the intended security/compliance-audit case without it.
+# 'migrat' is scoped to database/schema/data migrations, not generic content migration.
+$CriticalPatterns = @('security', '\bauth\b', 'oauth', 'payments?\b', '(database|db|schema|data)\b.{0,20}migrat', 'migrat.{0,20}(database|db|schema)\b', 'data loss', 'irreversible', 'compliance', 'crypto')
+
+# Reads registry/quality-modes.json for validation_gates/group_policy per mode so those
+# lists live in one place (the json), not duplicated in this function. Falls back to inline
+# defaults if the file is missing/unreadable - non-security routing helper, fails open.
+function Get-QualityModeMeta {
+  param([string]$ModeName)
+  $fallback = @{ validation_gates = @(); group_policy = "" }
+  try {
+    $jsonPath = Join-Path $PSScriptRoot "quality-modes.json"
+    if (-not (Test-Path -LiteralPath $jsonPath)) { return $fallback }
+    $doc = Get-Content -LiteralPath $jsonPath -Raw | ConvertFrom-Json
+    $all = @($doc.modes) + @($doc.turbo_override)
+    $match = $all | Where-Object { $_.name -eq $ModeName } | Select-Object -First 1
+    if (-not $match) { return $fallback }
+    return @{ validation_gates = @($match.validation_gates); group_policy = [string]$match.group_policy }
+  } catch { return $fallback }
+}
 
 function Get-Mode {
   param([string]$Brief)
   $lower = $Brief.ToLowerInvariant()
   $isTurbo = $false
   foreach ($p in $TurboPatterns) { if ($lower -match $p) { $isTurbo = $true; break } }
-  $isDeep = $false
-  foreach ($p in $DeepPatterns) { if ($lower -match $p) { $isDeep = $true; break } }
-  if (-not $isDeep) { foreach ($p in $DeepPatternsRu) { if ($lower.Contains($p)) { $isDeep = $true; break } } }
-  $mode = if ($isTurbo) { "turbo" } elseif ($isDeep) { "deep" } else { "normal" }
-  $budget = if ($mode -eq "turbo") { "turbo" } elseif ($mode -eq "deep") { "deep" } else { "balanced" }
-  $maxCap = if ($mode -eq "turbo") { 48 } elseif ($mode -eq "deep") { 24 } else { 16 }
+  $isCritical = $false
+  foreach ($p in $CriticalPatterns) { if ($lower -match $p) { $isCritical = $true; break } }
+  $isProduction = $false
+  if (-not $isCritical) {
+    foreach ($p in $ProductionPatterns) { if ($lower -match $p) { $isProduction = $true; break } }
+    if (-not $isProduction) {
+      foreach ($p in $DeepSynonymPatterns) { if ($lower -match $p) { $isProduction = $true; break } }
+    }
+    if (-not $isProduction) {
+      foreach ($p in $DeepSynonymPatternsRu) { if ($lower.Contains($p)) { $isProduction = $true; break } }
+    }
+  }
+  $isFast = $false
+  if (-not $isTurbo -and -not $isCritical -and -not $isProduction) {
+    foreach ($p in @('\btypo\b', '\bsmall fix\b', '\bquick fix\b', '\bformat(ting)?\b', '\bquick check\b', '\bminor docs?\b')) {
+      if ($lower -match $p) { $isFast = $true; break }
+    }
+  }
+
+  $mode = if ($isTurbo) { "turbo" } elseif ($isCritical) { "critical" } elseif ($isProduction) { "production" } elseif ($isFast) { "fast" } else { "standard" }
+  $legacyMode = if ($mode -eq "turbo") { "turbo" } elseif ($mode -in @("production", "critical")) { "deep" } else { "normal" }
+  $budget = switch ($mode) { "turbo" { "turbo" } "fast" { "lean" } "production" { "deep" } "critical" { "deep" } default { "balanced" } }
+  $maxCap = switch ($mode) { "turbo" { 48 } "fast" { 8 } "production" { 24 } "critical" { 32 } default { 16 } }
+  $reason = switch ($mode) {
+    "turbo"      { "explicit TURBO trigger" }
+    "critical"   { "high-risk security/auth/payments/data trigger" }
+    "production" { "launch/deploy/SEO/growth/production-facing trigger" }
+    "fast"       { "small low-risk change trigger" }
+    default      { "normal scoped work" }
+  }
+  $meta = Get-QualityModeMeta -ModeName $mode
+
   return [ordered]@{
     mode             = $mode
+    legacy_mode      = $legacyMode
     budget           = $budget
     max_capabilities = $maxCap
     turbo            = $isTurbo
-    reason           = if ($isTurbo) { "explicit TURBO trigger" } elseif ($isDeep) { "high-value/deep-work trigger without TURBO" } else { "normal scoped work" }
+    reason           = $reason
+    validation_gates = $meta.validation_gates
+    group_policy     = $meta.group_policy
     safety           = [ordered]@{
       destructive_confirmation_required = $true
       paid_confirmation_required        = $true

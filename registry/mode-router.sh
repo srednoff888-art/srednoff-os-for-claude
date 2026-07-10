@@ -22,14 +22,15 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-IFS='|' read -r mode budget max_cap turbo reason <<< "$(get_mode "$brief")"
+IFS='|' read -r mode budget max_cap turbo reason legacy_mode gates policy <<< "$(get_mode "$brief")"
 
 if [ "$json" -eq 1 ]; then
   if command -v jq >/dev/null 2>&1; then
     jq -nc --arg name "SREDNOFF OS mode router" --arg mode "$mode" --arg budget "$budget" \
       --argjson max "$max_cap" --argjson turbo "$([ "$turbo" = "1" ] && echo true || echo false)" \
-      --arg reason "$reason" \
-      '{name: $name, mode: $mode, budget: $budget, max_capabilities: $max, turbo: $turbo, reason: $reason,
+      --arg reason "$reason" --arg legacy_mode "$legacy_mode" --arg gates "$gates" --arg policy "$policy" \
+      '{name: $name, mode: $mode, legacy_mode: $legacy_mode, budget: $budget, max_capabilities: $max, turbo: $turbo,
+        reason: $reason, validation_gates: (if $gates == "" then [] else ($gates | split(",")) end), group_policy: $policy,
         safety: {destructive_confirmation_required: true, paid_confirmation_required: true, production_confirmation_required: true}}'
   else
     echo "jq not found - install jq for --json output" >&2
