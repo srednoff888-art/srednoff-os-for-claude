@@ -51,7 +51,11 @@ foreach ($Doc in $RequiredDocs) {
     if ($Text -match "[\x00-\x08\x0B\x0C\x0E-\x1F]") {
         Add-Issue -Issues $Issues -File $Doc -Message "doc contains control characters"
     }
-    if ($Text -match "TODO|TBD") {
+    # -cmatch (case-sensitive): PowerShell's default -match is case-insensitive, which
+    # would flag lowercase "todo" appearing as an ordinary word inside unrelated prose -
+    # bash's grep -E (no -i) is case-sensitive by default, so an unqualified -match here
+    # would silently diverge from the bash port on the same input.
+    if ($Text -cmatch "TODO|TBD") {
         Add-Issue -Issues $Issues -File $Doc -Message "doc contains unresolved TODO/TBD marker"
     }
 }

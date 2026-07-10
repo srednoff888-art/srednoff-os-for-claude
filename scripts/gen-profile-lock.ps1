@@ -147,6 +147,8 @@ if (Test-Path -LiteralPath $skillsLibIndex) {
   $libIndex = Get-Content -LiteralPath $skillsLibIndex -Raw | ConvertFrom-Json
   $tagSet = New-Object System.Collections.Generic.HashSet[string]
   foreach ($t in $tags) { $tagSet.Add($t) | Out-Null }
+  $libSet = New-Object System.Collections.Generic.HashSet[string]
+  foreach ($prop in $libIndex.PSObject.Properties) { $libSet.Add($prop.Name) | Out-Null }
 
   $toInstall = @()
   foreach ($prop in $libIndex.PSObject.Properties) {
@@ -157,8 +159,31 @@ if (Test-Path -LiteralPath $skillsLibIndex) {
     if ($matched -and ($toInstall -notcontains $prop.Name)) { $toInstall += $prop.Name }
   }
 
+  $skillsDir = Join-Path $Target ".claude\skills"
+
+  # Prune skills-library-sourced skills that no longer match the current tag set (e.g.
+  # a dependency was removed and "3d" no longer applies). Only removes directories whose
+  # NAME is a known skills-library entry AND not in this run's $toInstall - a user's own
+  # hand-added skill, or one of the 5 static base skills init copies (neither is a
+  # skills-library index name), is never touched. Without this, re-running gen-profile-lock
+  # (e.g. via apply-os-all -Sync) only ever ADDS skills across syncs, silently growing
+  # past the cap's intent as a project's tags drift over time.
+  # KNOWN LIMITATION (accepted, not fixed): pruning is name-based, not provenance-based -
+  # it cannot distinguish "we installed this" from "the user separately created their own
+  # custom skill that happens to share a name with a skills-library catalog entry". That
+  # coincidence would have to be deliberate (matching one of 303 specific names) and is
+  # judged narrow enough not to justify a separate installed-by-us marker file/tracking
+  # mechanism. If this bites in practice, the fix is a small state file listing skill
+  # names this script installed, checked here instead of the raw index membership test.
+  if (Test-Path -LiteralPath $skillsDir) {
+    Get-ChildItem -LiteralPath $skillsDir -Directory -ErrorAction SilentlyContinue | ForEach-Object {
+      if ($libSet.Contains($_.Name) -and ($toInstall -notcontains $_.Name)) {
+        Remove-Item -LiteralPath $_.FullName -Recurse -Force
+      }
+    }
+  }
+
   if ($toInstall.Count -gt 0) {
-    $skillsDir = Join-Path $Target ".claude\skills"
     New-Item -ItemType Directory -Force -Path $skillsDir | Out-Null
     $libRoot = Join-Path $env:USERPROFILE ".claude\templates\claude-md-os\skills-library"
     foreach ($nm in $toInstall) {

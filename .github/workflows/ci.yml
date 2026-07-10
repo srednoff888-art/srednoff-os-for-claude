@@ -59,6 +59,10 @@ jobs:
         run: bash "$HOME/.claude/templates/claude-md-os/scripts/validate-skills-library.sh"
       - name: Docs portal validation (required docs present, no TODO markers, all linked)
         run: bash "$HOME/.claude/templates/claude-md-os/scripts/validate-docs.sh"
+      - name: Benchmark harness syntax check (not executed - no API auth in CI)
+        run: |
+          python3 -m py_compile benchmarks/run_claude_benchmark.py
+          rm -rf benchmarks/__pycache__
       - name: Eval suite (mode/domain/selector/secret-pattern regression)
         run: bash "$HOME/.claude/templates/claude-md-os/scripts/run-evals.sh"
 

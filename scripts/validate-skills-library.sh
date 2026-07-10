@@ -39,25 +39,61 @@ for skill_dir in "$skills_root"/*/; do
   first_line="$(head -n1 "$skill_file")"
   [ "$first_line" = "---" ] && frontmatter_ok=1
 
-  # Only scan the frontmatter block (between the first two "---" lines).
+  # Read the whole file into an array (bash-3.2-safe: while-read, not mapfile) so a
+  # YAML block-scalar description ("description: >" / "|") can look ahead at its
+  # indented continuation lines - matching them requires index access, not a single
+  # streamed pass.
+  file_lines=()
+  while IFS= read -r file_line || [ -n "$file_line" ]; do
+    file_lines+=("$file_line")
+  done < "$skill_file"
+
   in_frontmatter=0
   seen_first=0
-  while IFS= read -r line; do
+  total_lines="${#file_lines[@]}"
+  idx=0
+  while [ "$idx" -lt "$total_lines" ]; do
+    line="${file_lines[$idx]}"
     if [ "$line" = "---" ]; then
-      if [ "$seen_first" -eq 0 ]; then in_frontmatter=1; seen_first=1; continue
+      if [ "$seen_first" -eq 0 ]; then in_frontmatter=1; seen_first=1; idx=$((idx + 1)); continue
       else break
       fi
     fi
-    [ "$in_frontmatter" -eq 1 ] || continue
-    if printf '%s' "$line" | grep -Eq '^[[:space:]]*name:[[:space:]]*[a-z0-9][a-z0-9-]{1,62}[[:space:]]*$'; then
-      name_ok=1
+    if [ "$in_frontmatter" -eq 1 ]; then
+      if printf '%s' "$line" | grep -Eq '^[[:space:]]*name:[[:space:]]*[a-z0-9][a-z0-9-]{1,62}[[:space:]]*$'; then
+        name_ok=1
+      fi
+      if printf '%s' "$line" | grep -Eq '^[[:space:]]*description:[[:space:]]*.+$'; then
+        raw_value="$(printf '%s' "$line" | sed -E 's/^[[:space:]]*description:[[:space:]]*//')"
+        trimmed_value="$(printf '%s' "$raw_value" | sed -E 's/^[[:space:]]+|[[:space:]]+$//g')"
+        case "$trimmed_value" in
+          '>'|'|'|'>-'|'|-'|'>+'|'|+')
+            # Block scalar - the description is the indented lines that follow.
+            block_value=""
+            child=$((idx + 1))
+            while [ "$child" -lt "$total_lines" ]; do
+              child_line="${file_lines[$child]}"
+              case "$child_line" in
+                '---') break ;;
+                [[:space:]]*[!\ ]*) block_value="$block_value $(printf '%s' "$child_line" | sed -E 's/^[[:space:]]+|[[:space:]]+$//g')" ;;
+                *) break ;;
+              esac
+              child=$((child + 1))
+            done
+            block_value="$(printf '%s' "$block_value" | sed -E 's/^[[:space:]]+//')"
+            block_len="${#block_value}"
+            if [ "$block_len" -ge 20 ] && [ "$block_len" -le 1024 ]; then desc_ok=1; else desc_ok=0; fi
+            ;;
+          *)
+            value="$(printf '%s' "$trimmed_value" | sed -E 's/^"(.*)"$/\1/; s/^'"'"'(.*)'"'"'$/\1/')"
+            value_len="${#value}"
+            if [ "$value_len" -ge 20 ] && [ "$value_len" -le 1024 ]; then desc_ok=1; else desc_ok=0; fi
+            ;;
+        esac
+      fi
     fi
-    if printf '%s' "$line" | grep -Eq '^[[:space:]]*description:[[:space:]]*.+$'; then
-      value="$(printf '%s' "$line" | sed -E 's/^[[:space:]]*description:[[:space:]]*//; s/^"(.*)"$/\1/; s/^'"'"'(.*)'"'"'$/\1/')"
-      value_len="${#value}"
-      if [ "$value_len" -ge 20 ] && [ "$value_len" -le 1024 ]; then desc_ok=1; else desc_ok=0; fi
-    fi
-  done < "$skill_file"
+    idx=$((idx + 1))
+  done
 
   errors=""
   [ "$frontmatter_ok" -eq 1 ] || errors="${errors}missing frontmatter start; "

@@ -32,10 +32,32 @@ foreach ($Skill in $SkillDirs) {
     for ($i = 0; $i -lt $Lines.Count; $i++) {
         $Line = $Lines[$i]
         if ($Line -match '^\s*---\s*$' -and $i -gt 0) { break }
-        if ($Line -match '^\s*name:\s*[a-z0-9][a-z0-9-]{1,62}\s*$') { $NameOk = $true }
+        # -cmatch (case-sensitive): PowerShell's default -match is case-insensitive,
+        # which would accept "Name: BadUpperCaseName" as a valid lowercase name - a real
+        # Claude Code skill name must be lowercase (official docs), and bash's grep -Eq
+        # (case-sensitive by default) already rejects this correctly. An unqualified
+        # -match here would silently let an invalid skill pass on Windows while bash
+        # correctly failed it - a real platform-parity bug, not cosmetic.
+        if ($Line -cmatch '^\s*name:\s*[a-z0-9][a-z0-9-]{1,62}\s*$') { $NameOk = $true }
         if ($Line -match '^\s*description:\s*(.+)$') {
-            $Value = $Matches[1].Trim().Trim('"').Trim("'")
-            $DescriptionOk = ($Value.Length -ge 20) -and ($Value.Length -le 1024)
+            $Value = $Matches[1].Trim()
+            if ($Value -in @(">", "|", ">-", "|-", ">+", "|+")) {
+                # YAML block scalar - the actual description is the indented lines that
+                # follow, not this marker itself. None of the 303 currently-imported
+                # skills use this form, but it's a standard YAML pattern real skills in
+                # this ecosystem do use (confirmed in the donor catalog) - treating it as
+                # a 1-character description would be a false failure on a well-formed skill.
+                $BlockLines = @()
+                for ($Child = $i + 1; $Child -lt $Lines.Count; $Child++) {
+                    if ($Lines[$Child] -match '^\s*---\s*$') { break }
+                    if ($Lines[$Child] -match '^\s+\S') { $BlockLines += $Lines[$Child].Trim() } else { break }
+                }
+                $BlockValue = ($BlockLines -join " ").Trim()
+                $DescriptionOk = ($BlockValue.Length -ge 20) -and ($BlockValue.Length -le 1024)
+            } else {
+                $Value = $Value.Trim('"').Trim("'")
+                $DescriptionOk = ($Value.Length -ge 20) -and ($Value.Length -le 1024)
+            }
         }
     }
     $Errors = @()

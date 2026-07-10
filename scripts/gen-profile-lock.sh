@@ -178,8 +178,35 @@ if [ -f "$skills_lib_index" ] && command -v jq >/dev/null 2>&1; then
     to_entries[] | select((.value.tags // []) as $st | ($tags - ($tags - $st)) | length > 0) | .key
   ' "$skills_lib_index" | tr -d '\r')
 
+  skills_dir="$target/.claude/skills"
+
+  # Prune skills-library-sourced skills that no longer match the current tag set (e.g.
+  # a dependency was removed and "3d" no longer applies). Only removes directories whose
+  # NAME is a known skills-library entry AND not in this run's to_install - a user's own
+  # hand-added skill, or one of the 5 static base skills init copies (neither is a
+  # skills-library index name), is never touched. Without this, re-running gen-profile-lock
+  # (e.g. via apply-os-all --sync) only ever ADDS skills across syncs, silently growing
+  # past the cap's intent as a project's tags drift over time.
+  # KNOWN LIMITATION (accepted, not fixed): pruning is name-based, not provenance-based -
+  # it cannot distinguish "we installed this" from "the user separately created their own
+  # custom skill that happens to share a name with a skills-library catalog entry". That
+  # coincidence would have to be deliberate (matching one of 303 specific names) and is
+  # judged narrow enough not to justify a separate installed-by-us marker file/tracking
+  # mechanism. If this bites in practice, the fix is a small state file listing skill
+  # names this script installed, checked here instead of the raw index membership test.
+  if [ -d "$skills_dir" ]; then
+    for existing_dir in "$skills_dir"/*/; do
+      [ -d "$existing_dir" ] || continue
+      existing_name="$(basename "$existing_dir")"
+      is_lib_name="$(jq -r --arg n "$existing_name" 'has($n)' "$skills_lib_index")"
+      [ "$is_lib_name" != "true" ] && continue
+      keep=0
+      for nm in ${to_install[@]+"${to_install[@]}"}; do [ "$nm" = "$existing_name" ] && keep=1; done
+      [ "$keep" -eq 0 ] && rm -rf "$existing_dir"
+    done
+  fi
+
   if [ "${#to_install[@]}" -gt 0 ]; then
-    skills_dir="$target/.claude/skills"
     mkdir -p "$skills_dir"
     for nm in "${to_install[@]}"; do
       src_md="$lib_root/$nm/SKILL.md"

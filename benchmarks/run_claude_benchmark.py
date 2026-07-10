@@ -17,7 +17,15 @@ and /en/headless before writing, not guessed):
     file writes and common filesystem commands but still requires an
     --allowedTools entry for anything else (network, unlisted shell patterns) -
     a meaningfully safer default for an unattended script than a full bypass.
-  - `--continue` for turn 2+ instead of codex's `resume --last`.
+  - `--session-id <uuid>` on turn 1 and `--resume <uuid>` on turn 2+ (an explicit,
+    generated UUID per run), instead of `--continue`/codex's `resume --last`. Found
+    during audit: `--continue` resumes "the most recent conversation" scoped to the
+    *directory*, not this specific run - if a workspace path were ever reused across
+    two separate benchmark invocations (the runner does rmtree+recreate the directory,
+    but that doesn't necessarily reset Claude Code's own session index for that path),
+    turn 2 could silently resume a stale session from a prior invocation instead of
+    this run's turn 1, corrupting comparability without any visible error. An explicit
+    per-run UUID removes the ambiguity entirely.
 
 The generated task workspaces are intentionally outside this repository. That
 keeps the control arm from inheriting a stray CLAUDE.md if one existed nearby.
@@ -33,12 +41,12 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import json
-import os
 import re
 import shutil
 import subprocess
 import sys
 import time
+import uuid
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -172,18 +180,18 @@ def scan_security(workspace: Path) -> list[str]:
     return findings
 
 
-def claude_command(model: str, prompt: str, bare: bool, resume: bool) -> list[str]:
+def claude_command(model: str, prompt: str, bare: bool, resume: bool, session_id: str) -> list[str]:
     base = ["claude", "-p", "--output-format", "json",
             "--permission-mode", "acceptEdits", "--allowedTools", "Read,Edit,Bash"]
     if bare:
         base = base + ["--bare"]
     if resume:
-        return base + ["--continue", prompt]
-    return base + ["--model", model, prompt]
+        return base + ["--resume", session_id, prompt]
+    return base + ["--model", model, "--session-id", session_id, prompt]
 
 
-def execute_turn(workspace: Path, model: str, prompt: str, bare: bool, resume: bool) -> dict[str, Any]:
-    command = claude_command(model, prompt, bare, resume)
+def execute_turn(workspace: Path, model: str, prompt: str, bare: bool, resume: bool, session_id: str) -> dict[str, Any]:
+    command = claude_command(model, prompt, bare, resume, session_id)
     try:
         completed = subprocess.run(
             command, cwd=workspace, text=True, encoding="utf-8", errors="replace",
@@ -217,6 +225,7 @@ def run_one(output: Path, arm: str, task_id: str, replicate: int, model: str, ma
     if arm == "srednoff_os":
         deploy_srednoff_os(workspace)
     initial_prompt = "Read TASK.md, implement the requested solution in this workspace, and validate it locally. Do not use network or external packages."
+    session_id = str(uuid.uuid4())
     started = time.perf_counter()
     total_cost = 0.0
     cost_seen = False
@@ -226,7 +235,7 @@ def run_one(output: Path, arm: str, task_id: str, replicate: int, model: str, ma
     oracle_detail = "not run"
     for turn in range(1, max_turns + 1):
         prompt = initial_prompt if turn == 1 else f"The independent hidden oracle failed: {oracle_detail}. Fix the root cause, then validate locally."
-        turn_result = execute_turn(workspace, model, prompt, bare, resume=turn > 1)
+        turn_result = execute_turn(workspace, model, prompt, bare, resume=turn > 1, session_id=session_id)
         if turn_result.get("total_cost_usd") is not None:
             total_cost += float(turn_result["total_cost_usd"])
             cost_seen = True
