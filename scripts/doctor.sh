@@ -113,6 +113,17 @@ if [ -f "$skills_lib_script" ] && command -v jq >/dev/null 2>&1; then
   add_check "skills-library" "$skills_lib_status" "ok=$skills_lib_ok; failed=$skills_lib_failed"
 fi
 
+# 2c4. Docs portal validation (v1.18, Phase 4) - required docs present, non-empty, no
+# unresolved TODO/TBD, README.md links every doc. Runs against the TEMPLATE root.
+docs_script="$script_dir/validate-docs.sh"
+if [ -f "$docs_script" ] && command -v jq >/dev/null 2>&1; then
+  docs_out="$(bash "$docs_script" --json 2>/dev/null)"
+  docs_count="$(printf '%s' "$docs_out" | jq -r '.docs // 0')"
+  docs_issues="$(printf '%s' "$docs_out" | jq -r '.issues // 0')"
+  docs_status="OK"; [ "${docs_issues:-0}" -gt 0 ] && docs_status="WARN"
+  add_check "docs" "$docs_status" "docs=$docs_count; issues=$docs_issues"
+fi
+
 # 2d. Registry/template version control. Auto-commits any pending changes so a bad edit is
 # always revertible via git, WITHOUT relying on remembering to commit by hand.
 invoke_auto_commit() {

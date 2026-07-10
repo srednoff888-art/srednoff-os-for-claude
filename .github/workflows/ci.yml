@@ -57,6 +57,8 @@ jobs:
         run: bash "$HOME/.claude/registry/gen-catalog-json.sh" --check
       - name: Skills-library metadata smoke check (name/description/frontmatter validity)
         run: bash "$HOME/.claude/templates/claude-md-os/scripts/validate-skills-library.sh"
+      - name: Docs portal validation (required docs present, no TODO markers, all linked)
+        run: bash "$HOME/.claude/templates/claude-md-os/scripts/validate-docs.sh"
       - name: Eval suite (mode/domain/selector/secret-pattern regression)
         run: bash "$HOME/.claude/templates/claude-md-os/scripts/run-evals.sh"
 
@@ -199,6 +201,7 @@ jobs:
           & "$reg\validate-catalog-format.ps1"; if ($LASTEXITCODE -ne 0) { throw "catalog validator failed" }
           & "$reg\audit-registry.ps1";          if ($LASTEXITCODE -ne 0) { throw "registry audit failed" }
           & "$tpl\scripts\validate-skills-library.ps1"; if ($LASTEXITCODE -ne 0) { throw "skills-library validation failed" }
+          & "$tpl\scripts\validate-docs.ps1";     if ($LASTEXITCODE -ne 0) { throw "docs validation failed" }
           & "$tpl\scripts\run-evals.ps1";        if ($LASTEXITCODE -ne 0) { throw "eval suite failed" }
       - name: Hook canary (PowerShell hooks must deny/block known-bad input)
         shell: powershell

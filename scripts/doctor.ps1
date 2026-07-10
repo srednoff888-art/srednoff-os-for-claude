@@ -82,6 +82,14 @@ if (Test-Path -LiteralPath $skillsLibScript) {
   Add-Check -Name "skills-library" -Status ($(if ($skillsLibOut.failed -eq 0) { "OK" } else { "FAIL" })) -Detail "ok=$($skillsLibOut.ok); failed=$($skillsLibOut.failed)"
 }
 
+# 2c4. Docs portal validation (v1.18, Phase 4) - required docs present, non-empty, no
+# unresolved TODO/TBD, README.md links every doc. Runs against the TEMPLATE root.
+$docsScript = Join-Path $ScriptDir "validate-docs.ps1"
+if (Test-Path -LiteralPath $docsScript) {
+  $docsOut = & powershell -NoProfile -ExecutionPolicy Bypass -File $docsScript -Json 2>$null | ConvertFrom-Json
+  Add-Check -Name "docs" -Status ($(if ($docsOut.issues -eq 0) { "OK" } else { "WARN" })) -Detail "docs=$($docsOut.docs); issues=$($docsOut.issues)"
+}
+
 # 2d. Registry/template version control (closes: "no rollback point for the 2000+ record
 # catalog"). Auto-commits any pending changes so a bad edit is always revertible via git,
 # WITHOUT relying on remembering to commit by hand - the same class of failure as a prose
