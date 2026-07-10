@@ -49,6 +49,12 @@ powershell -NoProfile -File "$env:USERPROFILE\.claude\registry\select-skills.ps1
 ```
 Health-check: `powershell -NoProfile -File "$env:USERPROFILE\.claude\templates\claude-md-os\scripts\doctor.ps1" -ProjectPath "." -RunEvals -FixSafe`.
 
+**UI/3D/design/growth source selection (v1.16)** — перед выбором внешней UI-библиотеки, 3D-ассета, компонент-маркетплейса или design-коннектора прогони ranker вместо выбора источника по памяти:
+```powershell
+powershell -NoProfile -File "$env:USERPROFILE\.claude\registry\source-ranker.ps1" -Brief "<задача>" -Max 8
+```
+Возвращает ранжированный список с `score`/`risk`/`license`/`gates` из `registry/design-source-registry.json` (17 источников: shadcn, 21st.dev, Three.js, react-three-fiber, Sketchfab и др.) — `gates` явно перечисляет, что нужно проверить (лицензия, provenance, accessibility, размер ассета) перед копированием. Это дополняет, не заменяет, верификационный гейт ниже — source-ranker покрывает конкретно готовые UI/3D/design источники, github-research — произвольный внешний код/паттерны.
+
 ## Верификационный гейт для внешних агентов (supply-chain)
 - **Реально доступны без установки только `INST`/`ANTH`.** Всё остальное (`WSH/VOLT/FTB/GH/EXT`) — **по умолчанию `unvetted`**, звёзды ≠ безопасность/качество/лицензия.
 - **Никакого авто-install.** Перед ПЕРВЫМ использованием внешнего агента: github-research (лицензия, дата последнего коммита, беглый скан на вредоносное/секреты), затем **пиннинг коммита/тега**. Приоритет официальным (Anthropic/Vercel/Stripe/Shopify) над случайным community.

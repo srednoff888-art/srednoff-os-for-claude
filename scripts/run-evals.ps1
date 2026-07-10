@@ -20,6 +20,8 @@ $QualityModeFixtures = Join-Path $Registry "evals\quality-mode-fixtures.json"
 $DomainFixtures = Join-Path $Registry "evals\domain-fixtures.json"
 $SelectorFixtures = Join-Path $Registry "evals\selector-fixtures.json"
 $SecretFixtures = Join-Path $Registry "evals\secret-pattern-fixtures.json"
+$SourceRankerFixtures = Join-Path $Registry "evals\source-ranker-fixtures.json"
+$SourceRanker = Join-Path $Registry "source-ranker.ps1"
 $HookLib = Join-Path $env:USERPROFILE ".claude\templates\claude-md-os\.claude\hooks\hook-lib.ps1"
 
 $results = New-Object System.Collections.Generic.List[object]
@@ -77,6 +79,51 @@ if (Test-Path -LiteralPath $SelectorFixtures) {
     $pass = $false
     foreach ($exp in $f.expectedAny) { if ($gotNames -contains $exp) { $pass = $true; break } }
     $results.Add([pscustomobject]@{ suite = "selector"; id = $f.id; pass = $pass; expected = ($f.expectedAny -join ","); got = ($gotNames -join ",") }) | Out-Null
+  }
+}
+
+if ((Test-Path -LiteralPath $SourceRankerFixtures) -and (Test-Path -LiteralPath $SourceRanker)) {
+  $fixtures = Get-Content -LiteralPath $SourceRankerFixtures -Raw | ConvertFrom-Json
+  foreach ($f in $fixtures) {
+    # External process invocation silently drops an empty-string argument value (found
+    # while adding the empty-brief fixture) - omit -Brief entirely rather than pass "",
+    # since source-ranker.ps1's own default for -Brief is already "".
+    $rankerArgs = @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", $SourceRanker)
+    if ($f.brief) { $rankerArgs += @("-Brief", $f.brief) }
+    $rankerArgs += "-Json"
+    $out = & powershell @rankerArgs 2>$null | ConvertFrom-Json
+    $ranked = @($out.ranked_sources)
+    $pass = $true
+    $expected = ""
+    $got = ""
+
+    if ($f.expectedTop) {
+      $topId = if ($ranked.Count -gt 0) { $ranked[0].id } else { $null }
+      $expectedTops = @($f.expectedTop)
+      $pass = $expectedTops -contains $topId
+      $expected = "top in [$($expectedTops -join ',')]"
+      $got = "top=$topId"
+    } elseif ($f.expectedIdPresent) {
+      $ids = @($ranked | ForEach-Object { $_.id })
+      $pass = $ids -contains $f.expectedIdPresent
+      $expected = "id present: $($f.expectedIdPresent)"
+      $got = "ids=$($ids -join ',')"
+      if ($pass -and $f.expectedGateOnId) {
+        $match = $ranked | Where-Object { $_.id -eq $f.expectedGateOnId.id } | Select-Object -First 1
+        $hasGate = $match -and (@($match.gates) -contains $f.expectedGateOnId.gate)
+        $pass = $pass -and $hasGate
+        $expected += "; gate '$($f.expectedGateOnId.gate)' on $($f.expectedGateOnId.id)"
+        $got += "; gates=$(@($match.gates) -join ',')"
+      }
+    } elseif ($f.expectedDomains) {
+      $gotDomains = @($out.domains)
+      $pass = $false
+      foreach ($exp in $f.expectedDomains) { if ($gotDomains -contains $exp) { $pass = $true; break } }
+      $expected = "domain in [$($f.expectedDomains -join ',')]"
+      $got = "domains=$($gotDomains -join ',')"
+    }
+
+    $results.Add([pscustomobject]@{ suite = "source-ranker"; id = $f.id; pass = $pass; expected = $expected; got = $got }) | Out-Null
   }
 }
 

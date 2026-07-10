@@ -1,0 +1,23 @@
+[
+  {
+    "id": "shadcn_landing",
+    "brief": "shadcn landing page for a saas product",
+    "expectedTop": "shadcn-registry"
+  },
+  {
+    "id": "3d_configurator",
+    "brief": "3d product configurator shoes",
+    "expectedTop": ["threejs", "react-three-fiber", "model-viewer", "babylonjs", "gltf-transform"]
+  },
+  {
+    "id": "sketchfab_high_risk_gate",
+    "brief": "download a specific 3d model from sketchfab marketplace",
+    "expectedIdPresent": "sketchfab",
+    "expectedGateOnId": { "id": "sketchfab", "gate": "ask-user-before-connector-or-external-copy" }
+  },
+  {
+    "id": "empty_brief_no_crash",
+    "brief": "",
+    "expectedDomains": ["ui-ux", "web-design"]
+  }
+]

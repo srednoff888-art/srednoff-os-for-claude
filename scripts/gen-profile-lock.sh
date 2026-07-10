@@ -17,6 +17,14 @@ core="$HOME/.claude/registry/CORE-300.md"
 if [ ! -f "$core" ]; then echo "CORE-300.md not found: $core" >&2; exit 1; fi
 total="$(grep -Ec '^[[:space:]]*[0-9]+\.' "$core" || true)"
 
+# Stamp the OS version this project was last synced against, so doctor can detect
+# template drift without needing a separate marker file.
+version_file="$HOME/.claude/registry/version.json"
+os_version="unknown"
+if [ -f "$version_file" ] && command -v jq >/dev/null 2>&1; then
+  os_version="$(jq -r '.version // "unknown"' "$version_file" 2>/dev/null || echo "unknown")"
+fi
+
 tags=()
 add_tag() {
   local t="$1" existing
@@ -76,6 +84,7 @@ tags_csv="$(printf '%s, ' "${tags[@]}")"; tags_csv="${tags_csv%, }"
   echo "# PROFILE.lock - cached skill selection for project '$name'"
   echo ""
   echo "Generated $ts by gen-profile-lock.sh. CACHE: load this instead of grepping CORE-300.md ($total entries) each session = context saving."
+  echo "OS version: $os_version (see ~/.claude/registry/version.json for the current template version)."
   echo "Principle #1: QUALITY FIRST, economy only at equal quality. Starting set - refine per task; any CORE-300 entry may be called."
   echo "Model routing: see 80-model-routing.md (G1~Haiku, G2~Sonnet, G3~Opus by required quality)."
   echo "External agents (GH/WSH/VOLT/FTB/EXT) = unvetted until github-research + license check (see 70-skills-registry.md)."

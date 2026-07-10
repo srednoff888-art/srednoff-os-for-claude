@@ -20,6 +20,8 @@ quality_mode_fixtures="$registry/evals/quality-mode-fixtures.json"
 domain_fixtures="$registry/evals/domain-fixtures.json"
 selector_fixtures="$registry/evals/selector-fixtures.json"
 secret_fixtures="$registry/evals/secret-pattern-fixtures.json"
+source_ranker_fixtures="$registry/evals/source-ranker-fixtures.json"
+source_ranker="$registry/source-ranker.sh"
 hook_lib="$HOME/.claude/templates/claude-md-os/.claude/hooks/hook-lib.sh"
 
 if ! command -v jq >/dev/null 2>&1; then echo "jq not found - required for run-evals.sh" >&2; exit 1; fi
@@ -106,6 +108,58 @@ if [ -f "$selector_fixtures" ]; then
     done
     add_result "selector" "$id" "$pass" "$expected_any_csv" "$got_names_csv"
   done < <(jq -r '.[] | [.id, .brief, .budget, (.expectedAny | join(","))] | @tsv' "$selector_fixtures" | strip_cr)
+fi
+
+if [ -f "$source_ranker_fixtures" ] && [ -f "$source_ranker" ]; then
+  while IFS= read -r fixture; do
+    [ -z "$fixture" ] && continue
+    id="$(printf '%s' "$fixture" | jq -r '.id')"
+    brief="$(printf '%s' "$fixture" | jq -r '.brief')"
+    out="$(bash "$source_ranker" --brief "$brief" --json 2>/dev/null)"
+    has_expected_top="$(printf '%s' "$fixture" | jq -r 'has("expectedTop")')"
+    has_id_present="$(printf '%s' "$fixture" | jq -r 'has("expectedIdPresent")')"
+    has_domains="$(printf '%s' "$fixture" | jq -r 'has("expectedDomains")')"
+
+    pass=0; expected=""; got=""
+    if [ "$has_expected_top" = "true" ]; then
+      top_id="$(printf '%s' "$out" | jq -r '.ranked_sources[0].id // ""')"
+      expected_tops_csv="$(printf '%s' "$fixture" | jq -r 'if (.expectedTop | type) == "array" then (.expectedTop | join(",")) else .expectedTop end')"
+      IFS=',' read -ra expected_tops <<< "$expected_tops_csv"
+      for e in ${expected_tops[@]+"${expected_tops[@]}"}; do [ "$e" = "$top_id" ] && pass=1; done
+      expected="top in [$expected_tops_csv]"; got="top=$top_id"
+    elif [ "$has_id_present" = "true" ]; then
+      expected_id="$(printf '%s' "$fixture" | jq -r '.expectedIdPresent')"
+      ids_csv="$(printf '%s' "$out" | jq -r '[.ranked_sources[].id] | join(",")')"
+      id_present=0
+      IFS=',' read -ra ids_arr <<< "$ids_csv"
+      for g in ${ids_arr[@]+"${ids_arr[@]}"}; do [ "$g" = "$expected_id" ] && id_present=1; done
+      pass=$id_present
+      expected="id present: $expected_id"; got="ids=$ids_csv"
+      has_gate_check="$(printf '%s' "$fixture" | jq -r 'has("expectedGateOnId")')"
+      if [ "$id_present" -eq 1 ] && [ "$has_gate_check" = "true" ]; then
+        expected_gate="$(printf '%s' "$fixture" | jq -r '.expectedGateOnId.gate')"
+        gates_csv="$(printf '%s' "$out" | jq -r --arg id "$expected_id" '[.ranked_sources[] | select(.id == $id) | .gates[]] | join(",")')"
+        gate_present=0
+        IFS=',' read -ra gates_arr <<< "$gates_csv"
+        for g in ${gates_arr[@]+"${gates_arr[@]}"}; do [ "$g" = "$expected_gate" ] && gate_present=1; done
+        pass=$gate_present
+        expected="$expected; gate '$expected_gate' on $expected_id"; got="$got; gates=$gates_csv"
+      fi
+    elif [ "$has_domains" = "true" ]; then
+      expected_domains_csv="$(printf '%s' "$fixture" | jq -r '.expectedDomains | join(",")')"
+      got_domains_csv="$(printf '%s' "$out" | jq -r '.domains | join(",")')"
+      IFS=',' read -ra expected_domains_arr <<< "$expected_domains_csv"
+      IFS=',' read -ra got_domains_arr <<< "$got_domains_csv"
+      for e in ${expected_domains_arr[@]+"${expected_domains_arr[@]}"}; do
+        for g in ${got_domains_arr[@]+"${got_domains_arr[@]}"}; do
+          [ "$e" = "$g" ] && pass=1
+        done
+      done
+      expected="domain in [$expected_domains_csv]"; got="domains=$got_domains_csv"
+    fi
+
+    add_result "source-ranker" "$id" "$pass" "$expected" "$got"
+  done < <(jq -c '.[]' "$source_ranker_fixtures" | strip_cr)
 fi
 
 # Quota invariant: "lean" budget must never surface a G3 (heavyweight) record.

@@ -53,6 +53,8 @@ jobs:
         run: bash "$HOME/.claude/registry/validate-catalog-format.sh"
       - name: Registry audit (duplicate names, source counts)
         run: bash "$HOME/.claude/registry/audit-registry.sh"
+      - name: Catalog JSON export drift gate (CORE-300.json must match CORE-300.md)
+        run: bash "$HOME/.claude/registry/gen-catalog-json.sh" --check
       - name: Eval suite (mode/domain/selector/secret-pattern regression)
         run: bash "$HOME/.claude/templates/claude-md-os/scripts/run-evals.sh"
 

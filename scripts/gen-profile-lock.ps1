@@ -21,6 +21,15 @@ $core = Join-Path $env:USERPROFILE ".claude\registry\CORE-300.md"
 if (-not (Test-Path -LiteralPath $core)) { Write-Error "CORE-300.md not found: $core"; exit 1 }
 $total = (Select-String -Path $core -Pattern '^\s*\d+\.').Count
 
+# Stamp the OS version this project was last synced against, so doctor can detect
+# template drift (a project running an older OS version than what's currently in
+# ~/.claude/templates/claude-md-os) without needing a separate marker file.
+$versionFile = Join-Path $env:USERPROFILE ".claude\registry\version.json"
+$osVersion = "unknown"
+if (Test-Path -LiteralPath $versionFile) {
+  try { $osVersion = (Get-Content -LiteralPath $versionFile -Raw | ConvertFrom-Json).version } catch {}
+}
+
 $tags = [System.Collections.Generic.List[string]]::new()
 function Add-Tag($t) { if (-not $tags.Contains($t)) { $tags.Add($t) } }
 
@@ -69,6 +78,7 @@ $body = New-Object System.Collections.Generic.List[string]
 $body.Add("# PROFILE.lock - cached skill selection for project '$name'")
 $body.Add("")
 $body.Add("Generated $ts by gen-profile-lock.ps1. CACHE: load this instead of grepping CORE-300.md ($total entries) each session = context saving.")
+$body.Add("OS version: $osVersion (see ~/.claude/registry/version.json for the current template version).")
 $body.Add("Principle #1: QUALITY FIRST, economy only at equal quality. Starting set - refine per task; any CORE-300 entry may be called.")
 $body.Add("Model routing: see 80-model-routing.md (G1~Haiku, G2~Sonnet, G3~Opus by required quality).")
 $body.Add("External agents (GH/WSH/VOLT/FTB/EXT) = unvetted until github-research + license check (see 70-skills-registry.md).")

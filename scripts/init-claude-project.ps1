@@ -38,6 +38,17 @@ if (-not (Test-Path -LiteralPath $TemplateRoot)) {
   exit 1
 }
 
+# Hard safety guard: never let target resolve to $HOME/$env:USERPROFILE itself. This
+# tool deploys a full project structure (rules/hooks/skills/CLAUDE.md/etc.) - the user's
+# profile root is a global config location, never a "project". Defense in depth, added
+# after a real incident where init-claude-project.sh (which had extra git-root-walking
+# logic this script never had) resolved a scratch path to $HOME and deployed there.
+$HomeResolved = (Resolve-Path -LiteralPath $env:USERPROFILE).Path.TrimEnd('\')
+if ($Target.TrimEnd('\') -ieq $HomeResolved) {
+  Write-Error "init-claude-project: refusing to init directly into `$env:USERPROFILE ($HomeResolved) - this is not a project directory. Pass an explicit project path."
+  exit 1
+}
+
 Write-Host "Claude MD OS init" -ForegroundColor Cyan
 Write-Host "  Template: $TemplateRoot"
 Write-Host "  Target:   $Target"

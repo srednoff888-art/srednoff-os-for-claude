@@ -33,6 +33,24 @@ $structOut = & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $S
 $structOk = $structOut -match "All required files present"
 Add-Check -Name "structure" -Status ($(if ($structOk) { "OK" } else { "FAIL" })) -Detail ($(if ($structOk) { "all files present" } else { ($structOut -split "`n" | Where-Object { $_ -match "MISS" }) -join "; " }))
 
+# 2a2. Template drift (project's PROFILE.lock.md "OS version" stamp vs the current
+# registry/version.json). Informational only (WARN, never FAIL) - an older stamp just
+# means the project hasn't been synced since a newer OS version shipped; run
+# apply-os-all.ps1 -Sync (or init-claude-project.ps1 directly) to refresh it.
+$lockPath = Join-Path $ProjectRoot ".claude\PROFILE.lock.md"
+$versionFile = Join-Path $Registry "version.json"
+if ((Test-Path -LiteralPath $lockPath) -and (Test-Path -LiteralPath $versionFile)) {
+  $currentVersion = (Get-Content -LiteralPath $versionFile -Raw | ConvertFrom-Json).version
+  $stampMatch = Select-String -Path $lockPath -Pattern '^OS version: (\S+)' | Select-Object -First 1
+  if ($stampMatch) {
+    $projectVersion = $stampMatch.Matches[0].Groups[1].Value
+    $driftOk = ($projectVersion -eq $currentVersion)
+    Add-Check -Name "template-drift" -Status ($(if ($driftOk) { "OK" } else { "WARN" })) -Detail "project=$projectVersion current=$currentVersion$(if (-not $driftOk) { ' - run apply-os-all.ps1 -Sync or re-run init to refresh' })"
+  } else {
+    Add-Check -Name "template-drift" -Status "WARN" -Detail "PROFILE.lock.md has no OS version stamp (generated before this check existed) - re-run gen-profile-lock or init to add it"
+  }
+}
+
 # 2b. Registry audit (cheap, local-only, no network - always safe to run)
 $auditOut = & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $Registry "audit-registry.ps1") -Json 2>$null | ConvertFrom-Json
 Add-Check -Name "registry-audit" -Status ($(if ($auditOut.duplicate_count -eq 0) { "OK" } else { "WARN" })) -Detail "records=$($auditOut.total_records); duplicates=$($auditOut.duplicate_count)"
@@ -41,6 +59,18 @@ Add-Check -Name "registry-audit" -Status ($(if ($auditOut.duplicate_count -eq 0)
 $validateOut = & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $Registry "validate-catalog-format.ps1") -Json 2>$null | ConvertFrom-Json
 $validateOk = $validateOut.issues.Count -eq 0
 Add-Check -Name "catalog-format" -Status ($(if ($validateOk) { "OK" } else { "WARN" })) -Detail "parsed=$($validateOut.total_parsed); issues=$($validateOut.issues.Count)"
+
+# 2c2. Catalog JSON export drift gate (CORE-300.json must stay in sync with CORE-300.md;
+# this is a *structural* check via gen-catalog-json.ps1 -Check - record count + entry ids
+# against the bash-canonical CORE-300.json, not a byte-for-byte diff, since jq/PS JSON
+# formatting differs). External consumers (see registry/RFC-CATALOG-JSON.md) read the
+# JSON directly, so silent drift there is a real regression, not cosmetic.
+$catalogJsonScript = Join-Path $Registry "gen-catalog-json.ps1"
+if (Test-Path -LiteralPath $catalogJsonScript) {
+  $catalogJsonOut = & powershell -NoProfile -ExecutionPolicy Bypass -File $catalogJsonScript -Check 2>&1 | Out-String
+  $catalogJsonOk = $catalogJsonOut -match "OK - CORE-300\.json is in sync"
+  Add-Check -Name "catalog-json" -Status ($(if ($catalogJsonOk) { "OK" } else { "WARN" })) -Detail $catalogJsonOut.Trim()
+}
 
 # 2d. Registry/template version control (closes: "no rollback point for the 2000+ record
 # catalog"). Auto-commits any pending changes so a bad edit is always revertible via git,

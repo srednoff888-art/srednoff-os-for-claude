@@ -23,10 +23,26 @@ done
 target="$(cd "$target" && pwd)"
 stamp="$(date +%Y%m%d-%H%M%S)"
 
-# If inside a git repo, prefer the git root.
-if git -C "$target" rev-parse --show-toplevel >/dev/null 2>&1; then
-  target="$(git -C "$target" rev-parse --show-toplevel)"
+# Hard safety guard: never let target resolve to $HOME itself. This tool deploys a full
+# project structure (rules/hooks/skills/CLAUDE.md/etc.) - $HOME is a user's global config
+# root, never a "project", and mistakenly targeting it pollutes real global state. Defense
+# in depth regardless of how target got here (bad argument, resolved symlink, future logic
+# change) - not just a fix for the specific git-root bug below.
+home_resolved="$(cd "$HOME" && pwd)"
+if [ "$target" = "$home_resolved" ]; then
+  echo "init-claude-project: refusing to init directly into \$HOME ($home_resolved) - this is not a project directory. Pass an explicit project path." >&2
+  exit 1
 fi
+
+# NOTE: earlier versions of this script "preferred the git root" here (walked up via
+# git rev-parse --show-toplevel to find an ancestor .git and re-targeted there). That
+# walk has no bound: it can escape past the intended project into ANY unrelated ancestor
+# repo, including a personal dotfiles repo at $HOME - which is exactly what happened
+# during testing (a scratch path under $HOME/AppData/... silently resolved to $HOME
+# because $HOME/.git existed, deploying the full OS - rules, hooks, skills, CLAUDE.md -
+# directly into the user's home directory). init-claude-project.ps1 never had this
+# logic and was never affected. Removed here for platform parity and safety: use the
+# explicitly passed target as-is, exactly like the PowerShell port.
 
 echo "Claude MD OS init"
 echo "  Template: $template_root"

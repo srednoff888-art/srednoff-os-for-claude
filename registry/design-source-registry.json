@@ -1,0 +1,380 @@
+{
+  "name": "SREDNOFF OS design and growth source registry",
+  "sources": [
+    {
+      "id": "21st-dev",
+      "name": "21st.dev",
+      "url": "https://21st.dev",
+      "kind": "component-marketplace",
+      "domains": [
+        "ui-ux",
+        "web-design",
+        "3d-web"
+      ],
+      "connector": "magic",
+      "risk": "medium",
+      "license": "varies by component; verify at source before copying",
+      "provenance": "external component marketplace via Magic/21st.dev; inspect source page and dependency tree before adoption",
+      "vetted": false,
+      "copy_policy": "copy-adapt-upgrade only after license, provenance, accessibility, dependency, and visual QA checks",
+      "use_when": [
+        "premium React UI",
+        "modern landing",
+        "animated component",
+        "shadcn/Tailwind project"
+      ],
+      "requires_user_prompt": true
+    },
+    {
+      "id": "shadcn-registry",
+      "name": "shadcn/ui registry",
+      "url": "https://ui.shadcn.com/docs/registry",
+      "kind": "component-registry",
+      "domains": [
+        "ui-ux",
+        "web-design",
+        "programming"
+      ],
+      "risk": "low",
+      "license": "MIT for shadcn/ui source; verify third-party registry item license before copying",
+      "provenance": "official shadcn/ui registry documentation and registry item metadata",
+      "vetted": true,
+      "copy_policy": "prefer stack-native registry items; adapt locally and keep provenance note for copied code",
+      "use_when": [
+        "React",
+        "Next.js",
+        "Tailwind",
+        "Radix",
+        "copy-adapt component workflow"
+      ],
+      "requires_user_prompt": false
+    },
+    {
+      "id": "magic-ui",
+      "name": "Magic UI",
+      "url": "https://magicui.design/docs",
+      "kind": "component-library",
+      "domains": [
+        "ui-ux",
+        "web-design"
+      ],
+      "risk": "medium",
+      "license": "verify at source before copying",
+      "provenance": "external animated component documentation; inspect component source and package requirements",
+      "vetted": false,
+      "copy_policy": "adapt effects selectively; avoid copying if license or dependency cost is unclear",
+      "use_when": [
+        "animated UI",
+        "SaaS landing",
+        "portfolio",
+        "premium visual polish"
+      ],
+      "requires_user_prompt": true
+    },
+    {
+      "id": "aceternity-ui",
+      "name": "Aceternity UI",
+      "url": "https://ui.aceternity.com/components",
+      "kind": "component-library",
+      "domains": [
+        "ui-ux",
+        "web-design"
+      ],
+      "risk": "medium",
+      "license": "verify at source before copying",
+      "provenance": "external component documentation; inspect source, animation dependencies, and usage terms",
+      "vetted": false,
+      "copy_policy": "copy only with confirmed license; prefer pattern extraction for visual effects",
+      "use_when": [
+        "Framer Motion components",
+        "landing page sections",
+        "interactive visual polish"
+      ],
+      "requires_user_prompt": true
+    },
+    {
+      "id": "origin-ui",
+      "name": "Origin UI",
+      "url": "https://originui.com",
+      "kind": "component-library",
+      "domains": [
+        "ui-ux",
+        "web-design"
+      ],
+      "risk": "medium",
+      "license": "verify at source before copying",
+      "provenance": "external component library; inspect component page and any linked repository before reuse",
+      "vetted": false,
+      "copy_policy": "prefer simple patterns; keep copied code minimal and project-native",
+      "use_when": [
+        "Base UI patterns",
+        "modern blocks",
+        "restrained component library"
+      ],
+      "requires_user_prompt": true
+    },
+    {
+      "id": "react-bits",
+      "name": "React Bits",
+      "url": "https://www.reactbits.dev",
+      "kind": "animated-components",
+      "domains": [
+        "ui-ux",
+        "web-design"
+      ],
+      "risk": "medium",
+      "license": "verify at source before copying",
+      "provenance": "external animated React component source; inspect animation/runtime dependencies",
+      "vetted": false,
+      "copy_policy": "copy only small effects with confirmed license and measured performance budget",
+      "use_when": [
+        "animated effects",
+        "visual interactions",
+        "motion details"
+      ],
+      "requires_user_prompt": true
+    },
+    {
+      "id": "figma",
+      "name": "Figma",
+      "url": "app://figma",
+      "kind": "design-connector",
+      "domains": [
+        "ui-ux",
+        "mobile-apps",
+        "web-design"
+      ],
+      "risk": "medium",
+      "license": "user-provided file rights; do not copy third-party assets without user rights",
+      "provenance": "Figma connector or user-provided design file; preserve source file reference",
+      "vetted": false,
+      "copy_policy": "use as design specification; export/copy assets only when user rights are explicit",
+      "use_when": [
+        "user has design files",
+        "design tokens",
+        "component specs",
+        "visual references"
+      ],
+      "requires_user_prompt": true
+    },
+    {
+      "id": "canva",
+      "name": "Canva",
+      "url": "app://canva",
+      "kind": "design-connector",
+      "domains": [
+        "ui-ux",
+        "growth",
+        "marketing"
+      ],
+      "risk": "medium",
+      "license": "user-provided file rights; Canva asset terms may vary",
+      "provenance": "Canva connector or user-provided creative; preserve source design reference",
+      "vetted": false,
+      "copy_policy": "use for approved marketing assets; verify rights before export or reuse",
+      "use_when": [
+        "marketing creative",
+        "presentation",
+        "ad asset",
+        "social visual"
+      ],
+      "requires_user_prompt": true
+    },
+    {
+      "id": "threejs",
+      "name": "Three.js",
+      "url": "https://threejs.org",
+      "kind": "3d-library",
+      "domains": [
+        "3d-web"
+      ],
+      "risk": "low",
+      "license": "MIT",
+      "provenance": "official Three.js project and documentation",
+      "vetted": true,
+      "copy_policy": "use official APIs and examples as patterns; verify example asset licenses separately",
+      "use_when": [
+        "custom WebGL scene",
+        "raw Three.js control",
+        "non-React 3D"
+      ],
+      "requires_user_prompt": false
+    },
+    {
+      "id": "react-three-fiber",
+      "name": "React Three Fiber",
+      "url": "https://docs.pmnd.rs/react-three-fiber/getting-started/introduction",
+      "kind": "3d-react-renderer",
+      "domains": [
+        "3d-web",
+        "ui-ux"
+      ],
+      "risk": "low",
+      "license": "MIT",
+      "provenance": "official pmndrs React Three Fiber documentation",
+      "vetted": true,
+      "copy_policy": "use when project is React-based; prefer idiomatic hooks/components and profile runtime cost",
+      "use_when": [
+        "React app",
+        "interactive 3D UI",
+        "Three.js in React"
+      ],
+      "requires_user_prompt": false
+    },
+    {
+      "id": "model-viewer",
+      "name": "model-viewer",
+      "url": "https://modelviewer.dev",
+      "kind": "3d-model-display",
+      "domains": [
+        "3d-web",
+        "ecommerce"
+      ],
+      "risk": "low",
+      "license": "Apache-2.0",
+      "provenance": "official model-viewer documentation and project",
+      "vetted": true,
+      "copy_policy": "prefer for simple glTF/AR display; validate model size, accessibility fallback, and browser support",
+      "use_when": [
+        "lightweight product viewer",
+        "AR preview",
+        "simple glTF display"
+      ],
+      "requires_user_prompt": false
+    },
+    {
+      "id": "babylonjs",
+      "name": "Babylon.js",
+      "url": "https://www.babylonjs.com",
+      "kind": "3d-library",
+      "domains": [
+        "3d-web"
+      ],
+      "risk": "low",
+      "license": "Apache-2.0",
+      "provenance": "official Babylon.js documentation and project",
+      "vetted": true,
+      "copy_policy": "use for complex 3D scenes; verify bundle impact and choose over Three.js only when feature fit is stronger",
+      "use_when": [
+        "complex 3D app",
+        "WebGPU path",
+        "viewer tooling",
+        "game-like 3D"
+      ],
+      "requires_user_prompt": false
+    },
+    {
+      "id": "gltf-transform",
+      "name": "glTF Transform",
+      "url": "https://gltf-transform.dev",
+      "kind": "3d-asset-optimizer",
+      "domains": [
+        "3d-web"
+      ],
+      "risk": "low",
+      "license": "MIT",
+      "provenance": "official glTF Transform documentation and CLI/API project",
+      "vetted": true,
+      "copy_policy": "use for optimization pipelines; record compression settings and validate output visually",
+      "use_when": [
+        "glTF optimization",
+        "GLB compression",
+        "texture transform",
+        "asset pipeline",
+        "Meshopt",
+        "Draco",
+        "KTX2"
+      ],
+      "requires_user_prompt": false
+    },
+    {
+      "id": "khronos-gltf-sample-assets",
+      "name": "Khronos glTF Sample Assets",
+      "url": "https://github.com/KhronosGroup/glTF-Sample-Assets",
+      "kind": "3d-sample-assets",
+      "domains": [
+        "3d-web"
+      ],
+      "risk": "low",
+      "license": "varies by asset; verify asset license before copying",
+      "provenance": "KhronosGroup glTF sample assets repository; inspect per-asset license metadata",
+      "vetted": true,
+      "copy_policy": "use mainly for tests/fixtures; do not ship without per-asset license confirmation",
+      "use_when": [
+        "test model",
+        "sample glTF",
+        "validator fixture",
+        "loader test"
+      ],
+      "requires_user_prompt": false
+    },
+    {
+      "id": "poly-haven",
+      "name": "Poly Haven",
+      "url": "https://polyhaven.com",
+      "kind": "3d-asset-library",
+      "domains": [
+        "3d-web",
+        "web-design"
+      ],
+      "risk": "medium",
+      "license": "CC0",
+      "provenance": "Poly Haven asset library; keep asset URL and downloaded asset metadata",
+      "vetted": true,
+      "copy_policy": "prefer CC0 HDRI/textures; still record asset URL, file size, and performance budget",
+      "use_when": [
+        "HDRI",
+        "texture",
+        "environment map",
+        "CC0-like asset",
+        "realistic material"
+      ],
+      "requires_user_prompt": true
+    },
+    {
+      "id": "ambientcg",
+      "name": "ambientCG",
+      "url": "https://ambientcg.com",
+      "kind": "3d-texture-library",
+      "domains": [
+        "3d-web",
+        "web-design"
+      ],
+      "risk": "medium",
+      "license": "CC0",
+      "provenance": "ambientCG material library; keep asset URL and chosen texture resolution",
+      "vetted": true,
+      "copy_policy": "prefer CC0 PBR materials; cap texture resolution to project performance budget",
+      "use_when": [
+        "PBR material",
+        "texture",
+        "normal map",
+        "roughness",
+        "CC0-like material"
+      ],
+      "requires_user_prompt": true
+    },
+    {
+      "id": "sketchfab",
+      "name": "Sketchfab",
+      "url": "https://sketchfab.com",
+      "kind": "3d-asset-marketplace",
+      "domains": [
+        "3d-web",
+        "ecommerce"
+      ],
+      "risk": "high",
+      "license": "varies by asset; verify per-download license before copying",
+      "provenance": "Sketchfab marketplace asset page; record author, asset URL, license, and download date",
+      "vetted": false,
+      "copy_policy": "do not copy automatically; require explicit user approval plus license, attribution, size, and security review",
+      "use_when": [
+        "specific 3D model",
+        "downloadable model",
+        "marketplace asset",
+        "license varies"
+      ],
+      "requires_user_prompt": true
+    }
+  ]
+}
