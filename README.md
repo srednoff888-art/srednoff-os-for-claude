@@ -1,19 +1,20 @@
 <div align="center">
 
-# 🧠 SREDNOFF OS
+<img src=".github/assets/banner.svg" alt="SREDNOFF OS" width="100%">
 
-### An engineering-discipline operating system for [Claude Code](https://claude.com/claude-code)
+<br><br>
 
-Rules it follows. A registry of 2000+ skills it picks from. Hooks that stop it before it leaks a secret or runs `rm -rf`.
+[![License: MIT](https://img.shields.io/badge/license-MIT-8b5cf6.svg?style=for-the-badge&labelColor=0a0a12)](LICENSE)
+[![CI](https://img.shields.io/github/actions/workflow/status/srednoff888-art/srednoff-os-for-claude/ci.yml?branch=main&style=for-the-badge&label=CI&labelColor=0a0a12&color=22d3ee)](https://github.com/srednoff888-art/srednoff-os-for-claude/actions/workflows/ci.yml)
+[![Built for Claude Code](https://img.shields.io/badge/built%20for-Claude%20Code-0a0a12.svg?style=for-the-badge&labelColor=0a0a12&color=6b46c1)](https://claude.com/claude-code)
+[![Registry](https://img.shields.io/badge/registry-2000%2B%20skills-0a0a12.svg?style=for-the-badge&labelColor=0a0a12&color=22d3ee)](registry/CORE-300.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-0a0a12.svg?style=for-the-badge&labelColor=0a0a12&color=8b5cf6)](https://github.com/srednoff888-art/srednoff-os-for-claude/pulls)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
-[![CI](https://img.shields.io/github/actions/workflow/status/srednoff888-art/srednoff-os-for-claude/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/srednoff888-art/srednoff-os-for-claude/actions/workflows/ci.yml)
-[![Built for Claude Code](https://img.shields.io/badge/built%20for-Claude%20Code-6b46c1?style=flat-square)](https://claude.com/claude-code)
-[![Registry](https://img.shields.io/badge/registry-2000%2B%20skills-2ea44f?style=flat-square)](registry/CORE-300.md)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-2ea44f?style=flat-square)](scripts/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/srednoff888-art/srednoff-os-for-claude/pulls)
+<sub>
 
-[**Quick start**](#quick-start) · [**How it works**](#how-it-works) · [**What's inside**](#whats-inside) · [Русская версия ↓](README.ru.md)
+[Quick start](#quick-start) &nbsp;•&nbsp; [How it works](#how-it-works) &nbsp;•&nbsp; [What's inside](#whats-inside) &nbsp;•&nbsp; [Release evidence](#release-evidence) &nbsp;•&nbsp; [Security](#security-hooks-are-opt-in-on-purpose) &nbsp;•&nbsp; [Русская версия ↓](README.ru.md)
+
+</sub>
 
 </div>
 
@@ -23,16 +24,49 @@ Rules it follows. A registry of 2000+ skills it picks from. Hooks that stop it b
 
 Claude Code is extremely capable out of the box — but every session starts from a blank slate. It re-decides your engineering standards each time, has no memory of which skill actually helped last time, and has no safety net if it (or you) types something dangerous into a terminal.
 
-SREDNOFF OS is a layer of files that fixes that.
+**SREDNOFF OS is a layer of files that fixes that** — rules it follows, a registry of 2000+ skills it picks from, and hooks that stop it before it leaks a secret or runs `rm -rf`.
 
-<table>
-<tr><th></th><th>Vanilla Claude Code</th><th>+ SREDNOFF OS</th></tr>
-<tr><td><strong>Engineering standards</strong></td><td>Re-decided every session</td><td>Loaded from <code>CLAUDE.md</code> + 10 rule files on every start</td></tr>
-<tr><td><strong>Skill selection</strong></td><td>Whatever the model happens to reach for</td><td>Scored shortlist from a 2000+ entry registry, budget-aware</td></tr>
-<tr><td><strong>Pasted secrets</strong></td><td>No built-in stop</td><td>Denied before the prompt is even submitted</td></tr>
-<tr><td><strong>Dangerous commands</strong> (<code>rm -rf</code>, <code>mkfs</code>, force-push…)</td><td>No built-in stop</td><td>Denied before the tool executes</td></tr>
-<tr><td><strong>Health check</strong></td><td>None</td><td>One command: structure + evals + live hook canary</td></tr>
-<tr><td><strong>Cross-platform</strong></td><td>N/A</td><td>Full parity Windows / Linux / macOS — CI-verified down to bash 3.2</td></tr>
+<table width="100%">
+<tr>
+<th align="left" width="26%"></th>
+<th align="left" width="37%">Vanilla Claude Code</th>
+<th align="left" width="37%">+ SREDNOFF OS</th>
+</tr>
+<tr>
+<td><strong>Engineering standards</strong></td>
+<td>🔴 Re-decided every session</td>
+<td>🟢 Loaded from <code>CLAUDE.md</code> + 10 rule files on every start</td>
+</tr>
+<tr>
+<td><strong>Skill selection</strong></td>
+<td>🔴 Whatever the model happens to reach for</td>
+<td>🟢 Scored shortlist from a 2000+ entry registry, budget-aware</td>
+</tr>
+<tr>
+<td><strong>Pasted secrets</strong></td>
+<td>🔴 No built-in stop</td>
+<td>🟢 Denied before the prompt is even submitted</td>
+</tr>
+<tr>
+<td><strong>Dangerous commands</strong><br><sub><code>rm -rf</code>, <code>mkfs</code>, force-push…</sub></td>
+<td>🔴 No built-in stop</td>
+<td>🟢 Denied before the tool executes</td>
+</tr>
+<tr>
+<td><strong>Installable skills</strong></td>
+<td>🔴 Manual, one at a time</td>
+<td>🟢 303 curated skills auto-installed by project tags, capped for context budget</td>
+</tr>
+<tr>
+<td><strong>Health check</strong></td>
+<td>🔴 None</td>
+<td>🟢 One command — structure, evals, registry audit, live hook canary</td>
+</tr>
+<tr>
+<td><strong>Cross-platform</strong></td>
+<td>⚪ N/A</td>
+<td>🟢 Full parity <img src=".github/assets/windows.svg" width="12" valign="middle"> Windows / <img src=".github/assets/linux.svg" width="11" valign="middle"> Linux / <img src=".github/assets/apple.svg" width="10" valign="middle"> macOS — CI-verified down to bash 3.2</td>
+</tr>
 </table>
 
 <br>
@@ -40,11 +74,16 @@ SREDNOFF OS is a layer of files that fixes that.
 ## 🩻 How it works
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': {
+  'primaryColor':'#1a1230', 'primaryTextColor':'#f5f3ff', 'primaryBorderColor':'#8b5cf6',
+  'lineColor':'#8b5cf6', 'secondaryColor':'#0e1420', 'tertiaryColor':'#0a0a12',
+  'fontFamily':'Segoe UI, sans-serif', 'fontSize':'15px'
+}}}%%
 flowchart TD
     A["📋 CLAUDE.md + .claude/rules/00-90<br/><i>engineering standards, loaded every session</i>"] --> B["🧭 domain-router<br/><i>classifies the task brief</i>"]
     B --> C["📚 CORE-300.md registry<br/><i>2000+ skills, tagged G1/G2/G3 by token cost</i>"]
     C --> D["🎯 select-skills<br/><i>budget-aware shortlist, quality never downgraded</i>"]
-    D --> E(("Claude Code<br/>does the work"))
+    D --> E(("⚡ Claude Code<br/>does the work"))
     E -.every tool call.-> F["🛡️ PreToolUse hooks<br/><i>secret scan + dangerous-command block</i>"]
     E -.every prompt.-> G["🛡️ UserPromptSubmit hook<br/><i>blocks pasted secrets</i>"]
     F -->|deny on match| X(["🚫 blocked before execution"])
@@ -53,29 +92,33 @@ flowchart TD
     H -.checks.-> C
     H -.canary-tests.-> F
 
-    style E fill:#6b46c1,color:#fff
-    style X fill:#e5484d,color:#fff
-    style H fill:#2ea44f,color:#fff
+    style E fill:#6b46c1,color:#fff,stroke:#c4b5fd,stroke-width:2px
+    style X fill:#e5484d,color:#fff,stroke:#ff8080,stroke-width:2px
+    style H fill:#0e9f8f,color:#fff,stroke:#5eead4,stroke-width:2px
 ```
 
 <br>
 
 ## 📦 What's inside
 
-```text
-CLAUDE.md, AGENTS.md, code_review.md   the core rulebook
-.claude/rules/00-90                    10 numbered rule files — skill selection, model routing, subagent contract...
-.claude/skills/                        reusable skill definitions
-.claude/commands/                      slash commands
-.claude/hooks/                         PowerShell + Bash hooks — secret scanning, dangerous-command blocking
-.agent/                                agent-facing conventions
-scripts/                               install, doctor, profile-lock generator, eval runner
-registry/CORE-300.md                   2000+ skills/agents, tagged and tiered
-registry/SELECTION-PROTOCOL.md         how to pick skills for a project without loading the whole catalog
-registry/CAPABILITY-INDEX.md           one canonical pick per capability — no overlap confusion
-registry/evals/                        fixtures that catch regressions in routing and secret detection
-scripts/global/                        optional global SessionStart hook + statusline (opt-in)
-```
+<table width="100%">
+<tr><th align="left" width="42%">Path</th><th align="left">Contents</th></tr>
+<tr><td><code>CLAUDE.md</code>, <code>AGENTS.md</code>, <code>code_review.md</code></td><td>The core rulebook</td></tr>
+<tr><td><code>.claude/rules/00-90</code></td><td>10 numbered rule files — skill selection, model routing, subagent contract…</td></tr>
+<tr><td><code>.claude/skills/</code></td><td>Reusable base skill definitions</td></tr>
+<tr><td><code>.claude/commands/</code></td><td>Slash commands</td></tr>
+<tr><td><code>.claude/hooks/</code></td><td>PowerShell + Bash hooks — secret scanning, dangerous-command blocking</td></tr>
+<tr><td><code>.agent/</code></td><td>Agent-facing conventions + the multi-stage checkpoint process</td></tr>
+<tr><td><code>scripts/</code></td><td>Install, doctor, profile-lock generator, eval runner, source ranker</td></tr>
+<tr><td><code>skills-library/</code></td><td><strong>303 installable skills</strong> — auto-selected per project, capped for context budget</td></tr>
+<tr><td><code>registry/CORE-300.md</code></td><td>2000+ skills/agents, tagged and tiered</td></tr>
+<tr><td><code>registry/SELECTION-PROTOCOL.md</code></td><td>How to pick skills for a project without loading the whole catalog</td></tr>
+<tr><td><code>registry/CAPABILITY-INDEX.md</code></td><td>One canonical pick per capability — no overlap confusion</td></tr>
+<tr><td><code>registry/evals/</code></td><td>Fixtures that catch regressions in routing and secret detection</td></tr>
+<tr><td><code>docs/</code></td><td>Architecture, security, workflows, and validation reference</td></tr>
+<tr><td><code>benchmarks/</code></td><td>Reproducible control-vs-OS benchmark harness</td></tr>
+<tr><td><code>scripts/global/</code></td><td>Optional global SessionStart hook + statusline (opt-in)</td></tr>
+</table>
 
 <br>
 
@@ -96,10 +139,11 @@ Two commands, no file copying, no manual `settings.json` editing:
 
 Every script exists in two versions with full functional parity:
 
-| Platform | Requires |
-|---|---|
-| **Windows** | PowerShell 5.1+ — no extra dependencies |
-| **Linux / macOS** | `bash` 3.2+ (the default macOS shell works), `jq`, `grep -P` — see [notes](#notes) below |
+<table width="100%">
+<tr><th align="left" width="26%">Platform</th><th align="left">Requires</th></tr>
+<tr><td>🪟 <strong>Windows</strong></td><td>PowerShell 5.1+ — no extra dependencies</td></tr>
+<tr><td>🐧🍎 <strong>Linux / macOS</strong></td><td><code>bash</code> 3.2+ (the default macOS shell works), <code>jq</code>, <code>grep -P</code> — see <a href="#notes">notes</a> below</td></tr>
+</table>
 
 ```powershell
 # Windows
@@ -110,7 +154,7 @@ Every script exists in two versions with full functional parity:
 bash path/to/srednoff-os/scripts/init-claude-project.sh /path/to/your/project
 ```
 
-This drops the rulebook into your project, generates a `.claude/PROFILE.lock.md` tailored to what it detects (Next.js? Python? trading/backtest code? Amazon FBA?), and never overwrites a `CLAUDE.md` you already have — it backs up and merges instead.
+This drops the rulebook into your project, generates a `.claude/PROFILE.lock.md` tailored to what it detects (Next.js? Python? trading/backtest code? Amazon FBA?), auto-installs a capped, tag-matched shortlist from the 303-skill library, and never overwrites a `CLAUDE.md` you already have — it backs up and merges instead.
 
 **Health check, anytime:**
 
@@ -121,18 +165,18 @@ This drops the rulebook into your project, generates a `.claude/PROFILE.lock.md`
 bash path/to/srednoff-os/scripts/doctor.sh --project /path/to/your/project --run-evals --fix-safe
 ```
 
-Reports structure status, registry integrity, eval pass rate, and runs a live canary test against your security hooks — then safely repairs anything missing.
+Reports structure status, registry integrity, catalog/skills-library/docs validity, eval pass rate, and a live canary test against your security hooks — then safely repairs anything missing.
 
 <details>
 <summary><strong>What it looks like when it's active</strong></summary>
 
 ```
 $ claude
-SREDNOFF OS ACTIVE in project 'my-app'. Operating rules: Principle #1 (quality first,
-economy only at equal quality); rules 00-90 loaded (github-research, quality-gate,
-security, exec-plans, skills-registry, model-routing G1~Haiku/G2~Sonnet/G3~Opus,
-subagent-contract). PROFILE.lock [tags: web, frontend, ai]. Full skill registry
-available on demand. External agents = unvetted until github-research.
+[SREDNOFF OS: ACTIVE] project='my-app' tags=web,frontend,ai rules=10 loaded PROFILE.lock=cached
+Principle #1 (quality first, economy only at equal quality). Rules 00-90 loaded: operating-system,
+github-research, connectors, user-briefing, quality-gate, security, exec-plans, skills-registry,
+model-routing (G1~Haiku/G2~Sonnet/G3~Opus), subagent-contract. Full skill registry on demand
+(~/.claude/registry/CORE-300.md). External agents = unvetted until github-research.
 ```
 
 </details>
@@ -152,9 +196,23 @@ available on demand. External agents = unvetted until github-research.
 
 Nothing here modifies your global Claude Code settings by default. Hook wiring examples live in `.claude/settings.example.json` — copy the relevant block in yourself once you've read what it does. The registry and rules are safe to drop in immediately; hooks that can block tool calls are something you should consciously turn on.
 
-> ✅ **CI-verified, not just claimed.** Every push runs shellcheck, JSON validation, the full eval suite, a hook canary (feeds each hook known-bad input and requires a block), and — because macOS ships `/bin/bash` 3.2.57 — a dedicated job that runs the real security hooks inside an official `bash:3.2` container. [See the workflow →](.github/workflows/ci.yml)
+> ✅ **CI-verified, not just claimed.** Every push runs shellcheck, JSON validation, the full eval suite, a hook canary (feeds each hook known-bad input and requires a block), docs/skills-library validation, a benchmark-script syntax check, and — because macOS ships `/bin/bash` 3.2.57 — a dedicated job that runs the real security hooks inside an official `bash:3.2` container. [See the workflow →](.github/workflows/ci.yml)
 
-See [`QUALITY.md`](QUALITY.md) for the full check-by-check evidence table (every number backed by a re-runnable command, plus honest "what this does not promise" sections) and [`RELEASE.md`](RELEASE.md) for the current release status.
+<br>
+
+## 📊 Release evidence
+
+| Check | Where it runs | Proves |
+|---|---|---|
+| `shellcheck` | CI (ubuntu) | Every `.sh` file is portable and correct |
+| `windows-powershell` | CI (windows-latest) | PS parse + PSScriptAnalyzer + full suite on the flagship platform |
+| `bash-3-2` | CI (Docker `bash:3.2`) | The exact shell macOS ships — not a proxy |
+| `hook-canary` + `profile-lock-gate` | CI + `doctor` | Security hooks actually deny/block known-bad input |
+| `registry-audit` | CI + `doctor` | 0 duplicate entries across 2000+ records |
+| `skills-library` + `docs` | CI + `doctor` | All 303 installable skills and docs are well-formed |
+| `run-evals.{ps1,sh}` | CI + `doctor` | Routing/selector/secret-pattern regression suite |
+
+Full check-by-check evidence table (every number backed by a re-runnable command, plus honest "what this does not promise" sections) in [`QUALITY.md`](QUALITY.md) · current release status in [`RELEASE.md`](RELEASE.md) · reproducible control-vs-OS benchmark harness in [`benchmarks/`](benchmarks/).
 
 <br>
 
@@ -173,7 +231,7 @@ See [`QUALITY.md`](QUALITY.md) for the full check-by-check evidence table (every
 
 ## Contributing
 
-PRs welcome. CI runs shellcheck, JSON validation, the full eval suite, the hook canary, and a real bash-3.2 container job on every push — green CI is the bar. See [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
+PRs welcome. CI runs shellcheck, JSON validation, the full eval suite, the hook canary, docs/skills-library validation, and a real bash-3.2 container job on every push — green CI is the bar. See [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
 
 ## License
 
@@ -183,6 +241,6 @@ MIT — see [LICENSE](LICENSE). Use it, fork it, strip it down, build on it.
 
 <div align="center">
 
-Made by [Ivan Srednoff](https://github.com/srednoff888-art) · [Русская версия](README.ru.md) · [Report an issue](https://github.com/srednoff888-art/srednoff-os-for-claude/issues)
+<img src=".github/assets/anthropic.svg" width="14" valign="middle"> Made by [Ivan Srednoff](https://github.com/srednoff888-art) &nbsp;·&nbsp; [Русская версия](README.ru.md) &nbsp;·&nbsp; [Report an issue](https://github.com/srednoff888-art/srednoff-os-for-claude/issues)
 
 </div>

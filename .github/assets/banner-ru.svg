@@ -1,0 +1,61 @@
+<svg width="1200" height="280" viewBox="0 0 1200 280" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a12"/>
+      <stop offset="45%" stop-color="#120e24"/>
+      <stop offset="100%" stop-color="#0a0a12"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6b46c1" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#8b5cf6" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="text" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f5f3ff"/>
+      <stop offset="55%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#ddd6fe"/>
+    </linearGradient>
+    <radialGradient id="node-purple" cx="35%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#c4b5fd"/>
+      <stop offset="100%" stop-color="#6b46c1"/>
+    </radialGradient>
+    <radialGradient id="node-cyan" cx="35%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#a5f3fc"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </radialGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M 34 0 L 0 0 0 34" fill="none" stroke="#ffffff" stroke-opacity="0.035" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="280" fill="url(#bg)"/>
+  <rect width="1200" height="280" fill="url(#grid)"/>
+
+  <circle cx="150" cy="60" r="140" fill="#6b46c1" opacity="0.14" filter="url(#soft)"/>
+  <circle cx="1080" cy="230" r="160" fill="#22d3ee" opacity="0.10" filter="url(#soft)"/>
+
+  <g transform="translate(90,140)" stroke="#8b5cf6" stroke-opacity="0.55" stroke-width="1.4">
+    <line x1="-38" y1="-30" x2="0" y2="0"/>
+    <line x1="-38" y1="30" x2="0" y2="0"/>
+    <line x1="0" y1="0" x2="40" y2="-22"/>
+    <line x1="0" y1="0" x2="40" y2="22"/>
+    <line x1="40" y1="-22" x2="40" y2="22"/>
+  </g>
+  <g transform="translate(90,140)">
+    <circle cx="-38" cy="-30" r="6" fill="url(#node-purple)"/>
+    <circle cx="-38" cy="30" r="6" fill="url(#node-purple)"/>
+    <circle cx="0" cy="0" r="9" fill="url(#node-cyan)"/>
+    <circle cx="40" cy="-22" r="6" fill="url(#node-purple)"/>
+    <circle cx="40" cy="22" r="6" fill="url(#node-purple)"/>
+  </g>
+
+  <text x="185" y="128" font-family="'Segoe UI', -apple-system, Helvetica, Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="4" fill="url(#text)">SREDNOFF OS</text>
+  <text x="187" y="163" font-family="'Segoe UI', -apple-system, Helvetica, Arial, sans-serif" font-size="19" font-weight="400" letter-spacing="0.3" fill="#a3a3b5">Инженерная операционная система-надстройка для Claude Code</text>
+
+  <rect x="187" y="182" width="360" height="3" rx="1.5" fill="url(#glow)"/>
+
+  <text x="600" y="252" font-family="'Segoe UI', -apple-system, Helvetica, Arial, sans-serif" font-size="14" letter-spacing="2" fill="#6b6b80" text-anchor="middle">ПРАВИЛА · РЕЕСТР · ХУКИ · КРОСС-ПЛАТФОРМЕННЫЙ CI</text>
+</svg>
