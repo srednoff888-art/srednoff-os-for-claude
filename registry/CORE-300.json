@@ -23238,7 +23238,105 @@
       "source_raw": "SREDNOFF",
       "group": "G2",
       "description": "Use this skill when building, reviewing, or debugging Promptfoo-based LLM, agent, RAG evals, red-team scans, provider setup, or GitHub Actions CI gates; do not use when ordinary deterministic unit tests are enough."
+    },
+    {
+      "id": 2031,
+      "name": "yandex-direct-ppc",
+      "tags": [
+        "marketing",
+        "ppc"
+      ],
+      "source": "GH",
+      "source_raw": "GH:Silverov/yandex-direct-skill",
+      "group": "G2",
+      "description": "Full-cycle Yandex Direct (API v5) management: account audits (50+ checks, A-F scoring), campaign/keyword CRUD, reporting, budget analysis, negative-keyword management. MIT, 43★, verified 27.07.2026."
+    },
+    {
+      "id": 2032,
+      "name": "paid-ads-operating-contract",
+      "tags": [
+        "marketing",
+        "ppc"
+      ],
+      "source": "GH",
+      "source_raw": "GH:AgriciDaniel/claude-ads",
+      "group": "G2",
+      "description": "Shared operating contract and thinking framework for multi-platform paid-ads audits (scoring, benchmarks, budget allocation, conversion tracking, bidding strategies, compliance). Read this before google-ads-full-audit or meta-ads-full-audit. MIT, 7554★, verified 27.07.2026."
+    },
+    {
+      "id": 2033,
+      "name": "google-ads-full-audit",
+      "tags": [
+        "marketing",
+        "ppc"
+      ],
+      "source": "GH",
+      "source_raw": "GH:AgriciDaniel/claude-ads",
+      "group": "G2",
+      "description": "Google Ads audit: measurement, Search, Shopping, Performance Max, Demand Gen, YouTube-linked inventory, keywords/search terms, negative-keyword review, creative assets, bidding, budgets, policy. Depends on paid-ads-operating-contract. MIT, 7554★, verified 27.07.2026."
+    },
+    {
+      "id": 2034,
+      "name": "meta-ads-full-audit",
+      "tags": [
+        "marketing",
+        "ppc"
+      ],
+      "source": "GH",
+      "source_raw": "GH:AgriciDaniel/claude-ads",
+      "group": "G2",
+      "description": "Meta Ads (Facebook/Instagram) audit: measurement, campaign structure, creative, Advantage+/AI stack, bidding, budgets, policy. Depends on paid-ads-operating-contract. MIT, 7554★, verified 27.07.2026."
+    },
+    {
+      "id": 2035,
+      "name": "telegram-bot-builder",
+      "tags": [
+        "telegram",
+        "backend"
+      ],
+      "source": "GH",
+      "source_raw": "GH:davila7/claude-code-templates",
+      "group": "G2",
+      "description": "Production Telegram bot patterns for Node.js and Python (Bot API v9.4): auth, webhooks vs polling, inline keyboards, callback queries, media, payments/Stars, inline mode, deployment. MIT, 29942★, verified 27.07.2026."
+    },
+    {
+      "id": 2036,
+      "name": "telegram-ads-channel-placement",
+      "tags": [
+        "telegram",
+        "marketing",
+        "ppc"
+      ],
+      "source": "SREDNOFF",
+      "source_raw": "SREDNOFF",
+      "group": "G2",
+      "description": "Plan/audit campaigns on the official Telegram Ads platform (ads.telegram.org): channel/category targeting, 160-char sponsored-message copy, TON payment, guidelines compliance. No third-party skill exists for this platform (verified 27.07.2026) - written directly from Telegram's own public ad platform docs."
+    },
+    {
+      "id": 2037,
+      "name": "ai-ads-claude",
+      "tags": [
+        "marketing",
+        "ppc"
+      ],
+      "source": "GH",
+      "source_raw": "GH:zubair-trabzada/ai-ads-claude",
+      "group": "G2",
+      "description": "AI ad-strategy engine: platform-specific copy generation (Google, Meta, LinkedIn, TikTok, YouTube, Pinterest), funnel design, budget allocation, PDF reports. Discovery-tier (not imported to skills-library) - review before use. MIT, 208★, verified 27.07.2026."
+    },
+    {
+      "id": 2038,
+      "name": "telegram-miniapp-nextjs-template",
+      "tags": [
+        "telegram",
+        "web",
+        "frontend"
+      ],
+      "source": "GH",
+      "source_raw": "GH:Telegram-Mini-Apps/nextjs-template",
+      "group": "G2",
+      "description": "Official Telegram Mini Apps starter: Next.js + TypeScript + TON Connect + @telegram-apps/sdk (tma.js). Project-starter template, not an instructional skill (same pattern as vibe-template-web). Official Telegram-Mini-Apps org, 370★; no LICENSE file detected - verify terms before commercial use. Verified 27.07.2026."
     }
   ],
-  "count": 2029
+  "count": 2037
 }

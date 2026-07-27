@@ -41,12 +41,14 @@ if (Test-Path "$Target\package.json") {
   if ($pkg -match 'framer-motion|gsap') { Add-Tag "animation" }
   if ($pkg -match '@anthropic|openai|ai-sdk') { Add-Tag "ai" }
   if ($pkg -match 'tailwind|shadcn') { Add-Tag "design" }
+  if ($pkg -match 'telegraf|grammy|@telegram-apps|node-telegram-bot-api|tma\.js') { Add-Tag "telegram" }
 }
 if ((Test-Path "$Target\requirements.txt") -or (Test-Path "$Target\pyproject.toml")) {
   Add-Tag "backend"
   $py = ((Get-Content "$Target\requirements.txt" -Raw -ErrorAction SilentlyContinue), (Get-Content "$Target\pyproject.toml" -Raw -ErrorAction SilentlyContinue)) -join " "
   if ($py -match 'ccxt|backtest|binance|trading') { Add-Tag "trading" }
   if ($py -match 'torch|sklearn|scikit|tensorflow|pandas|numpy') { Add-Tag "ml"; Add-Tag "data" }
+  if ($py -match 'python-telegram-bot|aiogram|pyTelegramBotAPI') { Add-Tag "telegram" }
 }
 if (Get-ChildItem -LiteralPath $Target -Filter *.ps1 -ErrorAction SilentlyContinue | Select-Object -First 1) { Add-Tag "windows" }
 if ((Test-Path "$Target\Dockerfile") -or (Get-ChildItem -LiteralPath $Target -Filter *.tf -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1)) { Add-Tag "infra"; Add-Tag "devops" }
@@ -54,6 +56,8 @@ if ($name -match 'amazon|fba') { Add-Tag "amazon"; Add-Tag "business"; Add-Tag "
 if ($name -match 'seo') { Add-Tag "seo" }
 if ($name -match 'freelance|outreach|strategy|sales|crm') { Add-Tag "sales"; Add-Tag "marketing" }
 if ($name -match 'design') { Add-Tag "design" }
+if ($name -match 'telegram|tg-bot|tgbot|miniapp|mini-app') { Add-Tag "telegram" }
+if ($name -match 'yandex-direct|direct-ads|ppc|adwords|google-ads|meta-ads|paid-ads') { Add-Tag "ppc"; Add-Tag "marketing" }
 if ($tags.Count -eq 0) { Add-Tag "web" }
 
 # --- pull candidates from CORE-300 by tags ---
@@ -150,13 +154,26 @@ if (Test-Path -LiteralPath $skillsLibIndex) {
   $libSet = New-Object System.Collections.Generic.HashSet[string]
   foreach ($prop in $libIndex.PSObject.Properties) { $libSet.Add($prop.Name) | Out-Null }
 
-  $toInstall = @()
+  # Rank by number of matching tags (descending) before capping, not plain alphabetical
+  # index order. A narrow-domain skill tagged e.g. [marketing][ppc] that matches BOTH of
+  # a project's tags would otherwise lose its slot to a generic single-tag [marketing]
+  # skill purely because that skill's name sorts earlier - found by testing a project
+  # named "yandex-direct-client" (tags: ppc, marketing): yandex-direct-ppc (2 tag matches)
+  # was capped out by 12+ generic growth-/conversion-/landing- skills (1 tag match each)
+  # that happened to sort before it alphabetically.
+  $scored = New-Object System.Collections.Generic.List[object]
   foreach ($prop in $libIndex.PSObject.Properties) {
-    if ($toInstall.Count -ge $SkillInstallCap) { break }
     $skillTags = @($prop.Value.tags)
-    $matched = $false
-    foreach ($st in $skillTags) { if ($tagSet.Contains($st)) { $matched = $true; break } }
-    if ($matched -and ($toInstall -notcontains $prop.Name)) { $toInstall += $prop.Name }
+    $matchCount = 0
+    foreach ($st in $skillTags) { if ($tagSet.Contains($st)) { $matchCount++ } }
+    if ($matchCount -gt 0) { $scored.Add([pscustomobject]@{ Name = $prop.Name; Matches = $matchCount }) | Out-Null }
+  }
+  $ranked = $scored | Sort-Object -Property @{Expression = "Matches"; Descending = $true}, @{Expression = "Name"; Descending = $false}
+
+  $toInstall = @()
+  foreach ($r in $ranked) {
+    if ($toInstall.Count -ge $SkillInstallCap) { break }
+    if ($toInstall -notcontains $r.Name) { $toInstall += $r.Name }
   }
 
   $skillsDir = Join-Path $Target ".claude\skills"

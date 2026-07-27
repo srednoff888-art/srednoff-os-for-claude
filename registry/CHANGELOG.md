@@ -1,4 +1,57 @@
-# CHANGELOG — реестр ядра Claude MD OS
+# CHANGELOG — реестр ядра SREDNOFF OS
+
+## v1.20 — 2026-07-27 (Yandex Direct / Google+Meta Ads / Telegram скиллы + фикс глобальных хуков + ranking-баг)
+По прямому запросу Ивана: собрать лучшие реальные скиллы для Yandex Direct, Meta+Google Ads,
+Telegram, SEO и сайтостроения — добавить в систему, применить, запушить, затем проверить автозапуск OS.
+
+**Найдено github-research'ем и добавлено (все source-verified через `gh repo view`, не с чужих слов):**
+- `yandex-direct-ppc` — [Silverov/yandex-direct-skill](https://github.com/Silverov/yandex-direct-skill)
+  (MIT, 43★) — единственный найденный реальный Yandex Direct API v5 скилл. Импортирован целиком
+  (SKILL.md + references/ + scripts/ + agents/, 11 файлов).
+- `paid-ads-operating-contract` + `google-ads-full-audit` + `meta-ads-full-audit` —
+  [AgriciDaniel/claude-ads](https://github.com/AgriciDaniel/claude-ads) (MIT, 7554★, пуш в день
+  проверки). Репо содержит 34 платформенных SKILL.md (Google/Meta/YouTube/LinkedIn/TikTok/Microsoft/
+  Apple/Amazon/Reddit/Pinterest/Snapchat/X) — импортированы ТОЛЬКО Google+Meta (явно запрошенные) +
+  общий operating contract, который они оба требуют читать первым. Остальные 30 платформ НЕ
+  импортированы, задокументированы в INSTALL-SOURCES.md на случай будущей нужды.
+- `telegram-bot-builder` — [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates)
+  (MIT, 29942★) — production-паттерны Telegram Bot API v9.4 (Node.js+Python).
+- `telegram-ads-channel-placement` — **честно НЕ найдено стороннего скилла** для официальной
+  Telegram Ads platform (ads.telegram.org) при проверке 27.07.2026. Написан нами напрямую по
+  официальным гайдлайнам платформы, source помечен `SREDNOFF` (не `GH:`), не выдаётся за чужую находку.
+- 2 catalog-only записи (без импорта контента): `ai-ads-claude` (альт. AI-генератор рекламной
+  стратегии), `telegram-miniapp-nextjs-template` (официальный Telegram-Mini-Apps org template,
+  LICENSE-файл не найден — пометка "проверить перед коммерческим использованием").
+
+**Осознанно НЕ добавлено** (Принцип №1: качество первично, не количество): website-building и SEO
+уже полно покрыты существующими записями (ANTH `frontend-design`, `ui-ux-pro-max`, `claude-seo`,
+`Agentic-SEO-Skill` и десятки SREDNOFF-скиллов) — добавление найденного `lotfb86/web-design-skills`
+(3★, без LICENSE) отклонено как слишком низкого доверия, чтобы добавлять только ради счёта.
+
+**Реальный баг найден и исправлен при тестировании новых тегов**: `gen-profile-lock.ps1/.sh` не
+имел heuristic-детекции для новых тегов `[telegram]`/`[ppc]` вообще — ни один реальный проект никогда
+бы не получил новые скиллы автоматически. Добавлена детекция по package.json (`telegraf`/`grammy`/
+`@telegram-apps`/`node-telegram-bot-api`, `python-telegram-bot`/`aiogram`) и по имени проекта.
+
+**Второй реальный баг, найден тем же тестом**: кап на 20 скиллов брал кандидатов в чистом
+алфавитном/index-порядке — узкоспециализированный скилл, совпадающий сразу с ДВУМЯ тегами проекта
+(`yandex-direct-ppc` при tags=`ppc,marketing`), вытеснялся из капа десятком общих `[marketing]`-скиллов,
+совпадающих только с ОДНИМ тегом, но сортирующихся раньше по алфавиту. Исправлено: кандидаты теперь
+ранжируются по числу совпавших тегов (убывание), затем по имени — на обеих платформах, подтверждено
+той же фикстурой (`yandex-direct-ppc` теперь корректно попадает в установку).
+
+**Отдельная, более серьёзная находка (не про скиллы)**: Иван сообщил, что текущий клиент Claude
+не использует Srednoff OS, а «грузит старую Claude os». Диагностика показала: глобальные хуки в
+`~/.claude/` (`auto-bootstrap.ps1`, `srednoff-os-statusline.ps1`) — это ОТДЕЛЬНЫЕ развёрнутые копии
+шаблона, молча протухшие на 6 версий (заморожены на v1.13-эре, ни разу не рефрешились через v1.14
+тайтовый баннер и v1.17 skills-library). Плюс `~/.claude/CLAUDE.md` (грузится в каждую сессию) всё
+ещё называл систему старым рабочим именем «Claude MD OS». Исправлено: ребрендинг CLAUDE.md,
+`SREDNOFF_OS_ROOT` установлена как persistent user env var (снимает необходимость вручную
+кастомизировать rootGuard при каждом будущем рефреше), обе глобальные копии перезаписаны 1:1 из
+текущего шаблона. Подтверждено синтетическим SessionStart-вызовом на реальном проекте.
+
+- Полная регрессия: **evals 43/43**, registry-audit 0 дублей (2037 записей), catalog-format
+  0 проблем, catalog-json в синхроне, **skills-library 309/309** — на обеих платформах.
 
 ## v1.19 — 2026-07-10 (свежий критический аудит v1.15–v1.18: 6 реальных находок, все исправлены)
 По прямому запросу Ивана — поиск багов/улучшений кода/узких мест/системных улучшений сразу после

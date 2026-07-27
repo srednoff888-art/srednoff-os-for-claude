@@ -42,12 +42,14 @@ if [ -f "$target/package.json" ]; then
   printf '%s' "$pkg" | grep -Eq 'framer-motion|gsap' && add_tag "animation"
   printf '%s' "$pkg" | grep -Eq '@anthropic|openai|ai-sdk' && add_tag "ai"
   printf '%s' "$pkg" | grep -Eq 'tailwind|shadcn' && add_tag "design"
+  printf '%s' "$pkg" | grep -Eq 'telegraf|grammy|@telegram-apps|node-telegram-bot-api|tma\.js' && add_tag "telegram"
 fi
 if [ -f "$target/requirements.txt" ] || [ -f "$target/pyproject.toml" ]; then
   add_tag "backend"
   py="$(cat "$target/requirements.txt" 2>/dev/null || true; cat "$target/pyproject.toml" 2>/dev/null || true)"
   printf '%s' "$py" | grep -Eq 'ccxt|backtest|binance|trading' && add_tag "trading"
   printf '%s' "$py" | grep -Eq 'torch|sklearn|scikit|tensorflow|pandas|numpy' && { add_tag "ml"; add_tag "data"; }
+  printf '%s' "$py" | grep -Eq 'python-telegram-bot|aiogram|pyTelegramBotAPI' && add_tag "telegram"
 fi
 find "$target" -maxdepth 1 -name "*.ps1" -print -quit 2>/dev/null | grep -q . && add_tag "windows"
 if [ -f "$target/Dockerfile" ] || find "$target" -name "*.tf" -print -quit 2>/dev/null | grep -q .; then
@@ -57,6 +59,8 @@ echo "$name" | grep -Eqi 'amazon|fba' && { add_tag "amazon"; add_tag "business";
 echo "$name" | grep -Eqi 'seo' && add_tag "seo"
 echo "$name" | grep -Eqi 'freelance|outreach|strategy|sales|crm' && { add_tag "sales"; add_tag "marketing"; }
 echo "$name" | grep -Eqi 'design' && add_tag "design"
+echo "$name" | grep -Eqi 'telegram|tg-bot|tgbot|miniapp|mini-app' && add_tag "telegram"
+echo "$name" | grep -Eqi 'yandex-direct|direct-ads|ppc|adwords|google-ads|meta-ads|paid-ads' && { add_tag "ppc"; add_tag "marketing"; }
 [ "${#tags[@]}" -eq 0 ] && add_tag "web"
 
 # --- pull candidates from CORE-300 by tags (dedupe by skill name so G2/G3 variants of the
@@ -170,12 +174,20 @@ if [ -f "$skills_lib_index" ] && command -v jq >/dev/null 2>&1; then
   # jq-output-on-Windows drift.
   tags_json="$(printf '%s\n' "${tags[@]}" | jq -R . | jq -s . | tr -d '\r')"
   to_install=()
+  # Rank by number of matching tags (descending, name ascending as tiebreak) before
+  # capping - see the matching comment in gen-profile-lock.ps1 for why plain alphabetical
+  # index order isn't good enough (a narrow-domain skill matching 2+ of a project's tags
+  # would otherwise lose its slot to a generic single-tag-match skill that sorts earlier).
   while IFS= read -r nm; do
     [ -z "$nm" ] && continue
     [ "${#to_install[@]}" -ge "$skill_install_cap" ] && break
     to_install+=("$nm")
   done < <(jq -r --argjson tags "$tags_json" '
-    to_entries[] | select((.value.tags // []) as $st | ($tags - ($tags - $st)) | length > 0) | .key
+    to_entries
+    | map({key: .key, matches: ((.value.tags // []) as $st | ($tags - ($tags - $st)) | length)})
+    | map(select(.matches > 0))
+    | sort_by([-.matches, .key])
+    | .[].key
   ' "$skills_lib_index" | tr -d '\r')
 
   skills_dir="$target/.claude/skills"

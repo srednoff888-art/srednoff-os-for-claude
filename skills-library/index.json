@@ -831,6 +831,13 @@
       "marketing"
     ]
   },
+  "google-ads-full-audit": {
+    "path": "skills-library/google-ads-full-audit/SKILL.md",
+    "tags": [
+      "marketing",
+      "ppc"
+    ]
+  },
   "google-workspace-addons": {
     "path": "skills-library/google-workspace-addons/SKILL.md",
     "tags": [
@@ -1037,6 +1044,13 @@
       "test"
     ]
   },
+  "meta-ads-full-audit": {
+    "path": "skills-library/meta-ads-full-audit/SKILL.md",
+    "tags": [
+      "marketing",
+      "ppc"
+    ]
+  },
   "migration-lead-agent": {
     "path": "skills-library/migration-lead-agent/SKILL.md",
     "tags": [
@@ -1225,6 +1239,13 @@
     "path": "skills-library/operations-automation-agent/SKILL.md",
     "tags": [
       "ops"
+    ]
+  },
+  "paid-ads-operating-contract": {
+    "path": "skills-library/paid-ads-operating-contract/SKILL.md",
+    "tags": [
+      "marketing",
+      "ppc"
     ]
   },
   "paid-search-risk-agent": {
@@ -1693,6 +1714,21 @@
       "docs"
     ]
   },
+  "telegram-ads-channel-placement": {
+    "path": "skills-library/telegram-ads-channel-placement/SKILL.md",
+    "tags": [
+      "telegram",
+      "marketing",
+      "ppc"
+    ]
+  },
+  "telegram-bot-builder": {
+    "path": "skills-library/telegram-bot-builder/SKILL.md",
+    "tags": [
+      "telegram",
+      "backend"
+    ]
+  },
   "test-architect-agent": {
     "path": "skills-library/test-architect-agent/SKILL.md",
     "tags": [
@@ -1862,6 +1898,13 @@
     "path": "skills-library/xr-ar-web-experiences/SKILL.md",
     "tags": [
       "3d"
+    ]
+  },
+  "yandex-direct-ppc": {
+    "path": "skills-library/yandex-direct-ppc/SKILL.md",
+    "tags": [
+      "marketing",
+      "ppc"
     ]
   }
 }
