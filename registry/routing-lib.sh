@@ -6,6 +6,59 @@
 
 GREP_BIN="${SREDNOFF_GREP_BIN:-grep}"
 
+# --- Locale: routing is silently locale-dependent ------------------------------------
+# Every classifier below pipes text into `grep -P`, sends stderr to /dev/null and reads a
+# non-zero exit as "this rule did not match". But grep exits 2 on ERROR, not only 1 on
+# no-match, and `grep -P` refuses to run at all under a locale it considers neither
+# unibyte nor UTF-8 ("-P supports only unibyte and UTF-8 locales"). A router inherits
+# whatever locale its caller had, so in such an environment EVERY rule reports "no match"
+# and routing degrades to its fallbacks with no error anywhere: get_domain_tags() returns
+# "general" for every brief, the quality mode is always "standard", and the selector hands
+# back a generic default set.
+#
+# It is not only grep -P. CORE-300.md is UTF-8 with a large amount of Cyrillic, so the awk
+# passes that parse and score catalog lines are locale-dependent too - under a non-UTF-8
+# locale the same record can land in a different group (observed: a G2 entry scored as G3)
+# and the selector returns a different set of skills for the same brief. The whole
+# toolchain therefore needs one consistent UTF-8 locale, not a per-grep-call fix.
+#
+# Measured with GNU grep 3.0 and an empty LANG: run-evals.sh scored 20/46, and 46/46 with
+# LC_ALL=C.UTF-8 - same code, same fixtures, only the locale.
+#
+# The probe leaves a correctly configured environment completely alone. It only exports a
+# UTF-8 locale when the current one is already rejected by grep -P, i.e. when routing is
+# provably broken as-is, so pinning can only improve the outcome.
+# Deliberately duplicated from .claude/hooks/hook-lib.sh rather than shared: registry/
+# scripts must not depend on the hooks directory (they ship and run independently).
+_SREDNOFF_PCRE_OK=0
+_srednoff_probe_pcre() {
+  local loc
+  # C.UTF-8 does not exist on macOS, en_US.UTF-8 does; C.utf8 is glibc's spelling.
+  for loc in "" "C.UTF-8" "C.utf8" "en_US.UTF-8"; do
+    if [ -z "$loc" ]; then
+      if printf 'a' | "$GREP_BIN" -Pq -- 'a' 2>/dev/null; then
+        _SREDNOFF_PCRE_OK=1; return 0
+      fi
+    elif printf 'a' | LC_ALL="$loc" "$GREP_BIN" -Pq -- 'a' 2>/dev/null; then
+      # Exported, not applied per call: awk/sort/grep -E downstream must agree with grep -P.
+      export LC_ALL="$loc"
+      _SREDNOFF_PCRE_OK=1; return 0
+    fi
+  done
+  return 1
+}
+_srednoff_probe_pcre || true
+
+# Match the PCRE in $1 against text on stdin. Quiet; returns grep's own exit status.
+# `--` matters: a pattern starting with "-" would otherwise be parsed as an option.
+srednoff_grep_pcre() {
+  "$GREP_BIN" -Pq -- "$1" 2>/dev/null
+}
+
+# Success = PCRE is usable. A caller that wants to warn instead of silently degrading
+# (doctor, a router's --json output) can branch on this.
+srednoff_pcre_ok() { [ "$_SREDNOFF_PCRE_OK" -eq 1 ]; }
+
 # tag|combined-alternation-regex pairs, one per line. Same keyword sets as routing-lib.ps1.
 _DOMAIN_RULES='web|web app|website|landing|frontend app|browser
 frontend|frontend|\bui\b|react\b|vue\b|angular\b|next\.?js|component
@@ -44,7 +97,7 @@ get_domain_tags() {
   brief_lower="$(printf '%s' "$1" | tr '[:upper:]' '[:lower:]')"
   while IFS='|' read -r tag pattern; do
     [ -z "$tag" ] && continue
-    if printf '%s' "$brief_lower" | "$GREP_BIN" -Pq "$pattern" 2>/dev/null; then
+    if printf '%s' "$brief_lower" | srednoff_grep_pcre "$pattern"; then
       printf '%s\n' "$tag"
       found=1
     fi
@@ -84,11 +137,11 @@ get_mode() {
   local brief_lower is_turbo=0 is_critical=0 is_production=0 is_fast=0
   local mode legacy_mode budget max_cap reason gates policy
   brief_lower="$(printf '%s' "$1" | tr '[:upper:]' '[:lower:]')"
-  if printf '%s' "$brief_lower" | "$GREP_BIN" -Pq "$_TURBO_PATTERN" 2>/dev/null; then is_turbo=1; fi
-  if printf '%s' "$brief_lower" | "$GREP_BIN" -Pq "$_CRITICAL_PATTERN" 2>/dev/null; then is_critical=1; fi
-  if [ "$is_critical" -eq 0 ] && printf '%s' "$brief_lower" | "$GREP_BIN" -Pq "$_PRODUCTION_PATTERN" 2>/dev/null; then is_production=1; fi
+  if printf '%s' "$brief_lower" | srednoff_grep_pcre "$_TURBO_PATTERN"; then is_turbo=1; fi
+  if printf '%s' "$brief_lower" | srednoff_grep_pcre "$_CRITICAL_PATTERN"; then is_critical=1; fi
+  if [ "$is_critical" -eq 0 ] && printf '%s' "$brief_lower" | srednoff_grep_pcre "$_PRODUCTION_PATTERN"; then is_production=1; fi
   if [ "$is_turbo" -eq 0 ] && [ "$is_critical" -eq 0 ] && [ "$is_production" -eq 0 ] \
-     && printf '%s' "$brief_lower" | "$GREP_BIN" -Pq "$_FAST_PATTERN" 2>/dev/null; then is_fast=1; fi
+     && printf '%s' "$brief_lower" | srednoff_grep_pcre "$_FAST_PATTERN"; then is_fast=1; fi
 
   if [ "$is_turbo" -eq 1 ]; then
     mode="turbo"; legacy_mode="turbo"; budget="turbo"; max_cap=48; reason="explicit TURBO trigger"
