@@ -35,7 +35,7 @@ if ($secretHits.Count -gt 0) {
 # (3) 'git push -f' (the common short flag) bypassed the old pattern, which only matched
 #     '--force'.
 $danger = @(
-  'rm\s+(-rf|-fr|--recursive\s+--force|--force\s+--recursive)\s+(/|~|\$HOME|\.)(\*|/\*)?(\s|$)',
+  '(^|\s)rm(\s+-[^\s]+)*\s+["'']?(/|~|\$HOME|\$\{HOME\}|\.)["'']?(\*|/\*)?["'']?(\s|$)',
   '\bmkfs\b',
   '\bdd\b.*\bof=/dev/',
   ':\(\)\s*\{\s*:\|\:&\s*\};:',     # fork bomb

@@ -35,7 +35,7 @@ fi
 #     the old '-rf'-only match.
 # (3) 'git push -f' bypassed the old '--force'-only match.
 danger_patterns=(
-  '(^|[[:space:]])rm[[:space:]]+(-rf|-fr|--recursive[[:space:]]+--force|--force[[:space:]]+--recursive)[[:space:]]+(/|~|\$HOME|\.)(\*|/\*)?([[:space:]]|$)'
+  '(^|[[:space:]])rm([[:space:]]+-[^[:space:]]+)*[[:space:]]+["'"'"']?(/|~|\$HOME|\$\{HOME\}|\.)["'"'"']?(\*|/\*)?["'"'"']?([[:space:]]|$)'
   '\bmkfs\b'
   '\bdd\b.*\bof=/dev/'
   ':\(\)\s*\{\s*:\|\:&\s*\};:'
