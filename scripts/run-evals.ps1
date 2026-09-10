@@ -20,6 +20,7 @@ $QualityModeFixtures = Join-Path $Registry "evals\quality-mode-fixtures.json"
 $DomainFixtures = Join-Path $Registry "evals\domain-fixtures.json"
 $SelectorFixtures = Join-Path $Registry "evals\selector-fixtures.json"
 $SecretFixtures = Join-Path $Registry "evals\secret-pattern-fixtures.json"
+$SecretPathFixtures = Join-Path $Registry "evals\secret-path-fixtures.json"
 $SourceRankerFixtures = Join-Path $Registry "evals\source-ranker-fixtures.json"
 $SourceRanker = Join-Path $Registry "source-ranker.ps1"
 $HookLib = Join-Path $env:USERPROFILE ".claude\templates\claude-md-os\.claude\hooks\hook-lib.ps1"
@@ -37,6 +38,18 @@ if ((Test-Path -LiteralPath $SecretFixtures) -and (Test-Path -LiteralPath $HookL
     $got = $hits.Count -gt 0
     $pass = ($got -eq $f.expectMatch)
     $results.Add([pscustomobject]@{ suite = "secret-pattern"; id = $f.id; pass = $pass; expected = "match=$($f.expectMatch)"; got = "match=$got ($($hits -join ','))" }) | Out-Null
+  }
+}
+
+# Secret-PATH regression. The path rules had no fixtures at all until now, which is how
+# `.env.example` stayed denied: only the content rules were ever covered here.
+if ((Test-Path -LiteralPath $SecretPathFixtures) -and (Test-Path -LiteralPath $HookLib)) {
+  . $HookLib
+  $fixtures = Get-Content -LiteralPath $SecretPathFixtures -Raw | ConvertFrom-Json
+  foreach ($f in $fixtures) {
+    $got = Test-SecretPath -Path $f.path
+    $pass = ($got -eq $f.expectMatch)
+    $results.Add([pscustomobject]@{ suite = "secret-path"; id = $f.id; pass = $pass; expected = "deny=$($f.expectMatch)"; got = "deny=$got" }) | Out-Null
   }
 }
 

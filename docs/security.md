@@ -20,6 +20,37 @@ All hooks are **opt-in** - copying `.claude/settings.example.json` to
 can block tool calls. Nothing here changes a user's global Claude Code settings by
 default.
 
+## Path Rules: the Name Is Allowed, the Content Never Is
+
+`protect-secrets` denies secret-*looking* file paths (`.env`, `id_rsa`, `*.pem`,
+`credentials.json`, …). A number of names match that shape while being files you are
+supposed to commit and edit, and denying them taught people to switch the hook off - the
+worst possible outcome for a security control. These are allow-listed by name:
+
+| Allowed name | Why it is not a secret |
+|---|---|
+| `.env.example` / `.sample` / `.template` / `.dist` (incl. `.env.local.example`, `.env.example.j2`) | Documents which variables a project needs. Was denied even for **Read**, so the agent could not discover what to configure |
+| `*.pub` | The public half of a key pair - it belongs in `authorized_keys` and deploy keys |
+| `ca-bundle.pem`, `fullchain.pem`, `chain.pem` | Public certificate chains, not private keys |
+| `sealed-secrets.yaml`, `external-secrets.yaml`, `templates/secret.yaml` | Controller manifests that *reference* a secret held elsewhere - that is their entire purpose |
+| `fake_/mock_/dummy_/test_/sample_credentials.json` | Test fixtures |
+
+The allow-list covers the **name only**. For an allow-listed path the hook reads the file
+from disk (capped at 256 KiB) and scans it with the same content rules, so a real key
+committed into `.env.example` is still denied - including on `Read`, where there is no
+tool payload to inspect. Verified both ways on both platforms: a template with
+`postgres://user:password@db` passes, the same template carrying a real `AKIA…` key is
+blocked.
+
+`docs/deck.key` (a Keynote file) stays denied on purpose: `.key` is a private-key
+extension far more often than a presentation. That is a known, accepted false positive,
+pinned by a fixture rather than widened away.
+
+Both the deny pattern and the allow-list live in `hook-lib.{sh,ps1}` so
+`registry/evals/secret-path-fixtures.json` can test them. Before that they lived inside
+the hook and had **no fixtures at all** - the reason the `.env.example` denial shipped and
+survived: only the content rules were ever covered by the eval suite.
+
 ## Design: Fail-Open vs Fail-Closed
 
 - `block-dangerous-bash`, `protect-secrets`, `scan-prompt-secrets` are **security

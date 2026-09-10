@@ -20,6 +20,7 @@ quality_mode_fixtures="$registry/evals/quality-mode-fixtures.json"
 domain_fixtures="$registry/evals/domain-fixtures.json"
 selector_fixtures="$registry/evals/selector-fixtures.json"
 secret_fixtures="$registry/evals/secret-pattern-fixtures.json"
+secret_path_fixtures="$registry/evals/secret-path-fixtures.json"
 source_ranker_fixtures="$registry/evals/source-ranker-fixtures.json"
 source_ranker="$registry/source-ranker.sh"
 hook_lib="$HOME/.claude/templates/claude-md-os/.claude/hooks/hook-lib.sh"
@@ -51,6 +52,18 @@ if [ -f "$secret_fixtures" ] && [ -f "$hook_lib" ]; then
     pass=0; [ "$got" -eq "$expect" ] && pass=1
     add_result "secret-pattern" "$id" "$pass" "match=$expect" "match=$got (${hits[*]:-})"
   done < <(jq -r '.[] | [.id, .text, (if .expectMatch then 1 else 0 end)] | @tsv' "$secret_fixtures" | strip_cr)
+fi
+
+# Secret-PATH regression. The path rules had no fixtures at all until now, which is how
+# `.env.example` stayed denied: only the content rules were ever covered here.
+if [ -f "$secret_path_fixtures" ] && [ -f "$hook_lib" ]; then
+  . "$hook_lib"
+  while IFS=$'\t' read -r id fpath expect; do
+    [ -z "$id" ] && continue
+    got=0; is_secret_path "$fpath" && got=1
+    pass=0; [ "$got" -eq "$expect" ] && pass=1
+    add_result "secret-path" "$id" "$pass" "deny=$expect" "deny=$got"
+  done < <(jq -r '.[] | [.id, .path, (if .expectMatch then 1 else 0 end)] | @tsv' "$secret_path_fixtures" | strip_cr)
 fi
 
 if [ -f "$mode_fixtures" ]; then
