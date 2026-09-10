@@ -32,7 +32,7 @@ flowchart LR
 | Project-added rules | `.claude/rules/*` beyond 00-90 | With a `paths:` field, only when its glob matches the file being touched (native Claude Code feature); without one, every session - any file in the directory is loaded, whatever it is named, which is why the rules-directory doc lives in [rules.md](rules.md) instead |
 | Extended references | `.agent/*` | No - read on demand only, so a rule and its longer `.agent/` version are not context duplication |
 | Skill definitions (base) | `.claude/skills/*/SKILL.md` (5) | Auto-discovered, name+description scanned at session start |
-| Skill library (curated, 303) | `templates/claude-md-os/skills-library/*/SKILL.md` | No - `gen-profile-lock` installs a capped, tag-matched subset into a project's `.claude/skills/` |
+| Skill library (curated, 309) | `templates/claude-md-os/skills-library/*/SKILL.md` | No - `gen-profile-lock` installs a capped, tag-matched subset into a project's `.claude/skills/` |
 | Text catalog (~1700 records) | `registry/CORE-300.md` | No - grep/reference only, no installable content |
 | Machine-readable catalog export | `registry/CORE-300.json` | No - for external tools, not Claude Code itself |
 | Hooks | `.claude/hooks/*.ps1`, `*.sh` | Only if wired into `settings.json` (opt-in) |
@@ -57,11 +57,11 @@ flowchart LR
 ## Skills-Library Install vs Text Catalog
 
 Most of `CORE-300.md` is reference text: grep it, read the relevant lines, apply the
-pattern manually. A curated subset (303 records, source `SREDNOFF`, see
-`registry/INSTALL-SOURCES.md`) has real `SKILL.md` content in `skills-library/` and gets
+pattern manually. A curated subset (309 records - 303 adapted from `SREDNOFF`, plus 6 later imports from
+external MIT sources, see `registry/INSTALL-SOURCES.md`) has real `SKILL.md` content in `skills-library/` and gets
 **installed** - copied into a project's `.claude/skills/` by `gen-profile-lock`, capped at
 20 per project (Claude Code scans name+description for every installed skill at session
-start, roughly 100 tokens each even when unused - installing all 303 unconditionally
+start, roughly 100 tokens each even when unused - installing all 309 unconditionally
 would cost 30k+ tokens per session for no benefit).
 
 ## Release Evidence Path

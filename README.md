@@ -55,7 +55,7 @@ Claude Code is extremely capable out of the box — but every session starts fro
 <tr>
 <td><strong>Installable skills</strong></td>
 <td>🔴 Manual, one at a time</td>
-<td>🟢 303 curated skills auto-installed by project tags, capped for context budget</td>
+<td>🟢 309 curated skills auto-installed by project tags, capped for context budget</td>
 </tr>
 <tr>
 <td><strong>Health check</strong></td>
@@ -110,7 +110,7 @@ flowchart TD
 <tr><td><code>.claude/hooks/</code></td><td>PowerShell + Bash hooks — secret scanning, dangerous-command blocking</td></tr>
 <tr><td><code>.agent/</code></td><td>Agent-facing conventions + the multi-stage checkpoint process</td></tr>
 <tr><td><code>scripts/</code></td><td>Install, doctor, profile-lock generator, eval runner, source ranker</td></tr>
-<tr><td><code>skills-library/</code></td><td><strong>303 installable skills</strong> — auto-selected per project, capped for context budget</td></tr>
+<tr><td><code>skills-library/</code></td><td><strong>309 installable skills</strong> — auto-selected per project, capped for context budget</td></tr>
 <tr><td><code>registry/CORE-300.md</code></td><td>2000+ skills/agents, tagged and tiered</td></tr>
 <tr><td><code>registry/SELECTION-PROTOCOL.md</code></td><td>How to pick skills for a project without loading the whole catalog</td></tr>
 <tr><td><code>registry/CAPABILITY-INDEX.md</code></td><td>One canonical pick per capability — no overlap confusion</td></tr>
@@ -154,7 +154,7 @@ Every script exists in two versions with full functional parity:
 bash path/to/srednoff-os/scripts/init-claude-project.sh /path/to/your/project
 ```
 
-This drops the rulebook into your project, generates a `.claude/PROFILE.lock.md` tailored to what it detects (Next.js? Python? trading/backtest code? Amazon FBA?), auto-installs a capped, tag-matched shortlist from the 303-skill library, and never overwrites a `CLAUDE.md` you already have — it backs up and merges instead.
+This drops the rulebook into your project, generates a `.claude/PROFILE.lock.md` tailored to what it detects (Next.js? Python? trading/backtest code? Amazon FBA?), auto-installs a capped, tag-matched shortlist from the 309-skill library, and never overwrites a `CLAUDE.md` you already have — it backs up and merges instead.
 
 **Health check, anytime:**
 
@@ -209,7 +209,7 @@ Nothing here modifies your global Claude Code settings by default. Hook wiring e
 | `bash-3-2` | CI (Docker `bash:3.2`) | The exact shell macOS ships — not a proxy |
 | `hook-canary` + `profile-lock-gate` | CI + `doctor` | Security hooks actually deny/block known-bad input |
 | `registry-audit` | CI + `doctor` | 0 duplicate entries across 2000+ records |
-| `skills-library` + `docs` | CI + `doctor` | All 303 installable skills and docs are well-formed |
+| `skills-library` + `docs` | CI + `doctor` | All 309 installable skills and docs are well-formed |
 | `run-evals.{ps1,sh}` | CI + `doctor` | Routing/selector/secret-pattern regression suite |
 
 Full check-by-check evidence table (every number backed by a re-runnable command, plus honest "what this does not promise" sections) in [`QUALITY.md`](QUALITY.md) · current release status in [`RELEASE.md`](RELEASE.md) · reproducible control-vs-OS benchmark harness in [`benchmarks/`](benchmarks/).

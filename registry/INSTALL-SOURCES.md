@@ -11,7 +11,7 @@ Claude Code (текст: `Codex`→`Claude Code`, пути `.codex/`→`.claude/
 `templates/claude-md-os/skills-library/<name>/SKILL.md` — НЕ грузятся автоматически. Уже
 **установлены**, но не **активированы**: `gen-profile-lock.ps1/.sh` при генерации PROFILE.lock
 копирует до 20 тег-совпадающих скиллов из `skills-library/` в `.claude/skills/` проекта (жёсткий
-кап — ~100 токенов на скилл на старте сессии Claude Code, 303 скилла целиком = 30k+ токенов, что
+кап — ~100 токенов на скилл на старте сессии Claude Code, 309 скиллов целиком = 30k+ токенов, что
 неприемлемо). Полная библиотека: `skills-library/index.json`. 2 записи (`quality-cost-skill-kernel`,
 `source-ranking-roi-selector`) — донор-специфичные мета-концепции, description backfilled, но
 контент НЕ импортирован (см. `PLAN-V2-MERGE-FROM-CODEX.md`, "НЕ БРАТЬ"). 3 записи с совпадающим
