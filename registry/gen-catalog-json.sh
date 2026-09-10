@@ -108,7 +108,14 @@ case "$mode" in
       echo "gen-catalog-json: --check: $out does not exist (run without --check first)" >&2
       exit 1
     fi
-    if printf '%s\n' "$json" | diff -q - "$out" >/dev/null 2>&1; then
+    # Compare with CR stripped from both sides. The generated JSON always has LF endings,
+    # but the checked-out file has CRLF on a Windows working copy, so a byte-for-byte diff
+    # reported DRIFT for a file whose content is identical - `git diff` after regenerating
+    # came back empty. CI never saw it (Linux runners check out LF), so the false alarm
+    # only ever hit Windows contributors running doctor locally, where it looks exactly
+    # like a real stale-catalog failure. The PowerShell port compares parsed ids/count and
+    # was never affected, so this only restores parity.
+    if printf '%s\n' "$json" | tr -d '\r' | diff -q - <(tr -d '\r' < "$out") >/dev/null 2>&1; then
       echo "gen-catalog-json: OK - CORE-300.json is in sync ($actual records)"
     else
       echo "gen-catalog-json: DRIFT - CORE-300.json is stale; regenerate with ./gen-catalog-json.sh" >&2
