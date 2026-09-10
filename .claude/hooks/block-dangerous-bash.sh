@@ -46,7 +46,7 @@ danger_patterns=(
   '>\s*/dev/sd[a-z]'
 )
 for d in "${danger_patterns[@]}"; do
-  if printf '%s' "$cmd" | grep -Pq "$d" 2>/dev/null; then
+  if printf '%s' "$cmd" | srednoff_grep_pcre "$d"; then
     deny "Dangerous shell command blocked by SREDNOFF OS hook (pattern: $d)." "$d"
   fi
 done

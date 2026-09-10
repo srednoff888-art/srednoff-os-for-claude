@@ -20,16 +20,27 @@ deny() {
   exit 0
 }
 
-fp="$(printf '%s' "$raw" | jq -r '.tool_input.file_path // .tool_input.path // empty' 2>/dev/null || true)"
+fp="$(printf '%s' "$raw" | jq -r '.tool_input.file_path // .tool_input.path // .tool_input.notebook_path // empty' 2>/dev/null || true)"
 
 secret_path_pattern='(^|[\\/])\.env(\.|$)|id_rsa|id_ed25519|\.pem$|\.key$|secrets?\.(json|ya?ml|toml)$|credentials(\.json)?$'
-if [ -n "$fp" ] && printf '%s' "$fp" | grep -Pq "$secret_path_pattern" 2>/dev/null; then
+if [ -n "$fp" ] && printf '%s' "$fp" | srednoff_grep_pcre "$secret_path_pattern"; then
   deny "Secret-like file path blocked by SREDNOFF OS hook. Ask the user for explicit approval; use a redacted approach." "secret_path"
 fi
 
 # Content-based check: catches a secret being written into an otherwise-innocuous file
 # (e.g. hardcoded into a .ts/.py source file), which the path check above cannot see.
-content_field="$(printf '%s' "$raw" | jq -r '[.tool_input.content, .tool_input.new_string, .tool_input.old_string] | map(select(. != null)) | join("\n")' 2>/dev/null || true)"
+#
+# Covers every field a matcher in settings.example.json can actually deliver:
+#   Write         -> content
+#   Edit          -> new_string
+#   MultiEdit     -> edits[].new_string   (an array - was not read at all before, so a
+#                    secret written through MultiEdit passed straight through even though
+#                    the matcher listed it: coverage was nominal, not real)
+#   NotebookEdit  -> new_source           (same story)
+# old_string is deliberately NOT scanned: it is the text being REMOVED, so it can never
+# reach disk. Scanning it blocked the one thing you most want to allow - deleting a
+# hardcoded key - and also blocked editing this repo's own secret fixtures.
+content_field="$(printf '%s' "$raw" | jq -r '[.tool_input.content, .tool_input.new_string, .tool_input.new_source, (.tool_input.edits // [] | .[]? | .new_string)] | map(select(. != null)) | join("\n")' 2>/dev/null || true)"
 # bash-3.2-compatible (macOS /bin/bash is 3.2.57, no `mapfile`): read lines into an array.
 secret_hits=(); while IFS= read -r _line; do secret_hits+=("$_line"); done < <(find_secret_signals "$content_field")
 if [ "${#secret_hits[@]}" -gt 0 ]; then

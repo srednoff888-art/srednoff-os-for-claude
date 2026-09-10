@@ -6,6 +6,62 @@
 
 GREP_BIN="${SREDNOFF_GREP_BIN:-grep}"
 
+# --- PCRE availability (closes a silent fail-open) -----------------------------------
+# Every PCRE call site pipes text into `grep -P`, sends stderr to /dev/null and treats a
+# non-zero exit as "no match". But grep exits 2 on ERROR, not only 1 on no-match, and two
+# separate errors were landing in exactly that blind spot - silently turning a security
+# control off with no output and no warning:
+#   1. A pattern starting with "-" is parsed by grep as an option. The private_key rule
+#      starts with "-----BEGIN", so every call produced
+#      `grep: unknown option -- ---BEGIN ...`, exit 2 => the private_key rule NEVER fired
+#      in the bash port. A PEM private key was blocked on Windows and allowed on
+#      Linux/macOS. Fixed by passing `--` before the pattern.
+#   2. `grep -P` refuses to run under a locale it considers neither unibyte nor UTF-8
+#      ("-P supports only unibyte and UTF-8 locales", exit 2). A hook inherits whatever
+#      locale its caller had; observed with GNU grep 3.0 and an empty LANG, where even
+#      LC_ALL=C was rejected. Every rule then reports "no match" and the hook allows
+#      everything through.
+# srednoff_grep_pcre() centralises both fixes and finally honours SREDNOFF_GREP_BIN at
+# every call site (block-dangerous-bash.sh and protect-secrets.sh previously hardcoded
+# `grep`, so the macOS `ggrep` workaround documented in README.md did not actually reach
+# them). srednoff_pcre_ok() lets doctor report an unusable PCRE instead of leaving it
+# invisible - same reasoning as the existing jq-dependency check.
+_SREDNOFF_PCRE_LOCALE=""
+_SREDNOFF_PCRE_OK=0
+_srednoff_probe_pcre() {
+  local loc
+  # The empty entry means "keep the locale we already have" - a correctly configured
+  # environment is never overridden; the fallbacks are tried only if it is rejected.
+  # C.UTF-8 does not exist on macOS, en_US.UTF-8 does; C.utf8 is glibc's spelling.
+  for loc in "" "C.UTF-8" "C.utf8" "en_US.UTF-8"; do
+    if [ -z "$loc" ]; then
+      if printf 'a' | "$GREP_BIN" -Pq -- 'a' 2>/dev/null; then
+        _SREDNOFF_PCRE_OK=1; return 0
+      fi
+    elif printf 'a' | LC_ALL="$loc" "$GREP_BIN" -Pq -- 'a' 2>/dev/null; then
+      _SREDNOFF_PCRE_LOCALE="$loc"; _SREDNOFF_PCRE_OK=1; return 0
+    fi
+  done
+  return 1
+}
+_srednoff_probe_pcre || true
+
+# Match the PCRE in $1 against text on stdin. Quiet; returns grep's own exit status.
+srednoff_grep_pcre() {
+  if [ -n "$_SREDNOFF_PCRE_LOCALE" ]; then
+    LC_ALL="$_SREDNOFF_PCRE_LOCALE" "$GREP_BIN" -Pq -- "$1" 2>/dev/null
+  else
+    "$GREP_BIN" -Pq -- "$1" 2>/dev/null
+  fi
+}
+
+# Success = PCRE is usable. doctor.sh turns a failure into a visible FAIL check.
+srednoff_pcre_ok() { [ "$_SREDNOFF_PCRE_OK" -eq 1 ]; }
+
+# Empty = the environment's own locale was fine and is left alone; otherwise the locale
+# the probe had to pin to make grep -P run. Read this instead of the private variable.
+srednoff_pcre_locale() { printf '%s' "$_SREDNOFF_PCRE_LOCALE"; }
+
 # name|pattern pairs, one per line. Cross-checked against gitleaks.toml and Slack's own
 # token format, 2026-07-01, same patterns as hook-lib.ps1 for cross-platform parity.
 _SECRET_RULES='openai_api_key|sk-[A-Za-z0-9_-]{32,}
@@ -32,7 +88,7 @@ find_secret_signals() {
   local name pattern
   while IFS='|' read -r name pattern; do
     [ -z "$name" ] && continue
-    if printf '%s' "$text" | "$GREP_BIN" -Pq "$pattern" 2>/dev/null; then
+    if printf '%s' "$text" | srednoff_grep_pcre "$pattern"; then
       printf '%s\n' "$name"
     fi
   done <<< "$_SECRET_RULES"
