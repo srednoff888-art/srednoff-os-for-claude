@@ -23,7 +23,7 @@ deny() {
 fp="$(printf '%s' "$raw" | jq -r '.tool_input.file_path // .tool_input.path // empty' 2>/dev/null || true)"
 
 secret_path_pattern='(^|[\\/])\.env(\.|$)|id_rsa|id_ed25519|\.pem$|\.key$|secrets?\.(json|ya?ml|toml)$|credentials(\.json)?$'
-if [ -n "$fp" ] && printf '%s' "$fp" | grep -Pq "$secret_path_pattern" 2>/dev/null; then
+if [ -n "$fp" ] && printf '%s' "$fp" | srednoff_grep_pcre "$secret_path_pattern"; then
   deny "Secret-like file path blocked by SREDNOFF OS hook. Ask the user for explicit approval; use a redacted approach." "secret_path"
 fi
 

@@ -38,6 +38,30 @@ else
   add_check "jq-dependency" "FAIL" "jq NOT FOUND - bash hooks (block-dangerous-bash.sh, protect-secrets.sh, scan-prompt-secrets.sh) silently fail OPEN (allow everything) without it. Install: apt/dnf/pacman install jq, or brew install jq on macOS."
 fi
 
+# 0b. PCRE dependency check - the exact same class of silent fail-open as jq above, for
+# the other hard dependency. Every secret/danger rule is a `grep -P` pattern, and each
+# call site discards stderr and reads any non-zero exit as "no match". So a grep that
+# cannot run PCRE at all (BSD grep on stock macOS, or a locale grep -P rejects) does not
+# fail loudly - it quietly allows everything. hook-lib.sh probes this at load time and
+# exposes srednoff_pcre_ok(); this surfaces the answer.
+_hook_lib="$script_dir/../.claude/hooks/hook-lib.sh"
+if [ -f "$_hook_lib" ]; then
+  # shellcheck source=../.claude/hooks/hook-lib.sh
+  . "$_hook_lib"
+  if srednoff_pcre_ok; then
+    _pcre_locale="$(srednoff_pcre_locale)"
+    if [ -n "$_pcre_locale" ]; then
+      add_check "grep-pcre" "OK" "grep -P usable (this environment's own locale was rejected; hooks pin LC_ALL=$_pcre_locale)"
+    else
+      add_check "grep-pcre" "OK" "grep -P usable under the current locale"
+    fi
+  else
+    add_check "grep-pcre" "FAIL" "grep -P NOT USABLE - every bash secret/danger rule silently matches nothing, so the hooks fail OPEN. On macOS: brew install grep && export SREDNOFF_GREP_BIN=ggrep. Otherwise install a PCRE-capable GNU grep or set a UTF-8 locale."
+  fi
+else
+  add_check "grep-pcre" "WARN" "hook-lib.sh not found at $_hook_lib - cannot verify PCRE availability"
+fi
+
 # 1. Status one-liner
 status_out="$(bash "$script_dir/status.sh" --project "$project_root" 2>&1)"
 status_check="WARN"; printf '%s' "$status_out" | grep -q "loaded: OK" && status_check="OK"
