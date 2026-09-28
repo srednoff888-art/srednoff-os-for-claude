@@ -63,7 +63,11 @@ if ((Test-Path -LiteralPath $SecretPathFixtures) -and (Test-Path -LiteralPath $H
 if ((Test-Path -LiteralPath $ProfileTagFixtures) -and (Test-Path -LiteralPath $GenProfileLock)) {
   $fixtures = Get-Content -LiteralPath $ProfileTagFixtures -Raw | ConvertFrom-Json
   foreach ($f in $fixtures) {
-    $tmpProj = Join-Path ([System.IO.Path]::GetTempPath()) ("srednoff-eval-" + [guid]::NewGuid().ToString("N"))
+    # Fixed neutral project name inside a random parent: gen-profile-lock also tags by the
+    # directory name (fba -> amazon, crm -> sales, ...), and a GUID-named dir contained "fba"
+    # in ~0.8% of fixtures - a flaky suite. These fixtures test file-based detection only.
+    $tmpRoot = Join-Path ([System.IO.Path]::GetTempPath()) ("srednoff-eval-" + [guid]::NewGuid().ToString("N"))
+    $tmpProj = Join-Path $tmpRoot "project"
     New-Item -ItemType Directory -Force -Path $tmpProj | Out-Null
     foreach ($rel in $f.files) {
       $full = Join-Path $tmpProj ($rel -replace '/', '\')
@@ -75,7 +79,7 @@ if ((Test-Path -LiteralPath $ProfileTagFixtures) -and (Test-Path -LiteralPath $G
       }
     }
     $gotRaw = & powershell -NoProfile -ExecutionPolicy Bypass -File $GenProfileLock -ProjectPath $tmpProj -PrintTags 2>$null
-    Remove-Item -Recurse -Force -LiteralPath $tmpProj -ErrorAction SilentlyContinue
+    Remove-Item -Recurse -Force -LiteralPath $tmpRoot -ErrorAction SilentlyContinue
     # Order-insensitive exact set comparison.
     $gotSorted = (($gotRaw -split ',' | Where-Object { $_ } | Sort-Object) -join ',')
     $expSorted = ((@($f.expectedTags) | Sort-Object) -join ',')

@@ -76,7 +76,14 @@ fi
 if [ -f "$profile_tag_fixtures" ] && [ -f "$gen_profile_lock" ]; then
   while IFS=$'\t' read -r id files_csv expected_csv; do
     [ -z "$id" ] && continue
-    tmp_proj="$(mktemp -d 2>/dev/null || mktemp -d -t srednoff)"
+    # The project dir gets a FIXED neutral name inside a random parent. gen-profile-lock also
+    # tags by the project's directory name (`crm` -> sales+marketing, `fba` -> amazon, ...),
+    # so a random `mktemp -d` name made this suite flaky: tmp.XXXXXXXXXX matched one of those
+    # substrings in ~0.1% of fixtures (upstream main went red on python_with_tox, got
+    # "backend,marketing,sales,test"). These fixtures test file-based detection only.
+    tmp_root="$(mktemp -d 2>/dev/null || mktemp -d -t srednoff)"
+    tmp_proj="$tmp_root/project"
+    mkdir -p "$tmp_proj"
     IFS=',' read -ra _files <<< "$files_csv"
     for f in ${_files[@]+"${_files[@]}"}; do
       case "$f" in
@@ -85,7 +92,7 @@ if [ -f "$profile_tag_fixtures" ] && [ -f "$gen_profile_lock" ]; then
       esac
     done
     got_csv="$(bash "$gen_profile_lock" --print-tags "$tmp_proj" 2>/dev/null)"
-    rm -rf "$tmp_proj"
+    rm -rf "$tmp_root"
     # Order-insensitive exact set comparison.
     got_sorted="$(printf '%s' "$got_csv" | tr ',' '\n' | sort | paste -sd',' -)"
     exp_sorted="$(printf '%s' "$expected_csv" | tr ',' '\n' | sort | paste -sd',' -)"
