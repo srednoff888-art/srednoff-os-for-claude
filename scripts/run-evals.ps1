@@ -26,8 +26,10 @@ $SourceRanker = Join-Path $Registry "source-ranker.ps1"
 $HookLib = Join-Path $env:USERPROFILE ".claude\templates\claude-md-os\.claude\hooks\hook-lib.ps1"
 $ProfileTagFixtures = Join-Path $Registry "evals\profile-tag-fixtures.json"
 $GenProfileLock = Join-Path $env:USERPROFILE ".claude\templates\claude-md-os\scripts\gen-profile-lock.ps1"
+$InitProject = Join-Path $env:USERPROFILE ".claude\templates\claude-md-os\scripts\init-claude-project.ps1"
+$CreateOnlyFixtures = Join-Path $Registry "evals\create-only-fixtures.json"
 
-$results = New-Object System.Collections.Generic.List[object]
+$results =New-Object System.Collections.Generic.List[object]
 
 # Secret-pattern regression (real gitleaks/vendor fixtures, not invented examples - closes
 # a gap found in critical review: patterns were never validated against an independent
@@ -85,6 +87,87 @@ if ((Test-Path -LiteralPath $ProfileTagFixtures) -and (Test-Path -LiteralPath $G
     $expSorted = ((@($f.expectedTags) | Sort-Object) -join ',')
     $pass = ($gotSorted -eq $expSorted)
     $results.Add([pscustomobject]@{ suite = "profile-tags"; id = $f.id; pass = $pass; expected = $expSorted; got = $gotSorted }) | Out-Null
+  }
+}
+
+# Create-only regression (#34). init-claude-project and gen-profile-lock used to replace or
+# edit files the project already owned (CLAUDE.md, rules, .agent/**). Each fixture builds a
+# throwaway project, runs one script and asserts what happened to the files on bytes, so
+# "never touches an existing file unless -Force" is not taken from the script's own report.
+if ((Test-Path -LiteralPath $CreateOnlyFixtures) -and (Test-Path -LiteralPath $InitProject) -and (Test-Path -LiteralPath $GenProfileLock)) {
+  $enc = New-Object System.Text.UTF8Encoding($false)
+  $fixtures = Get-Content -LiteralPath $CreateOnlyFixtures -Raw | ConvertFrom-Json
+  foreach ($f in $fixtures) {
+    $tmpRoot = Join-Path ([System.IO.Path]::GetTempPath()) ("srednoff-eval-" + [guid]::NewGuid().ToString("N"))
+    $proj = Join-Path $tmpRoot "project"
+    New-Item -ItemType Directory -Force -Path $proj | Out-Null
+    $orig = @{}
+    if ($f.files) {
+      foreach ($prop in $f.files.PSObject.Properties) {
+        $full = Join-Path $proj ($prop.Name -replace '/', '\')
+        New-Item -ItemType Directory -Force -Path (Split-Path -Parent $full) | Out-Null
+        [System.IO.File]::WriteAllText($full, [string]$prop.Value, $enc)
+        $orig[$prop.Name] = [System.IO.File]::ReadAllBytes($full)
+      }
+    }
+    if ($f.git) {
+      # Windows PowerShell 5.1 turns git's stderr warnings (LF->CRLF) into terminating errors
+      # under "Stop"; the fixture only needs the repo state.
+      $prevEap = $ErrorActionPreference; $ErrorActionPreference = "Continue"
+      & git -C $proj init -q *> $null
+      if ($f.commit) {
+        & git -C $proj add -A *> $null
+        & git -C $proj -c user.email=eval@example.invalid -c user.name=eval commit -q -m fixture *> $null
+      }
+      $ErrorActionPreference = $prevEap
+    }
+    switch ($f.run) {
+      "init"           { & powershell -NoProfile -ExecutionPolicy Bypass -File $InitProject $proj *> $null }
+      "init-skip"      { & powershell -NoProfile -ExecutionPolicy Bypass -File $InitProject $proj -SkipExistingClaudeMd *> $null }
+      "init-force"     { & powershell -NoProfile -ExecutionPolicy Bypass -File $InitProject $proj -Force *> $null }
+      "gen-lock"       { & powershell -NoProfile -ExecutionPolicy Bypass -File $GenProfileLock $proj *> $null }
+      "gen-lock-embed" { & powershell -NoProfile -ExecutionPolicy Bypass -File $GenProfileLock $proj -EmbedSelection *> $null }
+    }
+    $problems = New-Object System.Collections.Generic.List[string]
+    $same = {
+      param($rel)
+      $full = Join-Path $proj ($rel -replace '/', '\')
+      if (-not (Test-Path -LiteralPath $full)) { return $false }
+      $a = [System.IO.File]::ReadAllBytes($full); $b = $orig[$rel]
+      return ([System.Convert]::ToBase64String($a) -eq [System.Convert]::ToBase64String($b))
+    }
+    foreach ($rel in @($f.expectUnchanged)) { if ($rel -and -not (& $same $rel)) { $problems.Add("changed:$rel") } }
+    foreach ($rel in @($f.expectReplaced)) {
+      if (-not $rel) { continue }
+      $full = Join-Path $proj ($rel -replace '/', '\')
+      if (-not ((Test-Path -LiteralPath $full) -and -not (& $same $rel))) { $problems.Add("not-replaced:$rel") }
+    }
+    foreach ($rel in @($f.expectExists)) {
+      if ($rel -and -not (Test-Path -LiteralPath (Join-Path $proj ($rel -replace '/', '\')))) { $problems.Add("missing:$rel") }
+    }
+    foreach ($rel in @($f.expectNoCR)) {
+      if (-not $rel) { continue }
+      $full = Join-Path $proj ($rel -replace '/', '\')
+      if ((Test-Path -LiteralPath $full) -and ([System.IO.File]::ReadAllText($full).Contains("`r"))) { $problems.Add("has-CR:$rel") }
+    }
+    if ($f.expectContains) {
+      foreach ($prop in $f.expectContains.PSObject.Properties) {
+        $text = [System.IO.File]::ReadAllText((Join-Path $proj ($prop.Name -replace '/', '\')))
+        foreach ($needle in @($prop.Value)) { if (-not $text.Contains($needle)) { $problems.Add("lacks:$($prop.Name):$needle") } }
+      }
+    }
+    if ($f.expectNoLine) {
+      foreach ($prop in $f.expectNoLine.PSObject.Properties) {
+        $lines = [System.IO.File]::ReadAllText((Join-Path $proj ($prop.Name -replace '/', '\'))) -split "`r?`n"
+        foreach ($needle in @($prop.Value)) { if ($lines -contains $needle) { $problems.Add("has-line:$($prop.Name):$needle") } }
+      }
+    }
+    $bakCount = @(Get-ChildItem -LiteralPath $proj -Recurse -Force -File -Filter "*.bak.*" -ErrorAction SilentlyContinue).Count
+    if ($f.expectNoBak -and $bakCount -gt 0) { $problems.Add("bak-files:$bakCount") }
+    if ($f.expectBak -and $bakCount -eq 0) { $problems.Add("no-bak") }
+    Remove-Item -Recurse -Force -LiteralPath $tmpRoot -ErrorAction SilentlyContinue
+    $gotText = if ($problems.Count -eq 0) { "ok" } else { $problems -join " " }
+    $results.Add([pscustomobject]@{ suite = "create-only"; id = $f.id; pass = ($problems.Count -eq 0); expected = "files untouched unless -Force"; got = $gotText }) | Out-Null
   }
 }
 

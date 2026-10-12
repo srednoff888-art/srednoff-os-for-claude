@@ -24,9 +24,13 @@ the current template and warns (never fails) when they diverge. To refresh:
 ```
 
 `-Sync` (default off, backward-compatible) re-runs `init-claude-project` on
-already-initialized projects, not just missing ones - hash-diffing, timestamped backups,
-and `CLAUDE.md` preservation all apply exactly as they do for a first-time init, since
-`-Sync` is a thin flag over the same script, not a separate code path.
+already-initialized projects, not just missing ones. `init-claude-project` is create-only:
+it adds the files a project is missing and never changes one that exists, so `-Sync`
+brings in new template files but does not rewrite files that have drifted - those are
+listed as "kept". To replace a file, run `init-claude-project` by hand with `-Force`
+(each replaced file is backed up first). `gen-profile-lock` likewise leaves a project's
+`CLAUDE.md` alone unless it already has the `SREDNOFF-OS:SELECTION` markers or you pass
+`-EmbedSelection`.
 
 ## System maintenance
 

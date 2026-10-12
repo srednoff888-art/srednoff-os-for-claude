@@ -18,4 +18,4 @@ bash:
 ~/.claude/templates/claude-md-os/scripts/init-claude-project.sh .
 ```
 
-Do not overwrite existing files without timestamped backups. After initialization, list created, updated, skipped and backed up files.
+The script is create-only: it never changes a file that already exists. After initialization, list created, skipped (identical) and kept (differs from the template, not modified) files. Replacing a kept file is the user's explicit decision (`--force`, which backs it up first).

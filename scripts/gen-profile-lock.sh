@@ -8,6 +8,13 @@
 # Usage:
 #   ./gen-profile-lock.sh .
 #   ./gen-profile-lock.sh /path/to/project
+#   ./gen-profile-lock.sh /path/to/project --embed-selection
+#
+# CLAUDE.md is the project's own file. By default this script only refreshes the
+# SREDNOFF-OS:SELECTION block when the markers are already there; it never adds the block to
+# a CLAUDE.md that does not have it. --embed-selection is the explicit opt-in that inserts it
+# (after the title line). Background callers (SessionStart hook, doctor, apply-os-all) never
+# pass it.
 set -uo pipefail
 
 # --print-tags classifies the project and prints the dominant tags, then exits without
@@ -15,10 +22,12 @@ set -uo pipefail
 # regression-tested (evals/profile-tag-fixtures.json) instead of only being observable
 # through the PROFILE.lock it produces.
 print_tags=0
+embed_selection=0
 args=()
 for a in "$@"; do
   case "$a" in
     --print-tags) print_tags=1 ;;
+    --embed-selection) embed_selection=1 ;;
     *) args+=("$a") ;;
   esac
 done
@@ -152,9 +161,12 @@ tags_csv="$(printf '%s, ' "${tags[@]}")"; tags_csv="${tags_csv%, }"
 } > "$lock"
 
 # --- Embed a compact selection into CLAUDE.md (always-loaded) so the agent sees the picks
-# without needing a separate read of PROFILE.lock. Idempotent via markers. ---
+# without needing a separate read of PROFILE.lock. Idempotent via markers. Only touches a
+# CLAUDE.md that already carries the markers, or when --embed-selection was passed. ---
 claude_md="$target/CLAUDE.md"
-if [ -f "$claude_md" ]; then
+m0="<!-- SREDNOFF-OS:SELECTION -->"
+m1="<!-- /SREDNOFF-OS:SELECTION -->"
+if [ -f "$claude_md" ] && { [ "$embed_selection" -eq 1 ] || grep -qF "$m0" "$claude_md"; }; then
   names=()
   # Prefer immediately-usable INST/ANTH skills first, then fill with the rest.
   for pref_inst in 1 0; do
@@ -176,8 +188,6 @@ if [ -f "$claude_md" ]; then
   done
   sel="$(printf '%s, ' "${names[@]:-}")"; sel="${sel%, }"
 
-  m0="<!-- SREDNOFF-OS:SELECTION -->"
-  m1="<!-- /SREDNOFF-OS:SELECTION -->"
   block="$m0"$'\n'"> **SREDNOFF OS - skills for this project** (full list: .claude/PROFILE.lock.md - read it first) | tags: $tags_csv | top: $sel"$'\n'"$m1"
 
   md_content="$(cat "$claude_md")"

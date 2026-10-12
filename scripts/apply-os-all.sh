@@ -2,11 +2,10 @@
 # Apply SREDNOFF OS to EVERY project subfolder under a root that is missing it
 # (Linux/macOS port of apply-os-all.ps1). Belt-and-suspenders for "apply to all projects"
 # without a SessionStart hook. With --sync, ALSO refreshes projects that already have
-# the OS - re-runs init on them so rules/hooks/skills/scripts pick up template updates
-# (concept ported from srednoff-os's sync-codex-skills-to-projects.ps1; implemented as
-# a flag here instead of a parallel script, because init-claude-project.sh already does
-# exactly what a sync needs - hash-diff, timestamped backup, CLAUDE.md preservation -
-# re-running it on an initialized project IS the sync).
+# the OS - re-runs init on them so they pick up template files they are missing (concept
+# ported from srednoff-os's sync-codex-skills-to-projects.ps1; implemented as a flag here
+# instead of a parallel script). init-claude-project.sh is create-only: it never changes a
+# file that already exists, so a sync adds new files and reports the ones that differ.
 #
 # Usage:
 #   ./apply-os-all.sh                        # root = current directory, bootstrap-only

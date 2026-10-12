@@ -26,6 +26,8 @@ source_ranker="$registry/source-ranker.sh"
 hook_lib="$HOME/.claude/templates/claude-md-os/.claude/hooks/hook-lib.sh"
 profile_tag_fixtures="$registry/evals/profile-tag-fixtures.json"
 gen_profile_lock="$HOME/.claude/templates/claude-md-os/scripts/gen-profile-lock.sh"
+init_project="$HOME/.claude/templates/claude-md-os/scripts/init-claude-project.sh"
+create_only_fixtures="$registry/evals/create-only-fixtures.json"
 
 if ! command -v jq >/dev/null 2>&1; then echo "jq not found - required for run-evals.sh" >&2; exit 1; fi
 
@@ -99,6 +101,72 @@ if [ -f "$profile_tag_fixtures" ] && [ -f "$gen_profile_lock" ]; then
     pass=0; [ "$got_sorted" = "$exp_sorted" ] && pass=1
     add_result "profile-tags" "$id" "$pass" "$exp_sorted" "$got_sorted"
   done < <(jq -r '.[] | [.id, (.files | join(",")), (.expectedTags | join(","))] | @tsv' "$profile_tag_fixtures" | strip_cr)
+fi
+
+# Create-only regression (#34). init-claude-project and gen-profile-lock used to replace
+# or edit files the project already owned (CLAUDE.md, rules, .agent/**) - init with a .bak,
+# gen-profile-lock without even that. Each fixture builds a throwaway project, runs one
+# script and asserts what happened to the files, so "never touches an existing file unless
+# --force" is checked on bytes, not on the script's own report.
+if [ -f "$create_only_fixtures" ] && [ -f "$init_project" ] && [ -f "$gen_profile_lock" ]; then
+  while IFS= read -r fx; do
+    [ -z "$fx" ] && continue
+    id="$(printf '%s' "$fx" | jq -r '.id')"
+    tmp_root="$(mktemp -d 2>/dev/null || mktemp -d -t srednoff)"
+    proj="$tmp_root/project"; mkdir -p "$proj"
+    orig="$tmp_root/orig"; mkdir -p "$orig"
+    while IFS= read -r rel; do
+      [ -z "$rel" ] && continue
+      mkdir -p "$(dirname "$proj/$rel")" "$(dirname "$orig/$rel")"
+      printf '%s' "$(printf '%s' "$fx" | jq -j --arg p "$rel" '.files[$p]')" > "$proj/$rel"
+      cp "$proj/$rel" "$orig/$rel"
+    done < <(printf '%s' "$fx" | jq -r '(.files // {}) | keys[]' | strip_cr)
+    if [ "$(printf '%s' "$fx" | jq -r '.git')" = "true" ]; then
+      git -C "$proj" init -q 2>/dev/null
+      if [ "$(printf '%s' "$fx" | jq -r '.commit')" = "true" ]; then
+        git -C "$proj" add -A 2>/dev/null
+        git -C "$proj" -c user.email=eval@example.invalid -c user.name=eval commit -q -m fixture 2>/dev/null
+      fi
+    fi
+    case "$(printf '%s' "$fx" | jq -r '.run')" in
+      init)           bash "$init_project" "$proj" >/dev/null 2>&1 ;;
+      init-skip)      bash "$init_project" "$proj" --skip-existing-claude-md >/dev/null 2>&1 ;;
+      init-force)     bash "$init_project" "$proj" --force >/dev/null 2>&1 ;;
+      gen-lock)       bash "$gen_profile_lock" "$proj" >/dev/null 2>&1 ;;
+      gen-lock-embed) bash "$gen_profile_lock" "$proj" --embed-selection >/dev/null 2>&1 ;;
+    esac
+    problems=()
+    while IFS= read -r rel; do
+      [ -z "$rel" ] && continue
+      cmp -s "$proj/$rel" "$orig/$rel" || problems+=("changed:$rel")
+    done < <(printf '%s' "$fx" | jq -r '(.expectUnchanged // [])[]' | strip_cr)
+    while IFS= read -r rel; do
+      [ -z "$rel" ] && continue
+      { [ -f "$proj/$rel" ] && ! cmp -s "$proj/$rel" "$orig/$rel"; } || problems+=("not-replaced:$rel")
+    done < <(printf '%s' "$fx" | jq -r '(.expectReplaced // [])[]' | strip_cr)
+    while IFS= read -r rel; do
+      [ -z "$rel" ] && continue
+      [ -f "$proj/$rel" ] || problems+=("missing:$rel")
+    done < <(printf '%s' "$fx" | jq -r '(.expectExists // [])[]' | strip_cr)
+    while IFS= read -r rel; do
+      [ -z "$rel" ] && continue
+      ! grep -q $'\r' "$proj/$rel" 2>/dev/null || problems+=("has-CR:$rel")
+    done < <(printf '%s' "$fx" | jq -r '(.expectNoCR // [])[]' | strip_cr)
+    while IFS=$'\t' read -r rel needle; do
+      [ -z "$rel" ] && continue
+      grep -qF -- "$needle" "$proj/$rel" 2>/dev/null || problems+=("lacks:$rel:$needle")
+    done < <(printf '%s' "$fx" | jq -r '(.expectContains // {}) | to_entries[] | .key as $k | .value[] | [$k, .] | @tsv' | strip_cr)
+    while IFS=$'\t' read -r rel needle; do
+      [ -z "$rel" ] && continue
+      ! grep -qxF -- "$needle" "$proj/$rel" 2>/dev/null || problems+=("has-line:$rel:$needle")
+    done < <(printf '%s' "$fx" | jq -r '(.expectNoLine // {}) | to_entries[] | .key as $k | .value[] | [$k, .] | @tsv' | strip_cr)
+    bak_count="$(find "$proj" -name '*.bak.*' 2>/dev/null | grep -c . || true)"
+    [ "$(printf '%s' "$fx" | jq -r '.expectNoBak // false')" = "true" ] && [ "${bak_count:-0}" -gt 0 ] && problems+=("bak-files:$bak_count")
+    [ "$(printf '%s' "$fx" | jq -r '.expectBak // false')" = "true" ] && [ "${bak_count:-0}" -eq 0 ] && problems+=("no-bak")
+    rm -rf "$tmp_root"
+    pass=0; [ "${#problems[@]}" -eq 0 ] && pass=1
+    add_result "create-only" "$id" "$pass" "files untouched unless --force" "${problems[*]:-ok}"
+  done < <(jq -c '.[]' "$create_only_fixtures" | strip_cr)
 fi
 
 if [ -f "$mode_fixtures" ]; then

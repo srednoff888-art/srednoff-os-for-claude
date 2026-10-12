@@ -1,0 +1,70 @@
+[
+  {
+    "id": "v1_claude_md_untracked_no_git",
+    "run": "init", "git": false, "commit": false,
+    "files": { "CLAUDE.md": "# mine\n\nproject rules\n" },
+    "expectUnchanged": ["CLAUDE.md"], "expectNoBak": true
+  },
+  {
+    "id": "v1_claude_md_untracked_in_git",
+    "run": "init", "git": true, "commit": false,
+    "files": { "CLAUDE.md": "# mine\n\nproject rules\n" },
+    "expectUnchanged": ["CLAUDE.md"], "expectNoBak": true
+  },
+  {
+    "id": "v2_rule_untracked_no_git",
+    "run": "init", "git": false, "commit": false,
+    "files": { ".claude/rules/00-operating-system.md": "my own rule\n" },
+    "expectUnchanged": [".claude/rules/00-operating-system.md"], "expectNoBak": true
+  },
+  {
+    "id": "v2_agent_file_untracked_in_git",
+    "run": "init", "git": true, "commit": false,
+    "files": { ".agent/PLANS.md": "my plans\n", "code_review.md": "my review checklist\n" },
+    "expectUnchanged": [".agent/PLANS.md", "code_review.md"], "expectNoBak": true
+  },
+  {
+    "id": "v2_rule_committed_in_git",
+    "run": "init", "git": true, "commit": true,
+    "files": { ".claude/rules/00-operating-system.md": "my own rule\n" },
+    "expectUnchanged": [".claude/rules/00-operating-system.md"], "expectNoBak": true
+  },
+  {
+    "id": "v2_skip_flag_still_accepted",
+    "run": "init-skip", "git": false, "commit": false,
+    "files": { "CLAUDE.md": "# mine\n", ".claude/rules/00-operating-system.md": "my own rule\n" },
+    "expectUnchanged": ["CLAUDE.md", ".claude/rules/00-operating-system.md"], "expectNoBak": true
+  },
+  {
+    "id": "create_only_still_creates_missing",
+    "run": "init", "git": false, "commit": false,
+    "files": { "CLAUDE.md": "# mine\n" },
+    "expectExists": [".claude/rules/00-operating-system.md", ".claude/skills/github-research/SKILL.md", "code_review.md"]
+  },
+  {
+    "id": "v3_genlock_leaves_claude_md_without_markers",
+    "run": "gen-lock", "git": false, "commit": false,
+    "files": { "CLAUDE.md": "# mine\n\nproject rules\n" },
+    "expectUnchanged": ["CLAUDE.md"], "expectExists": [".claude/PROFILE.lock.md"]
+  },
+  {
+    "id": "v3_genlock_refreshes_existing_markers_lf_only",
+    "run": "gen-lock", "git": false, "commit": false,
+    "files": { "CLAUDE.md": "# mine\n\n<!-- SREDNOFF-OS:SELECTION -->\nold\n<!-- /SREDNOFF-OS:SELECTION -->\n\nproject rules\n" },
+    "expectContains": { "CLAUDE.md": ["project rules", "tags:"] }, "expectNoLine": { "CLAUDE.md": ["old"] },
+    "expectNoCR": ["CLAUDE.md"]
+  },
+  {
+    "id": "v3_genlock_embed_flag_inserts_block_lf_only",
+    "run": "gen-lock-embed", "git": false, "commit": false,
+    "files": { "CLAUDE.md": "# mine\n\nproject rules\n" },
+    "expectContains": { "CLAUDE.md": ["<!-- SREDNOFF-OS:SELECTION -->", "project rules"] },
+    "expectNoCR": ["CLAUDE.md"]
+  },
+  {
+    "id": "force_replaces_and_backs_up",
+    "run": "init-force", "git": false, "commit": false,
+    "files": { ".claude/rules/00-operating-system.md": "my own rule\n" },
+    "expectReplaced": [".claude/rules/00-operating-system.md"], "expectBak": true
+  }
+]

@@ -159,7 +159,7 @@ if ($RunEvals) {
 }
 
 # 4. Safe auto-repair (idempotent, never overwrites existing custom content - same
-# guarantee as init-claude-project.ps1 has always had: backup-on-diff, skip-on-identical).
+# guarantee as init-claude-project.ps1: create-only, existing files are never changed).
 if ($FixSafe) {
   $fixed = @()
   if (-not $structOk) {

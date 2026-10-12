@@ -10,22 +10,24 @@
     docs/**, benchmarks/**, registry/**, skills-library/**) are NEVER copied into a target
     project - registry/skills-library are meant to be consumed via the global registry
     symlink/install, not duplicated per project.
-  - Never overwrites a file already tracked in the target's own git history that differs
-    from the template: it is left untouched and reported, not backed-up-and-clobbered.
-    Pass -Force to opt back into backup+overwrite for tracked files that differ.
-  - Untracked existing files that differ still get the old backup+overwrite treatment.
+  - CREATE-ONLY: creates the files the project is missing and never changes one that already
+    exists. An existing file that differs from the template is left untouched and listed in
+    the report - whether or not it is committed, whether or not the project is a git repo.
+    A .bak file is not consent, and this script also runs in the background (global
+    SessionStart hook, doctor -FixSafe, apply-os-all -Sync). Pass -Force to replace the files
+    that differ (each is backed up to <file>.bak.<stamp> first). Only a human at a prompt
+    should.
   - Never deletes anything.
   - Never creates an active .claude/settings.json (only settings.example.json is copied).
-  - Reports created / updated(backed up) / skipped / kept(tracked) files.
+  - Reports created / updated(backed up, -Force only) / skipped / kept(differs) files.
 .PARAMETER ProjectPath
   Target project directory. Defaults to current directory.
 .PARAMETER SkipExistingClaudeMd
-  If the project already has its own CLAUDE.md, leave it completely untouched
-  (do not back up or replace). Use this when rolling the OS into existing projects
-  that have a tailored CLAUDE.md you want to keep active.
+  Kept for compatibility: create-only already leaves an existing CLAUDE.md alone. Unlike
+  plain create-only it also wins over -Force for CLAUDE.md.
 .PARAMETER Force
-  Overwrite existing git-tracked files that differ from the template instead of skipping
-  them (still backs them up first). Opt-in only.
+  Replace existing files that differ from the template instead of keeping them (backs them
+  up first). Opt-in only; no automated path passes it.
 .EXAMPLE
   .\init-claude-project.ps1 .
   .\init-claude-project.ps1 "C:\my-workspace\my-nextjs-app"
@@ -87,15 +89,7 @@ $files = Get-ChildItem -LiteralPath $TemplateRoot -Recurse -File -Force | Where-
 }
 
 $preserved = @()
-$keptTracked = @()
-
-# Determine once whether the target is inside a git work tree, and if so, resolve `git`.
-$gitCmd = Get-Command git -ErrorAction SilentlyContinue
-$targetIsGitRepo = $false
-if ($gitCmd) {
-  & git -C $Target rev-parse --is-inside-work-tree *> $null
-  $targetIsGitRepo = ($LASTEXITCODE -eq 0)
-}
+$kept = @()
 
 foreach ($f in $files) {
   $rel = $f.FullName.Substring($TemplateRoot.Length).TrimStart('\','/')
@@ -116,9 +110,8 @@ foreach ($f in $files) {
   }
 
   if (Test-Path -LiteralPath $dest) {
-    # Compare content; if identical, skip. Otherwise back up then copy (unless the file is
-    # already tracked in the target's own git history - then it is left untouched, matching
-    # the .sh port, unless -Force was passed).
+    # Compare content; identical -> skip. Different -> create-only keeps the project's file
+    # and reports it; only -Force backs it up and replaces it.
     $same = $false
     try {
       $a = Get-FileHash -LiteralPath $dest -Algorithm SHA256
@@ -131,14 +124,8 @@ foreach ($f in $files) {
       continue
     }
 
-    $tracked = $false
-    if (-not $Force -and $targetIsGitRepo) {
-      & git -C $Target ls-files --error-unmatch -- $rel *> $null
-      $tracked = ($LASTEXITCODE -eq 0)
-    }
-
-    if ($tracked) {
-      $keptTracked += $rel
+    if (-not $Force) {
+      $kept += $rel
       continue
     }
 
@@ -167,9 +154,9 @@ if ($preserved.Count -gt 0) {
   $preserved | ForEach-Object { Write-Host "  ! $_" }
   Write-Host ""
 }
-if ($keptTracked.Count -gt 0) {
-  Write-Host "Kept (tracked in your git history, differs from template - pass -Force to overwrite) ($($keptTracked.Count)):" -ForegroundColor Magenta
-  $keptTracked | ForEach-Object { Write-Host "  ! $_" }
+if ($kept.Count -gt 0) {
+  Write-Host "Kept (differs from template, not modified - pass -Force to replace) ($($kept.Count)):" -ForegroundColor Magenta
+  $kept | ForEach-Object { Write-Host "  ! $_" }
   Write-Host ""
 }
 Write-Host "Done. Hooks are NOT active. To enable them:" -ForegroundColor Cyan

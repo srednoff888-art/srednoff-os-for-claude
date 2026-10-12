@@ -10,13 +10,18 @@
   ASCII-only on purpose: Windows PowerShell 5.1 misparses non-ASCII .ps1 without BOM.
 .PARAMETER ProjectPath
   Project folder (default: current).
+.PARAMETER EmbedSelection
+  CLAUDE.md is the project's own file. By default the SREDNOFF-OS:SELECTION block is only
+  refreshed when the markers are already there; this switch is the explicit opt-in that
+  inserts the block (after the title line) into a CLAUDE.md that does not have it. Background
+  callers (SessionStart hook, doctor, apply-os-all) never pass it.
 #>
 [CmdletBinding()]
 # -PrintTags classifies the project and prints the dominant tags, then exits without
 # writing anything and without needing the registry. It exists so the classifier can be
 # regression-tested (evals/profile-tag-fixtures.json) instead of only being observable
 # through the PROFILE.lock it produces.
-param([Parameter(Position = 0)][string]$ProjectPath = ".", [switch]$PrintTags)
+param([Parameter(Position = 0)][string]$ProjectPath = ".", [switch]$PrintTags, [switch]$EmbedSelection)
 
 $ErrorActionPreference = "Stop"
 $Target = (Resolve-Path -LiteralPath $ProjectPath).Path
@@ -125,9 +130,14 @@ $body.Add("Full catalog: ~/.claude/registry/CORE-300.md | protocol: SELECTION-PR
 Set-Content -LiteralPath $lock -Value ($body -join "`r`n") -Encoding UTF8
 
 # --- Embed a compact selection into CLAUDE.md (always-loaded) so the agent sees the picks
-# without needing a separate read of PROFILE.lock. Idempotent via markers. ASCII-only block. ---
+# without needing a separate read of PROFILE.lock. Idempotent via markers. ASCII-only block.
+# Only touches a CLAUDE.md that already carries the markers, or when -EmbedSelection was
+# passed. ---
 $claudeMd = Join-Path $Target "CLAUDE.md"
-if (Test-Path -LiteralPath $claudeMd) {
+$m0 = "<!-- SREDNOFF-OS:SELECTION -->"
+$m1 = "<!-- /SREDNOFF-OS:SELECTION -->"
+$hasMarkers = (Test-Path -LiteralPath $claudeMd) -and ([System.IO.File]::ReadAllText($claudeMd).Contains($m0))
+if ((Test-Path -LiteralPath $claudeMd) -and ($EmbedSelection -or $hasMarkers)) {
   # Prefer immediately-usable INST/ANTH skills first, then fill with the rest.
   $names = @()
   foreach ($pref in @($true, $false)) {
@@ -141,9 +151,7 @@ if (Test-Path -LiteralPath $claudeMd) {
   }
   $sel = ($names -join ", ")
   $tagStr = ($tags -join ", ")
-  $m0 = "<!-- SREDNOFF-OS:SELECTION -->"
-  $m1 = "<!-- /SREDNOFF-OS:SELECTION -->"
-  $block = "$m0`r`n> **SREDNOFF OS - skills for this project** (full list: .claude/PROFILE.lock.md - read it first) | tags: $tagStr | top: $sel`r`n$m1"
+  $block = "$m0`n> **SREDNOFF OS - skills for this project** (full list: .claude/PROFILE.lock.md - read it first) | tags: $tagStr | top: $sel`n$m1"
   $enc2 = New-Object System.Text.UTF8Encoding($false)
   $md = [System.IO.File]::ReadAllText($claudeMd)
   $i0 = $md.IndexOf($m0); $i1 = $md.IndexOf($m1)
@@ -151,8 +159,8 @@ if (Test-Path -LiteralPath $claudeMd) {
     $md = $md.Substring(0, $i0) + $block + $md.Substring($i1 + $m1.Length)
   } else {
     $nl = $md.IndexOf("`n")
-    if ($nl -ge 0) { $md = $md.Substring(0, $nl + 1) + "`r`n" + $block + "`r`n" + $md.Substring($nl + 1) }
-    else { $md = $block + "`r`n`r`n" + $md }
+    if ($nl -ge 0) { $md = $md.Substring(0, $nl + 1) + "`n" + $block + "`n" + $md.Substring($nl + 1) }
+    else { $md = $block + "`n`n" + $md }
   }
   [System.IO.File]::WriteAllText($claudeMd, $md, $enc2)
 }

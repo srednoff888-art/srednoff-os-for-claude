@@ -20,9 +20,9 @@ Use this skill when entering a new repository.
 
 1. Check whether the required files exist.
 2. If missing, initialize from `~/.claude/templates/claude-md-os`.
-3. If existing, do not overwrite silently.
-4. Create backups with timestamp.
-5. Report created, updated, skipped, and backed up files.
+3. If a file already exists, leave it alone: the init script is create-only, so it never changes an existing file, committed or not.
+4. Replace a differing file only when the user explicitly asks (`--force` / `-Force`; the script backs it up with a timestamp first).
+5. Report created, skipped (identical), and kept (differs from the template, not modified) files.
 
 ## Command
 

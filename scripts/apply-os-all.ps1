@@ -4,11 +4,10 @@
   Apply Claude MD OS to EVERY project subfolder under a root that is missing it.
   Belt-and-suspenders for "apply to all projects" without a SessionStart hook.
   With -Sync, ALSO refreshes projects that already have the OS - re-runs init on
-  them so rules/hooks/skills/scripts pick up template updates (concept ported from
+  them so they pick up template files they are missing (concept ported from
   srednoff-os's sync-codex-skills-to-projects.ps1; implemented as a flag here instead
-  of a parallel script, because init-claude-project.ps1 already does exactly what a
-  sync needs - hash-diff, timestamped backup, CLAUDE.md preservation - re-running it
-  on an initialized project IS the sync).
+  of a parallel script). init-claude-project.ps1 is create-only: it never changes a
+  file that already exists, so a sync adds new files and reports the ones that differ.
 .PARAMETER Root
   Workspace root (default: G:\CLAUDE COWORK).
 .PARAMETER Sync

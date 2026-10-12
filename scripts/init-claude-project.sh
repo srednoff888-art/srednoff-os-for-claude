@@ -8,20 +8,19 @@ set -euo pipefail
 #   docs/**, benchmarks/**, registry/**, skills-library/**) are NEVER copied into a target
 #   project - a consumer project has no use for them, and registry/skills-library are meant
 #   to be consumed via the ~/.claude/registry symlink, not duplicated per project.
-# - Never overwrites a file that is already tracked in the target's own git history and
-#   differs from the template: it is left untouched and reported, not backed-up-and-clobbered.
-#   A .bak file is not consent. Pass --force to opt back into the old backup+overwrite
-#   behavior for tracked files that differ (for a human who really wants the template's copy).
-# - Untracked existing files that differ still get the old backup+overwrite treatment (they
-#   were never confirmed as someone's committed work).
+# - CREATE-ONLY: it creates the files the project is missing and never changes one that
+#   already exists. An existing file that differs from the template is left untouched and
+#   listed in the report - whether or not it is committed, whether or not the project is a git
+#   repo. A .bak file is not consent, and this script also runs in the background (global
+#   SessionStart hook, doctor --fix-safe, apply-os-all --sync), where nobody is watching.
+#   Pass --force to replace the files that differ (each is backed up to <file>.bak.<stamp>
+#   first). Only a human at a prompt should.
 # - Never deletes anything.
 # - Never creates an active .claude/settings.json (only settings.example.json).
-# --skip-existing-claude-md: if the project already has its own CLAUDE.md, leave it
-#   completely untouched (do not back up or replace). Matches -SkipExistingClaudeMd in
-#   init-claude-project.ps1.
-# --force: overwrite existing git-tracked files that differ from the template instead of
-#   skipping them (still backs them up first). Opt-in only; not passed by the automated
-#   SessionStart auto-apply path.
+# --skip-existing-claude-md: kept for compatibility; create-only already leaves an existing
+#   CLAUDE.md alone. Unlike plain create-only it also wins over --force for CLAUDE.md.
+# --force: replace existing files that differ from the template (backup first). Opt-in only;
+#   never passed by any automated path.
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 template_root="$(cd "$script_dir/.." && pwd)"
@@ -65,10 +64,7 @@ echo "  Template: $template_root"
 echo "  Target:   $target"
 echo ""
 
-created=0; updated=0; skipped=0; preserved=0; kept_tracked=0
-
-target_is_git_repo=0
-git -C "$target" rev-parse --is-inside-work-tree >/dev/null 2>&1 && target_is_git_repo=1
+created=0; updated=0; skipped=0; preserved=0; kept=0
 
 # Walk template files, but only ship the project-bootstrap allow-list. Everything else in
 # the template (README*, LICENSE, .gitignore, QUALITY.md, RELEASE.md, docs/, benchmarks/,
@@ -99,18 +95,14 @@ while IFS= read -r -d '' f; do
       echo "  = $rel"
       skipped=$((skipped+1))
     else
-      tracked=0
-      if [ "$force" -ne 1 ] && [ "$target_is_git_repo" -eq 1 ]; then
-        git -C "$target" ls-files --error-unmatch -- "$rel" >/dev/null 2>&1 && tracked=1
-      fi
-      if [ "$tracked" -eq 1 ]; then
-        echo "  ! $rel  (kept - existing file is tracked in your git history and differs from the template; pass --force to overwrite)"
-        kept_tracked=$((kept_tracked+1))
-      else
+      if [ "$force" -eq 1 ]; then
         cp -f "$dest" "$dest.bak.$stamp"
         cp -f "$f" "$dest"
         echo "  ~ $rel  (backup: $(basename "$dest.bak.$stamp"))"
         updated=$((updated+1))
+      else
+        echo "  ! $rel  (kept - differs from the template; not modified, pass --force to replace)"
+        kept=$((kept+1))
       fi
     fi
   else
@@ -121,7 +113,7 @@ while IFS= read -r -d '' f; do
 done < <(find "$template_root" -type f -print0)
 
 echo ""
-echo "Created: $created  Updated: $updated  Skipped: $skipped  Preserved: $preserved  Kept (tracked, differs): $kept_tracked"
+echo "Created: $created  Updated: $updated  Skipped: $skipped  Preserved: $preserved  Kept (differs, not modified): $kept"
 echo ""
 echo "Hooks are NOT active. To enable them:"
 echo "  cp .claude/settings.example.json .claude/settings.json"
