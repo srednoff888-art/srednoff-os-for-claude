@@ -2,7 +2,7 @@
   "_comment": "Plugin hook wiring for SREDNOFF OS (auto-loaded when the plugin is enabled). Targets the bash hooks (macOS/Linux) and requires jq + grep -P in PATH. Windows users: enable hooks via the manual PowerShell wiring in .claude/settings.windows.example.json instead (a single plugin hooks.json cannot branch per-OS). ${CLAUDE_PLUGIN_ROOT} resolves to the installed plugin directory.",
   "PreToolUse": [
     {
-      "matcher": "Bash",
+      "matcher": "Bash|PowerShell",
       "hooks": [
         { "type": "command", "command": "bash \"${CLAUDE_PLUGIN_ROOT}/.claude/hooks/block-dangerous-bash.sh\"" }
       ]

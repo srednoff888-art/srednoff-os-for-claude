@@ -25,6 +25,8 @@ $SourceRankerFixtures = Join-Path $Registry "evals\source-ranker-fixtures.json"
 $SourceRanker = Join-Path $Registry "source-ranker.ps1"
 $HookLib = Join-Path $env:USERPROFILE ".claude\templates\claude-md-os\.claude\hooks\hook-lib.ps1"
 $ProfileTagFixtures = Join-Path $Registry "evals\profile-tag-fixtures.json"
+$BlockBashHook = Join-Path $env:USERPROFILE ".claude\templates\claude-md-os\.claude\hooks\block-dangerous-bash.ps1"
+$DangerousFixtures = Join-Path $Registry "evals\dangerous-command-fixtures.json"
 $GenProfileLock = Join-Path $env:USERPROFILE ".claude\templates\claude-md-os\scripts\gen-profile-lock.ps1"
 
 $results = New-Object System.Collections.Generic.List[object]
@@ -85,6 +87,21 @@ if ((Test-Path -LiteralPath $ProfileTagFixtures) -and (Test-Path -LiteralPath $G
     $expSorted = ((@($f.expectedTags) | Sort-Object) -join ',')
     $pass = ($gotSorted -eq $expSorted)
     $results.Add([pscustomobject]@{ suite = "profile-tags"; id = $f.id; pass = $pass; expected = $expSorted; got = $gotSorted }) | Out-Null
+  }
+}
+
+# Dangerous-command regression. The hook only ever saw Bash-tool calls; the PowerShell tool
+# (default on Windows) skipped it entirely, and the hook knew no PowerShell syntax. Each
+# fixture feeds the real hook a PreToolUse payload and checks the verdict, including
+# commands that must stay allowed.
+if ((Test-Path -LiteralPath $DangerousFixtures) -and (Test-Path -LiteralPath $BlockBashHook)) {
+  $fixtures = Get-Content -LiteralPath $DangerousFixtures -Raw | ConvertFrom-Json
+  foreach ($f in $fixtures) {
+    $payload = @{ tool_name = $f.tool; tool_input = @{ command = $f.command } } | ConvertTo-Json -Compress -Depth 5
+    $out = $payload | & powershell -NoProfile -ExecutionPolicy Bypass -File $BlockBashHook 2>$null
+    $got = ("$out" -match '"permissionDecision":"deny"')
+    $pass = ($got -eq [bool]$f.expectDeny)
+    $results.Add([pscustomobject]@{ suite = "dangerous-command"; id = $f.id; pass = $pass; expected = "deny=$($f.expectDeny)"; got = "deny=$got" }) | Out-Null
   }
 }
 

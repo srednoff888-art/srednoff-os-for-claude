@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# PreToolUse(Bash) hook - block dangerous shell commands AND secrets in the command text.
+# PreToolUse(Bash|PowerShell) hook - block dangerous shell commands AND secrets in the command text.
 # Linux/macOS port of block-dangerous-bash.ps1. Requires: jq, grep -P (see hook-lib.sh).
 # Wire via settings: bash .claude/hooks/block-dangerous-bash.sh
 set -uo pipefail
@@ -34,6 +34,11 @@ fi
 # (2) Long-form '--recursive --force' (either order) and reversed short flags '-fr' bypassed
 #     the old '-rf'-only match.
 # (3) 'git push -f' bypassed the old '--force'-only match.
+# PowerShell-tool syntax (the PowerShell tool is a separate tool from Bash; with only a
+# Bash matcher it skipped every hook): recursive Remove-Item / rd / del /s aimed at a
+# drive root, the home directory, the current directory or a bare wildcard, and the
+# disk-wiping cmdlets. A piped delete (Get-ChildItem -Recurse | Remove-Item) is NOT
+# recognised.
 danger_patterns=(
   '(^|[[:space:]])rm([[:space:]]+-[^[:space:]]+)*[[:space:]]+["'"'"']?(/|~|\$HOME|\$\{HOME\}|\.)["'"'"']?(\*|/\*)?["'"'"']?([[:space:]]|$)'
   '\bmkfs\b'
@@ -44,6 +49,9 @@ danger_patterns=(
   'git\s+reset\s+--hard'
   '\bformat\s+[A-Za-z]:'
   '>\s*/dev/sd[a-z]'
+  '(?i)\b(?:Remove-Item|ri|rm|rmdir|rd|del|erase)\b(?=[^;|&\n]*(?:-Recurse\b|\s/s\b))[^;|&\n]*?(?<=[\s\x22\x27=])(?:(?:~|\$HOME|\$\{HOME\}|\$env:(?:USERPROFILE|HOMEPATH|SystemDrive|SystemRoot|windir)|[A-Za-z]:|\.)(?:[\\/]\*?|\*)?|[\\/]\*?|\*)[\x22\x27]?(?=\s|$|[;|&)])'
+  '(?i)\b(?:Format-Volume|Clear-Disk|Initialize-Disk|Remove-Partition)\b'
+  '(?i)\bdiskpart\b'
 )
 for d in "${danger_patterns[@]}"; do
   if printf '%s' "$cmd" | srednoff_grep_pcre "$d"; then

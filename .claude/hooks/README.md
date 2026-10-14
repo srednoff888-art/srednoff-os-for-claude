@@ -26,7 +26,7 @@ chmod +x .claude/hooks/*.sh
 ## Хуки (одинаковый набор в .ps1 и .sh, паритет функциональности)
 
 - `hook-lib.ps1` / `hook-lib.sh` — общая библиотека (dot-source/source), не хук сама по себе: контентное сканирование секретов (OpenAI/Anthropic/GitHub/AWS/Google/Stripe/Slack/Twilio/SendGrid/npm ключи, PEM, JWT — 13 паттернов, сверены с gitleaks.toml) + audit-журнал.
-- `block-dangerous-bash.ps1` / `.sh` — PreToolUse(Bash): блокирует опасные команды (`rm -rf /`, `mkfs`, `dd of=/dev/*`, fork-bomb, `chmod -R 777 /`, `git push --force`, `git reset --hard`, `format C:`) **и** секреты, вставленные прямо в команду.
+- `block-dangerous-bash.ps1` / `.sh` — PreToolUse(`Bash|PowerShell`): блокирует опасные команды (`rm -rf /`, `mkfs`, `dd of=/dev/*`, fork-bomb, `chmod -R 777 /`, `git push --force`, `git reset --hard`, `format C:`; для PowerShell — рекурсивный `Remove-Item`/`rd /s`/`del /s` по корню диска, домашнему каталогу, `.` и голому `*`, `Format-Volume`, `Clear-Disk`, `diskpart`; удаление через конвейер `Get-ChildItem -Recurse | Remove-Item` не распознаётся) **и** секреты, вставленные прямо в команду.
 - `protect-secrets.ps1` / `.sh` — PreToolUse(Read|Edit|Write|MultiEdit): блокирует доступ к секретным путям (`.env`, `*.pem`, `*.key`, `id_rsa`, `secrets.*`, `credentials.json`) **и** секреты, которые вот-вот запишутся в обычный файл (контент, не только путь).
 - `scan-prompt-secrets.ps1` / `.sh` — UserPromptSubmit: блокирует сам промпт, если в нём есть вставленный секрет (до того, как он попадёт хоть куда-то). Контракт подтверждён по офиц. докам (`{"decision":"block","reason":...}`).
 - `quality-reminder.ps1` / `.sh` — Stop: напоминание про тесты/безопасность/отчёт.

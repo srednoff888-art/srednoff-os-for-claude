@@ -1,4 +1,4 @@
-# PreToolUse(Bash) hook - block dangerous shell commands AND secrets in the command text.
+# PreToolUse(Bash|PowerShell) hook - block dangerous shell commands AND secrets in the command text.
 # PowerShell, no jq needed. Wire via settings: powershell -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/block-dangerous-bash.ps1
 $ErrorActionPreference = "SilentlyContinue"
 . "$PSScriptRoot\hook-lib.ps1"
@@ -34,6 +34,11 @@ if ($secretHits.Count -gt 0) {
 #     the old pattern, which only matched the literal '-rf' token.
 # (3) 'git push -f' (the common short flag) bypassed the old pattern, which only matched
 #     '--force'.
+# PowerShell-tool syntax (the PowerShell tool is a separate tool from Bash; with only a
+# Bash matcher it skipped every hook): recursive Remove-Item / rd / del /s aimed at a
+# drive root, the home directory, the current directory or a bare wildcard, and the
+# disk-wiping cmdlets. A piped delete (Get-ChildItem -Recurse | Remove-Item) is NOT
+# recognised.
 $danger = @(
   '(^|\s)rm(\s+-[^\s]+)*\s+["'']?(/|~|\$HOME|\$\{HOME\}|\.)["'']?(\*|/\*)?["'']?(\s|$)',
   '\bmkfs\b',
@@ -43,7 +48,10 @@ $danger = @(
   'git\s+push\s+.*(--force|-f)(\s|$)',
   'git\s+reset\s+--hard',
   '\bformat\s+[A-Za-z]:',
-  '>\s*/dev/sd[a-z]'
+  '>\s*/dev/sd[a-z]',
+  '(?i)\b(?:Remove-Item|ri|rm|rmdir|rd|del|erase)\b(?=[^;|&\n]*(?:-Recurse\b|\s/s\b))[^;|&\n]*?(?<=[\s\x22\x27=])(?:(?:~|\$HOME|\$\{HOME\}|\$env:(?:USERPROFILE|HOMEPATH|SystemDrive|SystemRoot|windir)|[A-Za-z]:|\.)(?:[\\/]\*?|\*)?|[\\/]\*?|\*)[\x22\x27]?(?=\s|$|[;|&)])',
+  '(?i)\b(?:Format-Volume|Clear-Disk|Initialize-Disk|Remove-Partition)\b',
+  '(?i)\bdiskpart\b'
 )
 foreach ($d in $danger) {
   if ($cmd -match $d) {
